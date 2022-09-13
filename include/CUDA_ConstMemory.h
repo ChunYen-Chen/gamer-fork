@@ -14,6 +14,10 @@ SET_GLOBAL( __constant__ int    c_EoS_AuxArray_Int[EOS_NAUX_MAX  ] );
 SET_GLOBAL( __constant__ real*  c_EoS_Table       [EOS_NTABLE_MAX] );
 #endif
 
+#ifdef FIX_FLUID
+SET_GLOBAL( __constant__ int    c_FixSwitch[10000] );
+#endif
+
 #if ( NCOMP_PASSIVE > 0 )
 SET_GLOBAL( __constant__ int  c_NormIdx[NCOMP_PASSIVE] );
 SET_GLOBAL( __constant__ int  c_FracIdx[NCOMP_PASSIVE] );

@@ -529,7 +529,11 @@ GPU_DEVICE
 void MHD_UpdateMagnetic( real *g_FC_Bx_Out, real *g_FC_By_Out, real *g_FC_Bz_Out,
                          const real g_FC_B_In[][ FLU_NXT_P1*SQR(FLU_NXT) ],
                          const real g_EC_Ele[][ CUBE(N_EC_ELE) ],
-                         const real dt, const real dh, const int NOut, const int NEle, const int Offset_B_In )
+                         const real dt, const real dh, const int NOut, const int NEle, const int Offset_B_In
+                         #ifdef FIX_FLUID
+                         , const FixFluid_t *FixFlu
+                         #endif
+                         )
 {
 
    const int  NOutP1      = NOut + 1;
@@ -579,6 +583,11 @@ void MHD_UpdateMagnetic( real *g_FC_Bx_Out, real *g_FC_By_Out, real *g_FC_Bz_Out
           dE2 = g_EC_Ele[TDir2][ idx_ele + didx_ele[TDir1] ] - g_EC_Ele[TDir2][idx_ele];
 
           g_FC_B_Out[d][idx_out] = g_FC_B_In[d][idx_in] + dt_dh*( dE1 - dE2 );
+          #ifdef FIX_FLUID
+          if ( FixFlu->FixSwitchPtr[NCOMP_TOTAL+d] == 1 ) {
+             g_FC_B_Out[d][idx_out] -= dt_dh*( dE1 - dE2 );
+          }
+          #endif
       } // CGPU_LOOP( idx_out, idx_out_e_i*idx_out_e_j*idx_out_e_k )
    } // for (int d=0; d<3; d++)
 
