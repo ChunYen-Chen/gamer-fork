@@ -15,7 +15,7 @@ SET_GLOBAL( __constant__ real*  c_EoS_Table       [EOS_NTABLE_MAX] );
 #endif
 
 #ifdef FIX_FLUID
-SET_GLOBAL( __constant__ int    c_FixSwitch[10000] );
+SET_GLOBAL( __constant__ int    c_FixSwitch[NCOMP_TOTAL+NCOMP_MAG] );
 #endif
 
 #if ( NCOMP_PASSIVE > 0 )

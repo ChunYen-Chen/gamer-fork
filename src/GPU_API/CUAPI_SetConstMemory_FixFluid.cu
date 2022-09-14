@@ -19,7 +19,7 @@ void CUAPI_SetConstMemory_FixFluid()
 {
 
 // copy data to constant memory
-   CUDA_CHECK_ERROR(  cudaMemcpyToSymbol( c_FixSwitch, FixFlu.FixSwitch, 10000  *sizeof(int   ) )  );
+   CUDA_CHECK_ERROR(  cudaMemcpyToSymbol( c_FixSwitch, FixFlu.FixSwitch, (NCOMP_TOTAL+NCOMP_MAG)*sizeof(int   ) )  );
 
 // obtain the constant-memory pointers
    CUDA_CHECK_ERROR(  cudaGetSymbolAddress( (void **)&FixFlu.FixSwitchPtr, c_FixSwitch )   );
