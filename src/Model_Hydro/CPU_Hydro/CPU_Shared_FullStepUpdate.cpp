@@ -64,11 +64,8 @@ void Hydro_FullStepUpdate( const real g_Input[][ CUBE(FLU_NXT) ], real g_Output[
                            const real g_FC_B[][ PS2P1*SQR(PS2) ], const real g_Flux[][NCOMP_TOTAL_PLUS_MAG][ CUBE(N_FC_FLUX) ],
                            const real dt, const real dh, const real MinDens, const real MinEint,
                            const real DualEnergySwitch, const bool NormPassive, const int NNorm, const int NormIdx[],
-                           const EoS_t *EoS, int *s_FullStepFailure, const int Iteration, const int MinMod_MaxIter
-                           #ifdef FIX_FLUID
-                           , const FixFluid_t *FixFlu
-                           #endif
-                           )
+                           const EoS_t *EoS, int *s_FullStepFailure, const int Iteration, const int MinMod_MaxIter, 
+                           const FixFluid_t *FixFlu )
 {
 
    const int  didx_flux[3]    = { 1, N_FL_FLUX, SQR(N_FL_FLUX) };
@@ -116,15 +113,11 @@ void Hydro_FullStepUpdate( const real g_Input[][ CUBE(FLU_NXT) ], real g_Output[
 
       for (int v=0; v<NCOMP_TOTAL; v++) {
          Output_1Cell[v] = g_Input[v][idx_in] - dt_dh*( dFlux[0][v] + dFlux[1][v] + dFlux[2][v] );
-         #ifdef FIX_FLUID
+//       Fixing fluid here (equivilance to set the flux to zero)
          if ( FixFlu->FixSwitchPtr[v] == 1 ) {
             Output_1Cell[v] += dt_dh*( dFlux[0][v] + dFlux[1][v] + dFlux[2][v] );
          }
-         #endif
       } // for (int v=0; v<NCOMP_TOTAL; v++)
-
-//    TODO: Fixing fluid here (equilivance to set the flux to zero)
-
 
 //    compute magnetic energy for later usage
 //    --> B field must be updated before calling Hydro_FullStepUpdate()

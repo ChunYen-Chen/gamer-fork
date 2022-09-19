@@ -14,9 +14,7 @@
 # include "Typedef.h"
 # include "SrcTerms.h"
 # include "EoS.h"
-#ifdef FIX_FLUID
 # include "FixFluid.h"
-#endif
 #else
 # include "GAMER.h"
 #endif

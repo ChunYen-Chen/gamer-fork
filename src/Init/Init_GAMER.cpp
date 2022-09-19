@@ -172,9 +172,7 @@ void Init_GAMER( int *argc, char ***argv )
 
 
 // load the fix fluix type from "Input__FixFluid"
-#  ifdef FIX_FLUID
    Init_Load_FixFluid();
-#  endif
 
 
 // initialize memory pool

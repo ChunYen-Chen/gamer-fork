@@ -289,9 +289,8 @@ extern void (*Flu_DerivedField_User_Ptr)( real Out[], const real FluIn[], const 
 
 // (2-**) fix fluid
 // =======================================================================================================
-#ifdef FIX_FLUID
+extern bool OPT__FIX_FLUID;
 extern FixFluid_t FixFlu;
-#endif
 
 
 // 3. CPU (host) arrays for transferring data between CPU and GPU

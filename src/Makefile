@@ -151,11 +151,6 @@ SIMU_OPTION += -DPAR_NATT_USER=0
 endif # PARTICLE
 
 
-# (b-5) special options
-# ------------------------------------------------------------------------------------
-SIMU_OPTION += -DFIX_FLUID
-
-
 # (c) miscellaneous options (AMR, GPU, parallelization, optimizations, ...)
 # ------------------------------------------------------------------------------------
 # maximum number of AMR levels including the root level (level id = 0 ... NLEVEL-1)
@@ -660,17 +655,6 @@ CPU_FILE    += YT_Init.cpp  YT_End.cpp  YT_SetParameter.cpp  YT_AddLocalGrid.cpp
 
 vpath %.cpp    YT
 endif # SUPPORT_LIBYT
-
-
-# fix fluid option source files (included only if "FIX_FLUID" is turned on)
-# ------------------------------------------------------------------------------------
-ifeq "$(filter -DFIX_FLUID, $(SIMU_OPTION))" "-DFIX_FLUID"
-CPU_FILE    += Init_Load_FixFluid.cpp
-GPU_FILE    += CUAPI_SetConstMemory_FixFluid.cu
-
-vpath %.cu     GPU_API
-vpath %.cpp    Init
-endif
 
 
 # local source terms source files

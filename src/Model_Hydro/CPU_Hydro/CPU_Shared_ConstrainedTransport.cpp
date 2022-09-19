@@ -529,11 +529,8 @@ GPU_DEVICE
 void MHD_UpdateMagnetic( real *g_FC_Bx_Out, real *g_FC_By_Out, real *g_FC_Bz_Out,
                          const real g_FC_B_In[][ FLU_NXT_P1*SQR(FLU_NXT) ],
                          const real g_EC_Ele[][ CUBE(N_EC_ELE) ],
-                         const real dt, const real dh, const int NOut, const int NEle, const int Offset_B_In
-                         #ifdef FIX_FLUID
-                         , const FixFluid_t *FixFlu
-                         #endif
-                         )
+                         const real dt, const real dh, const int NOut, const int NEle, const int Offset_B_In, 
+                         const FixFluid_t *FixFlu )
 {
 
    const int  NOutP1      = NOut + 1;
@@ -583,11 +580,10 @@ void MHD_UpdateMagnetic( real *g_FC_Bx_Out, real *g_FC_By_Out, real *g_FC_Bz_Out
           dE2 = g_EC_Ele[TDir2][ idx_ele + didx_ele[TDir1] ] - g_EC_Ele[TDir2][idx_ele];
 
           g_FC_B_Out[d][idx_out] = g_FC_B_In[d][idx_in] + dt_dh*( dE1 - dE2 );
-          #ifdef FIX_FLUID
+//        Fixing fluid here (equivilance to set the flux to zero)
           if ( FixFlu->FixSwitchPtr[NCOMP_TOTAL+d] == 1 ) {
              g_FC_B_Out[d][idx_out] -= dt_dh*( dE1 - dE2 );
           }
-          #endif
       } // CGPU_LOOP( idx_out, idx_out_e_i*idx_out_e_j*idx_out_e_k )
    } // for (int d=0; d<3; d++)
 
@@ -639,7 +635,7 @@ void MHD_HalfStepPrimitive( const real g_Flu_In[][ CUBE(FLU_NXT) ],
                             const real g_FC_B_Half[][ FLU_NXT_P1*SQR(FLU_NXT) ],
                                   real g_PriVar_Out[][ CUBE(FLU_NXT) ],
                             const real g_Flux[][NCOMP_TOTAL_PLUS_MAG][ CUBE(N_FC_FLUX) ],
-                            const real dt, const real dh, const real MinDens )
+                            const real dt, const real dh, const real MinDens, const FixFluid_t *FixFlu )
 {
 
    const int  didx_flux[3] = { 1, N_HF_FLUX, SQR(N_HF_FLUX) };
@@ -671,8 +667,12 @@ void MHD_HalfStepPrimitive( const real g_Flu_In[][ CUBE(FLU_NXT) ],
       for (int v=0; v<NFluVar; v++)
          dFlux[d][v] = g_Flux[d][v][idx_flux] - g_Flux[d][v][ idx_flux - didx_flux[d] ];
 
-      for (int v=0; v<NFluVar; v++)
+      for (int v=0; v<NFluVar; v++) {
          Output_1Cell[v] = g_Flu_In[v][idx_flu_in] - dt_dh2*( dFlux[0][v] + dFlux[1][v] + dFlux[2][v] );
+
+//       Fixing fluid here (equivilance to set the flux to zero)
+         if ( FixFlu->FixSwitchPtr[v] == 1 ) Output_1Cell[v] += dt_dh2*( dFlux[0][v] + dFlux[1][v] + dFlux[2][v] );
+      }
 
 //    apply density floor
       Output_1Cell[DENS] = FMAX( Output_1Cell[DENS], MinDens );

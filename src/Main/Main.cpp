@@ -265,9 +265,8 @@ char (*UserDerField_Label)[MAX_STRING] = NULL;
 char (*UserDerField_Unit )[MAX_STRING] = NULL;
 
 // (2-**) fix fluid option
-#ifdef FIX_FLUID
+bool OPT__FIX_FLUID;
 FixFluid_t FixFlu;
-#endif
 
 
 // 3. CPU (host) arrays for transferring data between CPU and GPU

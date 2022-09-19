@@ -1,7 +1,7 @@
 #include "CUAPI.h"
 #include "CUDA_ConstMemory.h"
 
-#if ( defined GPU  &&  defined FIX_FLUID )
+#if ( defined GPU )
 
 //-------------------------------------------------------------------------------------------------------
 // Function    :  CUAPI_SetConstMemory_FixFluid
@@ -28,4 +28,4 @@ void CUAPI_SetConstMemory_FixFluid()
 
 
 
-#endif // #if ( defined GPU  &&  defined FIX_FLUID )
+#endif // #if ( defined GPU )

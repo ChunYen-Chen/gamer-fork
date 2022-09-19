@@ -187,9 +187,7 @@ void End_StopManually( int &Terminate_global );
 void Init_BaseLevel();
 void Init_GAMER( int *argc, char ***argv );
 void Init_Load_DumpTable();
-#ifdef FIX_FLUID
 void Init_Load_FixFluid();
-#endif
 void Init_Load_FlagCriteria();
 void Init_Load_Parameter();
 void Init_MemoryPool();
@@ -565,9 +563,7 @@ void CUAPI_Set_Default_GPU_Parameter( int &GPU_NStream, int &Flu_GPU_NPGroup, in
 void CUAPI_SetDevice( const int Mode );
 void CUAPI_SetConstMemory();
 void CUAPI_SetConstMemory_EoS();
-#ifdef FIX_FLUID
 void CUAPI_SetConstMemory_FixFluid();
-#endif
 void CUAPI_Synchronize();
 #ifdef GRAVITY
 void CUAPI_SetConstMemory_ExtAccPot();

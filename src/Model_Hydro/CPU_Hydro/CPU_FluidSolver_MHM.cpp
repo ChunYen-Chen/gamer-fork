@@ -54,11 +54,8 @@ void Hydro_FullStepUpdate( const real g_Input[][ CUBE(FLU_NXT) ], real g_Output[
                            const real g_FC_B[][ PS2P1*SQR(PS2) ], const real g_Flux[][NCOMP_TOTAL_PLUS_MAG][ CUBE(N_FC_FLUX) ],
                            const real dt, const real dh, const real MinDens, const real MinEint,
                            const real DualEnergySwitch, const bool NormPassive, const int NNorm, const int NormIdx[],
-                           const EoS_t *EoS, int *s_FullStepFailure, const int Iteration, const int MinMod_MaxIter
-                           #ifdef FIX_FLUID
-                           , const FixFluid_t *FixFlu
-                           #endif
-                           );
+                           const EoS_t *EoS, int *s_FullStepFailure, const int Iteration, const int MinMod_MaxIter, 
+                           const FixFluid_t *FixFlu );
 #if   ( RSOLVER == EXACT )
 void Hydro_RiemannSolver_Exact( const int XYZ, real Flux_Out[], const real L_In[], const real R_In[],
                                 const real MinDens, const real MinPres, const EoS_DE2P_t EoS_DensEint2Pres,
@@ -105,11 +102,8 @@ void MHD_ComputeElectric(       real g_EC_Ele[][ CUBE(N_EC_ELE) ],
 void MHD_UpdateMagnetic( real *g_FC_Bx_Out, real *g_FC_By_Out, real *g_FC_Bz_Out,
                          const real g_FC_B_In[][ FLU_NXT_P1*SQR(FLU_NXT) ],
                          const real g_EC_Ele[][ CUBE(N_EC_ELE) ],
-                         const real dt, const real dh, const int NOut, const int NEle, const int Offset_B_In
-                         #ifdef FIX_FLUID
-                         , const FixFluid_t *FixFlu
-                         #endif
-                         );
+                         const real dt, const real dh, const int NOut, const int NEle, const int Offset_B_In, 
+                         const FixFluid_t *FixFlu );
 #endif // #ifdef MHD
 #endif // #if ( FLU_SCHEME == MHM_RP )
 
@@ -134,11 +128,7 @@ static void Hydro_RiemannPredict( const real g_ConVar_In[][ CUBE(FLU_NXT) ],
                                   const real MinDens, const real MinPres, const real MinEint,
                                   const bool FracPassive, const int NFrac, const int FracIdx[],
                                   const bool JeansMinPres, const real JeansMinPres_Coeff,
-                                  const EoS_t *EoS 
-                                  #ifdef FIX_FLUID
-                                  , const FixFluid_t *FixFlu
-                                  #endif
-                                  );
+                                  const EoS_t *EoS, const FixFluid_t *FixFlu );
 #endif
 
 
@@ -249,11 +239,7 @@ void CUFLU_FluidSolver_MHM(
    const bool NormPassive, const int NNorm,
    const bool FracPassive, const int NFrac,
    const bool JeansMinPres, const real JeansMinPres_Coeff,
-   const EoS_t EoS 
-   #ifdef FIX_FLUID
-   , const FixFluid_t FixFlu
-   #endif
-   )
+   const EoS_t EoS, const FixFluid_t FixFlu )
 #else
 void CPU_FluidSolver_MHM(
    const real   g_Flu_Array_In [][NCOMP_TOTAL][ CUBE(FLU_NXT) ],
@@ -282,11 +268,7 @@ void CPU_FluidSolver_MHM(
    const bool NormPassive, const int NNorm, const int c_NormIdx[],
    const bool FracPassive, const int NFrac, const int c_FracIdx[],
    const bool JeansMinPres, const real JeansMinPres_Coeff,
-   const EoS_t EoS 
-   #ifdef FIX_FLUID
-   , const FixFluid_t FixFlu
-   #endif
-   )
+   const EoS_t EoS, const FixFluid_t FixFlu )
 #endif // #ifdef __CUDACC__ ... else ...
 {
 
@@ -415,22 +397,15 @@ void CPU_FluidSolver_MHM(
                               EXT_POT_NONE, EXT_ACC_NONE, NULL, NULL );
 
          MHD_UpdateMagnetic( g_FC_Mag_Half_1PG[0], g_FC_Mag_Half_1PG[1], g_FC_Mag_Half_1PG[2],
-                             g_Mag_Array_In[P], g_EC_Ele_1PG, (real)0.5*dt, dh, N_HF_VAR, N_HF_ELE, 1 
-                             #ifdef FIX_FLUID
-                             , &FixFlu
-                             #endif
-                             );
+                             g_Mag_Array_In[P], g_EC_Ele_1PG, (real)0.5*dt, dh, N_HF_VAR, N_HF_ELE, 1, 
+                             &FixFlu );
 #        endif
 
 
 //       1-a-4. evaluate the half-step solutions
          Hydro_RiemannPredict( g_Flu_Array_In[P], g_FC_Mag_Half_1PG, g_Flux_Half_1PG, g_PriVar_Half_1PG,
                                dt, dh, MinDens, MinPres, MinEint, FracPassive, NFrac, c_FracIdx,
-                               JeansMinPres, JeansMinPres_Coeff, &EoS
-                               #ifdef FIX_FLUID
-                               , &FixFlu
-                               #endif 
-                               );
+                               JeansMinPres, JeansMinPres_Coeff, &EoS, &FixFlu );
 
 
          do {
@@ -499,22 +474,16 @@ void CPU_FluidSolver_MHM(
                                  UsePot, ExtAcc, ExtAcc_Func, c_ExtAcc_AuxArray );
 
             MHD_UpdateMagnetic( g_Mag_Array_Out[P][0], g_Mag_Array_Out[P][1], g_Mag_Array_Out[P][2],
-                                g_Mag_Array_In[P], g_EC_Ele_1PG, dt, dh, PS2, N_FL_ELE, FLU_GHOST_SIZE 
-                                #ifdef FIX_FLUID
-                                , &FixFlu
-                                #endif
-                                );
+                                g_Mag_Array_In[P], g_EC_Ele_1PG, dt, dh, PS2, N_FL_ELE, FLU_GHOST_SIZE, 
+                                &FixFlu );
 #           endif
 
 
 //          4. full-step evolution
             Hydro_FullStepUpdate( g_Flu_Array_In[P], g_Flu_Array_Out[P], g_DE_Array_Out[P], g_Mag_Array_Out[P],
                                   g_FC_Flux_1PG, dt, dh, MinDens, MinEint, DualEnergySwitch,
-                                  NormPassive, NNorm, c_NormIdx, &EoS, &s_FullStepFailure, Iteration, MinMod_MaxIter
-                                  #ifdef FIX_FLUID
-                                  , &FixFlu
-                                  #endif
-                                  );
+                                  NormPassive, NNorm, c_NormIdx, &EoS, &s_FullStepFailure, Iteration, MinMod_MaxIter, 
+                                  &FixFlu );
 
 
 //          5. counter increment
@@ -721,11 +690,7 @@ void Hydro_RiemannPredict( const real g_ConVar_In[][ CUBE(FLU_NXT) ],
                            const real MinDens, const real MinPres, const real MinEint,
                            const bool FracPassive, const int NFrac, const int FracIdx[],
                            const bool JeansMinPres, const real JeansMinPres_Coeff,
-                           const EoS_t *EoS
-                           #ifdef FIX_FLUID
-                           , const FixFluid_t *FixFlu
-                           #endif
-                           )
+                           const EoS_t *EoS, const FixFluid_t *FixFlu )
 {
 
    const int  didx_flux[3] = { 1, N_HF_FLUX, SQR(N_HF_FLUX) };
@@ -777,14 +742,10 @@ void Hydro_RiemannPredict( const real g_ConVar_In[][ CUBE(FLU_NXT) ],
 //    update the input cell-centered conserved variables with the flux differences
       for (int v=0; v<NCOMP_TOTAL; v++) {
          out_con[v] = g_ConVar_In[v][idx_in] - dt_dh2*( dflux[0][v] + dflux[1][v] + dflux[2][v] );
-         #ifdef FIX_FLUID
-         if ( FixFlu->FixSwitchPtr[v] == 1 ) {
-            out_con[v] += dt_dh2*( dflux[0][v] + dflux[1][v] + dflux[2][v] );
-         }
-         #endif
-      } // for (int v=0; v<NCOMP_TOTAL; v++)
 
-//    TODO: Fixing fluid here (equivilance to set the flux to zero)
+//       Fixing fluid here (equivilance to set the flux to zero)
+         if ( FixFlu->FixSwitchPtr[v] == 1 )   out_con[v] += dt_dh2*( dflux[0][v] + dflux[1][v] + dflux[2][v] );
+      } // for (int v=0; v<NCOMP_TOTAL; v++)
 
 //    compute the cell-centered half-step B field
 #     ifdef MHD
