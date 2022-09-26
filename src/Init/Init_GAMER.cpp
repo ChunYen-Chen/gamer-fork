@@ -172,6 +172,10 @@ void Init_GAMER( int *argc, char ***argv )
    Init_Load_DumpTable();
 
 
+// load the fix flux type from "Input__FixFluid"
+   Init_Load_FixFluid();
+
+
 // initialize memory pool
    if ( OPT__MEMORY_POOL )    Init_MemoryPool();
 

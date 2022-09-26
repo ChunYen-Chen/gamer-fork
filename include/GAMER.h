@@ -65,6 +65,7 @@ extern "C" {
 #include "Profile.h"
 #include "SrcTerms.h"
 #include "EoS.h"
+#include "FixFluid.h"
 #include "Global.h"
 #include "Field.h"
 #include "Prototype.h"

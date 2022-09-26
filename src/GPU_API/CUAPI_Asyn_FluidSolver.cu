@@ -43,7 +43,7 @@ void CUFLU_FluidSolver_MHM(
    const bool NormPassive, const int NNorm,
    const bool FracPassive, const int NFrac,
    const bool JeansMinPres, const real JeansMinPres_Coeff,
-   const EoS_t EoS );
+   const EoS_t EoS, const FixFluid_t FixFlu );
 #elif ( FLU_SCHEME == CTU )
 __global__
 void CUFLU_FluidSolver_CTU(
@@ -71,7 +71,7 @@ void CUFLU_FluidSolver_CTU(
    const bool NormPassive, const int NNorm,
    const bool FracPassive, const int NFrac,
    const bool JeansMinPres, const real JeansMinPres_Coeff,
-   const EoS_t EoS );
+   const EoS_t EoS, const FixFluid_t FixFlu );
 #endif // FLU_SCHEME
 
 #elif ( MODEL == ELBDM )
@@ -407,7 +407,7 @@ void CUAPI_Asyn_FluidSolver( real h_Flu_Array_In[][FLU_NIN ][ CUBE(FLU_NXT) ],
               dt, dh, StoreFlux, StoreElectric, LR_Limiter, MinMod_Coeff, MinMod_MaxIter,
               Time, UsePot, ExtAcc, GPUExtAcc_Ptr, MinDens, MinPres, MinEint,
               DualEnergySwitch, NormPassive, NNorm, FracPassive, NFrac,
-              JeansMinPres, JeansMinPres_Coeff, EoS );
+              JeansMinPres, JeansMinPres_Coeff, EoS, FixFlu );
 
 #        elif ( FLU_SCHEME == CTU )
 
@@ -430,7 +430,7 @@ void CUAPI_Asyn_FluidSolver( real h_Flu_Array_In[][FLU_NIN ][ CUBE(FLU_NXT) ],
               dt, dh, StoreFlux, StoreElectric, LR_Limiter, MinMod_Coeff,
               Time, UsePot, ExtAcc, GPUExtAcc_Ptr, MinDens, MinPres, MinEint,
               DualEnergySwitch, NormPassive, NNorm, FracPassive, NFrac,
-              JeansMinPres, JeansMinPres_Coeff, EoS );
+              JeansMinPres, JeansMinPres_Coeff, EoS, FixFlu );
 
 #        else
 

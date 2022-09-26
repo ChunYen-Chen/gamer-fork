@@ -14,6 +14,8 @@ SET_GLOBAL( __constant__ int    c_EoS_AuxArray_Int[EOS_NAUX_MAX  ] );
 SET_GLOBAL( __constant__ real*  c_EoS_Table       [EOS_NTABLE_MAX] );
 #endif
 
+SET_GLOBAL( __constant__ int    c_FixSwitch[NCOMP_TOTAL+NCOMP_MAG] );
+
 #if ( NCOMP_PASSIVE > 0 )
 SET_GLOBAL( __constant__ int  c_NormIdx[NCOMP_PASSIVE] );
 SET_GLOBAL( __constant__ int  c_FracIdx[NCOMP_PASSIVE] );
