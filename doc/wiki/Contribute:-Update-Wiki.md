@@ -1,3 +1,5 @@
+TEST
+
 We are glad you have something new to contribute to GAMER, and you would like to teach people how to use it!
 
 Before getting started, I recommend you have some basic knowledge of [repository, branch, fork](https://docs.github.com/en/repositories/creating-and-managing-repositories/about-repositories), [action](https://docs.github.com/en/actions), and [workflow](https://docs.github.com/en/actions/using-workflows).
