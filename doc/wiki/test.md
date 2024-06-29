@@ -1,3 +1,5 @@
+
+# A
 | Name                                     |         Default |             Min |             Max | Description |
 | :---                                     |            :--- |            :--- |            :--- | :--- |
 | ANGMOM_ORIGIN_X                          |            -1.0 |    NoMin_double |    NoMax_double | x coordinate of the origin for angular momentum (<0=auto -> BoxCenter) [-1.0] |
@@ -11,7 +13,15 @@
 | AUTO_REDUCE_MINMOD_FACTOR                |             0.8 |      Eps_double |             1.0 | reduce MINMOD_COEFF by this factor together with AUTO_REDUCE_DT (1.0=off) [0.8] ##HYDRO ONLY## |
 | AUTO_REDUCE_MINMOD_MIN                   |          1.0e-2 |             0.0 |    NoMax_double | minimum allowed MINMOD_COEFF after consecutive failures [1.0e-2] ##HYDRO ONLY## |
 | A_INIT                                   |            -1.0 |      Eps_double |    NoMax_double | initial scale factor |
+
+# B
+| Name                                     |         Default |             Min |             Max | Description |
+| :---                                     |            :--- |            :--- |            :--- | :--- |
 | BOX_SIZE                                 |            -1.0 |      Eps_double |    NoMax_double | box size along the longest side (in Mpc/h if COMOVING is adopted) |
+
+# C
+| Name                                     |         Default |             Min |             Max | Description |
+| :---                                     |            :--- |            :--- |            :--- | :--- |
 | CHE_GPU_NPGROUP                          |              -1 |       NoMin_int |       NoMax_int | number of patch groups sent into the CPU/GPU Grackle solver (<=0=auto) [-1] |
 | COM_CEN_X                                |            -1.0 |    NoMin_double |    NoMax_double | x coordinate as an initial guess for determining center of mass (if one of COM_CEN_X/Y/Z < 0 -> peak density position x) [-1.0] |
 | COM_CEN_Y                                |            -1.0 |    NoMin_double |    NoMax_double | y coordinate as an initial guess for determining center of mass (if one of COM_CEN_X/Y/Z < 0 -> peak density position y) [-1.0] |
@@ -23,6 +33,10 @@
 | CR_DIFF_MIN_B                            |             0.0 |    NoMin_double |    NoMax_double | disable diffusion locally when B field amplitude is smaller than this threshold (<=0=off) [0.0] ##CR_DIFFUSION only## |
 | CR_DIFF_PARA                             |             0.0 |             0.0 |    NoMax_double | cosmic-ray diffusion coefficients parallel/perpendicular to the |
 | CR_DIFF_PERP                             |             0.0 |             0.0 |    NoMax_double | magnetic field [0.0] ##CR_DIFFUSION only## |
+
+# D
+| Name                                     |         Default |             Min |             Max | Description |
+| :---                                     |            :--- |            :--- |            :--- | :--- |
 | DT__CR_DIFFUSION                         |          3.0e-1 |             0.0 |    NoMax_double | dt criterion: cosmic-ray diffusion CFL factor [0.3] ##CR_DIFFUSION only## |
 | DT__FLUID                                |            -1.0 |    NoMin_double |    NoMax_double | dt criterion: fluid solver CFL factor (<0=auto) [-1.0] |
 | DT__FLUID_INIT                           |            -1.0 |    NoMin_double |    NoMax_double | dt criterion: DT__FLUID at the first step (<0=auto) [-1.0] |
@@ -37,6 +51,10 @@
 | DT__SYNC_CHILDREN_LV                     |             0.1 |             0.0 |             1.0 | dt criterion: allow dt to adjust by (1.0-DT__SYNC_CHILDREN) in order to synchronize with the children level (for OPT__DT_LEVEL==3 only; 0=off) [0.1] |
 | DT__SYNC_PARENT_LV                       |             0.1 |             0.0 |    NoMax_double | dt criterion: allow dt to adjust by (1.0+DT__SYNC_PARENT) in order to synchronize with the parent level (for OPT__DT_LEVEL==3 only) [0.1] |
 | DUAL_ENERGY_SWITCH                       |          2.0e-2 |             0.0 |    NoMax_double | apply dual-energy if E_int/E_kin < DUAL_ENERGY_SWITCH [2.0e-2] ##DUAL_ENERGY ONLY## |
+
+# E
+| Name                                     |         Default |             Min |             Max | Description |
+| :---                                     |            :--- |            :--- |            :--- | :--- |
 | ELBDM_LAMBDA                             |             1.0 |    NoMin_double |    NoMax_double | quartic self-interaction coefficient [1.0] ##QUARTIC_SELF_INTERACTION ONLY## |
 | ELBDM_MASS                               |            -1.0 |      Eps_double |    NoMax_double | particle mass in ev/c^2 (input unit is fixed even when OPT__UNIT or COMOVING is on) |
 | ELBDM_PLANCK_CONST                       |            -1.0 |    NoMin_double |    NoMax_double | reduced Planck constant (will be overwritten if OPT__UNIT or COMOVING is on) |
@@ -55,6 +73,10 @@
 | EXT_POT_TABLE_NPOINT_X                   |              -1 |       NoMin_int |       NoMax_int | ... : table size (i.e., number of data points) along x/y/z |
 | EXT_POT_TABLE_NPOINT_Y                   |              -1 |       NoMin_int |       NoMax_int |  |
 | EXT_POT_TABLE_NPOINT_Z                   |              -1 |       NoMin_int |       NoMax_int |  |
+
+# F
+| Name                                     |         Default |             Min |             Max | Description |
+| :---                                     |            :--- |            :--- |            :--- | :--- |
 | FB_LEVEL                                 |              -1 |       NoMin_int |       TOP_LEVEL | AMR level to apply feedback (must be MAX_LEVEL for now; <0=auto -> MAX_LEVEL) [-1] |
 | FB_RSEED                                 |             456 |               0 |       NoMax_int | random seed [456] |
 | FB_SNE                                   |           false |    Useless_bool |    Useless_bool | supernova explosion feedback [0] |
@@ -63,6 +85,10 @@
 | FLAG_BUFFER_SIZE_MAXM1_LV                |              -1 |       NoMin_int |             PS1 | FLAG_BUFFER_SIZE at the level MAX_LEVEL-1 (<0=auto -> REGRID_COUNT) [-1] |
 | FLAG_BUFFER_SIZE_MAXM2_LV                |              -1 |       NoMin_int |             PS1 | FLAG_BUFFER_SIZE at the level MAX_LEVEL-2 (<0=auto) [-1] |
 | FLU_GPU_NPGROUP                          |              -1 |       NoMin_int |       NoMax_int | number of patch groups sent into the CPU/GPU fluid solver (<=0=auto) [-1] |
+
+# G
+| Name                                     |         Default |             Min |             Max | Description |
+| :---                                     |            :--- |            :--- |            :--- | :--- |
 | GAMMA                                    |     __DBL_MAX__ |    NoMin_double |    NoMax_double | ratio of specific heats (i.e., adiabatic index) [5.0/3.0] ##EOS_GAMMA ONLY## |
 | GAMMA_CR                                 |         4.0/3.0 |             1.0 |    NoMax_double | effective adiabatic index of cosmic rays [4.0/3.0] |
 | GFUNC_COEFF0                             |            -1.0 |    NoMin_double |    NoMax_double | Green's function coefficient at the origin for the isolated BC (<0=auto) [-1.0] |
@@ -80,18 +106,38 @@
 | GRACKLE_THREE_BODY_RATE                  |               0 |               0 |               5 | used Glover+08 rate |
 | GRACKLE_UV                               |           false |    Useless_bool |    Useless_bool | ... "UVbackground" [0] |
 | GRACKLE_VERBOSE                          |            true |    Useless_bool |    Useless_bool | map to "grackle_verbose" [1] |
+
+# H
+| Name                                     |         Default |             Min |             Max | Description |
+| :---                                     |            :--- |            :--- |            :--- | :--- |
 | HUBBLE0                                  |            -1.0 |      Eps_double |             1.0 | dimensionless Hubble parameter (currently only for converting ELBDM_MASS to code units) |
+
+# I
+| Name                                     |         Default |             Min |             Max | Description |
+| :---                                     |            :--- |            :--- |            :--- | :--- |
 | INIT_DUMPID                              |              -1 |       NoMin_int |       NoMax_int | set the first dump ID (<0=auto) [-1] |
 | INIT_SUBSAMPLING_NCELL                   |               0 |               0 |       NoMax_int | perform sub-sampling during initialization: (0=off, >0=# of sub-sampling cells) [0] |
 | INT_MONO_COEFF                           |             2.0 |             1.0 |             4.0 | coefficient for ensuring the interpolation monotonicity (1.0~4.0) [2.0] |
 | INT_MONO_COEFF_B                         |             2.0 |             1.0 |             4.0 | coefficient for ensuring the interpolation monotonicity of B field (1.0~4.0) [2.0] ##MHD ONLY## |
 | INT_OPP_SIGN_0TH_ORDER                   |           false |    Useless_bool |    Useless_bool | switch to 0th-order interpolation if adjacent values change signs [HYDRO:1; ELBDM:0] |
 | ISO_TEMP                                 |     __DBL_MAX__ |    NoMin_double |    NoMax_double | isothermal temperature in kelvin ##EOS_ISOTHERMAL ONLY## |
+
+# J
+| Name                                     |         Default |             Min |             Max | Description |
+| :---                                     |            :--- |            :--- |            :--- | :--- |
 | JEANS_MIN_PRES                           |           false |    Useless_bool |    Useless_bool | minimum pressure estimated from the Jeans length [0] ##HYDRO/MHD and GRAVITY ONLY## |
 | JEANS_MIN_PRES_LEVEL                     |              -1 |       NoMin_int |        NLEVEL-1 | for JEANS_MIN_PRES; ensure Jeans length is resolved by JEANS_MIN_PRES_NCELL*dh[JEANS_MIN_PRES_LEVEL] (<0=auto -> MAX_LEVEL) [-1] |
 | JEANS_MIN_PRES_NCELL                     |               4 |               1 |       NoMax_int | for JEANS_MIN_PRES; see JEANS_MIN_PRES_LEVEL [4] |
+
+# L
+| Name                                     |         Default |             Min |             Max | Description |
+| :---                                     |            :--- |            :--- |            :--- | :--- |
 | LB_INPUT__PAR_WEIGHT                     |             0.0 |             0.0 |    NoMax_double | load-balance weighting of one particle over one cell [0.0] |
 | LB_INPUT__WLI_MAX                        |             0.1 |             0.0 |    NoMax_double | weighted-load-imbalance (WLI) threshold for redistributing all patches [0.1] |
+
+# M
+| Name                                     |         Default |             Min |             Max | Description |
+| :---                                     |            :--- |            :--- |            :--- | :--- |
 | MAX_LEVEL                                |       TOP_LEVEL |               0 |       TOP_LEVEL | maximum refinement level (0~NLEVEL-1) [NLEVEL-1] |
 | MG_MAX_ITER                              |              -1 |       NoMin_int |       NoMax_int | maximum number of iterations in multigrid: (<0=auto) [-1] |
 | MG_NPOST_SMOOTH                          |              -1 |       NoMin_int |       NoMax_int | number of post-smoothing steps in multigrid: (<0=auto) [-1] |
@@ -107,10 +153,18 @@
 | MOLECULAR_WEIGHT                         |             0.6 |      Eps_double |    NoMax_double | mean molecular weight [0.6] |
 | MONO_MAX_ITER                            |              10 |               0 |       NoMax_int | maximum number of iterations to reduce INT_MONO_COEFF when interpolation fails (0=off) [10] |
 | MU_NORM                                  |            -1.0 |    NoMin_double |    NoMax_double | normalization of MOLECULAR_WEIGHT (<0=m_H, 0=amu, >0=input manually) [-1.0] |
+
+# N
+| Name                                     |         Default |             Min |             Max | Description |
+| :---                                     |            :--- |            :--- |            :--- | :--- |
 | NEWTON_G                                 |            -1.0 |    NoMin_double |    NoMax_double | gravitational constant (will be overwritten if OPT__UNIT or COMOVING is on) |
 | NX0_TOT_X                                |              -1 |             PS2 |       NoMax_int | number of base-level cells along x |
 | NX0_TOT_Y                                |              -1 |             PS2 |       NoMax_int | number of base-level cells along y |
 | NX0_TOT_Z                                |              -1 |             PS2 |       NoMax_int | number of base-level cells along z |
+
+# O
+| Name                                     |         Default |             Min |             Max | Description |
+| :---                                     |            :--- |            :--- |            :--- | :--- |
 | OMEGA_M0                                 |            -1.0 |             0.0 |             1.0 | omega matter at the present time |
 | OMP_NTHREAD                              |              -1 |       NoMin_int |       NoMax_int | number of OpenMP threads (<=0=auto) [-1] ##OPENMP ONLY## |
 | OPT__1ST_FLUX_CORR                       |              -1 |       NoMin_int |               2 | correct unphysical results (defined by MIN_DENS/PRES) by the 1st-order fluxes: (<0=auto, 0=off, 1=3D, 2=3D+1D) [-1] ##MHM/MHM_RP/CTU ONLY## |
@@ -258,6 +312,10 @@
 | OUTPUT_STEP                              |              -1 |       NoMin_int |       NoMax_int | output data every OUTPUT_STEP step ##OPT__OUTPUT_MODE==1 ONLY## |
 | OUTPUT_WALLTIME                          |            -1.0 |    NoMin_double |    NoMax_double | output data every OUTPUT_WALLTIME walltime (<=0.0=off) [-1.0] |
 | OUTPUT_WALLTIME_UNIT                     |               0 |               0 |               3 | unit of OUTPUT_WALLTIME (0=second, 1=minute, 2=hour, 3=day) [0] |
+
+# P
+| Name                                     |         Default |             Min |             Max | Description |
+| :---                                     |            :--- |            :--- |            :--- | :--- |
 | PAR_IC_FLOAT8                            |              -1 |       NoMin_int |               1 | floating-point precision for PAR_IC (<0: default, 0: single, 1: double) [default: same as FLOAT8_PAR] |
 | PAR_IC_FORMAT                            | PAR_IC_FORMAT_ATT_ID |               1 |               2 | data format of PAR_IC: (1=[attribute][id], 2=[id][attribute]; row-major) [1] |
 | PAR_IC_MASS                              |            -1.0 |    NoMin_double |    NoMax_double | mass of all particles for PAR_INIT==3 (<0=off) [-1.0] |
@@ -273,9 +331,17 @@
 | PAR_TR_INTERP                            |  PAR_INTERP_TSC |               1 |               3 | tracer particle interpolation scheme: (1=NGP, 2=CIC, 3=TSC) [3] |
 | PAR_TR_VEL_CORR                          |           false |    Useless_bool |    Useless_bool | correct tracer particle velocities in regions of discontinuous flow [0] |
 | POT_GPU_NPGROUP                          |              -1 |       NoMin_int |       NoMax_int | number of patch groups sent into the CPU/GPU Poisson solver (<=0=auto) [-1] |
+
+# R
+| Name                                     |         Default |             Min |             Max | Description |
+| :---                                     |            :--- |            :--- |            :--- | :--- |
 | REFINE_NLEVEL                            |               1 |               1 |       NoMax_int | number of new AMR levels to be created at once during refinement [1] |
 | REGRID_COUNT                             |               4 |               1 |       NoMax_int | refine every REGRID_COUNT sub-step [4] |
 | RESTART_LOAD_NRANK                       |               1 |               1 |       NoMax_int | number of parallel I/O (i.e., number of MPI ranks) for restart [1] |
+
+# S
+| Name                                     |         Default |             Min |             Max | Description |
+| :---                                     |            :--- |            :--- |            :--- | :--- |
 | SF_CREATE_STAR_DET_RANDOM                |              -1 |       NoMin_int |       NoMax_int | make random numbers deterministic (i.e., independent of OpenMP and MPI, <0=auto) [-1] |
 | SF_CREATE_STAR_MASS_EFF                  |          1.0e-2 |      Eps_double |             1.0 | Gas-to-star mass conversion efficiency [1.0e-2] |
 | SF_CREATE_STAR_MAX_STAR_MFRAC            |             0.5 |      Eps_double |             1.0 | maximum gas mass fraction allowed to convert to stars per substep [0.5] |
@@ -290,12 +356,24 @@
 | SRC_DELEPTONIZATION                      |           false |    Useless_bool |    Useless_bool | deleptonization (for simulations of stellar core collapse) [0] ##HYDRO ONLY## |
 | SRC_GPU_NPGROUP                          |              -1 |       NoMin_int |       NoMax_int | number of patch groups sent into the CPU/GPU source-term solver (<=0=auto) [-1] |
 | SRC_USER                                 |           false |    Useless_bool |    Useless_bool | user-defined source terms -> edit "Src_User.cpp" [0] |
+
+# T
+| Name                                     |         Default |             Min |             Max | Description |
+| :---                                     |            :--- |            :--- |            :--- | :--- |
 | TESTPROB_ID                              |               0 |               0 |       NoMax_int | test problem ID [0] 0: none 1: HYDRO blast wave [+MHD] 2: HYDRO acoustic wave 3: HYDRO Bondi accretion (+GRAVITY) 4: HYDRO cluster merger vs. Flash (+GRAVITY & PARTICLE) 5: HYDRO AGORA isolated galaxy (+GRAVITY & PARTICLE & STAR_FORMATION & GRACKLE) 6: HYDRO caustic wave 7: HYDRO spherical collapse (+GRAVITY & COMOVING) 8: HYDRO Kelvin Helmholtz instability 9: HYDRO Riemann problems [+MHD] 10: HYDRO jet(s) 11: HYDRO Plummer cloud(s) (+GRAVITY & PARTICLE) 12: HYDRO gravity (+GRAVITY) 13: HYDRO MHD Arnold-Beltrami-Childress (ABC) flow (+MHD) 14: HYDRO MHD Orszag-Tang vortex (+MHD) 15: HYDRO MHD linear wave (+MHD) 16: HYDRO Jeans instability (+GRAVITY) [+MHD] 17: HYDRO particle in equilibrium (+GRAVITY & PARTICLE) 19: HYDRO energy power spectrum 20: HYDRO MHD Cosmic Ray Soundwave 21: HYDRO MHD Cosmic Ray Shocktube 23: HYDRO MHD Cosmic Ray Diffusion 100: HYDRO CDM cosmological simulation (+GRAVITY & COMOVING & PARTICLE) 101: HYDRO Zeldovich pancake collapse (+GRAVITY & COMOVING & PARTICLE) 1000: ELBDM external potential (+GRAVITY) |
+
+# U
+| Name                                     |         Default |             Min |             Max | Description |
+| :---                                     |            :--- |            :--- |            :--- | :--- |
 | UNIT_D                                   |            -1.0 |    NoMin_double |    NoMax_double | mass density unit (<=0 -> set to UNIT_M/UNIT_L^3) [-1.0] |
 | UNIT_L                                   |            -1.0 |    NoMin_double |    NoMax_double | length unit (<=0 -> set to UNIT_V*UNIT_T or (UNIT_M/UNIT_D)^(1/3)) [-1.0] |
 | UNIT_M                                   |            -1.0 |    NoMin_double |    NoMax_double | mass unit (<=0 -> set to UNIT_D*UNIT_L^3) [-1.0] |
 | UNIT_T                                   |            -1.0 |    NoMin_double |    NoMax_double | time unit (<=0 -> set to UNIT_L/UNIT_V) [-1.0] |
 | UNIT_V                                   |            -1.0 |    NoMin_double |    NoMax_double | velocity unit (<=0 -> set to UNIT_L/UNIT_T) [-1.0] |
+
+# Y
+| Name                                     |         Default |             Min |             Max | Description |
+| :---                                     |            :--- |            :--- |            :--- | :--- |
 | YT_FIG_BASENAME                          |       NoDef_str |     Useless_str |     Useless_str | figure basename [Fig] |
 | YT_JUPYTER_USE_CONNECTION_FILE           |           false |    Useless_bool |    Useless_bool | use user-provided connection file when using libyt Jupyter UI [0] |
 | YT_SCRIPT                                |       NoDef_str |     Useless_str |     Useless_str | yt inline analysis script (do not include the ".py" file extension) |
