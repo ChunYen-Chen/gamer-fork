@@ -1,6 +1,9 @@
 name: Update all parameter wiki page
 
 on:
+  push:
+    branches:
+      - test_workflow
   workflow_dispatch:
 
 env:
