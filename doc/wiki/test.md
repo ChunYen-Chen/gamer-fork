@@ -12,7 +12,7 @@
 | AUTO_REDUCE_INT_MONO_MIN                                     |          1.0e-2 |             0.0 |            None | minimum allowed INT_MONO_COEFF(_B) after consecutive failures [1.0e-2] |
 | AUTO_REDUCE_MINMOD_FACTOR                                    |             0.8 | 2.22507386e-308 |             1.0 | reduce MINMOD_COEFF by this factor together with AUTO_REDUCE_DT (1.0=off) [0.8] ##HYDRO ONLY## |
 | AUTO_REDUCE_MINMOD_MIN                                       |          1.0e-2 |             0.0 |            None | minimum allowed MINMOD_COEFF after consecutive failures [1.0e-2] ##HYDRO ONLY## |
-| [[ A_INIT | Runtime-Parameters:-Cosmology.md#A_INIT ]]       |            -1.0 | 2.22507386e-308 |            None | initial scale factor |
+| [[ A_INIT \| Runtime-Parameters:-Cosmology#A_INIT ]]         |            -1.0 | 2.22507386e-308 |            None | initial scale factor |
 
 # B
 | Name                                                         |         Default |             Min |             Max | Description |
@@ -110,7 +110,7 @@
 # H
 | Name                                                         |         Default |             Min |             Max | Description |
 | :---                                                         |            :--- |            :--- |            :--- | :--- |
-| [[ HUBBLE0 | Runtime-Parameters:-Cosmology.md#HUBBLE0 ]]     |            -1.0 | 2.22507386e-308 |             1.0 | dimensionless Hubble parameter (currently only for converting ELBDM_MASS to code units) |
+| [[ HUBBLE0 \| Runtime-Parameters:-Cosmology#HUBBLE0 ]]       |            -1.0 | 2.22507386e-308 |             1.0 | dimensionless Hubble parameter (currently only for converting ELBDM_MASS to code units) |
 
 # I
 | Name                                                         |         Default |             Min |             Max | Description |
@@ -165,7 +165,7 @@
 # O
 | Name                                                         |         Default |             Min |             Max | Description |
 | :---                                                         |            :--- |            :--- |            :--- | :--- |
-| [[ OMEGA_M0 | Runtime-Parameters:-Cosmology.md#OMEGA_M0 ]]   |            -1.0 |             0.0 |             1.0 | omega matter at the present time |
+| [[ OMEGA_M0 \| Runtime-Parameters:-Cosmology#OMEGA_M0 ]]     |            -1.0 |             0.0 |             1.0 | omega matter at the present time |
 | OMP_NTHREAD                                                  |              -1 |            None |            None | number of OpenMP threads (<=0=auto) [-1] ##OPENMP ONLY## |
 | OPT__1ST_FLUX_CORR                                           |              -1 |            None |               2 | correct unphysical results (defined by MIN_DENS/PRES) by the 1st-order fluxes: (<0=auto, 0=off, 1=3D, 2=3D+1D) [-1] ##MHM/MHM_RP/CTU ONLY## |
 | OPT__1ST_FLUX_CORR_SCHEME                                    | RSOLVER_1ST_DEFAULT |              -1 |               3 | Riemann solver for OPT__1ST_FLUX_CORR (-1=auto, 0=none, 1=Roe, 2=HLLC, 3=HLLE, 4=HLLD) [-1] |
