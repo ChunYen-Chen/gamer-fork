@@ -652,6 +652,11 @@ def load_arguments():
                          help="Allow for in situ analysis using Jupyter Notebook / JupyterLab through libyt. Must compile libyt with JUPYTER_KERNEL. Must enable <--libyt>.\n"
                        )
 
+    parser.add_argument( "--hypre", type=str2bool, metavar="BOOLEAN", gamer_name="SUPPORT_HYPRE",
+                         default=False,
+                         help="Support HYPRE library.\n"
+                       )
+
     parser.add_argument( "--rng", type=str, metavar="TYPE", gamer_name="RANDOM_NUMBER",
                          default="RNG_GNU_EXT",
                          choices=["RNG_GNU_EXT", "RNG_CPP11"],
@@ -919,7 +924,7 @@ def warning( paths, **kwargs ):
     # 3. Path
     path_links = { "gpu":{True:"CUDA_PATH"}, "fftw":{"FFTW2":"FFTW2_PATH", "FFTW3":"FFTW3_PATH"},
                    "mpi":{True:"MPI_PATH"}, "hdf5":{True:"HDF5_PATH"}, "grackle":{True:"GRACKLE_PATH"},
-                   "gsl":{True:"GSL_PATH"}, "libyt":{True:"LIBYT_PATH"} }
+                   "gsl":{True:"GSL_PATH"}, "libyt":{True:"LIBYT_PATH"}, "hypre":{True:"HYPRE_PATH"} }
 
     for arg, links in path_links.items():
         for val, p_name in links.items():

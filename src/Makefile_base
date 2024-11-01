@@ -52,6 +52,7 @@ HDF5_PATH    := @@@HDF5_PATH@@@
 GRACKLE_PATH := @@@GRACKLE_PATH@@@
 GSL_PATH     := @@@GSL_PATH@@@
 LIBYT_PATH   := @@@LIBYT_PATH@@@
+HYPRE_PATH   := @@@HYPRE_PATH@@@
 
 
 
@@ -462,6 +463,11 @@ LIB += -L$(LIBYT_PATH)/lib -lyt
 LIB += -Wl,-rpath=$(LIBYT_PATH)/lib
 endif
 
+ifeq "$(filter -DSUPPORT_HYPRE, $(SIMU_OPTION))" "-DSUPPORT_HYPRE"
+LIB += -L$(HYPRE_PATH)/lib -lHYPRE
+LIB += -Wl,-rpath=$(HYPRE_PATH)/lib
+endif
+
 
 # headers
 # -------------------------------------------------------------------------------
@@ -497,6 +503,10 @@ endif
 
 ifeq "$(filter -DSUPPORT_LIBYT, $(SIMU_OPTION))" "-DSUPPORT_LIBYT"
 INCLUDE += -I$(LIBYT_PATH)/include
+endif
+
+ifeq "$(filter -DSUPPORT_HYPRE, $(SIMU_OPTION))" "-DSUPPORT_HYPRE"
+INCLUDE += -I$(HYPRE_PATH)/include
 endif
 
 
@@ -561,6 +571,7 @@ HDF5_PATH    := $(strip $(HDF5_PATH))
 GRACKLE_PATH := $(strip $(GRACKLE_PATH))
 GSL_PATH     := $(strip $(GSL_PATH))
 LIBYT_PATH   := $(strip $(LIBYT_PATH))
+HYPRE_PATH   := $(strip $(HYPRE_PATH))
 
 
 # implicit rules (do NOT modify the order of the following rules)
