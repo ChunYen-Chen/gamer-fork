@@ -27,11 +27,11 @@ void YT_GetPID(const long gid, int *level, int *PID);
 // Return      :  None
 //-------------------------------------------------------------------------------------------------------
 void DerivedFuncWithName_PatchGroup(const int list_len, const long *list_gid, const char *field, yt_array *data_array){
-    // get gamer field index through field name.
+//  get gamer field index through field name.
     int gamer_fieldIdx = GetFieldIndex( field, CHECK_OFF );
     long gamer_fieldBIdx = -100;
 
-    // look through other options if cannot get FieldLabel defined, and convert to bitwise index.
+//  look through other options if cannot get FieldLabel defined, and convert to bitwise index.
     if ( gamer_fieldIdx == Idx_Undefined ){
 #ifdef  GRAVITY
         if ( strcmp(PotLabel, field) == 0 )    gamer_fieldBIdx = _POTE;
@@ -57,17 +57,17 @@ void DerivedFuncWithName_PatchGroup(const int list_len, const long *list_gid, co
         gamer_fieldBIdx = BIDX( gamer_fieldIdx );
     }
 
-    // if cannot find proper matching gamer bitwise index, raise an error.
+//  if cannot find proper matching gamer bitwise index, raise an error.
     if ( gamer_fieldBIdx == -100 )
         Aux_Error( ERROR_INFO, "cannot find the matching gamer field bitwise index for libyt field \"%s\" !!\n", field );
 
-    // loop through list_gid and fill in data.
+//  loop through list_gid and fill in data.
     for(int lid=0; lid<list_len; lid++){
-        // parse level and PID0
+//      parse level and PID0
         int level, PID0;
         YT_GetPID( list_gid[lid], &level, &PID0 );
 
-        // generate data in patch.
+//      generate data in patch.
         Prepare_PatchData(level, Time[0], (real*) data_array[lid].data_ptr, NULL, 0, 1, &PID0, gamer_fieldBIdx, _NONE, INT_NONE, INT_NONE,
                           UNIT_PATCHGROUP, NSIDE_00, false, OPT__BC_FLU, BC_POT_NONE, -1.0, -1.0, -1.0, -1.0, false);
     }
@@ -91,16 +91,16 @@ void DerivedFuncWithName_PatchGroup(const int list_len, const long *list_gid, co
 //-------------------------------------------------------------------------------------------------------
 void MagX_DerivedFunc(const int list_len, const long *list_gid, const char *field_name, yt_array *data_array){
     for(int lid=0; lid<list_len; lid++){
-        // Get the dimension of the grid, and the data array pointer of the grid
+//      Get the dimension of the grid, and the data array pointer of the grid
         int Dimensions[3];
         yt_data DataRaw;
         yt_getGridInfo_Dimensions( list_gid[lid], &Dimensions );
         yt_getGridInfo_FieldData( list_gid[lid], "CCMagX", &DataRaw );
 
-        // Cast the DataRaw
+//      Cast the DataRaw
         real *Data = (real *) DataRaw.data_ptr;
 
-        // Compute converted field via data. [z, y, x] direction.
+//      Compute converted field via data. [z, y, x] direction.
         for (int k=0; k<Dimensions[2]; k++){
             for (int j=0; j<Dimensions[1]; j++){
                 for (int i=0; i<Dimensions[0]; i++){
@@ -115,16 +115,16 @@ void MagX_DerivedFunc(const int list_len, const long *list_gid, const char *fiel
 
 void MagY_DerivedFunc(const int list_len, const long *list_gid, const char *field_name, yt_array *data_array){
     for(int lid=0; lid<list_len; lid++){
-        // Get the dimension of the grid, and the data array pointer of the grid
+//      Get the dimension of the grid, and the data array pointer of the grid
         int Dimensions[3];
         yt_data DataRaw;
         yt_getGridInfo_Dimensions( list_gid[lid], &Dimensions );
         yt_getGridInfo_FieldData( list_gid[lid], "CCMagY", &DataRaw );
 
-        // Cast the DataRaw
+//      Cast the DataRaw
         real *Data = (real *) DataRaw.data_ptr;
 
-        // Compute converted field via data. [z, y, x] direction.
+//      Compute converted field via data. [z, y, x] direction.
         for (int k=0; k<Dimensions[2]; k++){
             for (int j=0; j<Dimensions[1]; j++){
                 for (int i=0; i<Dimensions[0]; i++){
@@ -139,16 +139,16 @@ void MagY_DerivedFunc(const int list_len, const long *list_gid, const char *fiel
 
 void MagZ_DerivedFunc(const int list_len, const long *list_gid, const char *field_name, yt_array *data_array){
     for(int lid=0; lid<list_len; lid++){
-        // Get the dimension of the grid, and the data array pointer of the grid
+//      Get the dimension of the grid, and the data array pointer of the grid
         int Dimensions[3];
         yt_data DataRaw;
         yt_getGridInfo_Dimensions( list_gid[lid], &Dimensions );
         yt_getGridInfo_FieldData( list_gid[lid], "CCMagZ", &DataRaw );
 
-        // Cast the DataRaw
+//      Cast the DataRaw
         real *Data = (real *) DataRaw.data_ptr;
 
-        // Compute converted field via data. [z, y, x] direction.
+//      Compute converted field via data. [z, y, x] direction.
         for (int k=0; k<Dimensions[2]; k++){
             for (int j=0; j<Dimensions[1]; j++){
                 for (int i=0; i<Dimensions[0]; i++){
@@ -178,12 +178,12 @@ void MagZ_DerivedFunc(const int list_len, const long *list_gid, const char *fiel
 // Return      :  None
 //-------------------------------------------------------------------------------------------------------
 void Temperature_DerivedFunc(const int list_len, const long *list_gid, const char *field_name, yt_array *data_array){
-    // universal
+//  universal
     char     *CCMagLabel[] = {"CCMagX", "CCMagY", "CCMagZ"};
 
-    // loop through list_gid
+//  loop through list_gid
     for(int lid=0; lid<list_len; lid++){
-        // Get dim of the grid to be return, and all the other NCOMP_TOTAL fields.
+//      Get dim of the grid to be return, and all the other NCOMP_TOTAL fields.
         int Dimensions[3];
         yt_data   DataRaw[NCOMP_TOTAL];
         real     *Data[NCOMP_TOTAL];
@@ -193,7 +193,7 @@ void Temperature_DerivedFunc(const int list_len, const long *list_gid, const cha
             Data[v] = (real *) DataRaw[v].data_ptr;
         }
 
-        // Preparation for getting Passive and Emag
+//      Preparation for getting Passive and Emag
         real Passive[NCOMP_PASSIVE];
         real Emag;
     #ifdef MHD
@@ -205,19 +205,19 @@ void Temperature_DerivedFunc(const int list_len, const long *list_gid, const cha
         }
     #endif
 
-        // Get temperature cell-by-cell
+//      Get temperature cell-by-cell
         for (int k=0; k<Dimensions[2]; k++){
             for (int j=0; j<Dimensions[1]; j++){
                 for (int i=0; i<Dimensions[0]; i++){
 
                     int idx = i + j * Dimensions[0] + k * Dimensions[0] * Dimensions[1];
 
-                    // Get Passive
+//                  Get Passive
                     for (int v=NCOMP_FLUID; v<NCOMP_TOTAL; v++){
                         Passive[v-NCOMP_FLUID] = Data[v][idx];
                     }
 
-                    // Get Emag
+//                  Get Emag
                     #ifdef MHD
                     Emag = MHD_GetCellCenteredBEnergy(MagData[MAGX], MagData[MAGY], MagData[MAGZ],
                                                       Dimensions[0], Dimensions[1], Dimensions[2], i, j, k);
@@ -225,7 +225,7 @@ void Temperature_DerivedFunc(const int list_len, const long *list_gid, const cha
                     Emag = NULL_REAL;
                     #endif
 
-                    // Get temperature
+//                  Get temperature
                     ((real *) data_array[lid].data_ptr)[idx] = Hydro_Con2Temp(Data[DENS][idx], Data[MOMX][idx], Data[MOMY][idx], Data[MOMZ][idx], Data[ENGY][idx],
                                                                               Passive, false, NULL_REAL, Emag,
                                                                               EoS_DensEint2Temp_CPUPtr, EoS_AuxArray_Flt, EoS_AuxArray_Int, h_EoS_Table );

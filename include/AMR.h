@@ -117,12 +117,12 @@ struct AMR_t
 
 
 
-   //===================================================================================
-   // Constructor :  AMR_t
-   // Description :  Constructor of the structure "AMR_t"
-   //
-   // Note        :  Initialize the data members
-   //===================================================================================
+// ===================================================================================
+//  Constructor :  AMR_t
+//  Description :  Constructor of the structure "AMR_t"
+//
+//  Note        :  Initialize the data members
+// ===================================================================================
    AMR_t()
    {
 
@@ -184,12 +184,12 @@ struct AMR_t
 
 
 
-   //===================================================================================
-   // Constructor :  ~AMR_t
-   // Description :  Destructor of the structure "AMR_t"
-   //
-   // Note        :  Deallocate memory and reset parameters
-   //===================================================================================
+// ===================================================================================
+//  Constructor :  ~AMR_t
+//  Description :  Destructor of the structure "AMR_t"
+//
+//  Note        :  Deallocate memory and reset parameters
+// ===================================================================================
    ~AMR_t()
    {
 
@@ -224,21 +224,21 @@ struct AMR_t
 
 
 
-   //===================================================================================
-   // Method      :  pnew
-   // Description :  allocate a single patch
-   //
-   // Note        :  1. Each patch contains two patch pointers --> SANDGLASS (Sg) = 0 / 1
-   //                2. Sg = 0 : Store both data and relation (father,son.sibling,corner,flag,flux)
-   //                   Sg = 1 : Store only data
-   //
-   // Parameter   :  lv          : Target refinement level
-   //                scale_x/y/z : Grid scale indices (not physical coordinates) of the patch corner
-   //                FaPID       : Patch ID of the parent patch at level "lv-1"
-   //                FluData     : true --> Allocate fluid[]
-   //                MagData     : true --> Allocate magnetic[]
-   //                PotData     : true --> Allocate pot[]
-   //===================================================================================
+// ===================================================================================
+//  Method      :  pnew
+//  Description :  allocate a single patch
+//
+//  Note        :  1. Each patch contains two patch pointers --> SANDGLASS (Sg) = 0 / 1
+//                 2. Sg = 0 : Store both data and relation (father,son.sibling,corner,flag,flux)
+//                    Sg = 1 : Store only data
+//
+//  Parameter   :  lv          : Target refinement level
+//                 scale_x/y/z : Grid scale indices (not physical coordinates) of the patch corner
+//                 FaPID       : Patch ID of the parent patch at level "lv-1"
+//                 FluData     : true --> Allocate fluid[]
+//                 MagData     : true --> Allocate magnetic[]
+//                 PotData     : true --> Allocate pot[]
+// ===================================================================================
    void pnew( const int lv, const int scale_x, const int scale_y, const int scale_z, const int FaPID,
               const bool FluData, const bool MagData, const bool PotData )
    {
@@ -292,22 +292,22 @@ struct AMR_t
 
 
 
-   //===================================================================================
-   // Method      :  pdelete
-   // Description :  Deallocate a single patch
-   //
-   // Note        :  1. This function should NOT be applied to the base-level patches (unless
-   //                   the option "LOAD_BALANCE" is turned on, in which the base-level patches need
-   //                   to be redistributed)
-   //                2. This function will also deallocate the flux arrays of the target patch
-   //                3. Delete a patch with son is forbidden
-   //                4. Delete a patch with home particles is forbidden
-   //
-   // Parameter   :  lv          : Target refinement level
-   //                PID         : Patch ID to be removed
-   //                ReuseMemory : true  --> mark patch as inactive, but do not deallocate memory (for OPT__REUSE_MEMORY)
-   //                              false --> deallocate patch
-   //===================================================================================
+// ===================================================================================
+//  Method      :  pdelete
+//  Description :  Deallocate a single patch
+//
+//  Note        :  1. This function should NOT be applied to the base-level patches (unless
+//                    the option "LOAD_BALANCE" is turned on, in which the base-level patches need
+//                    to be redistributed)
+//                 2. This function will also deallocate the flux arrays of the target patch
+//                 3. Delete a patch with son is forbidden
+//                 4. Delete a patch with home particles is forbidden
+//
+//  Parameter   :  lv          : Target refinement level
+//                 PID         : Patch ID to be removed
+//                 ReuseMemory : true  --> mark patch as inactive, but do not deallocate memory (for OPT__REUSE_MEMORY)
+//                               false --> deallocate patch
+// ===================================================================================
    void pdelete( const int lv, const int PID, const bool ReuseMemory )
    {
 
@@ -369,19 +369,19 @@ struct AMR_t
 
 
 
-   //===================================================================================
-   // Method      :  Lvdelete
-   // Description :  Deallocate all patches in the target level and initialize all
-   //                parameters as the default values
-   //
-   // Note        :  1. This function will delete a patch even if it has sons (and particles)
-   //                2. This function will scan over amr->num[lv] patches
-   //                3. The variables "scale, FluSg, PotSg, and dh" will NOT be modified
-   //
-   // Parameter   :  lv               : Target refinement level
-   //                ReusePatchMemory : true  --> mark patch as inactive, but do not deallocate memory (for OPT__REUSE_MEMORY)
-   //                                   false --> deallocate patch
-   //===================================================================================
+// ===================================================================================
+//  Method      :  Lvdelete
+//  Description :  Deallocate all patches in the target level and initialize all
+//                 parameters as the default values
+//
+//  Note        :  1. This function will delete a patch even if it has sons (and particles)
+//                 2. This function will scan over amr->num[lv] patches
+//                 3. The variables "scale, FluSg, PotSg, and dh" will NOT be modified
+//
+//  Parameter   :  lv               : Target refinement level
+//                 ReusePatchMemory : true  --> mark patch as inactive, but do not deallocate memory (for OPT__REUSE_MEMORY)
+//                                    false --> deallocate patch
+// ===================================================================================
    void Lvdelete( const int lv, const bool ReusePatchMemory )
    {
 

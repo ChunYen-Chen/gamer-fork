@@ -75,8 +75,8 @@ void Par_EquilibriumIC::Load_Physical_Params( const FP filename_para, const int 
 
    Aux_Message( stdout, "Reading physical parameters input file:%s\n",filename_para.Params_Filenames[cloud_idx].c_str() );
 
-   //for(int k=0;k<filenames.Cloud_Num;k++){
-   // (1) load the problem-specific runtime parameters
+// for(int k=0;k<filenames.Cloud_Num;k++){
+// (1) load the problem-specific runtime parameters
    params.Cloud_Num        = filename_para.Cloud_Num;
    params.Params_Filenames = filename_para.Params_Filenames[cloud_idx];
 
@@ -84,12 +84,12 @@ void Par_EquilibriumIC::Load_Physical_Params( const FP filename_para, const int 
    ReadPara_t *ReadPara  = new ReadPara_t;
    double ratio;
 
-   // (1-1) add parameters in the following format:
-   // --> note that VARIABLE, DEFAULT, MIN, and MAX must have the same data type
-   // --> some handy constants (e.g., Useless_bool, Eps_double, NoMin_int, ...) are defined in "include/ReadPara.h"
-   // ********************************************************************************************************************************
-   // ReadPara->Add( "KEY_IN_THE_FILE",         &VARIABLE,                          DEFAULT,       MIN,              MAX               );
-   // ********************************************************************************************************************************
+// (1-1) add parameters in the following format:
+// --> note that VARIABLE, DEFAULT, MIN, and MAX must have the same data type
+// --> some handy constants (e.g., Useless_bool, Eps_double, NoMin_int, ...) are defined in "include/ReadPara.h"
+// ********************************************************************************************************************************
+// ReadPara->Add( "KEY_IN_THE_FILE",         &VARIABLE,                          DEFAULT,       MIN,              MAX               );
+// ********************************************************************************************************************************
    ReadPara->Add( "Cloud_RSeed",                &params.Cloud_RSeed,                123,           0,                NoMax_int         );
    ReadPara->Add( "Cloud_Rho0",                 &params.Cloud_Rho0,                 1.0,           Eps_double,       NoMax_double      );
    ReadPara->Add( "Cloud_R0",                   &params.Cloud_R0,                   0.1,           Eps_double,       NoMax_double      );
@@ -111,19 +111,19 @@ void Par_EquilibriumIC::Load_Physical_Params( const FP filename_para, const int 
    ReadPara->Read( FileName );
    delete ReadPara;
 
-   // Convert Cloud_Par_Num_Ratio to Cloud_Par_Num
+// Convert Cloud_Par_Num_Ratio to Cloud_Par_Num
    params.Cloud_Par_Num = long(ratio*NPar_AllRank);
 
-   // Check whether user forgot to fill in Cloud_Par_Num_Ratio
+// Check whether user forgot to fill in Cloud_Par_Num_Ratio
    if(params.Cloud_Par_Num==0){
       Aux_Error( ERROR_INFO, "Cloud_Par_Num_Ratio is 0! There is no particle in this cloud!!" );
    }
 
-   // (1-2) set the default values
+// (1-2) set the default values
    for (int d=0; d<3; d++)
       if ( params.Cloud_Center[d] == NoDef_double )  params.Cloud_Center[d] = 0.5*amr->BoxSize[d];
 
-   // (2) make a note
+// (2) make a note
    if ( MPI_Rank == 0 )
    {
       Aux_Message( stdout, "=============================================================================\n" );
@@ -143,12 +143,12 @@ void Par_EquilibriumIC::Load_Physical_Params( const FP filename_para, const int 
       Aux_Message( stdout, "=============================================================================\n" );
    }//if ( MPI_Rank == 0 )
 
-   // (3) Warn against small R0
+// (3) Warn against small R0
    if ( params.Cloud_R0<amr->dh[MAX_LEVEL] )Aux_Message( stdout, "WARNING : Characteristic length R0:%f is smaller than spatial resolution %f!\n",params.Cloud_R0,amr->dh[MAX_LEVEL] );
    if ( MPI_Rank == 0 )    Aux_Message( stdout, "   Setting runtime parameters ... done\n" );
 
-   // (4) Check Cloud_Type and table filenames
-   // Checking Cloud_Type
+// (4) Check Cloud_Type and table filenames
+// Checking Cloud_Type
    Aux_Message( stdout, "Checking Cloud_Type\n" );
    int flag = 0;
    if      (convertToString(params.Cloud_Type)=="Plummer"  )   flag=1;
@@ -163,7 +163,7 @@ void Par_EquilibriumIC::Load_Physical_Params( const FP filename_para, const int 
       Aux_Error( ERROR_INFO, "Error in the input of Cloud_Type !!\n" );
    }
 
-   // Checking Density_Table_Name
+// Checking Density_Table_Name
    Aux_Message( stdout, "Checking Density_Table_Name\n" );
    if(convertToString(params.Cloud_Type)=="Table"){
       char c[MAX_STRING];
@@ -177,7 +177,7 @@ void Par_EquilibriumIC::Load_Physical_Params( const FP filename_para, const int 
       file.close();
    }
 
-   // Checking ExtPot_Table_Name
+// Checking ExtPot_Table_Name
    Aux_Message( stdout, "Checking ExtPot_Table_Name\n" );
    if(params.AddExtPot){
       const char * c = convertToString(params.ExtPot_Table_Name).c_str();
@@ -223,11 +223,11 @@ void Par_EquilibriumIC::Init()
    int_prob_dens           = NULL;
    psi                     = NULL;
 
-   //Set random seeds
+// Set random seeds
    Random_Num_Gen = new RandomNumber_t( 1 );
    Random_Num_Gen->SetSeed( 0, params.Cloud_RSeed );
 
-   //Initialize densities with Table
+// Initialize densities with Table
    if(convertToString(params.Cloud_Type)=="Table"){
       int Tcol_r[1]   =  {0};
       int Tcol_rho[1] =  {1};
@@ -244,7 +244,7 @@ void Par_EquilibriumIC::Init()
 
       params.Cloud_MassProfNBin = Row_r_Table;
 
-      // Radii in the density table must be no less than Cloud_MaxR
+//    Radii in the density table must be no less than Cloud_MaxR
       if(Table_r[params.Cloud_MassProfNBin-1]<params.Cloud_MaxR){
          Aux_Error( ERROR_INFO, "Maximum radius in your density table is smaller then Cloud_MaxR! Please check!\n" );
       }
@@ -313,11 +313,11 @@ void Par_EquilibriumIC::Par_SetEquilibriumIC( real_par *Mass_AllRank, real_par *
    double  Vmax, RanV, RanProb, Prob;
 
 
-   // determine the total enclosed mass within the maximum radius
+// determine the total enclosed mass within the maximum radius
    TotM = Set_Mass( params.Cloud_MaxR);
    ParM = TotM / (params.Cloud_Par_Num);
 
-   // construct the mass profile table
+// construct the mass profile table
    Table_MassProf_r = new double [params.Cloud_MassProfNBin];
    Table_MassProf_M = new double [params.Cloud_MassProfNBin];
 
@@ -329,39 +329,39 @@ void Par_EquilibriumIC::Par_SetEquilibriumIC( real_par *Mass_AllRank, real_par *
       Table_MassProf_M[b] = Set_Mass(Table_MassProf_r[b]);
    }
 
-   // set particle attributes
+// set particle attributes
    for (long p=Par_Idx0; p<Par_Idx0+params.Cloud_Par_Num; p++)
    {
-      // mass
+//    mass
       Mass_AllRank[p] = ParM;
 
-      //       position
-      //       --> sample from the cumulative mass profile with linear interpolation
+//    position
+//    --> sample from the cumulative mass profile with linear interpolation
       RanM = Random_Num_Gen->GetValue( 0, 0.0, 1.0 )*TotM;
       RanR = Mis_InterpolateFromTable( params.Cloud_MassProfNBin, Table_MassProf_M, Table_MassProf_r, RanM );
 
-      //       record the maximum error
+//    record the maximum error
       EstM     = Set_Mass(RanR);
       ErrM     = fabs( (EstM-RanM)/RanM );
       ErrM_Max = fmax( ErrM, ErrM_Max );
 
-      //       randomly set the position vector with a given radius
+//    randomly set the position vector with a given radius
       RanVec_FixRadius( RanR, RanVec );
       for (int d=0; d<3; d++)    Pos_AllRank[d][p] = RanVec[d] + params.Cloud_Center[d];
 
-      //       check periodicity
+//    check periodicity
       for (int d=0; d<3; d++)
       {
          if ( OPT__BC_FLU[d*2] == BC_FLU_PERIODIC )
          Pos_AllRank[d][p] = FMOD( Pos_AllRank[d][p]+(real_par)amr->BoxSize[d], (real_par)amr->BoxSize[d] );
       }
 
-      //       velocity
+//    velocity
       double a3=RanR/params.Cloud_R0;
 
       RanV = Set_Velocity(a3);
 
-      //       randomly set the velocity vector with the given amplitude (RanV*Vmax)
+//    randomly set the velocity vector with the given amplitude (RanV*Vmax)
       RanVec_FixRadius( RanV, RanVec );
       for (int d=0; d<3; d++)    Vel_AllRank[d][p] = RanVec[d] + params.Cloud_BulkVel[d];
 
@@ -371,7 +371,7 @@ void Par_EquilibriumIC::Par_SetEquilibriumIC( real_par *Mass_AllRank, real_par *
    Aux_Message( stdout, "   Particle mass                    = %13.7e\n",  ParM );
    Aux_Message( stdout, "   Maximum mass interpolation error = %13.7e\n",  ErrM_Max );
 
-   // free memory
+// free memory
    delete [] Table_MassProf_r;
    delete [] Table_MassProf_M;
 
@@ -642,14 +642,14 @@ void Par_EquilibriumIC::Init_Mass()
 {
 
    double dr = params.Cloud_MaxR / (params.Cloud_MassProfNBin-1);
-   //Radius & Mass
+// Radius & Mass
    for (int b=0; b<params.Cloud_MassProfNBin; b++)
    {
       Table_r[b] = dr*b;
       Table_Enclosed_Mass[b] = Set_Mass( Table_r[b]);
    }
 
-   //Rho
+// Rho
    for (int b=1; b<params.Cloud_MassProfNBin; b++)
    {
       double x = dr*b/params.Cloud_R0;
@@ -657,7 +657,7 @@ void Par_EquilibriumIC::Init_Mass()
    }
    Table_Density[0] = Table_Density[1];
 
-   //Rhodr
+// Rhodr
    Table_dRho_dr[0]=(Table_Density[1]-Table_Density[0])/(dr);
    for (int b=1; b<params.Cloud_MassProfNBin-1; b++)
    {
@@ -697,7 +697,7 @@ void Par_EquilibriumIC::Init_Pot()
       Table_Gravity_Field[b] = -NEWTON_G*Table_Enclosed_Mass[b]/pow(Table_r[b],2);
    }
 
-   //Pot
+// Pot
    Table_Gravity_Potential[params.Cloud_MassProfNBin-1] = -NEWTON_G*Table_Enclosed_Mass[params.Cloud_MassProfNBin-1]/Table_r[params.Cloud_MassProfNBin-1];
    eng_min = -Table_Gravity_Potential[params.Cloud_MassProfNBin-1];
    for (int b=params.Cloud_MassProfNBin-2;b>0;b--)
@@ -706,7 +706,7 @@ void Par_EquilibriumIC::Init_Pot()
    }
    Table_Gravity_Potential[0]=Table_Gravity_Potential[1];
 
-   //derho_overdx
+// derho_overdx
    for (int b=0; b<params.Cloud_MassProfNBin; b++)
    {
       Table_dRho_dx[b] = -Table_dRho_dr[b]/(Table_Gravity_Field[b]);
@@ -731,7 +731,7 @@ void Par_EquilibriumIC::Init_Pot()
 void Par_EquilibriumIC::Init_Mass_Table()
 {
 
-   //Mass
+// Mass
    Table_Enclosed_Mass[0]=0;
    double rho,dr,r;
    for (int b=1; b<params.Cloud_MassProfNBin; b++)
@@ -742,7 +742,7 @@ void Par_EquilibriumIC::Init_Mass_Table()
       Table_Enclosed_Mass[b] = Table_Enclosed_Mass[b-1] + 4*M_PI*pow(r,2) *rho * dr;
    }
 
-   //Rhodr
+// Rhodr
    Table_dRho_dr[0]=(Table_Density[1]-Table_Density[0])/(Table_r[1]-Table_r[0]);
    for (int b=1; b<params.Cloud_MassProfNBin-1; b++)
    {
@@ -780,7 +780,7 @@ void Par_EquilibriumIC::Init_Pot_Table()
       Table_Gravity_Field[b] = -NEWTON_G*Table_Enclosed_Mass[b]/pow(Table_r[b],2);
    }
 
-   //Pot
+// Pot
    Table_Gravity_Potential[params.Cloud_MassProfNBin-1] = -NEWTON_G*Table_Enclosed_Mass[params.Cloud_MassProfNBin-1]/Table_r[params.Cloud_MassProfNBin-1];
    eng_min = -Table_Gravity_Potential[params.Cloud_MassProfNBin-1];
    for (int b=params.Cloud_MassProfNBin-2;b>0;b--)
@@ -790,7 +790,7 @@ void Par_EquilibriumIC::Init_Pot_Table()
    }
    Table_Gravity_Potential[0]=Table_Gravity_Potential[1];
 
-   //derho_overdx
+// derho_overdx
    for (int b=0; b<params.Cloud_MassProfNBin; b++)
    {
       Table_dRho_dx[b] = -Table_dRho_dr[b]/(Table_Gravity_Field[b]);

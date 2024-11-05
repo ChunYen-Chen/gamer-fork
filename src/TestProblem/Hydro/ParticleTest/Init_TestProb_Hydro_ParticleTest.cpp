@@ -286,8 +286,8 @@ bool Flag_ParticleTest( const int i, const int j, const int k, const int lv,
                         const int PID, const double *Threshold )
 {
 
-   // Refine a rectanglar solid region in the center just to test behavior in
-   // non-uniform regions
+// Refine a rectanglar solid region in the center just to test behavior in
+// non-uniform regions
 
    const double dh     = amr->dh[lv];                                                  // grid size
    const double Pos[3] = { amr->patch[0][lv][PID]->EdgeL[0] + (i+0.5)*dh,              // x,y,z position

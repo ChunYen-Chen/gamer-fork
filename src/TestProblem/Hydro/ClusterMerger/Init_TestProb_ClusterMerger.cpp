@@ -224,7 +224,7 @@ void SetParameter()
       const std::string filename2(Merger_File_Prof2);
       const std::string filename3(Merger_File_Prof3);
 
-      // cluster 1
+//    cluster 1
       if ( Merger_Coll_IsGas1 ) {
 
          if ( MPI_Rank == 0 ) {
@@ -248,7 +248,7 @@ void SetParameter()
             else
                for ( int i; i < Merger_NBin1; i++ ) Table_M1[i] = 0.0;
 
-            // convert to code units (assuming the input units are cgs)
+//          convert to code units (assuming the input units are cgs)
             for ( int b=0; b<Merger_NBin1; b++ ) {
                Table_R1[b] /= UNIT_L;
                Table_D1[b] /= UNIT_D;
@@ -264,7 +264,7 @@ void SetParameter()
 
       } // if ( Merger_Coll_IsGas1 )
 
-      // cluster 2
+//    cluster 2
       if ( Merger_Coll_NumHalos > 1 && Merger_Coll_IsGas2) {
 
          if (MPI_Rank == 0) {
@@ -287,7 +287,7 @@ void SetParameter()
                Read_Profile_ClusterMerger(filename2, "/fields/metallicity", Table_M2);
             else
                for ( int i; i < Merger_NBin2; i++ ) Table_M2[i] = 0.0;
-            // convert to code units (assuming the input units are cgs)
+//          convert to code units (assuming the input units are cgs)
             for ( int b=0; b<Merger_NBin2; b++ ) {
                Table_R2[b] /= UNIT_L;
                Table_D2[b] /= UNIT_D;
@@ -303,7 +303,7 @@ void SetParameter()
 
       } // if ( Merger_Coll_NumHalos > 1 && Merger_Coll_IsGas2 )
 
-      // cluster 3
+//    cluster 3
       if ( Merger_Coll_NumHalos > 2 && Merger_Coll_IsGas3) {
 
          if ( MPI_Rank == 0 ) {
@@ -326,7 +326,7 @@ void SetParameter()
                Read_Profile_ClusterMerger(filename3, "/fields/metallicity", Table_M3);
             else
                for ( int i; i < Merger_NBin3; i++ ) Table_M3[i] = 0.0;
-            // convert to code units (assuming the input units are cgs)
+//          convert to code units (assuming the input units are cgs)
             for (int b=0; b<Merger_NBin3; b++) {
                Table_R3[b] /= UNIT_L;
                Table_D3[b] /= UNIT_D;
@@ -344,7 +344,7 @@ void SetParameter()
 
 //    (3) Determine particle number
 
-      // check file existence
+//    check file existence
       if ( !Aux_CheckFileExist(Merger_File_Par1) )
          Aux_Error( ERROR_INFO, "file \"%s\" does not exist !!\n", Merger_File_Par1 );
 
@@ -385,7 +385,7 @@ void SetParameter()
 
       NPar_AllCluster = NPar_EachCluster[0] + NPar_EachCluster[1] + NPar_EachCluster[2];
 
-      // overwrite the total number of particles
+//    overwrite the total number of particles
       amr->Par->NPar_Active_AllRank = NPar_AllCluster;
       PRINT_RESET_PARA( amr->Par->NPar_Active_AllRank, FORMAT_LONG, "(PAR_NPAR in Input__Parameter)" );
 
@@ -495,7 +495,7 @@ void SetGridIC( real fluid[], const double x, const double y, const double z, co
    rmax2 = Merger_Coll_NumHalos > 1 ? Table_R2[Merger_NBin2-1] : -1.0;
    rmax3 = Merger_Coll_NumHalos > 2 ? Table_R3[Merger_NBin3-1] : -1.0;
 
-   //    for each cell, we sum up the density and pressure from each halo and then calculate the weighted velocity
+// for each cell, we sum up the density and pressure from each halo and then calculate the weighted velocity
    if ( Merger_Coll_IsGas1 ) {
       r1    = sqrt( SQR(x-ClusterCenter1[0]) + SQR(y-ClusterCenter1[1]) + SQR(z-ClusterCenter1[2]) );
       double rr1 = r1 < rmax1 ? r1 : rmax1;
@@ -575,7 +575,7 @@ void SetGridIC( real fluid[], const double x, const double y, const double z, co
    }
    MomZ = 0.0;
 
-   // compute the total gas energy
+// compute the total gas energy
    Eint = EoS_DensPres2Eint_CPUPtr( Dens, Pres, NULL, EoS_AuxArray_Flt,
                                     EoS_AuxArray_Int, h_EoS_Table );    // assuming EoS requires no passive scalars
 
@@ -652,8 +652,8 @@ void SetBFieldIC( real magnetic[], const double x, const double y, const double 
                   const int lv, double AuxArray[] )
 {
 
-   // Setting the B-field in this problem is always handled by reading from a uniform
-   // grid in the file B_IC
+// Setting the B-field in this problem is always handled by reading from a uniform
+// grid in the file B_IC
 
    return;
 
@@ -692,7 +692,8 @@ void Init_TestProb_Hydro_ClusterMerger()
    End_User_Ptr                   = End_ClusterMerger;
    Par_Init_ByFunction_Ptr        = Par_Init_ByFunction_ClusterMerger;
    Init_Field_User_Ptr            = AddNewField_ClusterMerger;
-   //Par_Init_Attribute_User_Ptr    = AddNewParticleAttribute_ClusterMerger;
+// Par_Init_Attribute_User_Ptr    = AddNewParticleAttribute_ClusterMerger;
+
 #  ifdef MHD
    Init_Function_BField_User_Ptr  = SetBFieldIC;
 #  endif

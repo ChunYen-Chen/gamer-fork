@@ -117,9 +117,9 @@ void SetParameter()
 // load run-time parameters
    const char* FileName = "Input__TestProb";
    ReadPara_t *ReadPara  = new ReadPara_t;
-   // ********************************************************************************************************************************
-   // ReadPara->Add( "KEY_IN_THE_FILE",      &VARIABLE,              DEFAULT,       MIN,              MAX               );
-   // ********************************************************************************************************************************
+// ********************************************************************************************************************************
+// ReadPara->Add( "KEY_IN_THE_FILE",         &VARIABLE,              DEFAULT,       MIN,              MAX               );
+// ********************************************************************************************************************************
    ReadPara->Add( "ParEqmIC_SmallGas",       &ParEqmIC_SmallGas,     1e-3,          0.,               NoMax_double      );
    ReadPara->Read( FileName );
    delete ReadPara;

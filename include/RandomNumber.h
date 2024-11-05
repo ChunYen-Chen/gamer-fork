@@ -53,16 +53,16 @@ struct RandomNumber_t
    int N_RNG;
 
 
-   //===================================================================================
-   // Constructor :  RandomNumber_t
-   // Description :  Constructor of the structure "RandomNumber_t"
-   //
-   // Note        :  1. Allocate RNG
-   //                2. Call SetSeed() to set the random seed for each RNG
-   //
-   // Parameter   :  N : Number of RNG to be initialized
-   //                    --> Usually set equal to the number of OpenMP threads
-   //===================================================================================
+// ===================================================================================
+//  Constructor :  RandomNumber_t
+//  Description :  Constructor of the structure "RandomNumber_t"
+//
+//  Note        :  1. Allocate RNG
+//                 2. Call SetSeed() to set the random seed for each RNG
+//
+//  Parameter   :  N : Number of RNG to be initialized
+//                     --> Usually set equal to the number of OpenMP threads
+// ===================================================================================
 #  if   ( RANDOM_NUMBER == RNG_CPP11 )
    RandomNumber_t( const int N ) : Distribution( 0.0, 1.0 )
 #  else
@@ -87,12 +87,12 @@ struct RandomNumber_t
 
 
 
-   //===================================================================================
-   // Destructor  :  ~RandomNumber_t
-   // Description :  Destructor of the structure "RandomNumber_t"
-   //
-   // Note        :  Free memory
-   //===================================================================================
+// ===================================================================================
+//  Destructor  :  ~RandomNumber_t
+//  Description :  Destructor of the structure "RandomNumber_t"
+//
+//  Note        :  Free memory
+// ===================================================================================
    ~RandomNumber_t()
    {
 
@@ -102,19 +102,19 @@ struct RandomNumber_t
 
 
 
-   //===================================================================================
-   // Constructor :  GetValue
-   // Description :  Return a uniformly distributed random number in the specified range
-   //
-   // Note        :  1. Only return a single random number
-   //                   --> Must specify the ID of the target RNG
-   //
-   // Parameter   :  ID  : Target RNG (0 <= ID < N_RNG)
-   //                Min : Lower limit of the random number
-   //                Max : Upper limit of the random number
-   //
-   // Return      :  Random number
-   //===================================================================================
+// ===================================================================================
+//  Constructor :  GetValue
+//  Description :  Return a uniformly distributed random number in the specified range
+//
+//  Note        :  1. Only return a single random number
+//                    --> Must specify the ID of the target RNG
+//
+//  Parameter   :  ID  : Target RNG (0 <= ID < N_RNG)
+//                 Min : Lower limit of the random number
+//                 Max : Upper limit of the random number
+//
+//  Return      :  Random number
+// ===================================================================================
    double GetValue( const int ID, const double Min, const double Max )
    {
 
@@ -139,16 +139,16 @@ struct RandomNumber_t
 
 
 
-   //===================================================================================
-   // Constructor :  SetSeed
-   // Description :  Set random seed for the target RNG
-   //
-   // Note        :  1. Only set random seed for a single RNG
-   //                   --> Must specify the ID of the target RNG
-   //
-   // Parameter   :  ID   : Target RNG (0 <= ID < N_RNG)
-   //                Seed : Random seed
-   //===================================================================================
+// ===================================================================================
+//  Constructor :  SetSeed
+//  Description :  Set random seed for the target RNG
+//
+//  Note        :  1. Only set random seed for a single RNG
+//                    --> Must specify the ID of the target RNG
+//
+//  Parameter   :  ID   : Target RNG (0 <= ID < N_RNG)
+//                 Seed : Random seed
+// ===================================================================================
    void SetSeed( const int ID, const long Seed )
    {
 

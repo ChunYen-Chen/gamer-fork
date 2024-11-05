@@ -47,14 +47,14 @@ struct Extrema_t
    int    Cell[3];
 
 
-   //===================================================================================
-   // Constructor :  Extrema_t
-   // Description :  Constructor of the structure "Extrema_t"
-   //
-   // Note        :  Initialize the data members
-   //
-   // Parameter   :  None
-   //===================================================================================
+// ===================================================================================
+//  Constructor :  Extrema_t
+//  Description :  Constructor of the structure "Extrema_t"
+//
+//  Note        :  Initialize the data members
+//
+//  Parameter   :  None
+// ===================================================================================
    Extrema_t()
    {
 
@@ -79,12 +79,12 @@ struct Extrema_t
 
 
 
-   //===================================================================================
-   // Destructor  :  ~Extrema_t
-   // Description :  Destructor of the structure "Extrema_t"
-   //
-   // Note        :  Free memory
-   //===================================================================================
+// ===================================================================================
+//  Destructor  :  ~Extrema_t
+//  Description :  Destructor of the structure "Extrema_t"
+//
+//  Note        :  Free memory
+// ===================================================================================
    ~Extrema_t()
    {
    } // METHOD : ~Extrema_t
@@ -92,17 +92,17 @@ struct Extrema_t
 
 
 #  ifndef SERIAL
-   //===================================================================================
-   // Method      :  CreateMPIType
-   // Description :  Create a MPI derived datatype for struct Extrema_t
-   //
-   // Note        :  1. Invoked by Aux_FindExtrema()
-   //                2. The returned MPI datatype must be freed manually by calling MPI_Type_free()
-   //
-   // Parameter   :  MPI_Extrema_t : MPI derived datatype to be returned
-   //
-   // Return      :  MPI_Extrema_t
-   //===================================================================================
+// ===================================================================================
+//  Method      :  CreateMPIType
+//  Description :  Create a MPI derived datatype for struct Extrema_t
+//
+//  Note        :  1. Invoked by Aux_FindExtrema()
+//                 2. The returned MPI datatype must be freed manually by calling MPI_Type_free()
+//
+//  Parameter   :  MPI_Extrema_t : MPI derived datatype to be returned
+//
+//  Return      :  MPI_Extrema_t
+// ===================================================================================
    void CreateMPIType( MPI_Datatype *MPI_Extrema_t )
    {
 

@@ -38,7 +38,7 @@ void Par_ScatterParticleData( const long NPar_ThisRank, const long NPar_AllRank,
 // get the number of particles in each rank and set the corresponding offsets
    int NSend[MPI_NRank], SendDisp[MPI_NRank];
    int NPar_ThisRank_int = NPar_ThisRank;    // (i) convert to "int" and (ii) remove the "const" declaration
-                                             // --> (ii) is necessary for OpenMPI version < 1.7
+//                                              --> (ii) is necessary for OpenMPI version < 1.7
 
    MPI_Gather( &NPar_ThisRank_int, 1, MPI_INT, NSend, 1, MPI_INT, 0, MPI_COMM_WORLD );
 

@@ -22,16 +22,16 @@ void YT_GetPID(const long gid, int *level, int *PID);
 // Return      :  None
 //-------------------------------------------------------------------------------------------------------
 void Get_ParticleAttribute(const int list_len, const long *list_gid, const char *ptype, const char *attr, yt_array *data_array){
-    // Get attribute index in GAMER
+//  Get attribute index in GAMER
     FieldIdx_t ParAttr_Idx = GetParticleAttributeIndex( attr, CHECK_ON );
 
-    // loop through list_gid
+//  loop through list_gid
     for(int lid=0; lid<list_len; lid++){
-        // Parse level and pid from gid
+//      Parse level and pid from gid
         int level, PID0;
         YT_GetPID( list_gid[lid], &level, &PID0 );
 
-        // write data
+//      write data
 #ifdef  LIBYT_USE_PATCH_GROUP
         long  ParID;
         long  data_idx = 0;

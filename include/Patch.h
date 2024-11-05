@@ -251,27 +251,27 @@ struct patch_t
 #  endif
 
 
-   //===================================================================================
-   // Constructor :  patch_t
-   // Description :  Constructor of the structure "patch_t"
-   //
-   // Note        :  Initialize data members
-   //
-   // Parameter   :  scale_x/y/z : Grid scale indices of the patch corner
-   //                FaPID       : Patch ID of the father patch
-   //                FluData     : true --> Allocate the hydrodynamic array fluid[]
-   //                                       --> rho_ext[] will NOT be allocated here even if PARTICLE is on
-   //                MagData     : true --> Allocate the MHD array magnetic[]
-   //                                       --> Useless if "MHD" is turned off
-   //                PotData     : true --> Allocate the potential array pot[] (has no effect if "GRAVITY" is turned off)
-   //                                       --> pot_ext[] will be allocated as well if STORE_POT_GHOST is on
-   //                DE_Status   : true --> Allocate the dual-energy status array de_status[]
-   //                                       --> Useless if "DUAL_ENERGY" is turned off
-   //                lv          : Refinement level of the newly created patch
-   //                BoxScale    : Simulation box scale
-   //                BoxEdgeL    : Simulation box left edge
-   //                dh_min      : Cell size at the maximum level
-   //===================================================================================
+// ===================================================================================
+//  Constructor :  patch_t
+//  Description :  Constructor of the structure "patch_t"
+//
+//  Note        :  Initialize data members
+//
+//  Parameter   :  scale_x/y/z : Grid scale indices of the patch corner
+//                 FaPID       : Patch ID of the father patch
+//                 FluData     : true --> Allocate the hydrodynamic array fluid[]
+//                                        --> rho_ext[] will NOT be allocated here even if PARTICLE is on
+//                 MagData     : true --> Allocate the MHD array magnetic[]
+//                                        --> Useless if "MHD" is turned off
+//                 PotData     : true --> Allocate the potential array pot[] (has no effect if "GRAVITY" is turned off)
+//                                        --> pot_ext[] will be allocated as well if STORE_POT_GHOST is on
+//                 DE_Status   : true --> Allocate the dual-energy status array de_status[]
+//                                        --> Useless if "DUAL_ENERGY" is turned off
+//                 lv          : Refinement level of the newly created patch
+//                 BoxScale    : Simulation box scale
+//                 BoxEdgeL    : Simulation box left edge
+//                 dh_min      : Cell size at the maximum level
+// ===================================================================================
    patch_t( const int scale_x, const int scale_y, const int scale_z, const int FaPID, const bool FluData,
             const bool MagData, const bool PotData, const bool DE_Status, const int lv, const int BoxScale[],
             const double BoxEdgeL[], const double dh_min )
@@ -286,39 +286,39 @@ struct patch_t
 
 
 
-   //===================================================================================
-   // Constructor :  Activate
-   // Description :  Initialize data members
-   //
-   // Note        :  Called by the patch constructor "patch_t" and amr->pnew when OPT__REUSE_MEMORY is adopted
-   //
-   // Parameter   :  scale_x/y/z   : Grid scale indices of the patch corner
-   //                FaPID         : Patch ID of the father patch
-   //                FluData       : true --> Allocate the hydrodynamic array fluid[]
-   //                                         --> rho_ext[] will NOT be allocated here even if PARTICLE is on
-   //                MagData       : true --> Allocate the MHD array magnetic[]
-   //                                         --> Useless if "MHD" is turned off
-   //                PotData       : true --> Allocate the potential array pot[] (has no effect if "GRAVITY" is turned off)
-   //                                         --> pot_ext[] will be allocated as well if STORE_POT_GHOST is on
-   //                DE_Status     : true --> Allocate the dual-energy status array de_status[]
-   //                                         --> Useless if "DUAL_ENERGY" is turned off
-   //                lv            : Refinement level of the newly created patch
-   //                BoxScale      : Simulation box scale
-   //                BoxEdgeL      : Simulation box left edge
-   //                dh_min        : Cell size at the maximum level
-   //                InitPtrAsNull : Whether or not to initialize the field arrays
-   //                                (i.e., fluid, pot, pot_ext, rho_ext, de_status) as NULL
-   //                                --> It is used mainly for OPT__REUSE_MEMORY, where we don't want to set these
-   //                                    pointers as NULL if the patch has been allocated but marked as inactive
-   //                                    --> Since the field arrays may be allocated already and we want to reuse them
-   //                                --> But note that we must initialize these pointers as NULL when allocating
-   //                                    (not activating) patches and before calling hnew and gnew
-   //                                    --> otherwise these pointers become ill-defined, which will make hdelete and
-   //                                        gdelete crash
-   //                                --> Does NOT apply to flux arrays (i.e., flux, flux_tmp, and flux_bitrep) which
-   //                                    are always initialized as NULL here
-   //                                --> Does not apply to any particle variable (except rho_ext)
-   //===================================================================================
+// ===================================================================================
+//  Constructor :  Activate
+//  Description :  Initialize data members
+//
+//  Note        :  Called by the patch constructor "patch_t" and amr->pnew when OPT__REUSE_MEMORY is adopted
+//
+//  Parameter   :  scale_x/y/z   : Grid scale indices of the patch corner
+//                 FaPID         : Patch ID of the father patch
+//                 FluData       : true --> Allocate the hydrodynamic array fluid[]
+//                                          --> rho_ext[] will NOT be allocated here even if PARTICLE is on
+//                 MagData       : true --> Allocate the MHD array magnetic[]
+//                                          --> Useless if "MHD" is turned off
+//                 PotData       : true --> Allocate the potential array pot[] (has no effect if "GRAVITY" is turned off)
+//                                          --> pot_ext[] will be allocated as well if STORE_POT_GHOST is on
+//                 DE_Status     : true --> Allocate the dual-energy status array de_status[]
+//                                          --> Useless if "DUAL_ENERGY" is turned off
+//                 lv            : Refinement level of the newly created patch
+//                 BoxScale      : Simulation box scale
+//                 BoxEdgeL      : Simulation box left edge
+//                 dh_min        : Cell size at the maximum level
+//                 InitPtrAsNull : Whether or not to initialize the field arrays
+//                                 (i.e., fluid, pot, pot_ext, rho_ext, de_status) as NULL
+//                                 --> It is used mainly for OPT__REUSE_MEMORY, where we don't want to set these
+//                                     pointers as NULL if the patch has been allocated but marked as inactive
+//                                     --> Since the field arrays may be allocated already and we want to reuse them
+//                                 --> But note that we must initialize these pointers as NULL when allocating
+//                                     (not activating) patches and before calling hnew and gnew
+//                                     --> otherwise these pointers become ill-defined, which will make hdelete and
+//                                         gdelete crash
+//                                 --> Does NOT apply to flux arrays (i.e., flux, flux_tmp, and flux_bitrep) which
+//                                     are always initialized as NULL here
+//                                 --> Does not apply to any particle variable (except rho_ext)
+// ===================================================================================
    void Activate( const int scale_x, const int scale_y, const int scale_z, const int FaPID, const bool FluData,
                   const bool MagData, const bool PotData, const bool DE_Status, const int lv, const int BoxScale[],
                   const double BoxEdgeL[], const double dh_min, const bool InitPtrAsNull )
@@ -455,12 +455,12 @@ struct patch_t
 
 
 
-   //===================================================================================
-   // Destructor  :  ~patch_t
-   // Description :  Destructor of the structure "patch_t"
-   //
-   // Note        :  Deallocate flux and data arrays
-   //===================================================================================
+// ===================================================================================
+//  Destructor  :  ~patch_t
+//  Description :  Destructor of the structure "patch_t"
+//
+//  Note        :  Deallocate flux and data arrays
+// ===================================================================================
    ~patch_t()
    {
 
@@ -507,15 +507,15 @@ struct patch_t
 
 
 
-   //===================================================================================
-   // Method      :  fnew
-   // Description :  Allocate flux[] in the given direction
-   //
-   // Note        :  flux[] will be initialized as zero
-   //
-   // Parameter   :  SibID    : Targeted sibling direction (0,1,2,3,4,5) <--> (-x,+x,-y,+y,-z,+z)
-   //                AllocTmp : Allocate the temporary flux array flux_tmp[]
-   //===================================================================================
+// ===================================================================================
+//  Method      :  fnew
+//  Description :  Allocate flux[] in the given direction
+//
+//  Note        :  flux[] will be initialized as zero
+//
+//  Parameter   :  SibID    : Targeted sibling direction (0,1,2,3,4,5) <--> (-x,+x,-y,+y,-z,+z)
+//                 AllocTmp : Allocate the temporary flux array flux_tmp[]
+// ===================================================================================
    void fnew( const int SibID, const bool AllocTmp )
    {
 
@@ -561,10 +561,10 @@ struct patch_t
 
 
 
-   //===================================================================================
-   // Method      :  fdelete
-   // Description :  Deallocate flux[] along all directions
-   //===================================================================================
+// ===================================================================================
+//  Method      :  fdelete
+//  Description :  Deallocate flux[] along all directions
+// ===================================================================================
    void fdelete()
    {
 
@@ -587,15 +587,15 @@ struct patch_t
 
 
 #  ifdef MHD
-   //===================================================================================
-   // Method      :  enew
-   // Description :  Allocate electric[] in the given direction
-   //
-   // Note        :  electric[] will be initialized as zero
-   //
-   // Parameter   :  SibID    : Target sibling direction (0-17)
-   //                AllocTmp : Allocate the temporary electric array electric_tmp[]
-   //===================================================================================
+// ===================================================================================
+//  Method      :  enew
+//  Description :  Allocate electric[] in the given direction
+//
+//  Note        :  electric[] will be initialized as zero
+//
+//  Parameter   :  SibID    : Target sibling direction (0-17)
+//                 AllocTmp : Allocate the temporary electric array electric_tmp[]
+// ===================================================================================
    void enew( const int SibID, const bool AllocTmp )
    {
 
@@ -641,10 +641,10 @@ struct patch_t
 
 
 
-   //===================================================================================
-   // Method      :  edelete
-   // Description :  Deallocate electric[] along all directions
-   //===================================================================================
+// ===================================================================================
+//  Method      :  edelete
+//  Description :  Deallocate electric[] along all directions
+// ===================================================================================
    void edelete()
    {
 
@@ -667,12 +667,12 @@ struct patch_t
 
 
 
-   //===================================================================================
-   // Method      :  hnew
-   // Description :  Allocate fluid[]
-   //
-   // Note        :  Do nothing if fluid[] has been allocated
-   //===================================================================================
+// ===================================================================================
+//  Method      :  hnew
+//  Description :  Allocate fluid[]
+//
+//  Note        :  Do nothing if fluid[] has been allocated
+// ===================================================================================
    void hnew()
    {
 
@@ -686,10 +686,10 @@ struct patch_t
 
 
 
-   //===================================================================================
-   // Method      :  hdelete
-   // Description :  Deallocate fluid[]
-   //===================================================================================
+// ===================================================================================
+//  Method      :  hdelete
+//  Description :  Deallocate fluid[]
+// ===================================================================================
    void hdelete()
    {
 
@@ -706,12 +706,12 @@ struct patch_t
 
 
 #  ifdef MHD
-   //===================================================================================
-   // Method      :  mnew
-   // Description :  Allocate magnetic[]
-   //
-   // Note        :  Do nothing if magnetic[] has been allocated
-   //===================================================================================
+// ===================================================================================
+//  Method      :  mnew
+//  Description :  Allocate magnetic[]
+//
+//  Note        :  Do nothing if magnetic[] has been allocated
+// ===================================================================================
    void mnew()
    {
 
@@ -725,10 +725,10 @@ struct patch_t
 
 
 
-   //===================================================================================
-   // Method      :  mdelete
-   // Description :  Deallocate magnetic[]
-   //===================================================================================
+// ===================================================================================
+//  Method      :  mdelete
+//  Description :  Deallocate magnetic[]
+// ===================================================================================
    void mdelete()
    {
 
@@ -741,12 +741,12 @@ struct patch_t
 
 
 #  ifdef GRAVITY
-   //===================================================================================
-   // Method      :  gnew
-   // Description :  Allocate pot[] (and pot_ext[] for STORE_POT_GHOST)
-   //
-   // Note        :  Do nothing if pot[] (and pot_ext[] for STORE_POT_GHOST) has been allocated
-   //===================================================================================
+// ===================================================================================
+//  Method      :  gnew
+//  Description :  Allocate pot[] (and pot_ext[] for STORE_POT_GHOST)
+//
+//  Note        :  Do nothing if pot[] (and pot_ext[] for STORE_POT_GHOST) has been allocated
+// ===================================================================================
    void gnew()
    {
 
@@ -764,10 +764,10 @@ struct patch_t
 
 
 
-   //===================================================================================
-   // Method      :  gdelete
-   // Description :  Deallocate pot[] (and pot_ext[] for STORE_POT_GHOST)
-   //===================================================================================
+// ===================================================================================
+//  Method      :  gdelete
+//  Description :  Deallocate pot[] (and pot_ext[] for STORE_POT_GHOST)
+// ===================================================================================
    void gdelete()
    {
 
@@ -785,12 +785,12 @@ struct patch_t
 
 
 #  ifdef DUAL_ENERGY
-   //===================================================================================
-   // Method      :  snew
-   // Description :  Allocate the dual-energy status array de_status[]
-   //
-   // Note        :  Do nothing if de_status[] has been allocated
-   //===================================================================================
+// ===================================================================================
+//  Method      :  snew
+//  Description :  Allocate the dual-energy status array de_status[]
+//
+//  Note        :  Do nothing if de_status[] has been allocated
+// ===================================================================================
    void snew()
    {
 
@@ -803,10 +803,10 @@ struct patch_t
 
 
 
-   //===================================================================================
-   // Method      :  sdelete
-   // Description :  Deallocate the dual-energy status array de_status[]
-   //===================================================================================
+// ===================================================================================
+//  Method      :  sdelete
+//  Description :  Deallocate the dual-energy status array de_status[]
+// ===================================================================================
    void sdelete()
    {
 
@@ -820,12 +820,12 @@ struct patch_t
 
 #  ifdef PARTICLE
 #  ifdef GRAVITY
-   //===================================================================================
-   // Method      :  dnew
-   // Description :  Allocate rho_ext[]
-   //
-   // Note        :  Do nothing if rho_ext[] has been allocated
-   //===================================================================================
+// ===================================================================================
+//  Method      :  dnew
+//  Description :  Allocate rho_ext[]
+//
+//  Note        :  Do nothing if rho_ext[] has been allocated
+// ===================================================================================
    void dnew()
    {
 
@@ -839,10 +839,10 @@ struct patch_t
 
 
 
-   //===================================================================================
-   // Method      :  ddelete
-   // Description :  Deallocate rho_ext[]
-   //===================================================================================
+// ===================================================================================
+//  Method      :  ddelete
+//  Description :  Deallocate rho_ext[]
+// ===================================================================================
    void ddelete()
    {
 
@@ -854,23 +854,23 @@ struct patch_t
 #  endif // #ifdef GRAVITY
 
 
-   //===================================================================================
-   // Method      :  AddParticle
-   // Description :  Add new particles into the particle list
-   //
-   // Note        :  1. Particles in the list must already lie inside the target patch
-   //                   --> It will be checked in the debug mode
-   //                2. If ParList already exists, new particles will be attached to the existing particle list
-   //                3. Also update the total number of particles at the target level
-   //
-   // Parameter   :  NNew    : Number of new particles to be added
-   //                NewList : List storing the indices of new particles
-   //                NPar_Lv : Pointer to amr->Par->NPar_Lv[TargetLv]
-   //                ParType : amr->Par->Type
-   //                ParPos  : Particle position list             (debug only)
-   //                NParTot : Total number of existing particles (debug only)
-   //                Comment : Message for the debug mode         (debug only)
-   //===================================================================================
+// ===================================================================================
+//  Method      :  AddParticle
+//  Description :  Add new particles into the particle list
+//
+//  Note        :  1. Particles in the list must already lie inside the target patch
+//                    --> It will be checked in the debug mode
+//                 2. If ParList already exists, new particles will be attached to the existing particle list
+//                 3. Also update the total number of particles at the target level
+//
+//  Parameter   :  NNew    : Number of new particles to be added
+//                 NewList : List storing the indices of new particles
+//                 NPar_Lv : Pointer to amr->Par->NPar_Lv[TargetLv]
+//                 ParType : amr->Par->Type
+//                 ParPos  : Particle position list             (debug only)
+//                 NParTot : Total number of existing particles (debug only)
+//                 Comment : Message for the debug mode         (debug only)
+// ===================================================================================
 #  ifdef DEBUG_PARTICLE
    void AddParticle( const int NNew, const long *NewList, long *NPar_Lv,
                      const real_par *ParType, const real_par **ParPos, const long NParTot,
@@ -965,26 +965,26 @@ struct patch_t
 
 
 
-   //===================================================================================
-   // Method      :  RemoveParticle
-   // Description :  Remove particles from the particle list
-   //
-   // Note        :  1. The numbers stored in RemoveList are "array indices of ParList"
-   //                   instead of "particle indices stored in ParList"
-   //                2. The numbers stored in RemoveList must be in ascending numerical order
-   //                3. Also update the total number of particles at the target level
-   //
-   // Parameter   :  NRemove    : Number of particles to be removed
-   //                RemoveList : List storing the array indices of "ParList" to be removed
-   //                             **array indices, NOT particle indices**
-   //                NPar_Lv    : Pointer to amr->Par->NPar_Lv[TargetLv]
-   //                             --> NPar_Lv will NOT be updated if it's NULL
-   //                             --> This is useful for OpenMP, for which different threads
-   //                                 may tend to update NPar_Lv at the same time
-   //                             --> So for NPar_Lv == NULL, one must update NPar_Lv later manually
-   //                RemoveAll  : true --> remove all particle in this patch
-   //                ParType    : amr->Par->Type
-   //===================================================================================
+// ===================================================================================
+//  Method      :  RemoveParticle
+//  Description :  Remove particles from the particle list
+//
+//  Note        :  1. The numbers stored in RemoveList are "array indices of ParList"
+//                    instead of "particle indices stored in ParList"
+//                 2. The numbers stored in RemoveList must be in ascending numerical order
+//                 3. Also update the total number of particles at the target level
+//
+//  Parameter   :  NRemove    : Number of particles to be removed
+//                 RemoveList : List storing the array indices of "ParList" to be removed
+//                              **array indices, NOT particle indices**
+//                 NPar_Lv    : Pointer to amr->Par->NPar_Lv[TargetLv]
+//                              --> NPar_Lv will NOT be updated if it's NULL
+//                              --> This is useful for OpenMP, for which different threads
+//                                  may tend to update NPar_Lv at the same time
+//                              --> So for NPar_Lv == NULL, one must update NPar_Lv later manually
+//                 RemoveAll  : true --> remove all particle in this patch
+//                 ParType    : amr->Par->Type
+// ===================================================================================
    void RemoveParticle( const int NRemove, const int *RemoveList,
                         long *NPar_Lv, const bool RemoveAll,
                         const real_par *ParType )

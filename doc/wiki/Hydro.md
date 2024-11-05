@@ -199,7 +199,7 @@ The number of cells corrected by this option will be recorded in the file
 Only applicable when adopting the compilation option
 [[FLU_SCHEME | Installation: Simulation-Options#FLU_SCHEME]]=MHM/MHM_RP/CTU.
 [[MHD | Installation: Simulation-Options#MHD]] currently does not support `3D+1D`.
-Be aware that this option may cause conservation errors. 
+Be aware that this option may cause conservation errors.
 
 <a name="OPT__1ST_FLUX_CORR_SCHEME"></a>
 * #### `OPT__1ST_FLUX_CORR_SCHEME` &ensp; (<0 &#8594; set to default, 0=none, 1=Roe, 2=HLLC, 3=HLLE, 4=HLLD) &ensp; [1]

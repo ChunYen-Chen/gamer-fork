@@ -179,14 +179,14 @@ struct Particle_t
 #  endif
 
 
-   //===================================================================================
-   // Constructor :  Particle_t
-   // Description :  Constructor of the structure "Particle_t"
-   //
-   // Note        :  Initialize the data members
-   //
-   // Parameter   :  None
-   //===================================================================================
+// ===================================================================================
+//  Constructor :  Particle_t
+//  Description :  Constructor of the structure "Particle_t"
+//
+//  Note        :  Initialize the data members
+//
+//  Parameter   :  None
+// ===================================================================================
    Particle_t()
    {
 
@@ -264,12 +264,12 @@ struct Particle_t
 
 
 
-   //===================================================================================
-   // Destructor  :  ~Particle_t
-   // Description :  Destructor of the structure "Particle_t"
-   //
-   // Note        :  Free memory
-   //===================================================================================
+// ===================================================================================
+//  Destructor  :  ~Particle_t
+//  Description :  Destructor of the structure "Particle_t"
+//
+//  Note        :  Free memory
+// ===================================================================================
    ~Particle_t()
    {
 
@@ -314,19 +314,19 @@ struct Particle_t
 
 
 
-   //===================================================================================
-   // Constructor :  InitRepo
-   // Description :  Initialize particle repository
-   //                --> All variables related to the number of particles
-   //
-   // Note        :  1. Initialize both "NPar_AcPlusInac, NPar_Active and ParListSize" as NPar_Input
-   //                   --> Assuming no inactive particles (i.e., NPar_Inactive = 0)
-   //                2. For LOAD_BALANCE, some lists recording the information for exchanging
-   //                   particles between different ranks are also allocated here
-   //
-   // Parameter   :  NPar_Input : Total number of active particles
-   //                NRank      : Total number of MPI ranks
-   //===================================================================================
+// ===================================================================================
+//  Constructor :  InitRepo
+//  Description :  Initialize particle repository
+//                 --> All variables related to the number of particles
+//
+//  Note        :  1. Initialize both "NPar_AcPlusInac, NPar_Active and ParListSize" as NPar_Input
+//                    --> Assuming no inactive particles (i.e., NPar_Inactive = 0)
+//                 2. For LOAD_BALANCE, some lists recording the information for exchanging
+//                    particles between different ranks are also allocated here
+//
+//  Parameter   :  NPar_Input : Total number of active particles
+//                 NRank      : Total number of MPI ranks
+// ===================================================================================
    void InitRepo( const long NPar_Input, const int NRank )
    {
 
@@ -407,23 +407,23 @@ struct Particle_t
 
 
 
-   //===================================================================================
-   // Method      :  AddOneParticle
-   // Description :  Add ONE new particle into the particle list
-   //
-   // Note        :  1. This function will modify several global variables
-   //                   --> One must be careful when implementing OpenMP to avoid data race
-   //                   --> For example, use the **critical** construct
-   //                2. Please provide all necessary information of the new particle
-   //                3. If there are inactive particles, their IDs will be reassigned
-   //                   to the newly added particles
-   //                4. Note that the global variable "AveDensity_Init" will NOT be recalculated
-   //                   automatically here
-   //
-   // Parameter   :  NewAtt : Array storing the attributes of new particles
-   //
-   // Return      :  Index of the new particle (ParID)
-   //===================================================================================
+// ===================================================================================
+//  Method      :  AddOneParticle
+//  Description :  Add ONE new particle into the particle list
+//
+//  Note        :  1. This function will modify several global variables
+//                    --> One must be careful when implementing OpenMP to avoid data race
+//                    --> For example, use the **critical** construct
+//                 2. Please provide all necessary information of the new particle
+//                 3. If there are inactive particles, their IDs will be reassigned
+//                    to the newly added particles
+//                 4. Note that the global variable "AveDensity_Init" will NOT be recalculated
+//                    automatically here
+//
+//  Parameter   :  NewAtt : Array storing the attributes of new particles
+//
+//  Return      :  Index of the new particle (ParID)
+// ===================================================================================
    long AddOneParticle( const real_par *NewAtt )
    {
 
@@ -508,29 +508,29 @@ struct Particle_t
 
 
 
-   //===================================================================================
-   // Method      :  RemoveOneParticle
-   // Description :  Remove ONE particle from the particle list
-   //
-   // Note        :  1. This function will modify NPar_Active and NPar_Inactive
-   //                   --> Since these are global variables, one must be careful for the OpenMP
-   //                       implementation to avoid data race
-   //                   --> For example, use the **critical** construct
-   //                2. Particles being removed will NOT be actually deleted in the memory.
-   //                   Instead, their masses are assigned to Marker, which must be negative
-   //                   in order to be distinguishable from active particles.
-   //                   --> IDs of all removed particles will be recorded in InactiveParList[]
-   //                   --> These IDs will be reassigned to new particles added later on when
-   //                       calling AddOneParticle()
-   //                3. Note that the global variable "AveDensity_Init" will NOT be recalculated
-   //                   automatically here
-   //
-   // Parameter   :  ParID  : Particle ID to be removed
-   //                Marker : Value assigned to the mass of the particle being removed
-   //                         (PAR_INACTIVE_OUTSIDE or PAR_INACTIVE_MPI)
-   //
-   // Return      :  None
-   //===================================================================================
+// ===================================================================================
+//  Method      :  RemoveOneParticle
+//  Description :  Remove ONE particle from the particle list
+//
+//  Note        :  1. This function will modify NPar_Active and NPar_Inactive
+//                    --> Since these are global variables, one must be careful for the OpenMP
+//                        implementation to avoid data race
+//                    --> For example, use the **critical** construct
+//                 2. Particles being removed will NOT be actually deleted in the memory.
+//                    Instead, their masses are assigned to Marker, which must be negative
+//                    in order to be distinguishable from active particles.
+//                    --> IDs of all removed particles will be recorded in InactiveParList[]
+//                    --> These IDs will be reassigned to new particles added later on when
+//                        calling AddOneParticle()
+//                 3. Note that the global variable "AveDensity_Init" will NOT be recalculated
+//                    automatically here
+//
+//  Parameter   :  ParID  : Particle ID to be removed
+//                 Marker : Value assigned to the mass of the particle being removed
+//                          (PAR_INACTIVE_OUTSIDE or PAR_INACTIVE_MPI)
+//
+//  Return      :  None
+// ===================================================================================
    void RemoveOneParticle( const long ParID, const real_par Marker )
    {
 

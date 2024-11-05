@@ -8,10 +8,10 @@
 static double Bondi_Rho0;           // background density
 static double Bondi_T0;             // background temperature
        double Bondi_RefineRadius0;  // refinement radius at the base level
-                                    // NOTE: refinement radius at Lv is set to Bondi_RefineRadius0*2^(-Lv)
-                                    // --> all refinement shells have roughly the same number of cells at its level
-                                    //     (except Lv=MAX_LEVEL, which will have twice the number of cells along the radius
-                                    //     unless Bondi_HalfMaxLvRefR is on)
+//                                     NOTE: refinement radius at Lv is set to Bondi_RefineRadius0*2^(-Lv)
+//                                     --> all refinement shells have roughly the same number of cells at its level
+//                                         (except Lv=MAX_LEVEL, which will have twice the number of cells along the radius
+//                                         unless Bondi_HalfMaxLvRefR is on)
        bool   Bondi_HalfMaxLvRefR;  // halve the refinement radius at the maximum level
        double Bondi_InBC_Rho;       // density     inside the void region
 static double Bondi_InBC_T;         // temperature inside the void region

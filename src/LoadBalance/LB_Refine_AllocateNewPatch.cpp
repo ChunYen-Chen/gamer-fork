@@ -114,7 +114,7 @@ void LB_Refine_AllocateNewPatch( const int FaLv, int NNew_Home, int *NewPID_Home
 #  endif
 
    int NBufBk=0, NBufBk_Dup;  // BufBk : backup the data of buffer patches
-                              // must set NBufBk=0 here --> otherwise it may not be initialized if SonNBuff == 0
+//                               must set NBufBk=0 here --> otherwise it may not be initialized if SonNBuff == 0
    ulong *PCr1D_BufBk          = new ulong [SonNBuff];
    int   *PCr1D_BufBk_IdxTable = new int   [SonNBuff];
    int   *PID_BufBk            = NULL;

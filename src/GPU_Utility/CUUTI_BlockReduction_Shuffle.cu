@@ -102,9 +102,9 @@ real BlockReduction_Shuffle( real val )
    const int lane     = ID % WARP_SIZE;         // local lane ID within a warp [0 ... WARP_SIZE-1]
    const int wid      = ID / WARP_SIZE;         // warp ID
    const int MaxNWarp = 32;                     // maximum number of warps allowed == MaxBlockSize/WARP_SIZE == 1024/32 == 32
-                                                // --> all current compute capabilities have MaxBlockSize==1024 and  WARP_SIZE==32
+//                                                 --> all current compute capabilities have MaxBlockSize==1024 and  WARP_SIZE==32
    const int NWarp    = RED_NTHREAD/WARP_SIZE;  // actual number of warps (which must be <= WARP_SIZE since we apply the
-                                                // final reduction only to the first warp)
+//                                                 final reduction only to the first warp)
 
    static __shared__ real shared[MaxNWarp];     // maximum shared memory required for 32 partial sums (must be <= WARP_SIZE)
 

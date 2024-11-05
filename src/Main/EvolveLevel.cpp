@@ -71,7 +71,7 @@ void EvolveLevel( const int lv, const double dTime_FaLv )
    dTime_SoFar           = 0.0;
    AutoReduceDtCoeff     = 1.0;
    AutoReduceDt_Continue = AUTO_REDUCE_DT;   // if AUTO_REDUCE_DT is on, we will perform auto-dt correction
-                                             // at least once if the fluid solver fails
+//                                              at least once if the fluid solver fails
 
 // note that we have ensured "Time[lv] == Time[lv-1]" to avoid the round-off errors
    while (  ( lv == 0 && amr->NUpdateLv[lv] == 0 )  ||

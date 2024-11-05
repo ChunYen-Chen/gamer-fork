@@ -220,8 +220,8 @@ void Hydro_Init_ByFunction_AssignData( const int lv )
       {
          real magnetic_1v, magnetic_sub[NCOMP_MAG];
 
-   //    1-2. loop over B_X/Y/Z to set one component at a time
-   //    --> because different components are defined at different cell faces
+//       1-2. loop over B_X/Y/Z to set one component at a time
+//       --> because different components are defined at different cell faces
          for (int v=0; v<NCOMP_MAG; v++)
          {
             int    ijk_end[3], sub_end[3], idx=0;

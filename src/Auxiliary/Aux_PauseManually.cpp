@@ -18,7 +18,7 @@ void Aux_PauseManually()
 
    const char FileName[] = "PAUSE_GAMER_PAUSE";
    const int  PauseSec   = 10;   // sleep for PauseSec seconds before checking the target file again
-                                 // --> set rather arbitrarily here
+//                                  --> set rather arbitrarily here
 
 
 // enforce NFS to flush the file information

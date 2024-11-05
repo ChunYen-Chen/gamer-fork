@@ -15,17 +15,17 @@ static double CR_Diffusion_PGas0;       // Background gas pressure
 static double CR_Diffusion_E0_CR;       // Amplitude of cosmic ray energy density
 static double CR_Diffusion_BG_CR;       // Background cosmic ray energy density
 static int    CR_Diffusion_Type;        // The initial condition type:
-                                        // 0: Gaussian distribution ball CR
-                                        // 1: Step function ring distribution CR
-                                        // 2: Gaussian distribution ring CR
-                                        // 3: Gaussian distribution 1D
-                                        // 4: CR blast wave
+//                                         0: Gaussian distribution ball CR
+//                                         1: Step function ring distribution CR
+//                                         2: Gaussian distribution ring CR
+//                                         3: Gaussian distribution 1D
+//                                         4: CR blast wave
 static int    CR_Diffusion_Mag_Type;    // The magnetic field type:
-                                        // 0: Uniform
-                                        // 1: Circular
-                                        // 2: Random within (-1.0,+1.0) (Not divergence free)
-                                        // 3: Radiative (Not divergence free)
-                                        // 4: Suwa+ 2007
+//                                         0: Uniform
+//                                         1: Circular
+//                                         2: Random within (-1.0,+1.0) (Not divergence free)
+//                                         3: Radiative (Not divergence free)
+//                                         4: Suwa+ 2007
 static double CR_Diffusion_MagX;        // Magnitude of x component
 static double CR_Diffusion_MagY;        // Magnitude of y component
 static double CR_Diffusion_MagZ;        // Magnitude of z component

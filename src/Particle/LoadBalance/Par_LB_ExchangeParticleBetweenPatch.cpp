@@ -189,7 +189,7 @@ void Par_LB_ExchangeParticleBetweenPatch( const int lv,
    int      *RecvBuf_NPatchEachRank   = Recv_NPatchEachRank;
    int      *RecvBuf_NParEachPatch    = NULL;    // will be allocated by Par_LB_SendParticleData and must be free'd later
    real_par *RecvBuf_ParDataEachPatch = NULL;    // a pointer to the MPI recv buffer declared in LB_GetBufferData
-                                                 // --> don't have to be free'd here
+//                                                  --> don't have to be free'd here
 
    long     *SendBuf_LBIdxEachRank    = NULL;    // useless and does not need to be allocated
    long     *RecvBuf_LBIdxEachRank    = NULL;    // useless and will not be allocated by Par_LB_SendParticleData

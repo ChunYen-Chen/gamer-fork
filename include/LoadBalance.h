@@ -212,20 +212,20 @@ struct LB_t
 
 
 
-   //===================================================================================
-   // Constructor :  LB_t
-   // Description :  Constructor of the structure "LB_t"
-   //
-   // Note        :  1. Allocate memory for pointers whose sizes depend on the number of MPI ranks
-   //                2. Initialize pointers as NULL and counters as zero.
-   //                3. "IdxList_Real, IdxList_Real_IdxTable, PaddedCr1DList, and
-   //                   PaddedCr1DList_IdxTable", whose sizes can not be determined during
-   //                   initialization, are NOT allocated with memory
-   //
-   // Parameter   :  NRank             : Number of MPI ranks
-   //                Input__WLI_Max    : WLI_Max loaded from the input parameter file
-   //                Input__Par_Weight : Par_Weight loaded from the input parameter file
-   //===================================================================================
+// ===================================================================================
+//  Constructor :  LB_t
+//  Description :  Constructor of the structure "LB_t"
+//
+//  Note        :  1. Allocate memory for pointers whose sizes depend on the number of MPI ranks
+//                 2. Initialize pointers as NULL and counters as zero.
+//                 3. "IdxList_Real, IdxList_Real_IdxTable, PaddedCr1DList, and
+//                    PaddedCr1DList_IdxTable", whose sizes can not be determined during
+//                    initialization, are NOT allocated with memory
+//
+//  Parameter   :  NRank             : Number of MPI ranks
+//                 Input__WLI_Max    : WLI_Max loaded from the input parameter file
+//                 Input__Par_Weight : Par_Weight loaded from the input parameter file
+// ===================================================================================
    LB_t( const int NRank, const double Input__WLI_Max, const double Input__Par_Weight )
    {
 
@@ -410,13 +410,13 @@ struct LB_t
 
 
 
-   //===================================================================================
-   // Constructor :  ~LB_t
-   // Description :  Destructor of the structure "LB_t"
-   //
-   // Note        :  1. Deallocate memory previously allocated
-   //                2. Memory allocated by "malloc/realloc" are deallocated by "free"
-   //===================================================================================
+// ===================================================================================
+//  Constructor :  ~LB_t
+//  Description :  Destructor of the structure "LB_t"
+//
+//  Note        :  1. Deallocate memory previously allocated
+//                 2. Memory allocated by "malloc/realloc" are deallocated by "free"
+// ===================================================================================
    ~LB_t()
    {
       for (int lv=0; lv<NLEVEL; lv++)
@@ -583,18 +583,18 @@ struct LB_t
 
 
 
-   //===================================================================================
-   // Constructor :  reset
-   // Description :  Reset memory for re-distributing all patches at all levels
-   //
-   // Note        :  1. Pointers whose sizes depend on the number of MPI ranks are NOT deallocated
-   //                2. This function must NOT reset CutPoint[] since in LB_Init_LoadBalance() we need to
-   //                   call LB->reset() AFTER setting CutPoint[]
-   //                3. WLI will be reset to NULL_REAL even though this function just resets
-   //                   load-balance variables on a specific level
-   //
-   // Parameter   :  lv : Target refinement level
-   //===================================================================================
+// ===================================================================================
+//  Constructor :  reset
+//  Description :  Reset memory for re-distributing all patches at all levels
+//
+//  Note        :  1. Pointers whose sizes depend on the number of MPI ranks are NOT deallocated
+//                 2. This function must NOT reset CutPoint[] since in LB_Init_LoadBalance() we need to
+//                    call LB->reset() AFTER setting CutPoint[]
+//                 3. WLI will be reset to NULL_REAL even though this function just resets
+//                    load-balance variables on a specific level
+//
+//  Parameter   :  lv : Target refinement level
+// ===================================================================================
    void reset( const int lv )
    {
       WLI = NULL_REAL;

@@ -61,31 +61,31 @@ class Par_EquilibriumIC
    protected:
 
    private:
-      // Derive physical attributes for particles
+//    Derive physical attributes for particles
       double Set_Mass( double x );
       double Set_Density( double x );
       double Set_Velocity(const double x);
 
-      // Initialize physical parameter tables
+//    Initialize physical parameter tables
       void Init_Mass();
       void Init_Pot();
       void Init_Prob_Dens();
 
-      //  Initialization through Table
+//    Initialization through Table
       void Init_Mass_Table();
       void Init_Pot_Table();
 
-      //  Add External Potential
+//    Add External Potential
       void Add_Ext_Pot();
 
-      // Auxiliary functions
+//    Auxiliary functions
       int Aux_CountRow( const char *filename );
       int Aux_Countcolumn( const char *filename );
       int GetParams( const char *filename,const char *keyword,const int para_num,const char *para_type,vector <string> &container);
       void Check_InputFileName();
       void RanVec_FixRadius( const double r, double RanVec[] );
 
-      // Solve Eddington's equation
+//    Solve Eddington's equation
       double potential(const double x);
       double inverse_psi_to_index (double psi);
       double integration_eng_base(double eng);
@@ -96,7 +96,7 @@ class Par_EquilibriumIC
       double *int_prob_dens;
       double *psi;
 
-      // statistics
+//    statistics
       double slope(double* a,double* b,int start,int fin);
       void smooth_all(double* x,int start,int fin);
       double ave(double* a,int start,int fin);
@@ -105,7 +105,7 @@ class Par_EquilibriumIC
       void mask(double* x,int start,int fin);
       void add_num(double* x,int start,int fin);
 
-      // Tables of particles' attributes
+//    Tables of particles' attributes
       double *Table_r;
       double *Table_Enclosed_Mass;
       double *Table_Density;
@@ -114,7 +114,7 @@ class Par_EquilibriumIC
       double *Table_Gravity_Field;
       double *Table_Gravity_Potential;
 
-      // Random number generator
+//    Random number generator
       RandomNumber_t *Random_Num_Gen ;
 };
 

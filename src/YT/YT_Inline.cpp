@@ -82,10 +82,10 @@ void YT_Inline()
 #  if ( MODEL == HYDRO )
    int EoSIdx = NField;
 #  ifdef LIBYT_USE_PATCH_GROUP
-   // Add field : _TEMP, _PRES, _ENTR
+// Add field : _TEMP, _PRES, _ENTR
    NField = NField + 3;
 #  else
-   // Add field : _TEMP
+// Add field : _TEMP
    NField = NField + 1;
 #  endif // #ifdef LIBYT_USE_PATCH_GROUP
 #  endif
@@ -131,7 +131,7 @@ void YT_Inline()
        FieldList[v + MHDIdx].derived_func = DerivedFuncWithName_PatchGroup;
    }
 
-   // Add field display name
+// Add field display name
    FieldList[ MHDIdx     ].field_display_name = "B_x";
    FieldList[ MHDIdx + 1 ].field_display_name = "B_y";
    FieldList[ MHDIdx + 2 ].field_display_name = "B_z";
@@ -182,13 +182,13 @@ void YT_Inline()
        FieldList[v + MHDIdx].field_unit  = "code_magnetic";
    }
 
-   // Add field display name
+// Add field display name
    FieldList[ MHDIdx     ].field_display_name = "B_x";
    FieldList[ MHDIdx + 1 ].field_display_name = "B_y";
    FieldList[ MHDIdx + 2 ].field_display_name = "B_z";
 
-   // Add field derived function pointer
-   // if you wish to use, set field_define_type = "derived_field"
+// Add field derived function pointer
+// if you wish to use, set field_define_type = "derived_field"
    FieldList[ MHDIdx     ].derived_func = MagX_DerivedFunc;
    FieldList[ MHDIdx + 1 ].derived_func = MagY_DerivedFunc;
    FieldList[ MHDIdx + 2 ].derived_func = MagZ_DerivedFunc;
@@ -204,7 +204,7 @@ void YT_Inline()
 
 #  endif // #ifdef LIBYT_USE_PATCH_GROUP
 
-   // Set field's data type
+// Set field's data type
    for (int v=0; v<NField; v++){
 #  ifdef FLOAT8
        FieldList[v].field_dtype = YT_DOUBLE;
@@ -218,25 +218,25 @@ void YT_Inline()
    yt_particle *ParticleList;
    yt_get_ParticlesPtr( &ParticleList );
 
-   // Set attributes
+// Set attributes
    for (int v=0; v<ParticleList[0].num_attr; v++){
-       // set attribute name
+//     set attribute name
        ParticleList[0].attr_list[v].attr_name  = ParAttLabel[v];
-       // set attribute data type
+//     set attribute data type
 #      ifdef FLOAT8_PAR
        ParticleList[0].attr_list[v].attr_dtype = YT_DOUBLE;
 #      else
        ParticleList[0].attr_list[v].attr_dtype = YT_FLOAT;
 #      endif
-       // set attribute unit
+//     set attribute unit
    }
 
-   // Set label (attribute name) of coordinate x/y/z
+// Set label (attribute name) of coordinate x/y/z
    ParticleList[0].coor_x   = "ParPosX";
    ParticleList[0].coor_y   = "ParPosY";
    ParticleList[0].coor_z   = "ParPosZ";
 
-   // Set get attribute function
+// Set get attribute function
    ParticleList[0].get_par_attr = Get_ParticleAttribute;
 
 #  endif // #ifdef PARTICLE

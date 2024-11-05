@@ -35,12 +35,12 @@ struct Timer_t
 
 
 
-   //===================================================================================
-   // Constructor :  Timer_t
-   // Description :  Constructor of the structure "Timer_t"
-   //
-   // Note        :  Initialize all data members
-   //===================================================================================
+// ===================================================================================
+//  Constructor :  Timer_t
+//  Description :  Constructor of the structure "Timer_t"
+//
+//  Note        :  Initialize all data members
+// ===================================================================================
    Timer_t()
    {
       Time   = 0;
@@ -49,27 +49,27 @@ struct Timer_t
 
 
 
-   //===================================================================================
-   // Destructor  :  ~Timer_t
-   // Description :  Destructor of the structure "Timer_t"
-   //
-   // Note        :  Release memory
-   //===================================================================================
+// ===================================================================================
+//  Destructor  :  ~Timer_t
+//  Description :  Destructor of the structure "Timer_t"
+//
+//  Note        :  Release memory
+// ===================================================================================
    ~Timer_t()
    {
    }
 
 
 
-   //===================================================================================
-   // Method      :  Start
-   // Description :  Start timing and set status as "true"
-   //
-   // Note        :  1. Timer must not already be running
-   //                2. The same timer can be started and stopped multiple times and the
-   //                   results will be accumulated
-   //                   --> Invoke Reset() to reset a timer
-   //===================================================================================
+// ===================================================================================
+//  Method      :  Start
+//  Description :  Start timing and set status as "true"
+//
+//  Note        :  1. Timer must not already be running
+//                 2. The same timer can be started and stopped multiple times and the
+//                    results will be accumulated
+//                    --> Invoke Reset() to reset a timer
+// ===================================================================================
    void Start()
    {
 #     ifdef GAMER_DEBUG
@@ -85,12 +85,12 @@ struct Timer_t
 
 
 
-   //===================================================================================
-   // Method      :  Stop
-   // Description :  Stop timing and set status as "false"
-   //
-   // Note        :  Timer must already be running
-   //===================================================================================
+// ===================================================================================
+//  Method      :  Stop
+//  Description :  Stop timing and set status as "false"
+//
+//  Note        :  Timer must already be running
+// ===================================================================================
    void Stop()
    {
 #     ifdef GAMER_DEBUG
@@ -106,12 +106,12 @@ struct Timer_t
 
 
 
-   //===================================================================================
-   // Method      :  GetValue
-   // Description :  Get the elapsed time (in seconds) recorded in the timer
-   //
-   // Note        :  Timer must not be running
-   //===================================================================================
+// ===================================================================================
+//  Method      :  GetValue
+//  Description :  Get the elapsed time (in seconds) recorded in the timer
+//
+//  Note        :  Timer must not be running
+// ===================================================================================
    double GetValue()
    {
 #     ifdef GAMER_DEBUG
@@ -123,14 +123,14 @@ struct Timer_t
 
 
 
-   //===================================================================================
-   // Method      :  Reset
-   // Description :  Reset the timer
-   //
-   // Note        :  1. The timing information previously recorded will be lost after
-   //                   invoking this function
-   //                2. Timer must not be running
-   //===================================================================================
+// ===================================================================================
+//  Method      :  Reset
+//  Description :  Reset the timer
+//
+//  Note        :  1. The timing information previously recorded will be lost after
+//                    invoking this function
+//                 2. Timer must not be running
+// ===================================================================================
    void Reset()
    {
 #     ifdef GAMER_DEBUG

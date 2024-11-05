@@ -155,8 +155,8 @@ static real EoS_DensPres2Eint_Isothermal( const real Dens, const real Pres, cons
 
 
    const real Eint = (real)1.0e4*Pres;    // in principle, it can be set rather arbitrarily since Eint should be useless anyway
-                                          // --> but still better to have reasonably large Eint to avoid error messages about
-                                          //     Eint<0 during evolution
+//                                           --> but still better to have reasonably large Eint to avoid error messages about
+//                                               Eint<0 during evolution
 
    return Eint;
 

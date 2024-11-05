@@ -144,7 +144,7 @@ void LB_RecordExchangeFixUpDataPatchID( const int Lv )
             const int RPID = LB_RecvH_IDList[r][ LB_RecvH_IDList_IdxTable[r][t] ];
 
             if ( amr->patch[0][Lv][RPID]->son != -1 ) // assuming that all buffer patches know whether or not they have sons
-                                                      // --> LB_FindSonNotHome() applies to both real and buffer patches
+//                                                       --> LB_FindSonNotHome() applies to both real and buffer patches
             {
                LB_RecvX_IDList [r][ LB_RecvX_NList[r] ] = RPID;
                LB_RecvX_SibList[r][ LB_RecvX_NList[r] ] = LB_RecvH_SibList[r][t];

@@ -46,14 +46,14 @@ struct Profile_t
    long   *NCell;
 
 
-   //===================================================================================
-   // Constructor :  Profile_t
-   // Description :  Constructor of the structure "Profile_t"
-   //
-   // Note        :  Initialize the data members
-   //
-   // Parameter   :  None
-   //===================================================================================
+// ===================================================================================
+//  Constructor :  Profile_t
+//  Description :  Constructor of the structure "Profile_t"
+//
+//  Note        :  Initialize the data members
+//
+//  Parameter   :  None
+// ===================================================================================
    Profile_t()
    {
 
@@ -68,12 +68,12 @@ struct Profile_t
 
 
 
-   //===================================================================================
-   // Destructor  :  ~Profile_t
-   // Description :  Destructor of the structure "Profile_t"
-   //
-   // Note        :  Free memory
-   //===================================================================================
+// ===================================================================================
+//  Destructor  :  ~Profile_t
+//  Description :  Destructor of the structure "Profile_t"
+//
+//  Note        :  Free memory
+// ===================================================================================
    ~Profile_t()
    {
 
@@ -83,17 +83,17 @@ struct Profile_t
 
 
 
-   //===================================================================================
-   // Method      :  AllocateMemory
-   // Description :  Allocate member arrays
-   //
-   // Note        :  1. Invoked by Aux_ComputeProfile()
-   //                2. No data initialization is done here
-   //
-   // Parameter   :  None
-   //
-   // Return      :  Radius[], Data[], Weight[], NCell[], Allocated
-   //===================================================================================
+// ===================================================================================
+//  Method      :  AllocateMemory
+//  Description :  Allocate member arrays
+//
+//  Note        :  1. Invoked by Aux_ComputeProfile()
+//                 2. No data initialization is done here
+//
+//  Parameter   :  None
+//
+//  Return      :  Radius[], Data[], Weight[], NCell[], Allocated
+// ===================================================================================
    void AllocateMemory()
    {
 
@@ -114,16 +114,16 @@ struct Profile_t
 
 
 
-   //===================================================================================
-   // Method      :  FreeMemory
-   // Description :  Free the memory allocated by AllocateMemory()
-   //
-   // Note        :  Invoked by ~Profile()
-   //
-   // Parameter   :  None
-   //
-   // Return      :  Radius[], Data[], Weight[], NCell[]
-   //===================================================================================
+// ===================================================================================
+//  Method      :  FreeMemory
+//  Description :  Free the memory allocated by AllocateMemory()
+//
+//  Note        :  Invoked by ~Profile()
+//
+//  Parameter   :  None
+//
+//  Return      :  Radius[], Data[], Weight[], NCell[]
+// ===================================================================================
    void FreeMemory()
    {
 

@@ -82,12 +82,12 @@ struct ReadPara_t
    void **Max;
 
 
-   //===================================================================================
-   // Constructor :  ReadPara_t
-   // Description :  Constructor of the structure "ReadPara_t"
-   //
-   // Note        :  Initialize variables and allocate memory
-   //===================================================================================
+// ===================================================================================
+//  Constructor :  ReadPara_t
+//  Description :  Constructor of the structure "ReadPara_t"
+//
+//  Note        :  Initialize variables and allocate memory
+// ===================================================================================
    ReadPara_t()
    {
 
@@ -106,12 +106,12 @@ struct ReadPara_t
 
 
 
-   //===================================================================================
-   // Constructor :  ~ReadPara_t
-   // Description :  Destructor of the structure "ReadPara_t"
-   //
-   // Note        :  Deallocate memory
-   //===================================================================================
+// ===================================================================================
+//  Constructor :  ~ReadPara_t
+//  Description :  Destructor of the structure "ReadPara_t"
+//
+//  Note        :  Deallocate memory
+// ===================================================================================
    ~ReadPara_t()
    {
 
@@ -134,15 +134,15 @@ struct ReadPara_t
 
 
 
-   //===================================================================================
-   // Constructor :  Add
-   // Description :  Add a new parameter to be loaded later
-   //
-   // Note        :  1. This function stores the name, address, and data type of the new parameter
-   //                2. Data type (e.g., integer, float, ...) is determined by the input pointer
-   //                3. NewPtr, NewDef, NewMin, and NewMax must have the same data type
-   //                4. String parameters are handled by a separate overloaded function
-   //===================================================================================
+// ===================================================================================
+//  Constructor :  Add
+//  Description :  Add a new parameter to be loaded later
+//
+//  Note        :  1. This function stores the name, address, and data type of the new parameter
+//                 2. Data type (e.g., integer, float, ...) is determined by the input pointer
+//                 3. NewPtr, NewDef, NewMin, and NewMax must have the same data type
+//                 4. String parameters are handled by a separate overloaded function
+// ===================================================================================
    template <typename T>
    void Add( const char NewKey[], T* NewPtr, T NewDef, T NewMin, T NewMax )
    {
@@ -184,12 +184,12 @@ struct ReadPara_t
 
 
 
-   //===================================================================================
-   // Constructor :  Add (string)
-   // Description :  Add a new string parameter to be loaded later
-   //
-   // Note        :  1. Overloaded function for strings
-   //===================================================================================
+// ===================================================================================
+//  Constructor :  Add (string)
+//  Description :  Add a new string parameter to be loaded later
+//
+//  Note        :  1. Overloaded function for strings
+// ===================================================================================
    void Add( const char NewKey[], char* NewPtr, const char* NewDef, const char* NewMin, const char* NewMax )
    {
 
@@ -220,13 +220,13 @@ struct ReadPara_t
 
 
 
-   //===================================================================================
-   // Constructor :  Read
-   // Description :  Read all parameters added by Add()
-   //
-   // Note        :  1. Format:   KEY   VALUE
-   //                2. Use # to comment out lines
-   //===================================================================================
+// ===================================================================================
+//  Constructor :  Read
+//  Description :  Read all parameters added by Add()
+//
+//  Note        :  1. Format:   KEY   VALUE
+//                 2. Use # to comment out lines
+// ===================================================================================
    void Read( const char *FileName )
    {
 
@@ -312,13 +312,13 @@ struct ReadPara_t
    } // METHOD : Read
 
 
-   //===================================================================================
-   // Constructor :  SetDefault
-   // Description :  Set parameters missing in the runtime parameter file to their default values
-   //
-   // Note        :  1. Parameters already set by the runtime parameter file will have Loaded[] == true
-   //                2. We do NOT set default values for strings. An error will be raised instead.
-   //===================================================================================
+// ===================================================================================
+//  Constructor :  SetDefault
+//  Description :  Set parameters missing in the runtime parameter file to their default values
+//
+//  Note        :  1. Parameters already set by the runtime parameter file will have Loaded[] == true
+//                 2. We do NOT set default values for strings. An error will be raised instead.
+// ===================================================================================
    void SetDefault()
    {
 
@@ -361,13 +361,13 @@ struct ReadPara_t
    } // METHOD : SetDefault
 
 
-   //===================================================================================
-   // Constructor :  Validate
-   // Description :  Validate if all parameters are within their correct range
-   //
-   // Note        :  1. Correct range: Min <= Value <= Max
-   //                2. No check for bool and string variables
-   //===================================================================================
+// ===================================================================================
+//  Constructor :  Validate
+//  Description :  Validate if all parameters are within their correct range
+//
+//  Note        :  1. Correct range: Min <= Value <= Max
+//                 2. No check for bool and string variables
+// ===================================================================================
    void Validate()
    {
 

@@ -261,7 +261,7 @@ void Aux_Check_FluxAllocate( const int lv, const char *comment )
                } // if ( SonPID != -1 ) ... else
 
             } // for (int PID0=amr->NPatchComma[lv][1+sib]; PID0<amr->NPatchComma[lv][2+sib]; PID0+=8)
-              // for (int t=0; t<4; t++)
+//               for (int t=0; t<4; t++)
          } // for (int sib=0; sib<6; sib++)
 #        endif // #ifndef LOAD_BALANCE
 

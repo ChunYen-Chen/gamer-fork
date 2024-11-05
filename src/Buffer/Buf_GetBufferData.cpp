@@ -235,7 +235,7 @@ void Buf_GetBufferData( const int lv, const int FluSg, const int MagSg, const in
 #                 endif
                } // for (int TID=0; TID<amr->ParaVar->SendP_NList[lv][Sib]; TID++)
                break; // case DATA_GENERAL: case DATA_AFTER_REFINE: case DATA_AFTER_FIXUP: case POT_FOR_POISSON:
-                      // case POT_AFTER_REFINE:
+//                       case POT_AFTER_REFINE:
 
 
             case COARSE_FINE_FLUX :
@@ -311,7 +311,7 @@ void Buf_GetBufferData( const int lv, const int FluSg, const int MagSg, const in
 #                 endif
                } // for (int TID=0; TID<amr->ParaVar->RecvP_NList[lv][Sib]; TID++)
                break; // case DATA_GENERAL: case DATA_AFTER_REFINE: case DATA_AFTER_FIXUP: case POT_FOR_POISSON:
-                      // case POT_AFTER_REFINE:
+//                       case POT_AFTER_REFINE:
 
 
             case COARSE_FINE_FLUX :

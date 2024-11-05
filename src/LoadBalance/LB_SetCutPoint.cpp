@@ -172,7 +172,7 @@ void LB_SetCutPoint( const int lv, const int NPG_Total, long *CutPoint, const bo
 
 //       4-4. find the LBIdx with an accumulated workload (LoadAcc) closest to the average workload of each rank (LoadTarget)
          int    CutIdx     = 1;                 // target array index for CutPoint[]
-                                                // --> note that CutPoint[CutIdx] is the **exclusive** upper bound of rank "CutIdx-1"
+//                                                 --> note that CutPoint[CutIdx] is the **exclusive** upper bound of rank "CutIdx-1"
          double LoadAcc    = 0.0;               // accumulated workload
          double LoadTarget = CutIdx*Load_Ave;   // target accumulated workload for the rank "CutIdx-1"
          double LoadThisPG;                     // workload of the target patch group

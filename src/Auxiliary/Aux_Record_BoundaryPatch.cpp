@@ -22,7 +22,7 @@ void Aux_Record_BoundaryPatch( const int lv, int *NList, int **IDList, int **Pos
    const int scale0 = amr->scale[ 0];
    const int scale  = amr->scale[lv];        // Pos      : Patch position in (x,y,z) direction
    int Pos[3], Pos2, LCorner[3];             // Pos2     : 1-D Patch position
-                                             // LCorner  : local coordinate of patch corner in (x,y,z) direction
+//                                              LCorner  : local coordinate of patch corner in (x,y,z) direction
 
 
 // initialize counter as zero

@@ -44,7 +44,7 @@ extern int        NX0[3];                             //  of base-level cells pe
 extern int        NPatchTotal[NLEVEL];                // total number of patches in all ranks
 extern int       *BaseP;                              // table recording the IDs of the base-level patches
 extern int        Flu_ParaBuf;                        // number of parallel buffers to exchange all fluid
-                                                      // variables for the fluid solver and fluid refinement
+//                                                       variables for the fluid solver and fluid refinement
 
 extern long       FixUpVar_Flux, FixUpVar_Restrict;
 extern int        PassiveNorm_NVar, PassiveNorm_VarIdx[NCOMP_PASSIVE];
@@ -154,7 +154,7 @@ extern double           ELBDM_LAMBDA;
 #ifdef GRAVITY
 extern double        AveDensity_Init;     // initial average mass density (in all levels)
 extern int           Pot_ParaBuf;         // number of parallel buffers to exchange potential for the
-                                          // Poisson/Gravity solvers and the potential refinement
+//                                           Poisson/Gravity solvers and the potential refinement
 extern int           Rho_ParaBuf;         // number of parallel buffers to exchange density for the Poisson solver
 extern real         *GreenFuncK;
 extern double        GFUNC_COEFF0;

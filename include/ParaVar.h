@@ -64,12 +64,12 @@ struct ParaVar_t
 
 
 
-   //===================================================================================
-   // Constructor :  ParaVar_t
-   // Description :  Constructor of the structure "ParaVar_t"
-   //
-   // Note        :  Initialize all pointers as NULL and all counters as 0
-   //===================================================================================
+// ===================================================================================
+//  Constructor :  ParaVar_t
+//  Description :  Constructor of the structure "ParaVar_t"
+//
+//  Note        :  Initialize all pointers as NULL and all counters as 0
+// ===================================================================================
    ParaVar_t()
    {
       for (int lv=0; lv<NLEVEL; lv++)
@@ -108,12 +108,12 @@ struct ParaVar_t
 
 
 
-   //===================================================================================
-   // Constructor :  ~ParaVar_t
-   // Description :  Destructor of the structure "ParaVar_t"
-   //
-   // Note        :  Deallocate memory previously allocated and reset all XXX_NList
-   //===================================================================================
+// ===================================================================================
+//  Constructor :  ~ParaVar_t
+//  Description :  Destructor of the structure "ParaVar_t"
+//
+//  Note        :  Deallocate memory previously allocated and reset all XXX_NList
+// ===================================================================================
    ~ParaVar_t()
    {
       for (int lv=0; lv<NLEVEL; lv++)     Lvdelete( lv );
@@ -121,11 +121,11 @@ struct ParaVar_t
 
 
 
-   //===================================================================================
-   // Constructor :  Lvdelete
-   // Description :  Deallocate memory previously allocated and reset all XXX_NList
-   //                for the target refinement level
-   //===================================================================================
+// ===================================================================================
+//  Constructor :  Lvdelete
+//  Description :  Deallocate memory previously allocated and reset all XXX_NList
+//                 for the target refinement level
+// ===================================================================================
    void Lvdelete( const int lv )
    {
       for (int s=0; s<26; s++)

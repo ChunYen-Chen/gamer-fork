@@ -59,10 +59,10 @@ void Aux_Check_Conservation( const char *comment )
 #  if   ( MODEL == HYDRO )
 #  ifdef MHD
    const int    NVar_NoPassive    = 12;   // 12: mass, momentum (x/y/z), angular momentum (x/y/z), kinetic/internal/potential/magnetic/total energies
-                                          // --> note that **total energy** is put in the last element
+//                                           --> note that **total energy** is put in the last element
 #  else
    const int    NVar_NoPassive    = 11;   // 11: mass, momentum (x/y/z), angular momentum (x/y/z), kinetic/internal/potential/total energies
-                                          // --> note that **total energy** is put in the last element
+//                                           --> note that **total energy** is put in the last element
 #  endif
    const int    idx_etot          = NVar_NoPassive - 1;
    const bool   CheckMinEint_No   = false;

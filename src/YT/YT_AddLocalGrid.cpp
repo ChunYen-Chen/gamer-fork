@@ -69,14 +69,14 @@ void YT_AddLocalGrid( int NField, yt_field *FieldList, LB_PatchCount& pc)
 
 #        ifdef PARTICLE
 #        ifdef LIBYT_USE_PATCH_GROUP
-         // input particle num in this patch group.
+//       input particle num in this patch group.
          long particle_count = 0;
          for(int i=PID; i<PID+8; i++){
              particle_count += (long) amr->patch[0][lv][i]->NPar;
          }
          YT_Grids[LID].par_count_list[0] = particle_count;
 #        else
-         // input particle num in this grid
+//       input particle num in this grid
          YT_Grids[LID].par_count_list[0] = (long) amr->patch[0][lv][PID]->NPar;
 #        endif // #ifdef LIBYT_USE_PATCH_GROUP
 #        endif // #ifdef PARTICLE
@@ -89,7 +89,7 @@ void YT_AddLocalGrid( int NField, yt_field *FieldList, LB_PatchCount& pc)
 
          YT_Grids[LID].level  = lv;
 
-         // getting parent's id
+//       getting parent's id
          long FaGID = lel.FaList_Local[lv][PID];
 
 #        ifdef LIBYT_USE_PATCH_GROUP
@@ -99,13 +99,13 @@ void YT_AddLocalGrid( int NField, yt_field *FieldList, LB_PatchCount& pc)
          YT_Grids[LID].parent_id = FaGID;
 
 #        ifndef LIBYT_USE_PATCH_GROUP
-         // load patch data to libyt if not use LIBYT_USE_PATCH_GROUP
+//       load patch data to libyt if not use LIBYT_USE_PATCH_GROUP
          for (int v = 0; v < NCOMP_TOTAL; v++){
              YT_Grids[LID].field_data[v].data_ptr = amr->patch[FluSg][lv][PID]->fluid[v];
          }
 
 #        ifdef GRAVITY
-         // find field index of GRAVITY
+//       find field index of GRAVITY
          int PotIdx = 0;
          for ( int v = 0; v < NField; v++ ){
              if ( strcmp(FieldList[v].field_name, PotLabel) == 0 ){
@@ -113,12 +113,12 @@ void YT_AddLocalGrid( int NField, yt_field *FieldList, LB_PatchCount& pc)
                  break;
              }
          }
-         // load Pote patch data to libyt
+//       load Pote patch data to libyt
          YT_Grids[LID].field_data[PotIdx].data_ptr = amr->patch[PotSg][lv][PID]->pot;
 #        endif // #ifdef GRAVITY
 
 #        ifdef MHD
-         // find field index of CCMagX
+//       find field index of CCMagX
          int MHDIdx = 0;
          for ( int v = 0; v < NField; v++ ){
              if ( strcmp(FieldList[v].field_name, "CCMagX") == 0 ){
@@ -128,10 +128,10 @@ void YT_AddLocalGrid( int NField, yt_field *FieldList, LB_PatchCount& pc)
          }
 
          for (int v = 0; v < NCOMP_MAG; v++){
-             // input the data pointer
+//           input the data pointer
              YT_Grids[LID].field_data[ MHDIdx + v ].data_ptr = amr->patch[MagSg][lv][PID]->magnetic[v];
 
-             // input the field dimension, since MHD has different dimension.
+//           input the field dimension, since MHD has different dimension.
              for (int d = 0; d < 3; d++){
                  YT_Grids[LID].field_data[ MHDIdx + v ].data_dimensions[d] = PATCH_SIZE;
 

@@ -27,7 +27,7 @@ static double  *Jet_SrcEint       = NULL;          // jet internal energy
 static double (*Jet_Cen)[3]       = NULL;          // jet central coordinates
 static double  *Jet_WaveK         = NULL;          // jet wavenumber used in the sin() function to have smooth bidirectional jets
 static double  *Jet_MaxDis        = NULL;          // maximum distance between the cylinder-shape jet source and the jet center
-                                                   // --> ( Jet_Radius^2 + Jet_HalfHeight^2 )^0.5
+//                                                    --> ( Jet_Radius^2 + Jet_HalfHeight^2 )^0.5
 static double *Jet_HSE_BgTable_Data = NULL;        // for Jet_HSE: background gas table [radius/density/temperature]
 static int     Jet_HSE_BgTable_NBin;               // for Jet_HSE: number of bins in Jet_HSE_BgTable_Data[]
 // =======================================================================================

@@ -307,12 +307,12 @@ double VecPot_Interp( const double field[], const double xx, const double yy,
                                 const double zz, const int fdims[], const int fbegin[] )
 {
 
-   // Indices into the coordinate vectors
+// Indices into the coordinate vectors
    const int ii = (int)((xx-Axmin)/Adx);
    const int jj = (int)((yy-Aymin)/Ady);
    const int kk = (int)((zz-Azmin)/Adz);
 
-   // Indices into the local vector potential patch
+// Indices into the local vector potential patch
    const int ib = ii - fbegin[0];
    const int jb = jj - fbegin[1];
    const int kb = kk - fbegin[2];
