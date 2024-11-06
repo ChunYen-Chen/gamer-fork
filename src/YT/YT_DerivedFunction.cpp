@@ -196,14 +196,14 @@ void Temperature_DerivedFunc(const int list_len, const long *list_gid, const cha
 //      Preparation for getting Passive and Emag
         real Passive[NCOMP_PASSIVE];
         real Emag;
-    #ifdef MHD
+#       ifdef MHD
         yt_data   MagDataRaw[NCOMP_MAG];
         real     *MagData[NCOMP_MAG];
         for (int v=0; v<NCOMP_MAG; v++){
             yt_getGridInfo_FieldData( list_gid[lid], CCMagLabel[v], &(MagDataRaw[v]));
             MagData[v] = (real *) MagDataRaw[v].data_ptr;
         }
-    #endif
+#       endif
 
 //      Get temperature cell-by-cell
         for (int k=0; k<Dimensions[2]; k++){
@@ -218,12 +218,12 @@ void Temperature_DerivedFunc(const int list_len, const long *list_gid, const cha
                     }
 
 //                  Get Emag
-                    #ifdef MHD
+#                   ifdef MHD
                     Emag = MHD_GetCellCenteredBEnergy(MagData[MAGX], MagData[MAGY], MagData[MAGZ],
                                                       Dimensions[0], Dimensions[1], Dimensions[2], i, j, k);
-                    #else
+#                   else
                     Emag = NULL_REAL;
-                    #endif
+#                   endif
 
 //                  Get temperature
                     ((real *) data_array[lid].data_ptr)[idx] = Hydro_Con2Temp(Data[DENS][idx], Data[MOMX][idx], Data[MOMY][idx], Data[MOMZ][idx], Data[ENGY][idx],

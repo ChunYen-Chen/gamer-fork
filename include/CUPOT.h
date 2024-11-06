@@ -31,8 +31,8 @@
 /*
 // faster integer multiplication in GPU
 #if ( defined __CUDACC__  &&  __CUDA_ARCH__ >= 200 )
-   #define __umul24( a, b )   ( (a)*(b) )
-   #define  __mul24( a, b )   ( (a)*(b) )
+#  define __umul24( a, b )   ( (a)*(b) )
+#  define  __mul24( a, b )   ( (a)*(b) )
 #endif
 */
 
