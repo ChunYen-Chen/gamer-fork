@@ -12,7 +12,7 @@ Click the :arrow_forward: to see the example of the style.
 * 🎯 No tabs (excluding `Makefile_base`)
 * One space after `,`
 
-* [[`C` Styles | Style-Guide:-C]]
+* [[C Styles | Style-Guide:-C]]
 * [[Python Styles | Style-Guide:-Python]]
 * [[Wiki Styles | Style-Guide:-Wiki]]
-* [[`Input` Styles | Style-Guide:-Input]]
+* [[Input Styles | Style-Guide:-Input]]
