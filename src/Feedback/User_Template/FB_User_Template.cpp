@@ -73,14 +73,14 @@ int FB_User_Template( const int lv, const double TimeNew, const double TimeOld, 
 {
 
 // check
-#  ifdef GAMER_DEBUG
+#  ifdef DEBUG_FEEDBACK
    if ( Fluid == NULL )    Aux_Error( ERROR_INFO, "Fluid == NULL !!\n" );
    if ( NPar > 0 )
    {
       if ( ParSortID == NULL )   Aux_Error( ERROR_INFO, "ParSortID == NULL for NPar = %d !!\n", NPar );
       if ( ParAtt == NULL )      Aux_Error( ERROR_INFO, "ParAtt == NULL for NPar = %d !!\n", NPar );
    }
-#  endif // #ifdef GAMER_DEBUG
+#  endif // #ifdef DEBUG_FEEDBACK
 
 
 // for a complete example, see src/TestProblem/Hydro/Plummer/FB_Plummer.cpp

@@ -937,6 +937,13 @@
 #endif
 
 
+// debug
+#ifdef GAMER_DEBUG
+#  ifdef FEEDBACK
+#     define DEBUG_FEEDBACK
+#  endif
+#endif // #ifdef GAMER_DEBUG
+
 
 // ############
 // ## Macros ##
