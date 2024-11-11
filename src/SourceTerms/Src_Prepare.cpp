@@ -37,7 +37,7 @@ void Src_Prepare( const int lv, const double PrepTime,
 
 // check
 // assuming we are always preparing the lastest data
-#  ifdef GAMER_DEBUG
+#  ifdef DEBUG_SRC
    if ( PrepTime != amr->FluSgTime[lv][ amr->FluSg[lv] ] )
       Aux_Error( ERROR_INFO, "PrepTime (%13.7e) != FluSgTime (%13.7e) !!\n",
                  PrepTime, amr->FluSgTime[lv][ amr->FluSg[lv] ] );
@@ -47,7 +47,7 @@ void Src_Prepare( const int lv, const double PrepTime,
       Aux_Error( ERROR_INFO, "PrepTime (%13.7e) != MagSgTime (%13.7e) !!\n",
                  PrepTime, amr->MagSgTime[lv][ amr->MagSg[lv] ] );
 #  endif
-#  endif // #ifdef GAMER_DEBUG
+#  endif // #ifdef DEBUG_SRC
 
 
    const double dh_half = 0.5*amr->dh[lv];

@@ -121,7 +121,7 @@ static void Src_Deleptonization( real fluid[], const real B[],
 {
 
 // check
-#  ifdef GAMER_DEBUG
+#  ifdef DEBUG_SRC
    if ( AuxArray_Flt == NULL )   printf( "ERROR : AuxArray_Flt == NULL in %s !!\n", __FUNCTION__ );
    if ( AuxArray_Int == NULL )   printf( "ERROR : AuxArray_Int == NULL in %s !!\n", __FUNCTION__ );
 #  endif

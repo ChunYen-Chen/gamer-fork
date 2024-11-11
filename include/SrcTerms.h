@@ -5,6 +5,10 @@
 
 #include "EoS.h"
 
+#ifdef GAMER_DEBUG
+#  define DEBUG_SRC
+#endif
+
 // forward declaration of SrcTerms_t since it is required by SrcFunc_t
 // --> its content will be specified later
 struct SrcTerms_t;
