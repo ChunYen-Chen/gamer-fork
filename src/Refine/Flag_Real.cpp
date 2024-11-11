@@ -328,7 +328,7 @@ void Flag_Real( const int lv, const UseLBFunc_t UseLBFunc )
 
                      Cs2[k][j][i] = EoS_DensPres2CSqr_CPUPtr( Fluid[DENS][k][j][i], Pres[k][j][i], Passive,
                                                               EoS_AuxArray_Flt, EoS_AuxArray_Int, h_EoS_Table );
-                  } // k,j,i
+                  } // k, j, i
                } // if ( NeedCs2 )
 
 #              ifdef SRHD
