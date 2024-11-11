@@ -11,6 +11,8 @@ ALL_STYLE  = { "trailing_space"  :[ r'\s+\n',                                   
 CODE_STYLE = { "start_comment"   :[ r'^\s+//',                                     r'//' ,              r'^\s\+\/\/' ],
                "tab"             :[ r'\t',                                         r'   ',              r'\t'        ],
                "start_preprocess":[ r'^\s+\#',                                     r'#',                r'^\s\+\#'   ]
+#               TODO: Can not ignore the comma in string, need to find a solution
+#               "comma"           :[ r',([^\s^\n])',                                r', \1',             r',[^ \n]'   ]
              }
 WIKI_STYLE = { "tab"             :[ r'\t',                                         r'   ',              r'\t'        ] }
 
@@ -70,7 +72,6 @@ def check_style( file_names, styles, output ):
         passed     = True
         fail_count = { i:0 for i in styles }
         for name, style in styles.items():
-            skip_style = False
             for i, line in enumerate(lines):
                 temp, n = re.subn( style[0], style[1], line )
                 if n == 0: continue
@@ -80,7 +81,7 @@ def check_style( file_names, styles, output ):
                 if DRY_RUN:
                     print("At %d"%(i+1))
                     print("Old: %s"%lines[i][:-1])
-                    print("New: %s"%temp[:-1])
+                    print("===> %s"%temp[:-1])
                 lines[i] = temp
                 fail_count[name] += n
 
@@ -88,9 +89,10 @@ def check_style( file_names, styles, output ):
                 passed = False
                 status = False
 
-        if not passed:
-           print( "%-100s fail"%file_name )
-           print( ", ".join( [ "%s => Found %d"%(name, fail_count[name]) for name in styles if fail_count[name] != 0 ] ) )
+        if passed: continue
+
+        print( "%-100s fail"%file_name )
+        print( ", ".join( [ "%s => Found %d"%(name, fail_count[name]) for name in styles if fail_count[name] != 0 ] ) )
 
         if not output: continue
 
