@@ -98,7 +98,7 @@ static real EoS_DensEint2Pres_User_Template( const real Dens, const real Eint, c
 {
 
 // check
-#  ifdef GAMER_DEBUG
+#  ifdef DEBUG_EOS
 #  if ( NCOMP_PASSIVE > 0 )
    if ( Passive == NULL )  printf( "ERROR : Passive == NULL in %s !!\n", __FUNCTION__ );
 #  endif
@@ -112,7 +112,7 @@ static real EoS_DensEint2Pres_User_Template( const real Dens, const real Eint, c
    Hydro_IsUnphysical( UNPHY_MODE_SING, &Eint, "input internal energy",
                        (real)0.0,   HUGE_NUMBER, NULL_REAL, NULL, NULL, NULL, NULL, NULL, NULL,
                        ERROR_INFO, UNPHY_VERBOSE );
-#  endif // GAMER_DEBUG
+#  endif // DEBUG_EOS
 
 
    real Pres = -1.0;
@@ -123,7 +123,7 @@ static real EoS_DensEint2Pres_User_Template( const real Dens, const real Eint, c
 
 
 // check
-#  ifdef GAMER_DEBUG
+#  ifdef DEBUG_EOS
    if (  Hydro_IsUnphysical( UNPHY_MODE_SING, &Pres, "output pressure",
                              (real)0.0, HUGE_NUMBER, NULL_REAL, NULL, NULL, NULL, NULL, NULL, NULL,
                              ERROR_INFO, UNPHY_VERBOSE )  )
@@ -135,7 +135,7 @@ static real EoS_DensEint2Pres_User_Template( const real Dens, const real Eint, c
       printf( "\n" );
 #     endif
    }
-#  endif // GAMER_DEBUG
+#  endif // DEBUG_EOS
 
 
    return Pres;
@@ -165,7 +165,7 @@ static real EoS_DensPres2Eint_User_Template( const real Dens, const real Pres, c
 {
 
 // check
-#  ifdef GAMER_DEBUG
+#  ifdef DEBUG_EOS
 #  if ( NCOMP_PASSIVE > 0 )
    if ( Passive == NULL )  printf( "ERROR : Passive == NULL in %s !!\n", __FUNCTION__ );
 #  endif
@@ -178,7 +178,7 @@ static real EoS_DensPres2Eint_User_Template( const real Dens, const real Pres, c
    Hydro_IsUnphysical( UNPHY_MODE_SING, &Pres, "input pressure",
                        (real)0.0,   HUGE_NUMBER, NULL_REAL, NULL, NULL, NULL, NULL, NULL, NULL,
                        ERROR_INFO, UNPHY_VERBOSE );
-#  endif // GAMER_DEBUG
+#  endif // DEBUG_EOS
 
 
    real Eint = -1.0;
@@ -189,7 +189,7 @@ static real EoS_DensPres2Eint_User_Template( const real Dens, const real Pres, c
 
 
 // check
-#  ifdef GAMER_DEBUG
+#  ifdef DEBUG_EOS
 // note that some EoS may support Eint<0
    if (  Hydro_IsUnphysical( UNPHY_MODE_SING, &Eint, "output internal energy",
                              (real)0.0, HUGE_NUMBER, NULL_REAL, NULL, NULL, NULL, NULL, NULL, NULL,
@@ -202,7 +202,7 @@ static real EoS_DensPres2Eint_User_Template( const real Dens, const real Pres, c
       printf( "\n" );
 #     endif
    }
-#  endif // GAMER_DEBUG
+#  endif // DEBUG_EOS
 
 
    return Eint;
@@ -232,7 +232,7 @@ static real EoS_DensPres2CSqr_User_Template( const real Dens, const real Pres, c
 {
 
 // check
-#  ifdef GAMER_DEBUG
+#  ifdef DEBUG_EOS
 #  if ( NCOMP_PASSIVE > 0 )
    if ( Passive == NULL )  printf( "ERROR : Passive == NULL in %s !!\n", __FUNCTION__ );
 #  endif
@@ -245,7 +245,7 @@ static real EoS_DensPres2CSqr_User_Template( const real Dens, const real Pres, c
    Hydro_IsUnphysical( UNPHY_MODE_SING, &Pres, "input pressure",
                        (real)0.0,   HUGE_NUMBER, NULL_REAL, NULL, NULL, NULL, NULL, NULL, NULL,
                        ERROR_INFO, UNPHY_VERBOSE );
-#  endif // GAMER_DEBUG
+#  endif // DEBUG_EOS
 
 
    real Cs2 = -1.0;
@@ -256,7 +256,7 @@ static real EoS_DensPres2CSqr_User_Template( const real Dens, const real Pres, c
 
 
 // check
-#  ifdef GAMER_DEBUG
+#  ifdef DEBUG_EOS
    if (  Hydro_IsUnphysical( UNPHY_MODE_SING, &Cs2, "output sound speed squared",
                              (real)0.0, HUGE_NUMBER, NULL_REAL, NULL, NULL, NULL, NULL, NULL, NULL,
                              ERROR_INFO, UNPHY_VERBOSE )  )
@@ -268,7 +268,7 @@ static real EoS_DensPres2CSqr_User_Template( const real Dens, const real Pres, c
       printf( "\n" );
 #     endif
    }
-#  endif // GAMER_DEBUG
+#  endif // DEBUG_EOS
 
 
    return Cs2;
@@ -300,7 +300,7 @@ static real EoS_DensEint2Temp_User_Template( const real Dens, const real Eint, c
 {
 
 // check
-#  ifdef GAMER_DEBUG
+#  ifdef DEBUG_EOS
    if ( AuxArray_Flt == NULL )   printf( "ERROR : AuxArray_Flt == NULL in %s !!\n", __FUNCTION__ );
 
    Hydro_IsUnphysical( UNPHY_MODE_SING, &Dens, "input density",
@@ -310,7 +310,7 @@ static real EoS_DensEint2Temp_User_Template( const real Dens, const real Eint, c
    Hydro_IsUnphysical( UNPHY_MODE_SING, &Eint, "input internal energy",
                        (real)0.0,   HUGE_NUMBER, NULL_REAL, NULL, NULL, NULL, NULL, NULL, NULL,
                        ERROR_INFO, UNPHY_VERBOSE );
-#  endif // GAMER_DEBUG
+#  endif // DEBUG_EOS
 
 
    real Temp = -1.0;
@@ -321,7 +321,7 @@ static real EoS_DensEint2Temp_User_Template( const real Dens, const real Eint, c
 
 
 // check
-#  ifdef GAMER_DEBUG
+#  ifdef DEBUG_EOS
    if (  Hydro_IsUnphysical( UNPHY_MODE_SING, &Temp, "output temperature",
                              (real)0.0, HUGE_NUMBER, NULL_REAL, NULL, NULL, NULL, NULL, NULL, NULL,
                              ERROR_INFO, UNPHY_VERBOSE )  )
@@ -333,7 +333,7 @@ static real EoS_DensEint2Temp_User_Template( const real Dens, const real Eint, c
       printf( "\n" );
 #     endif
    }
-#  endif // GAMER_DEBUG
+#  endif // DEBUG_EOS
 
 
    return Temp;
@@ -364,7 +364,7 @@ static real EoS_DensTemp2Pres_User_Template( const real Dens, const real Temp, c
 {
 
 // check
-#  ifdef GAMER_DEBUG
+#  ifdef DEBUG_EOS
    if ( AuxArray_Flt == NULL )   printf( "ERROR : AuxArray_Flt == NULL in %s !!\n", __FUNCTION__ );
 
    Hydro_IsUnphysical( UNPHY_MODE_SING, &Dens, "input density",
@@ -373,7 +373,7 @@ static real EoS_DensTemp2Pres_User_Template( const real Dens, const real Temp, c
    Hydro_IsUnphysical( UNPHY_MODE_SING, &Temp, "input temperature",
                        (real)0.0,   HUGE_NUMBER, NULL_REAL, NULL, NULL, NULL, NULL, NULL, NULL,
                        ERROR_INFO, UNPHY_VERBOSE );
-#  endif // GAMER_DEBUG
+#  endif // DEBUG_EOS
 
 
    real Pres = -1.0;
@@ -384,7 +384,7 @@ static real EoS_DensTemp2Pres_User_Template( const real Dens, const real Temp, c
 
 
 // check
-#  ifdef GAMER_DEBUG
+#  ifdef DEBUG_EOS
    if (  Hydro_IsUnphysical( UNPHY_MODE_SING, &Pres, "output pressure",
                              (real)0.0, HUGE_NUMBER, NULL_REAL, NULL, NULL, NULL, NULL, NULL, NULL,
                              ERROR_INFO, UNPHY_VERBOSE )  )
@@ -396,7 +396,7 @@ static real EoS_DensTemp2Pres_User_Template( const real Dens, const real Temp, c
       printf( "\n" );
 #     endif
    }
-#  endif // GAMER_DEBUG
+#  endif // DEBUG_EOS
 
 
    return Pres;
@@ -426,7 +426,7 @@ static real EoS_DensEint2Entr_User_Template( const real Dens, const real Eint, c
 {
 
 // check
-#  ifdef GAMER_DEBUG
+#  ifdef DEBUG_EOS
    if ( AuxArray_Flt == NULL )   printf( "ERROR : AuxArray_Flt == NULL in %s !!\n", __FUNCTION__ );
 
    Hydro_IsUnphysical( UNPHY_MODE_SING, &Dens, "input density",
@@ -436,7 +436,7 @@ static real EoS_DensEint2Entr_User_Template( const real Dens, const real Eint, c
    Hydro_IsUnphysical( UNPHY_MODE_SING, &Eint, "input internal energy",
                        (real)0.0,   HUGE_NUMBER, NULL_REAL, NULL, NULL, NULL, NULL, NULL, NULL,
                        ERROR_INFO, UNPHY_VERBOSE );
-#  endif // GAMER_DEBUG
+#  endif // DEBUG_EOS
 
 
    real Entr = -1.0;
@@ -447,7 +447,7 @@ static real EoS_DensEint2Entr_User_Template( const real Dens, const real Eint, c
 
 
 // check
-#  ifdef GAMER_DEBUG
+#  ifdef DEBUG_EOS
    if (  Hydro_IsUnphysical( UNPHY_MODE_SING, &Entr, "output entropy",
                              (real)0.0, HUGE_NUMBER, NULL_REAL, NULL, NULL, NULL, NULL, NULL, NULL,
                              ERROR_INFO, UNPHY_VERBOSE )  )
@@ -459,7 +459,7 @@ static real EoS_DensEint2Entr_User_Template( const real Dens, const real Eint, c
       printf( "\n" );
 #     endif
    }
-#  endif // GAMER_DEBUG
+#  endif // DEBUG_EOS
 
 
    return Entr;
@@ -490,12 +490,12 @@ static void EoS_General_User_Template( const int Mode, real Out[], const real In
 {
 
 // check
-#  ifdef GAMER_DEBUG
+#  ifdef DEBUG_EOS
    if ( Out          == NULL )   printf( "ERROR : Out == NULL in %s !!\n", __FUNCTION__ );
    if ( In_Flt       == NULL )   printf( "ERROR : In_Flt == NULL in %s !!\n", __FUNCTION__ );
    if ( AuxArray_Flt == NULL )   printf( "ERROR : AuxArray_Flt == NULL in %s !!\n", __FUNCTION__ );
    if ( AuxArray_Int == NULL )   printf( "ERROR : AuxArray_Int == NULL in %s !!\n", __FUNCTION__ );
-#  endif // GAMER_DEBUG
+#  endif // DEBUG_EOS
 
 
    /*

@@ -105,7 +105,7 @@ static real EoS_GuessHTilde_TaubMathews( const real Con[], real* const Constant,
    const real Z = X - M_D;
    *Constant = Y * Z;
 
-#  ifdef GAMER_DEBUG
+#  ifdef DEBUG_EOS
    if ( *Constant <= (real)TINY_NUMBER )
       printf( "ERROR : f(HTilde) = %14.7e <= %13.7e (D %13.7e, E_D %13.7e, M_D %13.7e) in %s !!\n",
               *Constant, TINY_NUMBER, Con[0], E_D, M_D, __FUNCTION__ );
@@ -237,7 +237,7 @@ static real EoS_DensPres2CSqr_TaubMathews( const real Dens, const real Pres, con
    Cs2    = (real) 4.5*SQR(Temp) + (real) 5.0*Temp*factor;
    Cs2   /= (real)18.0*SQR(Temp) + (real)12.0*Temp*factor + (real)3.0;
 
-#  ifdef GAMER_DEBUG
+#  ifdef DEBUG_EOS
    if ( Cs2 >= (real)1.0  ||  Cs2 < (real)0.0 )
       printf( "ERROR : incorrect sound speed squared %14.7e (Dens %13.7e, Pres %13.7e) in %s !!\n",
               Cs2, Dens, Pres, __FUNCTION__ );

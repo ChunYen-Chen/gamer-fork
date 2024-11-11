@@ -6,7 +6,9 @@
 #include "Macro.h"
 #include "Typedef.h"
 
-
+#ifdef GAMER_DEBUG
+#  define DEBUG_EOS
+#endif
 
 
 //-------------------------------------------------------------------------------------------------------

@@ -63,7 +63,7 @@ void EoS_SetAuxArray_Isothermal( double AuxArray_Flt[], int AuxArray_Int[] )
       Aux_Message( stdout, "   Sound speed           = %13.7e\n",      SQRT(AuxArray_Flt[0]) );
    }
 
-#  ifdef GAMER_DEBUG
+#  ifdef DEBUG_EOS
    real Cs2 = (real)AuxArray_Flt[0];
    Hydro_IsUnphysical( UNPHY_MODE_SING, &Cs2, "sound speed squared",
                        TINY_NUMBER, HUGE_NUMBER, NULL_REAL, NULL, NULL, NULL, NULL, NULL, NULL,
@@ -108,7 +108,7 @@ static real EoS_DensEint2Pres_Isothermal( const real Dens, const real Eint, cons
 {
 
 // check
-#  ifdef GAMER_DEBUG
+#  ifdef DEBUG_EOS
    if ( AuxArray_Flt == NULL )   printf( "ERROR : AuxArray_Flt == NULL in %s !!\n", __FUNCTION__ );
 
    Hydro_IsUnphysical( UNPHY_MODE_SING, &Dens, "input density",
@@ -147,7 +147,7 @@ static real EoS_DensPres2Eint_Isothermal( const real Dens, const real Pres, cons
 {
 
 // check
-#  ifdef GAMER_DEBUG
+#  ifdef DEBUG_EOS
    Hydro_IsUnphysical( UNPHY_MODE_SING, &Pres, "input pressure",
                        (real)0.0, HUGE_NUMBER, NULL_REAL, NULL, NULL, NULL, NULL, NULL, NULL,
                        ERROR_INFO, UNPHY_VERBOSE );
@@ -185,7 +185,7 @@ static real EoS_DensPres2CSqr_Isothermal( const real Dens, const real Pres, cons
 {
 
 // check
-#  ifdef GAMER_DEBUG
+#  ifdef DEBUG_EOS
    if ( AuxArray_Flt == NULL )   printf( "ERROR : AuxArray_Flt == NULL in %s !!\n", __FUNCTION__ );
 #  endif
 
@@ -221,7 +221,7 @@ static real EoS_DensEint2Temp_Isothermal( const real Dens, const real Eint, cons
 {
 
 // check
-#  ifdef GAMER_DEBUG
+#  ifdef DEBUG_EOS
    if ( AuxArray_Flt == NULL )   printf( "ERROR : AuxArray_Flt == NULL in %s !!\n", __FUNCTION__ );
 #  endif
 
@@ -256,7 +256,7 @@ static real EoS_DensTemp2Pres_Isothermal( const real Dens, const real Temp, cons
 {
 
 // check
-#  ifdef GAMER_DEBUG
+#  ifdef DEBUG_EOS
    if ( AuxArray_Flt == NULL )   printf( "ERROR : AuxArray_Flt == NULL in %s !!\n", __FUNCTION__ );
 
    Hydro_IsUnphysical( UNPHY_MODE_SING, &Dens, "input density",

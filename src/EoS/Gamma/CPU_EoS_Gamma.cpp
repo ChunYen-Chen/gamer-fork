@@ -100,7 +100,7 @@ static real EoS_DensEint2Pres_Gamma( const real Dens, const real Eint, const rea
 {
 
 // check
-#  ifdef GAMER_DEBUG
+#  ifdef DEBUG_EOS
    if ( AuxArray_Flt == NULL )   printf( "ERROR : AuxArray_Flt == NULL in %s !!\n", __FUNCTION__ );
 
    Hydro_IsUnphysical( UNPHY_MODE_SING, &Dens, "input density",
@@ -109,7 +109,7 @@ static real EoS_DensEint2Pres_Gamma( const real Dens, const real Eint, const rea
    Hydro_IsUnphysical( UNPHY_MODE_SING, &Eint, "input internal energy",
                        (real)0.0,   HUGE_NUMBER, NULL_REAL, NULL, NULL, NULL, NULL, NULL, NULL,
                        ERROR_INFO, UNPHY_VERBOSE );
-#  endif // GAMER_DEBUG
+#  endif // DEBUG_EOS
 
 
    const real Gamma_m1 = (real)AuxArray_Flt[1];
@@ -144,7 +144,7 @@ static real EoS_DensPres2Eint_Gamma( const real Dens, const real Pres, const rea
 {
 
 // check
-#  ifdef GAMER_DEBUG
+#  ifdef DEBUG_EOS
    if ( AuxArray_Flt == NULL )   printf( "ERROR : AuxArray_Flt == NULL in %s !!\n", __FUNCTION__ );
 
    Hydro_IsUnphysical( UNPHY_MODE_SING, &Dens, "input density",
@@ -153,7 +153,7 @@ static real EoS_DensPres2Eint_Gamma( const real Dens, const real Pres, const rea
    Hydro_IsUnphysical( UNPHY_MODE_SING, &Pres, "input pressure",
                        (real)0.0,   HUGE_NUMBER, NULL_REAL, NULL, NULL, NULL, NULL, NULL, NULL,
                        ERROR_INFO, UNPHY_VERBOSE );
-#  endif // GAMER_DEBUG
+#  endif // DEBUG_EOS
 
 
    const real _Gamma_m1 = (real)AuxArray_Flt[2];
@@ -188,7 +188,7 @@ static real EoS_DensPres2CSqr_Gamma( const real Dens, const real Pres, const rea
 {
 
 // check
-#  ifdef GAMER_DEBUG
+#  ifdef DEBUG_EOS
    if ( AuxArray_Flt == NULL )   printf( "ERROR : AuxArray_Flt == NULL in %s !!\n", __FUNCTION__ );
 
    Hydro_IsUnphysical( UNPHY_MODE_SING, &Dens, "input density",
@@ -197,7 +197,7 @@ static real EoS_DensPres2CSqr_Gamma( const real Dens, const real Pres, const rea
    Hydro_IsUnphysical( UNPHY_MODE_SING, &Pres, "input pressure",
                        (real)0.0,   HUGE_NUMBER, NULL_REAL, NULL, NULL, NULL, NULL, NULL, NULL,
                        ERROR_INFO, UNPHY_VERBOSE );
-#  endif // GAMER_DEBUG
+#  endif // DEBUG_EOS
 
 
    const real Gamma = (real)AuxArray_Flt[0];
@@ -234,7 +234,7 @@ static real EoS_DensEint2Temp_Gamma( const real Dens, const real Eint, const rea
 {
 
 // check
-#  ifdef GAMER_DEBUG
+#  ifdef DEBUG_EOS
    if ( AuxArray_Flt == NULL )   printf( "ERROR : AuxArray_Flt == NULL in %s !!\n", __FUNCTION__ );
 
    Hydro_IsUnphysical( UNPHY_MODE_SING, &Dens, "input density",
@@ -243,7 +243,7 @@ static real EoS_DensEint2Temp_Gamma( const real Dens, const real Eint, const rea
    Hydro_IsUnphysical( UNPHY_MODE_SING, &Eint, "input internal energy",
                        (real)0.0,   HUGE_NUMBER, NULL_REAL, NULL, NULL, NULL, NULL, NULL, NULL,
                        ERROR_INFO, UNPHY_VERBOSE );
-#  endif // GAMER_DEBUG
+#  endif // DEBUG_EOS
 
 
    const real Gamma_m1 = (real)AuxArray_Flt[1];
@@ -281,7 +281,7 @@ static real EoS_DensTemp2Pres_Gamma( const real Dens, const real Temp, const rea
 {
 
 // check
-#  ifdef GAMER_DEBUG
+#  ifdef DEBUG_EOS
    if ( AuxArray_Flt == NULL )   printf( "ERROR : AuxArray_Flt == NULL in %s !!\n", __FUNCTION__ );
 
    Hydro_IsUnphysical( UNPHY_MODE_SING, &Dens, "input density",
@@ -290,7 +290,7 @@ static real EoS_DensTemp2Pres_Gamma( const real Dens, const real Temp, const rea
    Hydro_IsUnphysical( UNPHY_MODE_SING, &Temp, "input temperature",
                        (real)0.0,   HUGE_NUMBER, NULL_REAL, NULL, NULL, NULL, NULL, NULL, NULL,
                        ERROR_INFO, UNPHY_VERBOSE );
-#  endif // GAMER_DEBUG
+#  endif // DEBUG_EOS
 
 
    const real _m_kB = (real)AuxArray_Flt[5];
@@ -326,7 +326,7 @@ static real EoS_DensEint2Entr_Gamma( const real Dens, const real Eint, const rea
 {
 
 // check
-#  ifdef GAMER_DEBUG
+#  ifdef DEBUG_EOS
    if ( AuxArray_Flt == NULL )   printf( "ERROR : AuxArray_Flt == NULL in %s !!\n", __FUNCTION__ );
 
    Hydro_IsUnphysical( UNPHY_MODE_SING, &Dens, "input density",
@@ -335,7 +335,7 @@ static real EoS_DensEint2Entr_Gamma( const real Dens, const real Eint, const rea
    Hydro_IsUnphysical( UNPHY_MODE_SING, &Eint, "input internal energy",
                        (real)0.0,   HUGE_NUMBER, NULL_REAL, NULL, NULL, NULL, NULL, NULL, NULL,
                        ERROR_INFO, UNPHY_VERBOSE );
-#  endif // GAMER_DEBUG
+#  endif // DEBUG_EOS
 
 
    const real Gamma_m1 = (real)AuxArray_Flt[1];
