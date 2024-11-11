@@ -41,7 +41,7 @@ static void WriteFile( void (*AnalFunc_Flu)( real fluid[], const double x, const
 //                Part         : OUTPUT_X    : x line
 //                               OUTPUT_Y    : y line
 //                               OUTPUT_Z    : z line
-//                               OUTPUT_DIAG : diagonal along (+1,+1,+1)
+//                               OUTPUT_DIAG : diagonal along (+1, +1, +1)
 //                x/y/z        : spatial coordinates for Part
 //
 // Return      :  None
@@ -176,7 +176,7 @@ void Output_L1Error( void (*AnalFunc_Flu)( real fluid[], const double x, const d
                   EdgeL  = amr->patch[0][lv][PID]->EdgeL;
                   EdgeR  = amr->patch[0][lv][PID]->EdgeR;
 
-                  if ( Part == OUTPUT_DIAG ) // (+1,+1,+1) diagonal
+                  if ( Part == OUTPUT_DIAG ) // (+1, +1, +1) diagonal
                   {
                      if ( Corner[0] == Corner[1]  &&  Corner[0] == Corner[2] )
                      {
@@ -309,7 +309,7 @@ void Output_L1Error( void (*AnalFunc_Flu)( real fluid[], const double x, const d
 //                Part         : OUTPUT_X    : x line
 //                               OUTPUT_Y    : y line
 //                               OUTPUT_Z    : z line
-//                               OUTPUT_DIAG : diagonal along (+1,+1,+1)
+//                               OUTPUT_DIAG : diagonal along (+1, +1, +1)
 //
 // Return      :  L1_Err
 //-------------------------------------------------------------------------------------------------------
@@ -347,8 +347,9 @@ void WriteFile( void (*AnalFunc_Flu)( real fluid[], const double x, const double
    const real  Pres_Nume       = Hydro_Con2Pres( Nume[DENS], Nume[MOMX], Nume[MOMY], Nume[MOMZ],
                                                  Nume[ENGY], Nume+NCOMP_FLUID,
                                                  CheckMinPres_No, NULL_REAL, Emag_Nume,
-                                                 EoS_DensEint2Pres_CPUPtr,
-                                                 EoS_GuessHTilde_CPUPtr, EoS_HTilde2Temp_CPUPtr,EoS_AuxArray_Flt, EoS_AuxArray_Int, h_EoS_Table, NULL );
+                                                 EoS_DensEint2Pres_CPUPtr, EoS_GuessHTilde_CPUPtr,
+                                                 EoS_HTilde2Temp_CPUPtr, EoS_AuxArray_Flt
+                                                 EoS_AuxArray_Int, h_EoS_Table, NULL );
    const real  Temp_Nume       = Hydro_Con2Temp( Nume[DENS], Nume[MOMX], Nume[MOMY], Nume[MOMZ],
                                                  Nume[ENGY], Nume+NCOMP_FLUID,
                                                  CheckMinTemp_No, NULL_REAL, Emag_Nume,

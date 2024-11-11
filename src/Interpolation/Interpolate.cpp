@@ -49,11 +49,11 @@ void Int_Quartic   ( real CData[], const int CSize[3], const int CStart[3], cons
 //
 // Parameter   :  CData           : Input coarse-grid array (which may be overwritten)
 //                CSize           : Size of CData[]
-//                CStart          : (x,y,z) starting indices to perform interpolation on CData[]
+//                CStart          : (x, y, z) starting indices to perform interpolation on CData[]
 //                CRange          : Number of coarse cells along each direction to perform interpolation
 //                FData           : Output fine-grid array
 //                FSize           : Size of FData[]
-//                FStart          : (x,y,z) starting indices to store the interpolation results
+//                FStart          : (x, y, z) starting indices to store the interpolation results
 //                NComp           : Number of components in the CData and FData array
 //                IntScheme       : Interpolation scheme
 //                                  --> currently supported schemes include

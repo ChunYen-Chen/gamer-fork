@@ -201,8 +201,8 @@ void Init_Parallelization()
          bool Periodic = true;
          for (int d=0; d<3; d++)
          {
-            if (  ( TABLE_01(s,'x'+d, true,false,false) && OPT__BC_FLU[2*d+0] != BC_FLU_PERIODIC ) ||
-                  ( TABLE_01(s,'x'+d,false,false, true) && OPT__BC_FLU[2*d+1] != BC_FLU_PERIODIC )   )
+            if (  ( TABLE_01(s, 'x'+d,  true, false, false) && OPT__BC_FLU[2*d+0] != BC_FLU_PERIODIC ) ||
+                  ( TABLE_01(s, 'x'+d, false, false,  true) && OPT__BC_FLU[2*d+1] != BC_FLU_PERIODIC )   )
             {
                Periodic = false;
                break;
@@ -220,7 +220,7 @@ void Init_Parallelization()
 //       --> similar to the sibling patches outside the simulation domain
          else
             RankMap[ID1] = SIB_OFFSET_NONPERIODIC - s;
-      }}} // for k,j,i
+      }}} // for k, j, i
    } // for (int s=0; s<26; s++)
 
 // record the sibling ranks

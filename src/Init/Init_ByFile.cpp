@@ -724,7 +724,7 @@ void Load_RefineRegion( const char Filename[] )
    const bool RowMajor_Yes = true;                 // load data into the row-major order
    const bool AllocMem_Yes = true;                 // allocate memory for UM_IC_RefineRegion[]
    const int  NCol        = 6;                     // total number of columns to load
-   const int  Col[NCol]   = {1,2,3,4,5,6};         // target columns (skip the first column)
+   const int  Col[NCol]   = {1, 2, 3, 4, 5, 6};    // target columns (skip the first column)
    const int  NLv         = OPT__UM_IC_NLEVEL - 1; // number of AMR levels to load
 
    int NRow, (*RefineRegion)[6];

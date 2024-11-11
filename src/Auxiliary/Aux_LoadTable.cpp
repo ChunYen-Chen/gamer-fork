@@ -71,7 +71,7 @@ int Aux_LoadTable( T *&Data, const char *FileName, const int NCol_Target, const 
 //    loop over all tokens seperated by the delimiter characters
       NthCol     = 0;
       NCol_Match = 0;
-      while (  NthCol <= TCol[NCol_Target-1]  &&  ( Token = (NthCol==0)?strtok(Line,DELIMITER):strtok(NULL,DELIMITER) ) != NULL  )
+      while (  NthCol <= TCol[NCol_Target-1]  &&  ( Token = (NthCol==0)?strtok(Line, DELIMITER):strtok(NULL, DELIMITER) ) != NULL  )
       {
          if ( NthCol == TCol[NCol_Match] )
          {

@@ -14,7 +14,8 @@
 void MPI_ExchangeBoundaryFlag( const int lv )
 {
 
-   const int v[26] = { 0,1,2,3,4,5,6,9,7,8,10,13,11,12,14,17,16,15,18,25,19,24,20,23,21,22 };
+   const int v[26] = {  0,  1,  2,  3,  4,  5,  6,  9,  7,  8, 10, 13, 11,
+                       12, 14, 17, 16, 15, 18, 25, 19, 24, 20, 23, 21, 22 };
    int SendTarget[2], RecvTarget[2];
    MPI_Request Req[4];
 

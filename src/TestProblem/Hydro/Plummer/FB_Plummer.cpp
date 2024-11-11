@@ -22,7 +22,7 @@ extern double Plummer_FB_Like;
 //
 // Note        :  1. Input and output fluid and particle data are stored in Fluid[] and ParAtt[], respectively
 //                   --> This function is responsible for updating gas and particles within
-//                       ** FB_GHOST_SIZE <= cell indices i,j,k < FB_GHOST_SIZE+PS2 **
+//                       ** FB_GHOST_SIZE <= cell indices i, j, k < FB_GHOST_SIZE+PS2 **
 //                   --> Updating gas and particles outside this range is fine but will have no effect at all
 //                2. Must use ParSortID[] to access ParAtt[]
 //                   --> ParAtt[PAR_MASS/PAR_POSX/etc][ ParSortID[...] ]
@@ -140,7 +140,7 @@ int FB_Plummer( const int lv, const double TimeNew, const double TimeOld, const 
       }
 
 
-      if ( RNG->GetValue(TID,0.0,1.0) < Plummer_FB_Like )
+      if ( RNG->GetValue(TID, 0.0, 1.0) < Plummer_FB_Like )
       {
          const real ExpMassFac = 1.0 - RNG->GetValue( TID, Plummer_FB_ExpMMin, Plummer_FB_ExpMMax );
          const real ExpEngyFac = 1.0 + RNG->GetValue( TID, Plummer_FB_ExpEMin, Plummer_FB_ExpEMax );
@@ -210,7 +210,7 @@ int FB_Plummer( const int lv, const double TimeNew, const double TimeOld, const 
                ParAtt[PAR_MASS][p] += (real_par)dM_sum;
          } // if ( Plummer_FB_Acc )
 
-      } // if ( RNG->GetValue(TID,0.0,1.0) < Plummer_FB_Like )
+      } // if ( RNG->GetValue(TID, 0.0, 1.0) < Plummer_FB_Like )
    } // for (int t=0; t<NPar; t++)
 
 

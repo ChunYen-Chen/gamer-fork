@@ -229,7 +229,7 @@ struct AMR_t
 //  Description :  allocate a single patch
 //
 //  Note        :  1. Each patch contains two patch pointers --> SANDGLASS (Sg) = 0 / 1
-//                 2. Sg = 0 : Store both data and relation (father,son.sibling,corner,flag,flux)
+//                 2. Sg = 0 : Store both data and relation (father, son.sibling, corner, flag, flux)
 //                    Sg = 1 : Store only data
 //
 //  Parameter   :  lv          : Target refinement level

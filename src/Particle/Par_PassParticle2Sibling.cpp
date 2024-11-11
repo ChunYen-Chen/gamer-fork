@@ -35,7 +35,8 @@ void Par_PassParticle2Sibling( const int lv, const bool TimingSendPar )
 
    const int    FaLv             = lv - 1;
    const bool   RemoveAllPar_No  = false;
-   const int    MirSib[26]       = { 1,0,3,2,5,4,9,8,7,6,13,12,11,10,17,16,15,14,25,24,23,22,21,20,19,18 };
+   const int    MirSib[26]       = {  1,  0,  3,  2,  5,  4,  9,  8,  7,  6, 13, 12, 11,
+                                     10, 17, 16, 15, 14, 25, 24, 23, 22, 21, 20, 19, 18 };
    const double GuessEscapeRatio = 0.5*( CUBE(PS1) - CUBE(PS1-2) )/CUBE(PS1);
    const int    SibID[3][3][3]   = {  { {18, 10, 19}, {14,  4, 16}, {20, 11, 21} },
                                       { { 6,  2,  7}, { 0, -1,  1}, { 8,  3,  9} },

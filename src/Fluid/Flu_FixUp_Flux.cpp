@@ -296,8 +296,8 @@ void Flu_FixUp_Flux( const int lv, const long TVar )
 #                 if   ( DUAL_ENERGY == DE_ENPY )
 //                DE_ENPY only supports EOS_GAMMA, which does not involve passive scalars
                   CorrVal[DUAL] = Hydro_DensPres2Dual( CorrVal[DENS],
-                                                       EoS_DensEint2Pres_CPUPtr(CorrVal[DENS],Eint,NULL,
-                                                       EoS_AuxArray_Flt,EoS_AuxArray_Int,h_EoS_Table),
+                                                       EoS_DensEint2Pres_CPUPtr(CorrVal[DENS], Eint, NULL,
+                                                       EoS_AuxArray_Flt, EoS_AuxArray_Int, h_EoS_Table),
                                                        EoS_AuxArray_Flt[1] );
 #                 elif ( DUAL_ENERGY == DE_EINT )
 #                 error : DE_EINT is NOT supported yet !!

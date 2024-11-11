@@ -337,7 +337,7 @@ void Flu_FixUp_Restrict( const int FaLv, const int SonFluSg, const int FaFluSg, 
                                         amr->patch[FaFluSg][FaLv][FaPID]->fluid[ENGY][k][j][i],
                                         MIN_EINT, Emag );
 #        endif // #ifdef DUAL_ENERGY ... else ...
-      } // i,j,k
+      } // i, j, k
 #     endif // #if ( MODEL == HYDRO )
 
 

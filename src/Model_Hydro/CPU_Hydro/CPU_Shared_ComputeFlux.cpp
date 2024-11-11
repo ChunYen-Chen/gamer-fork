@@ -79,11 +79,11 @@ void Hydro_RiemannSolver_HLLD( const int XYZ, real Flux_Out[], const real L_In[]
 //                   --> (N_FC_VAR-1-2*NSkip_N)*(N_FC_VAR-2*NSkip_T)^2 fluxes will be computed
 //                   --> See below for the definitions of NSkip_N and NSkip_T
 //                3. g_FC_Flux[] has the size of N_FC_FLUX^3
-//                   --> But (i,j,k) flux will be stored in the "(k*NFlux+j)*NFlux+i" element in g_FC_Flux[]
+//                   --> But (i, j, k) flux will be stored in the "(k*NFlux+j)*NFlux+i" element in g_FC_Flux[]
 //                       --> We have assumed that NFlux <= N_FC_FLUX
-//                   --> (i,j,k) in g_FC_Flux_x[] is defined on the +x surface of the cell (i+NSkip_N, j+NSkip_T, k+NSkip_T) in g_FC_Var[]
-//                       (i,j,k) in g_FC_Flux_y[] is defined on the +y surface of the cell (i+NSkip_T, j+NSkip_N, k+NSkip_T) in g_FC_Var[]
-//                       (i,j,k) in g_FC_Flux_z[] is defined on the +z surface of the cell (i+NSkip_T, j+NSkip_T, k+NSkip_N) in g_FC_Var[]
+//                   --> (i, j, k) in g_FC_Flux_x[] is defined on the +x surface of the cell (i+NSkip_N, j+NSkip_T, k+NSkip_T) in g_FC_Var[]
+//                       (i, j, k) in g_FC_Flux_y[] is defined on the +y surface of the cell (i+NSkip_T, j+NSkip_N, k+NSkip_T) in g_FC_Var[]
+//                       (i, j, k) in g_FC_Flux_z[] is defined on the +z surface of the cell (i+NSkip_T, j+NSkip_T, k+NSkip_N) in g_FC_Var[]
 //                4. This function is shared by MHM, MHM_RP, and CTU schemes
 //                5. For the unsplitting scheme in gravity (i.e., UNSPLIT_GRAVITY), this function also corrects the half-step
 //                   velocity by gravity when CorrHalfVel==true
@@ -364,7 +364,7 @@ void Hydro_ComputeFlux( const real g_FC_Var [][NCOMP_TOTAL_PLUS_MAG][ CUBE(N_FC_
 //       4. store the fluxes of all cells in g_FC_Flux[]
 //       --> including the magnetic components since they are required for CT
          for (int v=0; v<NCOMP_TOTAL_PLUS_MAG; v++)   g_FC_Flux[d][v][idx_flux] = Flux_1Face[v];
-      } // i,j,k
+      } // i, j, k
    } // for (int d=0; d<3; d++)
 
 

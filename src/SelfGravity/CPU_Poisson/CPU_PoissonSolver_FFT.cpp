@@ -96,8 +96,8 @@ void FFT_Periodic( real *RhoK, const real Poi_Coeff, const int j_start, const in
             c_re(cdata[ID]) =  c_re(cdata[ID]) * Poi_Coeff / Deno;
             c_im(cdata[ID]) =  c_im(cdata[ID]) * Poi_Coeff / Deno;
          }
-      } // i,j,k
-   } // i,j,k
+      } // i, j, k
+   } // i, j, k
 
 
 // backward FFT

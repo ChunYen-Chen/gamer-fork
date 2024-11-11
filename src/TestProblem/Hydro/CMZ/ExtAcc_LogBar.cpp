@@ -68,7 +68,7 @@ void SetExtAccAuxArray_BarredPot( double AuxArray[], const double Time )
 //                Time      : Target physical time
 //                UserArray : User-provided auxiliary array
 //
-// Return      :  External acceleration Acc[] at (x,y,z,Time)
+// Return      :  External acceleration Acc[] at (x, y, z, Time)
 //-----------------------------------------------------------------------------------------
 GPU_DEVICE_NOINLINE
 static void ExtAcc_BarredPot( real Acc[], const double x, const double y, const double z, const double Time,
@@ -86,7 +86,7 @@ static void ExtAcc_BarredPot( real Acc[], const double x, const double y, const 
    const double Omegab =       UserArray[3];
    const double fullBS =       UserArray[4];
 
-// convert x,y,z to be centered on mesh center
+// convert x, y, z to be centered on mesh center
 
    const real   dx     = (real)(x - cx);
    const real   dy     = (real)(y - cy);
@@ -99,8 +99,8 @@ static void ExtAcc_BarredPot( real Acc[], const double x, const double y, const 
    const real   A      = (real)(Rc2 + SQR(dxrot) +(SQR(dyrot) + SQR(dz))/q2);
    const real   B      = (real)(Rc2 + SQR(dxrot) +(SQR(dyrot) + SQR(dz)));
 
-// const real   frac   = std::min(Time/fullBS,1.0);
-   const real   frac   = FMIN(Time/fullBS,1.0);
+// const real   frac   = std::min(Time/fullBS, 1.0);
+   const real   frac   = FMIN(Time/fullBS, 1.0);
 
    const real fxs = real(-V02*(dx/B));
    const real fys = real(-V02*(dy/B));

@@ -96,10 +96,10 @@ void Hydro_RiemannSolver_HLLE( const int XYZ, real Flux_Out[], const real L_In[]
    real Fhll[NCOMP_TOTAL];
    real cslsq, csrsq, gammasql, gammasqr;
    real ssl, ssr, lmdapl, lmdapr, lmdaml, lmdamr, lmdatlmda;
-   real lmdal,lmdar; // left and right wave speeds
+   real lmdal, lmdar; // left and right wave speeds
    real ovlrmll;
    real lV1, rV1, lV2, rV2, lV3, rV3;
-   real lFactor,rFactor;   // Lorentz factor
+   real lFactor, rFactor;   // Lorentz factor
 
 
    Hydro_Con2Pri( L, PL, MinPres, NULL_BOOL, NULL_INT, NULL, NULL_BOOL,

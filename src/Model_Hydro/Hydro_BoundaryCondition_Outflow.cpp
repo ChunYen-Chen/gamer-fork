@@ -24,7 +24,7 @@ static void BC_Outflow_zp( real *Array, const int NVar, const int GhostSize, con
 //                2. Specifically, the so-called outflow B.C. is actually the **zero-gradient** B.C.
 //
 // Parameter   :  Array          : Array to store the prepared data including ghost zones
-//                BC_Face        : Boundary face (0~5) --> (-x,+x,-y,+y,-z,+z)
+//                BC_Face        : Boundary face (0~5) --> (-x, +x, -y, +y, -z, +z)
 //                NVar           : Number of fluid and derived variables to be prepared
 //                GhostSize      : Number of ghost zones
 //                ArraySizeX/Y/Z : Size of Array including the ghost zones on each side

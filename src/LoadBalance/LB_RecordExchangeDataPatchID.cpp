@@ -29,7 +29,9 @@ void LB_RecordExchangeDataPatchID( const int Lv, const bool AfterRefine )
 {
 
 //###OPTIMIZATION: NSib_C = 6 for some interpolation schemes
-   const int MirSib[27] = { 1,0,3,2,5,4,9,8,7,6,13,12,11,10,17,16,15,14,25,24,23,22,21,20,19,18,26 };
+   const int MirSib[27] = {  1,  0,  3,  2,  5,  4,  9,  8,  7,
+                             6, 13, 12, 11, 10, 17, 16, 15, 14,
+                            25, 24, 23, 22, 21, 20, 19, 18, 26 };
    const int SonLv      = Lv + 1;
    const int NSib_F     = 26;
    const int NSib_C     = 26;
@@ -553,7 +555,7 @@ void LB_RecordExchangeDataPatchID( const int Lv, const bool AfterRefine )
       int *TempIDList = new int [ LB_RecvH_NList[r] ];
       memcpy( TempIDList, LB_RecvH_IDList[r], LB_RecvH_NList[r]*sizeof(int) );
 
-      Mis_Heapsort<int,int>( LB_RecvH_NList[r], TempIDList, NULL );
+      Mis_Heapsort<int, int>( LB_RecvH_NList[r], TempIDList, NULL );
 
       for (int t=1; t<LB_RecvH_NList[r]; t++)
          if ( TempIDList[t] == TempIDList[t-1] )
@@ -658,7 +660,7 @@ void LB_RecordExchangeDataPatchID( const int Lv, const bool AfterRefine )
       int *TempIDList = new int [ LB_RecvG_NList[r] ];
       memcpy( TempIDList, LB_RecvG_IDList[r], LB_RecvG_NList[r]*sizeof(int) );
 
-      Mis_Heapsort<int,int>( LB_RecvG_NList[r], TempIDList, NULL );
+      Mis_Heapsort<int, int>( LB_RecvG_NList[r], TempIDList, NULL );
 
       for (int t=1; t<LB_RecvG_NList[r]; t++)
          if ( TempIDList[t] == TempIDList[t-1] )

@@ -388,10 +388,10 @@ void SetGridIC( real fluid[], const double x, const double y, const double z, co
 // Note        :  1. This function mimics the AGORA isolated galaxy setup implemented in Enzo
 //                2. Ref: http://mathworld.wolfram.com/Legendre-GaussQuadrature.html
 //                        https://en.wikipedia.org/wiki/Gaussian_quadrature
-//                3. 1D: Int[ f(x), {a,b} ] ~ 0.5*(b-a)*Sum_i[ weight_i*f( 0.5*(b-a)*abscissas_i + 0.5*(a+b) ) ]
-//                   3D: Int[ f(x,y,z), { {xc-0.5*dx,xc+0.5*dx}, {yc-0.5*dy,yc+0.5*dy}, {zc-0.5*dz,zc+0.5*dz} } ]
-//                       ~ dx*dy*dz/8 * Sum_i,j,k[ weight_i*weight_j*weight_k
-//                                                 *f( xc+0.5*dx*abscissas_i, yc+0.5*dy*abscissas_j, zc+0.5*dz*abscissas_k ) ]
+//                3. 1D: Int[ f(x), {a, b} ] ~ 0.5*(b-a)*Sum_i[ weight_i*f( 0.5*(b-a)*abscissas_i + 0.5*(a+b) ) ]
+//                   3D: Int[ f(x, y, z), { {xc-0.5*dx, xc+0.5*dx}, {yc-0.5*dy, yc+0.5*dy}, {zc-0.5*dz, zc+0.5*dz} } ]
+//                       ~ dx*dy*dz/8 * Sum_i, j, k[ weight_i*weight_j*weight_k
+//                                                   *f( xc+0.5*dx*abscissas_i, yc+0.5*dy*abscissas_j, zc+0.5*dz*abscissas_k ) ]
 //
 // Parameter   :  dx/dy/dz : Central coordinates of the target cell relative to the box center
 //                ds       : Cell size

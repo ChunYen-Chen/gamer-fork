@@ -22,10 +22,10 @@
 //
 // Parameter   :  CData           : Input coarse-grid array
 //                CSize           : Size of the CData array
-//                CStart          : (x,y,z) starting indices to perform interpolation on the CData array
+//                CStart          : (x, y, z) starting indices to perform interpolation on the CData array
 //                CRange          : Number of grids in each direction to perform interpolation
 //                FData           : Output fine-grid array
-//                FStart          : (x,y,z) starting indcies to store the interpolation results
+//                FStart          : (x, y, z) starting indcies to store the interpolation results
 //                NComp           : Number of components in the CData and FData array
 //                OppSign0thOrder : See the note above
 //-------------------------------------------------------------------------------------------------------

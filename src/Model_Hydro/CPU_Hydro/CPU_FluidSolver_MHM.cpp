@@ -594,8 +594,8 @@ void CPU_FluidSolver_MHM(
 // Note        :  1. Work for the MHM_RP scheme
 //                2. Currently support the exact, HLLC, HLLE, HLLD, and Roe solvers
 //                3. g_Flux_Half[] is accessed with a stride N_HF_FLUX
-//                   --> Fluxes on the **left** face of the (i+1,j+1,k+1) element in g_ConVar[] will
-//                       be stored in the (i,j,k) element of g_Flux_Half[]
+//                   --> Fluxes on the **left** face of the (i+1, j+1, k+1) element in g_ConVar[] will
+//                       be stored in the (i, j, k) element of g_Flux_Half[]
 //
 // Parameter   :  g_ConVar     : Array storing the input conserved variables
 //                g_Flux_Half  : Array to store the output face-centered fluxes
@@ -931,7 +931,7 @@ void Hydro_RiemannPredict( const real g_ConVar_In[][ CUBE(FLU_NXT) ],
 #     ifdef LR_EINT
       g_PriVar_Half[NCOMP_TOTAL_PLUS_MAG][idx_out] = Hydro_CheckMinEint( Eint, MinEint );
 #     endif
-   } // i,j,k
+   } // i, j, k
 
 
 #  ifdef __CUDACC__

@@ -196,7 +196,7 @@ void Flu_ResetByUser_API_Bondi( const int lv, const int FluSg, const int MagSg, 
             }
          } // if ( Reset )
 
-      }}} // i,j,k
+      }}} // i, j, k
    } // for (int PID=0; PID<amr->NPatchComma[lv][1]; PID++)
 
 } // FUNCTION : Flu_ResetByUser_API_Bondi

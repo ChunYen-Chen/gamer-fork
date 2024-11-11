@@ -25,7 +25,7 @@ void Buf_RecordExchangeFluxPatchID( const int lv )
    }
 
 
-   const int MirrorSib[6] = { 1,0,3,2,5,4 };
+   const int MirrorSib[6] = { 1, 0, 3, 2, 5, 4 };
    int PID, SibPID;
    real (*FluxPtr)[PATCH_SIZE][PATCH_SIZE] = NULL;
 

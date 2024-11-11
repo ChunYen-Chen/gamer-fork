@@ -283,8 +283,8 @@ void GetBasePowerSpectrum( real *VarK, const int j_start, const int dj, double *
             PS_local   [bin] += double(  SQR( c_re(cdata[Idx]) ) + SQR( c_im(cdata[Idx])  ) );
             Count_local[bin] ++;
          }
-      } // i,j,k
-   } // i,j,k
+      } // i, j, k
+   } // i, j, k
 
 
 // sum over all ranks

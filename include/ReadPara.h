@@ -373,10 +373,10 @@ struct ReadPara_t
 
 #     define CHECK_RANGE( type, format )                                                                                   \
       {                                                                                                                    \
-         if (  GET_VOID(type,Ptr[t]) < GET_VOID(type,Min[t])  ||  GET_VOID(type,Ptr[t]) > GET_VOID(type,Max[t])  )         \
+         if (  GET_VOID(type, Ptr[t]) < GET_VOID(type, Min[t])  ||  GET_VOID(type, Ptr[t]) > GET_VOID(type, Max[t])  )     \
             Aux_Error( ERROR_INFO, "parameter \"%s\" = " EXPAND_AND_QUOTE(format) " is not within the correct range ["     \
                        EXPAND_AND_QUOTE(format) " ... " EXPAND_AND_QUOTE(format) "] !!\n",                                 \
-                       Key[t], GET_VOID(type,Ptr[t]), GET_VOID(type,Min[t]), GET_VOID(type,Max[t]) );                      \
+                       Key[t], GET_VOID(type, Ptr[t]), GET_VOID(type, Min[t]), GET_VOID(type, Max[t]) );                   \
       }
 
 

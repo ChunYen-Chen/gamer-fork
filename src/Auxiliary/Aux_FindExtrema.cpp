@@ -318,7 +318,7 @@ void Aux_FindExtrema( Extrema_t *Extrema, const ExtremaMode_t Mode, const int Mi
                         OMP_Extrema[TID].Cell[2]  = k;
                      }
                   } // if ( r2 < MaxR2 )
-               }}} // i,j,k
+               }}} // i, j, k
             } // for (int t=0; t<8*NPG; t++)
          } // OpenMP parallel region
       } // for (int Disp=0; Disp<NTotal; Disp+=NPG_Max)

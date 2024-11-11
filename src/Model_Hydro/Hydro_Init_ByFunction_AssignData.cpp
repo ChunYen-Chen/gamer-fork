@@ -251,7 +251,7 @@ void Hydro_Init_ByFunction_AssignData( const int lv )
                }}}
 
                amr->patch[ amr->MagSg[lv] ][lv][PID]->magnetic[v][ idx ++ ] = magnetic_1v*_NSub2;
-            }}} // i,j,k
+            }}} // i, j, k
          } // for (int v=0; v<NCOMP_MAG; v++)
       } // if ( !OPT__INIT_BFIELD_BYVECPOT )
 
@@ -288,7 +288,7 @@ void Hydro_Init_ByFunction_AssignData( const int lv )
                if ( k != PS1 )   AzTID[idx] = MHD_ResetByUser_VecPot_Ptr( x,      y,      z+dh_2, 0.0, 0.0, lv, 'z', NULL );
 
                idx ++;
-            }}} // i,j,k
+            }}} // i, j, k
          } // if ( ResetMag_UseVecPot )
 
 
@@ -318,7 +318,7 @@ void Hydro_Init_ByFunction_AssignData( const int lv )
                                                                 ResetMag_UseVecPot, AxTID, AyTID, AzTID, i, j, k );
 
                amr->patch[ amr->MagSg[lv] ][lv][PID]->magnetic[v][ idx ++ ] = B_reset;
-            }}} // i,j,k
+            }}} // i, j, k
          } // for (int v=0; v<NCOMP_MAG; v++)
       } // if ( ResetMag )
 
@@ -384,7 +384,7 @@ void Hydro_Init_ByFunction_AssignData( const int lv )
 
          for (int v=0; v<NCOMP_TOTAL; v++)   amr->patch[ amr->FluSg[lv] ][lv][PID]->fluid[v][k][j][i] = fluid[v];
 
-      }}} // i,j,k
+      }}} // i, j, k
    } // for (int PID=0; PID<amr->NPatchComma[lv][1]; PID++)
 
 

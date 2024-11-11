@@ -132,7 +132,7 @@ void Hydro_Aux_Check_Negative( const int lv, const int Mode, const char *comment
                }
             } // if ( Mode == 2  ||  Mode == 3 )
 
-         } // i,j,k,PID
+         } // i, j, k, PID
       } // if ( MPI_Rank == TargetRank )
 
       MPI_Bcast( &Pass, 1, MPI_INT, TargetRank, MPI_COMM_WORLD );

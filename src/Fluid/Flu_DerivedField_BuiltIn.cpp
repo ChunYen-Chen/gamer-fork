@@ -84,7 +84,7 @@ void Flu_DerivedField_DivVel( real Out[], const real FluIn[], const real MagIn[]
 
       Out3D[0][ko][jo][io] = _2dh*( (vx_p-vx_m) + (vy_p-vy_m) + (vz_p-vz_m) );
 
-   }}} // k,j,i
+   }}} // k, j, i
 
 } // FUNCTION : Flu_DerivedField_DivVel
 
@@ -204,7 +204,7 @@ void Flu_DerivedField_Mach( real Out[], const real FluIn[], const real MagIn[], 
 
       Out3D[0][ko][jo][io] = Mach;
 
-   }}} // k,j,i
+   }}} // k, j, i
 
 } // FUNCTION : Flu_DerivedField_Mach
 #endif // #if ( MODEL == HYDRO )

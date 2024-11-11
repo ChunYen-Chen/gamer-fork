@@ -91,7 +91,7 @@ void Par_Init_ByFunction_ClusterMerger( const long NPar_ThisRank, const long NPa
    if ( MPI_Rank == 0 )    Aux_Message( stdout, "   Preparing to load data ... " );
 
    const int NCluster = Merger_Coll_NumHalos;
-   long NPar_ThisRank_EachCluster[3]={0,0,0}, Offset[3];   // [0/1/2] --> cluster 1/2/3
+   long NPar_ThisRank_EachCluster[3]={0, 0, 0}, Offset[3];   // [0/1/2] --> cluster 1/2/3
 
    for (int c=0; c<NCluster; c++)
    {
@@ -231,7 +231,7 @@ void Par_Init_ByFunction_ClusterMerger( const long NPar_ThisRank, const long NPa
 
    if ( MPI_Rank == 0 )    Aux_Message( stdout, "done\n" );
 
-// shift center (assuming the center of loaded particles = [0,0,0])
+// shift center (assuming the center of loaded particles = [0, 0, 0])
    if ( MPI_Rank == 0 )    Aux_Message( stdout, "   Shifting particle center and adding bulk velocity ... " );
 
    real_par *ParPos[3] = { ParPosX, ParPosY, ParPosZ };

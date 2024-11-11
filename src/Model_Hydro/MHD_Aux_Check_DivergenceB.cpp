@@ -98,7 +98,7 @@ void MHD_Aux_Check_DivergenceB( const bool Verbose, const char *comment )
 //                record the average error
                   DivB_Ave += SQR( DivB );   // L2 norm
                   NAve ++;
-               } // i,j,k
+               } // i, j, k
             } // for (int PID=0; PID<amr->NPatchComma[lv][1]; PID++)
          } // if ( MPI_Rank == TargetRank )
 

@@ -224,7 +224,7 @@ void SetGridIC( real fluid[], const double x, const double y, const double z, co
   const double r                = sqrt( SQR(dx) + SQR(dy) + SQR(dz));
 
   double GasDens, GasPres, GasVel;
-  double Eint,Etot,MomX,MomY,MomZ;
+  double Eint, Etot, MomX, MomY, MomZ;
   double Metal=NULL_REAL;
 
   if (Rad <= 11.5 && fabs(dz) <= 0.2)
@@ -234,8 +234,8 @@ void SetGridIC( real fluid[], const double x, const double y, const double z, co
      GasPres = EoS_DensTemp2Pres_CPUPtr( GasDens, BarredPot_initT, NULL, EoS_AuxArray_Flt, EoS_AuxArray_Int,
                                          h_EoS_Table ); // assuming EoS requires no passive scalars
 //  GasVel  = BarredPot_V0*Rad/sqrt(SQR(Rad) + SQR(BarredPot_Rc));
-     GasVel = -5.58683750e-05*pow(Rad,6) + 2.17357740e-03*pow(Rad,5) - 3.25132718e-02*pow(Rad,4)
-               +2.32860976e-01*pow(Rad,3) - 8.14564481e-01*pow(Rad,2) + 1.35601708e+00*Rad + 1.06059808e+00;
+     GasVel = -5.58683750e-05*pow(Rad, 6) + 2.17357740e-03*pow(Rad, 5) - 3.25132718e-02*pow(Rad, 4)
+              +2.32860976e-01*pow(Rad, 3) - 8.14564481e-01*pow(Rad, 2) + 1.35601708e+00*Rad + 1.06059808e+00;
 
      MomX  = -dy/r*GasVel*GasDens;
      MomY  = +dx/r*GasVel*GasDens;

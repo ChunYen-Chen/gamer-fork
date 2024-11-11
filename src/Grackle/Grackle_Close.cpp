@@ -161,7 +161,7 @@ void Grackle_Close( const int lv, const int SaveSg, const real h_Che_Array[], co
 
             idx_p  ++;
             idx_pg ++;
-         } // i,j,k
+         } // i, j, k
       } // for (int LocalID=0; LocalID<8; LocalID++)
    } // for (int TID=0; TID<NPG; TID++)
 

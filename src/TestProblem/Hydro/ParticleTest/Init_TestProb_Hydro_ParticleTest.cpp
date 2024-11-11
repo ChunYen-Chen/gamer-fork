@@ -290,7 +290,7 @@ bool Flag_ParticleTest( const int i, const int j, const int k, const int lv,
 // non-uniform regions
 
    const double dh     = amr->dh[lv];                                                  // grid size
-   const double Pos[3] = { amr->patch[0][lv][PID]->EdgeL[0] + (i+0.5)*dh,              // x,y,z position
+   const double Pos[3] = { amr->patch[0][lv][PID]->EdgeL[0] + (i+0.5)*dh,              // x, y, z position
                            amr->patch[0][lv][PID]->EdgeL[1] + (j+0.5)*dh,
                            amr->patch[0][lv][PID]->EdgeL[2] + (k+0.5)*dh  };
 

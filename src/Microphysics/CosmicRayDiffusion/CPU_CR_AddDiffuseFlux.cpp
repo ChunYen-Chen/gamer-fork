@@ -169,7 +169,7 @@ void CR_AddDiffuseFlux_HalfStep( const real g_ConVar[][ CUBE(FLU_NXT) ],
               g_ConVar[CRAY][ idx_cvar + didx_cvar[d] - didx_cvar[TDir1] ];
          br = g_ConVar[CRAY][ idx_cvar + didx_cvar[d] + didx_cvar[TDir1] ] -
               g_ConVar[CRAY][ idx_cvar + didx_cvar[d]                    ];
-         T1_slope = (  MC_limiter( MC_limiter(al,bl), MC_limiter(ar,br) )  ) * _dh;
+         T1_slope = (  MC_limiter( MC_limiter(al, bl), MC_limiter(ar, br) )  ) * _dh;
 
 //       transverse direction 2
          al = g_ConVar[CRAY][ idx_cvar                                   ] -
@@ -180,7 +180,7 @@ void CR_AddDiffuseFlux_HalfStep( const real g_ConVar[][ CUBE(FLU_NXT) ],
               g_ConVar[CRAY][ idx_cvar + didx_cvar[d] - didx_cvar[TDir2] ];
          br = g_ConVar[CRAY][ idx_cvar + didx_cvar[d] + didx_cvar[TDir2] ] -
               g_ConVar[CRAY][ idx_cvar + didx_cvar[d]                    ];
-         T2_slope = (  MC_limiter( MC_limiter(al,bl), MC_limiter(ar,br) )  ) * _dh;
+         T2_slope = (  MC_limiter( MC_limiter(al, bl), MC_limiter(ar, br) )  ) * _dh;
 
 
 //       4. compute CR diffusive flux
@@ -366,7 +366,7 @@ void CR_AddDiffuseFlux_FullStep( const real g_PriVar_Half[][ CUBE(FLU_NXT) ],
               g_PriVar_Half[CRAY][ idx_half + didx_half[d] - didx_half[TDir1] ];
          br = g_PriVar_Half[CRAY][ idx_half + didx_half[d] + didx_half[TDir1] ] -
               g_PriVar_Half[CRAY][ idx_half + didx_half[d]                    ];
-         T1_slope = (  MC_limiter( MC_limiter(al,bl), MC_limiter(ar,br) )  ) * _dh;
+         T1_slope = (  MC_limiter( MC_limiter(al, bl), MC_limiter(ar, br) )  ) * _dh;
 
 //       transverse direction 2
          al = g_PriVar_Half[CRAY][ idx_half                                   ] -
@@ -377,7 +377,7 @@ void CR_AddDiffuseFlux_FullStep( const real g_PriVar_Half[][ CUBE(FLU_NXT) ],
               g_PriVar_Half[CRAY][ idx_half + didx_half[d] - didx_half[TDir2] ];
          br = g_PriVar_Half[CRAY][ idx_half + didx_half[d] + didx_half[TDir2] ] -
               g_PriVar_Half[CRAY][ idx_half + didx_half[d]                    ];
-         T2_slope = (  MC_limiter( MC_limiter(al,bl), MC_limiter(ar,br) )  ) * _dh;
+         T2_slope = (  MC_limiter( MC_limiter(al, bl), MC_limiter(ar, br) )  ) * _dh;
 
 
 //       4. compute CR diffusive flux
@@ -420,7 +420,7 @@ GPU_DEVICE
 static real MC_limiter( const real a, const real b )
 {
 
-   return minmod( (real)2.0*minmod(a,b), (real)0.5*(a+b) );
+   return minmod( (real)2.0*minmod(a, b), (real)0.5*(a+b) );
 
 } // FUNCTION : MC_limiter
 

@@ -28,7 +28,7 @@ void SiblingSearch_Base()
    for (int s=0; s<26; s++)
    for (int PID0=amr->NPatchComma[0][s+1]; PID0<amr->NPatchComma[0][s+2]; PID0+=8)
    for (int t=0; t<TABLE_04(s); t++)
-      FindBaseSibling( PID0+TABLE_03(s,t) );
+      FindBaseSibling( PID0+TABLE_03(s, t) );
 #  endif
 
 } // FUNCTION : SiblingSearch_Base
@@ -49,7 +49,7 @@ void FindBaseSibling( const int PID )
    const int NPatch1D[3] = { NX0[0]/PATCH_SIZE+4, NX0[1]/PATCH_SIZE+4, NX0[2]/PATCH_SIZE+4 };
    const int scale0      = amr->scale[0];
 
-   int order[3], Sib[26];     // order[3] : (i,j,k)th patch in (x,y,z) direction
+   int order[3], Sib[26];     // order[3] : (i, j, k)th patch in (x, y, z) direction
 
    for (int d=0; d<3; d++)
       order[d] = (amr->patch[0][0][PID]->corner[d] - MPI_Rank_X[d]*NX0[d]*scale0) / (PATCH_SIZE*scale0) + 2;

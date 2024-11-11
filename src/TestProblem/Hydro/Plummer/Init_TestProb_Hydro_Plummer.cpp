@@ -311,7 +311,7 @@ void SetParameter()
 
 // (2) set the problem-specific derived parameters
 #  ifdef GRAVITY
-   Plummer_FreeT = sqrt( (3.0*M_PI*pow(2.0,1.5)) / (32.0*NEWTON_G*Plummer_Rho0) );
+   Plummer_FreeT = sqrt( (3.0*M_PI*pow(2.0, 1.5)) / (32.0*NEWTON_G*Plummer_Rho0) );
 #  endif
 
 

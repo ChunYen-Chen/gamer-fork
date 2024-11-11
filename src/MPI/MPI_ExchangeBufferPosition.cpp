@@ -19,7 +19,8 @@
 void MPI_ExchangeBufferPosition( int NSend[26], int NRecv[26], int *Send_PosList[26], int *Recv_PosList[26] )
 {
 
-   const int v[26] = { 0,1,2,3,4,5,6,9,7,8,10,13,11,12,14,17,16,15,18,25,19,24,20,23,21,22 };
+   const int v[26] = {  0,  1,  2,  3,  4,  5,  6,  9,  7,  8, 10, 13, 11
+                       12, 14, 17, 16, 15, 18, 25, 19, 24, 20, 23, 21, 22 };
    int SendTarget[2], RecvTarget[2];
    MPI_Request Req[4];
 

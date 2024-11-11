@@ -32,7 +32,7 @@ static void BC_Diode_zp( real *Array, const int NVar_Flu, const int TFluVarIdxLi
 //                2. Similar to the outflow (i.e., zero-gradient) B.C. except that quantities only "flow" outward
 //
 // Parameter   :  Array          : Array to store the prepared data including ghost zones
-//                BC_Face        : Boundary face (0~5) --> (-x,+x,-y,+y,-z,+z)
+//                BC_Face        : Boundary face (0~5) --> (-x, +x, -y, +y, -z, +z)
 //                NVar_Flu       : Number of fluid variables to be prepared (derived variables are NOT included)
 //                GhostSize      : Number of ghost zones
 //                ArraySizeX/Y/Z : Size of Array including the ghost zones on each side

@@ -1742,7 +1742,7 @@ void LB_GetBufferData( const int lv, const int FluSg, const int MagSg, const int
             if ( RSibPID >= 0  &&  RSibPID < amr->NPatchComma[lv][1]  &&  amr->patch[0][lv][RSibPID]->son == -1 )
                MHD_CopyPatchInterfaceBField( lv, RPID, s, MagSg );
          }
-      } // r,t
+      } // r, t
 
 
 //    8.2. case (3) above

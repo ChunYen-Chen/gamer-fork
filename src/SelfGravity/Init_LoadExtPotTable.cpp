@@ -38,7 +38,7 @@ void Init_LoadExtPotTable()
    }
 
    if ( EXT_POT_TABLE_DH[0] <= 0.0 || EXT_POT_TABLE_DH[1] <= 0.0 || EXT_POT_TABLE_DH[2] <= 0.0)
-      Aux_Error( ERROR_INFO, "EXT_POT_TABLE_DH = %14.7e, %14.7e, %14.7e <= 0.0 !!\n", EXT_POT_TABLE_DH[0],EXT_POT_TABLE_DH[1],EXT_POT_TABLE_DH[2] );
+      Aux_Error( ERROR_INFO, "EXT_POT_TABLE_DH = %14.7e, %14.7e, %14.7e <= 0.0 !!\n", EXT_POT_TABLE_DH[0], EXT_POT_TABLE_DH[1], EXT_POT_TABLE_DH[2] );
 
 #  ifdef FLOAT8
    if ( ! EXT_POT_TABLE_FLOAT8 )

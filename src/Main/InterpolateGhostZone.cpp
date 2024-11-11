@@ -1511,7 +1511,7 @@ void InterpolateGhostZone( const int lv, const int PID, real IntData_CC[], real 
 
 //###ISSUE: atan2() sometimes returns NaN when both inputs are zero, not sure why ...
 //          --> using SATAN2() in Macro.h seems to provide a temporary fix (but needs to be checked further)
-//          --> in principle we don't need this fix since atan2(y,x) should be able to handle
+//          --> in principle we don't need this fix since atan2(y, x) should be able to handle
 //              y=+0/-0, x=+0/-0 (https://en.cppreference.com/w/c/numeric/math/atan2)
          if ( Re == (real)0.0  &&  Im == (real)0.0 )  CData_Phas[t] = (real)0.0;
          else                                         CData_Phas[t] = SATAN2( Im, Re );
@@ -1654,7 +1654,7 @@ void InterpolateGhostZone( const int lv, const int PID, real IntData_CC[], real 
 
 //###ISSUE: atan2() sometimes returns NaN when both inputs are zero, not sure why ...
 //          --> using SATAN2() in Macro.h seems to provide a temporary fix (but needs to be checked further)
-//          --> in principle we don't need this fix since atan2(y,x) should be able to handle
+//          --> in principle we don't need this fix since atan2(y, x) should be able to handle
 //              y=+0/-0, x=+0/-0 (https://en.cppreference.com/w/c/numeric/math/atan2)
             if ( Re == (real)0.0  &&  Im == (real)0.0 )  CData_Phas_IntTime[t] = (real)0.0;
             else                                         CData_Phas_IntTime[t] = SATAN2( Im, Re );

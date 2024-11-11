@@ -5,7 +5,7 @@
 
 //-------------------------------------------------------------------------------------------------------
 // Function    :  Flag_Lohner
-// Description :  Check if the numerical error at the cell (i,j,k) estimated by Lohner's prescription
+// Description :  Check if the numerical error at the cell (i, j, k) estimated by Lohner's prescription
 //                exceeds the given threshold
 //
 // Note        :  1. Invoked by the function "Flag_Check"
@@ -13,7 +13,7 @@
 //                3. The Ave1D and Slope1D arrays must be prepared in advance by invoking the function "Prepare_for_Lohner"
 //                4. The sizes of the arrays Ave1D and  Slope1D must be NVar*3*(PS1+2)^3
 //
-// Parameter   :  i,j,k       : Target cell indices in the target patch
+// Parameter   :  i, j, k       : Target cell indices in the target patch
 //                Form        : Form of the Lohner's error estimator (FLASH4/form-invariant + Stencil = 1/2)
 //                Var1D       : Array storing the input variables for the Lohner error estimator (used only for stencil == 1)
 //                Ave1D       : Array storing the input averages for the Lohner error estimator
@@ -21,7 +21,7 @@
 //                NVar        : Number of variables stored in Ave and Slope arrays (must be 2 in ELBDM)
 //                Threshold   : Refinement threshold
 //                Filter      : Filter parameter for preventing refinement of small ripples
-//                Soften      : Minimum number in the denominator --> error = sqrt( N/max(D,Soften) ), where
+//                Soften      : Minimum number in the denominator --> error = sqrt( N/max(D, Soften) ), where
 //                              N and D are numerator and denominator in the Lohner's formula, respectively
 //
 // Return      :  "true"  if the estimated error is larger           than the given threshold
@@ -47,12 +47,12 @@ bool Flag_Lohner( const int i, const int j, const int k, const OptLohnerForm_t F
    const int NSlope  = NAve;                                                        // size of the array Slope
    const int Stencil = ( Form==LOHNER_FLASH2 || Form==LOHNER_FORM_INV2 ) ? 2 : 1;   // stencil size
 
-// ii,jj,kk: for the arrays "Ave and Slope"
+// ii, jj, kk: for the arrays "Ave and Slope"
    const int ii  =  i + 1;   const int jj  =  j + 1;   const int kk  =  k + 1;
    const int iip = ii + 1;   const int jjp = jj + 1;   const int kkp = kk + 1;
    const int iim = ii - 1;   const int jjm = jj - 1;   const int kkm = kk - 1;
 
-// i2,j2,k2: for the array "Var"
+// i2, j2, k2: for the array "Var"
    const int i2  =  i + 2;   const int j2  =  j + 2;   const int k2  =  k + 2;   // for stencil = 1 only
    const int i2p = i2 + 1;   const int j2p = j2 + 1;   const int k2p = k2 + 1;   // for stencil = 1 only
    const int i2m = i2 - 1;   const int j2m = j2 - 1;   const int k2m = k2 - 1;   // for stencil = 1 only
@@ -61,12 +61,12 @@ bool Flag_Lohner( const int i, const int j, const int k, const OptLohnerForm_t F
    const real Soften_16 = (real)0.0625*Soften;                                   // for stencil = 1 only
 
 
-   real Der2_xx, Der2_yy, Der2_zz;           // tensor Der2_ij = d2(Var)/didj (i/j=x,y,z)
+   real Der2_xx, Der2_yy, Der2_zz;           // tensor Der2_ij = d2(Var)/didj (i/j=x, y, z)
    real Der2_xy, Der2_yz, Der2_zx;           // Der2_xy = Der2_yx, ...
 
 // off-diagonal terms are useful for LOHNER_FLASH1/2 only
    real Der1_xx, Der1_yy, Der1_zz;
-   real Der1_xy, Der1_xz;                    // tensor Der1_ij = d(Var)/di averaged over j (i/j=x,y,z)
+   real Der1_xy, Der1_xz;                    // tensor Der1_ij = d(Var)/di averaged over j (i/j=x, y, z)
    real Der1_yx, Der1_yz;                    // Der1_yx != Der1_xy
    real Der1_zx, Der1_zy;
 
@@ -226,13 +226,13 @@ bool Flag_Lohner( const int i, const int j, const int k, const OptLohnerForm_t F
 // Note        :  1. This function is called in "Flag_Real" before looping over all cells in the patch in order to
 //                   achieve higher performance
 //                2. Evaluate slope by the discrete central difference:
-//                      stencil == 2: slope_x(i,j,k) = var(i+1,j,k) - var(i-1,j,k)
-//                      stencil == 1: slope_x(i,j,k) = MAX(  ABS( var(i+1,j,k) - var(i  ,j,k) ),
-//                                                           ABS( var(i,  j,k) - var(i-1,j,k) ) )
+//                      stencil == 2: slope_x(i, j, k) = var(i+1, j, k) - var(i-1, j, k)
+//                      stencil == 1: slope_x(i, j, k) = MAX(  ABS( var(i+1, j, k) - var(i,   j, k) ),
+//                                                             ABS( var(i,   j, k) - var(i-1, j, k) ) )
 //                                     ~ half of the stencil==2 case
 //                3. The averages along different directions are evaluated as:
-//                      stencil == 2: ave_x(i,j,k) = FABS( var(i+1,j,k) ) + FABS( var(i-1,j,k) )
-//                      stencil == 1: ave_x(i,j,k) = FABS( var(i  ,j,k) )
+//                      stencil == 2: ave_x(i, j, k) = FABS( var(i+1, j, k) ) + FABS( var(i-1, j, k) )
+//                      stencil == 1: ave_x(i, j, k) = FABS( var(i,   j, k) )
 //                                     ~ half of the stencil==2 case
 //                4. Do not take into account the physical size of each cell since the Lohner error estimator
 //                   is dimensionless
@@ -278,7 +278,7 @@ void Prepare_for_Lohner( const OptLohnerForm_t Form, const real *Var1D, real *Av
          Slope[v][1][k][j][i] =       Var[v][kk ][jjp][ii ]   -       Var[v][kk ][jjm][ii ];
          Slope[v][2][k][j][i] =       Var[v][kkp][jj ][ii ]   -       Var[v][kkm][jj ][ii ];
 
-      }}}} // v,k,j,i
+      }}}} // v, k, j, i
    }
 
 
@@ -307,7 +307,7 @@ void Prepare_for_Lohner( const OptLohnerForm_t Form, const real *Var1D, real *Av
 
          for (int d=0; d<3; d++)    Slope[v][d][k][j][i] = MAX( Slope_R[d], Slope_L[d] );
 
-      }}}} // v,k,j,i
+      }}}} // v, k, j, i
    } // if ( Form == LOHNER_FLASH2  ||  Form == LOHNER_FORM_INV2 ) ... else ...
 
 

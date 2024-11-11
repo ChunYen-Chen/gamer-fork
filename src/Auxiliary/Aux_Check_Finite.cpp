@@ -88,7 +88,7 @@ void Aux_Check_Finite( const int lv, const char *comment )
                                   v, Data[v] );
                   } // if ( ! Aux_IsFinite(Data[v]) )
                } // for (int v=0; v<NVar; v++)
-            } // i,j,k
+            } // i, j, k
          } // for (int PID=0; PID<amr->NPatchComma[lv][1]; PID++)
       } // if ( MPI_Rank == TargetRank )
 

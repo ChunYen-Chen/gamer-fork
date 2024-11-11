@@ -101,7 +101,8 @@ void LB_Refine_AllocateNewPatch( const int FaLv, int NNew_Home, int *NewPID_Home
 //        --> only need to exchange the buffer data that do not exist in the old MPI lists
 //        --> used by DATA_AFTER_REFINE and POT_AFTER_REFINE in LB_GetBufferData()
 // ==========================================================================================
-   const int MirSib[26] = { 1,0,3,2,5,4,9,8,7,6,13,12,11,10,17,16,15,14,25,24,23,22,21,20,19,18 };
+   const int MirSib[26] = {  1,  0,  3,  2,  5,  4,  9,  8,  7,  6, 13, 12, 11,
+                            10, 17, 16, 15, 14, 25, 24, 23, 22, 21, 20, 19, 18 };
    const int FSg_Flu    = amr->FluSg[SonLv];
    const int FSg_Flu2   = 1 - FSg_Flu;
 #  ifdef GRAVITY
@@ -167,7 +168,7 @@ void LB_Refine_AllocateNewPatch( const int FaLv, int NNew_Home, int *NewPID_Home
       }
 
 //    2-1-3. sort the PID list and remove duplicates
-      Mis_Heapsort<int,int>( NBufBk_Dup, PID_BufBk, NULL );
+      Mis_Heapsort<int, int>( NBufBk_Dup, PID_BufBk, NULL );
 
       NBufBk = ( NBufBk_Dup > 0 ) ? 1 : 0;
 
@@ -1073,7 +1074,7 @@ int AllocateSonPatch( const int FaLv, const int *Cr, const int PScale, const int
       }
 #     endif
 
-   } // i,j,k
+   } // i, j, k
 #  endif // #if ( MODEL == HYDRO  ||  MODEL == ELBDM )
 
 
@@ -1203,7 +1204,8 @@ void DeallocateSonPatch( const int FaLv, const int FaPID, const int NNew_Real0, 
                          int SwitchIdx, int &RefineS2F_Send_NPatchTotal, int *&RefineS2F_Send_PIDList )
 {
 
-   const int MirSib[26] = { 1,0,3,2,5,4,9,8,7,6,13,12,11,10,17,16,15,14,25,24,23,22,21,20,19,18 };
+   const int MirSib[26] = {  1,  0,  3,  2,  5,  4,  9,  8,  7,  6, 13, 12, 11,
+                            10, 17, 16, 15, 14, 25, 24, 23, 22, 21, 20, 19, 18 };
    const int SonLv      = FaLv + 1;
    const int GraLv      = FaLv + 2;
    const int SonPID0    = amr->patch[0][FaLv][FaPID]->son;

@@ -91,7 +91,7 @@ double MHD_ResetByUser_VecPot_Template( const double x, const double y, const do
 //                5. To ensure divergence-free to the machine precision, one should either use vector potential
 //                   by setting MHD_ResetByUser_VecPot_Ptr or compute the *area-average* B field in this routine
 //                   --> For example, Bx should be the value averaged over
-//                       (x,y,z) = (x, [y-0.5*amr->dh[lv] ... y+0.5*amr->dh[lv]], [z-0.5*amr->dh[lv] ... z+0.5*amr->dh[lv]])
+//                       (x, y, z) = (x, [y-0.5*amr->dh[lv] ... y+0.5*amr->dh[lv]], [z-0.5*amr->dh[lv] ... z+0.5*amr->dh[lv]])
 //                   --> When using vector potential, the divergence-free condition can still break on the coarse-fine interfaces
 //                       --> Will be improved in the future
 //

@@ -32,7 +32,8 @@ void MHD_LB_AllocateElectricArray( const int FaLv )
    const int SonLv      = FaLv + 1;
    const int FaNReal    = amr->NPatchComma[FaLv][1];
    const int MemUnit    = 1 + FaNReal/MPI_NRank;      // set arbitrarily
-   const int MirSib[18] = { 1,0,3,2,5,4,9,8,7,6,13,12,11,10,17,16,15,14 };
+   const int MirSib[18] = {  1,  0,  3,  2,  5,  4,  9,  8,  7,
+                             6, 13, 12, 11, 10, 17, 16, 15, 14 };
 
    int   MemSize         [MPI_NRank];
    int  *Temp_SibEList   [MPI_NRank];  // sibling direction of the target electric field

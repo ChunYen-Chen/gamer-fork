@@ -92,7 +92,7 @@ void Flu_DerivedField_User_Template( real Out[], const real FluIn[], const real 
 
       Out3D[0][ko][jo][io] = ...;
 
-   }}} // k,j,i
+   }}} // k, j, i
    */
 
 } // FUNCTION : Flu_DerivedField_User_Template

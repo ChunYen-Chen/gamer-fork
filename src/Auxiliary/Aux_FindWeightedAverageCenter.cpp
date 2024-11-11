@@ -8,7 +8,7 @@
 // Description :  Find the location of the weighted-by-field average center within a target region
 //
 // Note        :  The weighted average center is defined as
-//                  ( \int w(x,y,z)*r(x,y,z) dxdydz ) / ( \int w(x,y,z) dxdydz ),
+//                  ( \int w(x, y, z)*r(x, y, z) dxdydz ) / ( \int w(x, y, z) dxdydz ),
 //                where w is the weighting density field and r is a vector of the position coordinate.
 //                If the weighting density field is the mass density, the weighted average center is the center of mass.
 //
@@ -16,7 +16,7 @@
 //                Center_ref             : Center coordinates for reference (i.e., an initial guess of the center coordinates)
 //                MaxR                   : Maximum radius to specify the region to compute the weighted average center
 //                MinWD                  : Minimum weighting density to specify the region to compute the weighted average center
-//                WeightingDensityField  : Weighting density field w(x,y,z) in the above Note
+//                WeightingDensityField  : Weighting density field w(x, y, z) in the above Note
 //                TolErrR                : Maximum tolerated error of distance between the center coordinates during iterations
 //                MaxIter                : Maximum number of iterations to find the weighted average center
 //                FinaldR                : Record of the distance of the center coordinates update in the last iteration
@@ -278,7 +278,7 @@ void Aux_FindWeightedAverageCenter( double WeightedAverageCenter[], const double
                         WZ_ThisRank += dw*z;
                      }
                   }
-               }}} // i,j,k
+               }}} // i, j, k
             } // for (int t=0; t<8*NPG; t++)
          } // for (int Disp=0; Disp<NTotal; Disp+=NPG_Max)
 

@@ -51,9 +51,9 @@ class Par_EquilibriumIC
       Par_EquilibriumIC();
       virtual ~Par_EquilibriumIC();
       void Read_Filenames( const char *filename_para);
-      void Load_Physical_Params(const FP filenames,const int cloud_idx, const long NPar_AllRank);
+      void Load_Physical_Params(const FP filenames, const int cloud_idx, const long NPar_AllRank);
       void Init();
-      void Par_SetEquilibriumIC(real_par *Mass_AllRank, real_par *Pos_AllRank[3], real_par *Vel_AllRank[3],const long Par_Idx);
+      void Par_SetEquilibriumIC(real_par *Mass_AllRank, real_par *Pos_AllRank[3], real_par *Vel_AllRank[3], const long Par_Idx);
 
 
       PhysP params;
@@ -81,7 +81,7 @@ class Par_EquilibriumIC
 //    Auxiliary functions
       int Aux_CountRow( const char *filename );
       int Aux_Countcolumn( const char *filename );
-      int GetParams( const char *filename,const char *keyword,const int para_num,const char *para_type,vector <string> &container);
+      int GetParams( const char *filename, const char *keyword, const int para_num, const char *para_type, vector <string> &container);
       void Check_InputFileName();
       void RanVec_FixRadius( const double r, double RanVec[] );
 
@@ -97,13 +97,13 @@ class Par_EquilibriumIC
       double *psi;
 
 //    statistics
-      double slope(double* a,double* b,int start,int fin);
-      void smooth_all(double* x,int start,int fin);
-      double ave(double* a,int start,int fin);
-      double var_n(double* a,int start,int fin);
-      double cor(double* x,double* y,int start,int fin);
-      void mask(double* x,int start,int fin);
-      void add_num(double* x,int start,int fin);
+      double slope(double* a, double* b, int start, int fin);
+      void smooth_all(double* x, int start, int fin);
+      double ave(double* a, int start, int fin);
+      double var_n(double* a, int start, int fin);
+      double cor(double* x, double* y, int start, int fin);
+      void mask(double* x, int start, int fin);
+      void add_num(double* x, int start, int fin);
 
 //    Tables of particles' attributes
       double *Table_r;

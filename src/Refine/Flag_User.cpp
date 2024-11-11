@@ -17,7 +17,7 @@ bool (*Flag_User_Ptr)( const int i, const int j, const int k, const int lv, cons
 //                   which must be set by a test problem initializer
 //                2. Enabled by the runtime option "OPT__FLAG_USER"
 //
-// Parameter   :  i,j,k     : Indices of the target element in the patch ptr[ amr->FluSg[lv] ][lv][PID]
+// Parameter   :  i, j, k   : Indices of the target element in the patch ptr[ amr->FluSg[lv] ][lv][PID]
 //                lv        : Refinement level of the target patch
 //                PID       : ID of the target patch
 //                Threshold : User-provided threshold for the flag operation, which is loaded from the
@@ -31,7 +31,7 @@ bool Flag_User_Template( const int i, const int j, const int k, const int lv, co
 
    /*
    const double dh     = amr->dh[lv];                                                  // grid size
-   const double Pos[3] = { amr->patch[0][lv][PID]->EdgeL[0] + (i+0.5)*dh,              // x,y,z position
+   const double Pos[3] = { amr->patch[0][lv][PID]->EdgeL[0] + (i+0.5)*dh,              // x, y, z position
                            amr->patch[0][lv][PID]->EdgeL[1] + (j+0.5)*dh,
                            amr->patch[0][lv][PID]->EdgeL[2] + (k+0.5)*dh  };
 

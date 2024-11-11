@@ -114,7 +114,7 @@ void LB_AllocateBufferPatch_Sibling_Base()
 //             (because PaddedCr1D + Disp >= 0; ==> reduced modulo again)
             FaPaddedCr1D[ NAlloc_Temp ++ ] = amr->patch[0][0][PID0]->PaddedCr1D + (ulong)Cr1D_Disp[k+1][j+1][i+1];
          }
-      }}} // k,j,i
+      }}} // k, j, i
    } // for (int PID0=0; PID0<amr->NPatchComma[0][1]; PID0+=8)
 
 
@@ -123,7 +123,7 @@ void LB_AllocateBufferPatch_Sibling_Base()
 // ==========================================================================================
    int NAlloc = ( NAlloc_Temp > 0 ) ? 1 : 0;
 
-   Mis_Heapsort<int,ulong>( NAlloc_Temp, FaPaddedCr1D, NULL );
+   Mis_Heapsort<int, ulong>( NAlloc_Temp, FaPaddedCr1D, NULL );
 
    for (int t=1; t<NAlloc_Temp; t++)
       if ( FaPaddedCr1D[t] != FaPaddedCr1D[t-1] )  FaPaddedCr1D[ NAlloc ++ ] = FaPaddedCr1D[t];

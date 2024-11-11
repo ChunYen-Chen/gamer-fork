@@ -72,7 +72,7 @@ void SetExtPotAuxArray_Plummer( double AuxArray_Flt[], int AuxArray_Int[], const
 //                PotTable          : 3D potential table used by EXT_POT_TABLE
 //                GenePtr           : Array of pointers for general potential tables
 //
-// Return      :  External potential at (x,y,z,Time)
+// Return      :  External potential at (x, y, z, Time)
 //-----------------------------------------------------------------------------------------
 GPU_DEVICE_NOINLINE
 static real ExtPot_Plummer( const double x, const double y, const double z, const double Time,

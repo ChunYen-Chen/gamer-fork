@@ -20,7 +20,8 @@ void Flag_Buffer( const int lv )
 {
 
 // MirrorSib : the mirror-symmetric sibling index
-   const int MirrorSib[26] = { 1,0,3,2,5,4,9,8,7,6,13,12,11,10,17,16,15,14,25,24,23,22,21,20,19,18 };
+   const int MirrorSib[26] = {  1,  0,  3,  2,  5,  4,  9,  8,  7,  6, 13, 12, 11,
+                               10, 17, 16, 15, 14, 25, 24, 23, 22, 21, 20, 19, 18 };
    int BounPID, BuffPID, FlagPos, SibPID, TargetID, FlagLayer, Sib;
 
    for (int s=0; s<26; s++)

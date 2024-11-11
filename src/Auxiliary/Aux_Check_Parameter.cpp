@@ -1143,12 +1143,12 @@ void Aux_Check_Parameter()
 
    if ( OPT__MAG_INT_SCHEME != INT_MINMOD1D  &&  OPT__MAG_INT_SCHEME != INT_VANLEER  &&
         OPT__MAG_INT_SCHEME != INT_CQUAD  &&  OPT__MAG_INT_SCHEME != INT_CQUAR )
-      Aux_Error( ERROR_INFO, "unsupported interpolation scheme \"%s = %d\" (2,3,4,6 only) !!\n",
+      Aux_Error( ERROR_INFO, "unsupported interpolation scheme \"%s = %d\" (2, 3, 4, 6 only) !!\n",
                  "OPT__MAG_INT_SCHEME", OPT__MAG_INT_SCHEME );
 
    if ( OPT__REF_MAG_INT_SCHEME != INT_MINMOD1D  &&  OPT__REF_MAG_INT_SCHEME != INT_VANLEER  &&
         OPT__REF_MAG_INT_SCHEME != INT_CQUAD  &&  OPT__REF_MAG_INT_SCHEME != INT_CQUAR )
-      Aux_Error( ERROR_INFO, "unsupported interpolation scheme \"%s = %d\" (2,3,4,6 only) !!\n",
+      Aux_Error( ERROR_INFO, "unsupported interpolation scheme \"%s = %d\" (2, 3, 4, 6 only) !!\n",
                  "OPT__REF_MAG_INT_SCHEME", OPT__REF_MAG_INT_SCHEME );
 
    if ( OPT__FIXUP_ELECTRIC  &&  !amr->WithElectric )

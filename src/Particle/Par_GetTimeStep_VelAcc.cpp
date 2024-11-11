@@ -8,8 +8,8 @@
 //-------------------------------------------------------------------------------------------------------
 // Function    :  Par_GetTimeStep_VelAcc
 // Description :  Estimate the evolution time-step from the maximum particle velocity and acceleration
-//                --> dt_vel = DT__PARVEL*dh/v_max, where v_max = max(vx,vy,vz,all_particles)
-//                    dt_acc = DT__PARACC*(dh/a_max)^0.5, where a_max = max(accx,accy,accz,all_particles)
+//                --> dt_vel = DT__PARVEL*dh/v_max, where v_max = max(vx, vy, vz, all_particles)
+//                    dt_acc = DT__PARACC*(dh/a_max)^0.5, where a_max = max(accx, accy, accz, all_particles)
 //
 // Note        :  1. This function should be applied to both physical and comoving coordinates and always
 //                   return the evolution time-step (dt) actually used in various solvers

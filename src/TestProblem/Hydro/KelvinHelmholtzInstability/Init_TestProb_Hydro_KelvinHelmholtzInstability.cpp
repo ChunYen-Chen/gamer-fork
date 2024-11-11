@@ -217,9 +217,9 @@ void SetGridIC( real fluid[], const double x, const double y, const double z, co
    if ( z_periodic >= z_shear )
    {
       Dens = KH_Rho1;
-      MomX = KH_Rho1*( KH_Vx1 + RandomNumber(RNG,-KH_RAmp,KH_RAmp) );
-      MomY = KH_Rho1*( KH_Vy1 + RandomNumber(RNG,-KH_RAmp,KH_RAmp) );
-      MomZ = KH_Rho1*(    0.0 + RandomNumber(RNG,-KH_RAmp,KH_RAmp) );
+      MomX = KH_Rho1*( KH_Vx1 + RandomNumber(RNG, -KH_RAmp, KH_RAmp) );
+      MomY = KH_Rho1*( KH_Vy1 + RandomNumber(RNG, -KH_RAmp, KH_RAmp) );
+      MomZ = KH_Rho1*(    0.0 + RandomNumber(RNG, -KH_RAmp, KH_RAmp) );
       Pres = KH_Pres;
    }
 
@@ -227,9 +227,9 @@ void SetGridIC( real fluid[], const double x, const double y, const double z, co
    else
    {
       Dens = KH_Rho2;
-      MomX = KH_Rho2*( KH_Vx2 + RandomNumber(RNG,-KH_RAmp,KH_RAmp) );
-      MomY = KH_Rho2*( KH_Vy2 + RandomNumber(RNG,-KH_RAmp,KH_RAmp) );
-      MomZ = KH_Rho2*(    0.0 + RandomNumber(RNG,-KH_RAmp,KH_RAmp) );
+      MomX = KH_Rho2*( KH_Vx2 + RandomNumber(RNG, -KH_RAmp, KH_RAmp) );
+      MomY = KH_Rho2*( KH_Vy2 + RandomNumber(RNG, -KH_RAmp, KH_RAmp) );
+      MomZ = KH_Rho2*(    0.0 + RandomNumber(RNG, -KH_RAmp, KH_RAmp) );
       Pres = KH_Pres;
    }
 

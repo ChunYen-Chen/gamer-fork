@@ -44,7 +44,7 @@ typedef ulong halfmask_t;
 
 /* implementation of the hilbert functions */
 
-#define adjust_rotation(rotation,nDims,bits)                            \
+#define adjust_rotation(rotation, nDims, bits)                          \
 do {                                                                    \
       /* rotation = (rotation + 1 + ffs(bits)) % nDims; */              \
       bits &= -bits & nd1Ones;                                          \
@@ -54,15 +54,15 @@ do {                                                                    \
         rotation -= nDims;                                              \
 } while (0)
 
-#define ones(T,k) ((((T)2) << (k-1)) - 1)
+#define ones(T, k) ((((T)2) << (k-1)) - 1)
 
-#define rdbit(w,k) (((w) >> (k)) & 1)
+#define rdbit(w, k) (((w) >> (k)) & 1)
 
 #define rotateRight(arg, nRots, nDims)                                  \
-((((arg) >> (nRots)) | ((arg) << ((nDims)-(nRots)))) & ones(bitmask_t,nDims))
+((((arg) >> (nRots)) | ((arg) << ((nDims)-(nRots)))) & ones(bitmask_t, nDims))
 
 #define rotateLeft(arg, nRots, nDims)                                   \
-((((arg) << (nRots)) | ((arg) >> ((nDims)-(nRots)))) & ones(bitmask_t,nDims))
+((((arg) << (nRots)) | ((arg) >> ((nDims)-(nRots)))) & ones(bitmask_t, nDims))
 
 #define DLOGB_BIT_TRANSPOSE
 static bitmask_t
@@ -73,7 +73,7 @@ bitTranspose(unsigned nDims, unsigned nBits, bitmask_t inCoords)
   unsigned inB = nBits;
   unsigned utB;
   bitmask_t inFieldEnds = 1;
-  bitmask_t inMask = ones(bitmask_t,inB);
+  bitmask_t inMask = ones(bitmask_t, inB);
   bitmask_t coords = 0;
 
   while ((utB = inB / 2))
@@ -124,7 +124,7 @@ bitTranspose(unsigned nDims, unsigned nBits, bitmask_t inCoords)
   for (d = 0; d < nDims; ++d)
     {
       unsigned b;
-      bitmask_t in = inCoords & ones(bitmask_t,nBits);
+      bitmask_t in = inCoords & ones(bitmask_t, nBits);
       bitmask_t out = 0;
       inCoords >>= nBits;
       for (b = nBits; b--;)
@@ -169,18 +169,18 @@ void LB_Hilbert_i2c( ulong index, ulong coord[], const uint nBits )
   if (nDims > 1)
     {
       bitmask_t coords;
-      halfmask_t const nbOnes = ones(halfmask_t,nBits);
+      halfmask_t const nbOnes = ones(halfmask_t, nBits);
       unsigned d;
 
       if (nBits > 1)
         {
           unsigned const nDimsBits = nDims*nBits;
-          halfmask_t const ndOnes = ones(halfmask_t,nDims);
+          halfmask_t const ndOnes = ones(halfmask_t, nDims);
           halfmask_t const nd1Ones= ndOnes >> 1; /* for adjust_rotation */
           unsigned b = nDimsBits;
           unsigned rotation = 0;
           halfmask_t flipBit = 0;
-          bitmask_t const nthbits = ones(bitmask_t,nDimsBits) / ndOnes;
+          bitmask_t const nthbits = ones(bitmask_t, nDimsBits) / ndOnes;
           index ^= (index ^ nthbits) >> 1;
           coords = 0;
           do
@@ -189,7 +189,7 @@ void LB_Hilbert_i2c( ulong index, ulong coord[], const uint nBits )
               coords <<= nDims;
               coords |= rotateLeft(bits, rotation, nDims) ^ flipBit;
               flipBit = (halfmask_t)1 << rotation;
-              adjust_rotation(rotation,nDims,bits);
+              adjust_rotation(rotation, nDims, bits);
             } while (b);
           for (b = nDims; b < nDimsBits; b *= 2)
             coords ^= coords >> b;
@@ -261,12 +261,12 @@ ulong LB_Hilbert_c2i( ulong const coord[], const uint nBits )
 
       if (nBits > 1)
         {
-          halfmask_t const ndOnes = ones(halfmask_t,nDims);
+          halfmask_t const ndOnes = ones(halfmask_t, nDims);
           halfmask_t const nd1Ones= ndOnes >> 1; /* for adjust_rotation */
           unsigned b = nDimsBits;
           unsigned rotation = 0;
           halfmask_t flipBit = 0;
-          bitmask_t const nthbits = ones(bitmask_t,nDimsBits) / ndOnes;
+          bitmask_t const nthbits = ones(bitmask_t, nDimsBits) / ndOnes;
           coords = bitTranspose(nDims, nBits, coords);
           coords ^= coords >> nDims;
           index = 0;
@@ -277,7 +277,7 @@ ulong LB_Hilbert_c2i( ulong const coord[], const uint nBits )
               index <<= nDims;
               index |= bits;
               flipBit = (halfmask_t)1 << rotation;
-              adjust_rotation(rotation,nDims,bits);
+              adjust_rotation(rotation, nDims, bits);
             } while (b);
           index ^= nthbits >> 1;
         }

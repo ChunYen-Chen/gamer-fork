@@ -625,7 +625,7 @@ void Refine( const int lv, const UseLBFunc_t UseLBFunc )
 //          idenitfy the coarse-fine interfaces
             Mag_FInterface_Ptr[sib] = NULL;
 
-            const int dir    = sib/2;  // spatial direction: (0,0,1,1,2,2)
+            const int dir    = sib/2;  // spatial direction: (0, 0, 1, 1, 2, 2)
             const int SibPID = Pedigree->sibling[sib];
 
 //          skip non-periodic boundaries
@@ -880,7 +880,7 @@ void Refine( const int lv, const UseLBFunc_t UseLBFunc )
             }
 #           endif
 
-         } // i,j,k
+         } // i, j, k
 #        endif // #if ( MODEL == HYDRO  ||  MODEL == ELBDM )
 
 

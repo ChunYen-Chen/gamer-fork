@@ -511,7 +511,7 @@ void Hydro_TGradientCorrection(       real g_FC_Var   [][NCOMP_TOTAL_PLUS_MAG][ 
 
          for (int v=0; v<NCOMP_MAG; v++)  dB[v] = ( B_Face[v][1] - B_Face[v][0] )*_dh;
 
-#        define MINMOD( a , b )  (  ( (a)*(b)>(real)0.0 ) ? ( SIGN(a)*FMIN(FABS(a),FABS(b)) ) : (real)0.0  )
+#        define MINMOD( a , b )  (  ( (a)*(b)>(real)0.0 ) ? ( SIGN(a)*FMIN(FABS(a), FABS(b)) ) : (real)0.0  )
          Vy_MinModBxz = Vy*MINMOD( -dB[2], dB[0] );
          Vz_MinModBxy = Vz*MINMOD( -dB[1], dB[0] );
 #        undef MINMOD

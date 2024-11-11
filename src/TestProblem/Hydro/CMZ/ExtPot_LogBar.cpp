@@ -74,7 +74,7 @@ void SetExtPotAuxArray_BarredPot(double AuxArray_Flt[], int AuxArray_Int[], cons
 //                PotTable          : 3D potential table used by EXT_POT_TABLE
 //                GenePtr           : Array of pointers for general potential tables
 //
-// Return      :  External potential at (x,y,z,Time)
+// Return      :  External potential at (x, y, z, Time)
 //-----------------------------------------------------------------------------------------
 GPU_DEVICE_NOINLINE
 static real ExtPot_BarredPot(const double x, const double y, const double z, const double Time,
@@ -92,7 +92,7 @@ static real ExtPot_BarredPot(const double x, const double y, const double z, con
    const double Omegab =       UserArray_Flt[3];
    const double fullBS =       UserArray_Flt[4];
 
-// convert x,y,z to be centered on mesh center
+// convert x, y, z to be centered on mesh center
 
    const real   dx     = (real)(x - cx);
    const real   dy     = (real)(y - cy);
@@ -107,8 +107,8 @@ static real ExtPot_BarredPot(const double x, const double y, const double z, con
    const real   B      = (real)(Rc2 + SQR(dxrot) +(SQR(dyrot) + SQR(dz)));
    const real   pconst = (real)2.*log((1+q)*(1-q)/(4*q));
 
-// const real   frac   = std::min(Time/fullBS,1.0);
-   const real   frac   = FMIN(Time/fullBS,1.0);
+// const real   frac   = std::min(Time/fullBS, 1.0);
+   const real   frac   = FMIN(Time/fullBS, 1.0);
    const real   pots   = (real)0.5*V02*(log(B)-pconst);
    const real   potb   = (real)0.5*V02*(log(A)-pconst);
 

@@ -24,7 +24,7 @@ long  LB_Corner2Index( const int lv, const int Corner[], const Check_t Check );
 // Structure   :  patch_t
 // Description :  Data structure of a single patch
 //
-// Data Member :  fluid           : Fluid variables (mass density, momentum density x, y ,z, energy density)
+// Data Member :  fluid           : Fluid variables (mass density, momentum density x, y, z, energy density)
 //                                  --> Including passively advected variables (e.g., metal density)
 //                magnetic        : Magnetic field (Bx, By, Bz)
 //                pot             : Potential
@@ -513,7 +513,7 @@ struct patch_t
 //
 //  Note        :  flux[] will be initialized as zero
 //
-//  Parameter   :  SibID    : Targeted sibling direction (0,1,2,3,4,5) <--> (-x,+x,-y,+y,-z,+z)
+//  Parameter   :  SibID    : Targeted sibling direction (0, 1, 2, 3, 4, 5) <--> (-x, +x, -y, +y, -z, +z)
 //                 AllocTmp : Allocate the temporary flux array flux_tmp[]
 // ===================================================================================
    void fnew( const int SibID, const bool AllocTmp )

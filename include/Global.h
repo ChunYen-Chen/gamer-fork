@@ -89,7 +89,7 @@ extern IntScheme_t        OPT__FLU_INT_SCHEME, OPT__REF_FLU_INT_SCHEME;
 extern OptOutputFormat_t  OPT__OUTPUT_TOTAL;
 extern OptOutputPart_t    OPT__OUTPUT_PART;
 extern OptOutputMode_t    OPT__OUTPUT_MODE;
-extern OptFluBC_t         OPT__BC_FLU[6];          // boundary conditions of fluid at (-x,+x,-y,+y,-z,+z) faces
+extern OptFluBC_t         OPT__BC_FLU[6];          // boundary conditions of fluid at (-x, +x, -y, +y, -z, +z) faces
 extern OptLohnerForm_t    OPT__FLAG_LOHNER_FORM;
 extern OptCorrAfterSync_t OPT__CORR_AFTER_ALL_SYNC;
 extern OptTimeStepLevel_t OPT__DT_LEVEL;

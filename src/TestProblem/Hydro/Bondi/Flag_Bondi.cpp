@@ -17,7 +17,7 @@ extern bool   Bondi_HalfMaxLvRefR;
 // Note        :  1. Linked to the function pointer "Flag_User_Ptr" by Init_TestProb_Hydro_Bondi()
 //                2. Please turn on the runtime option "OPT__FLAG_USER"
 //
-// Parameter   :  i,j,k     : Indices of the targeted element in the patch ptr[ amr->FluSg[lv] ][lv][PID]
+// Parameter   :  i, j, k   : Indices of the targeted element in the patch ptr[ amr->FluSg[lv] ][lv][PID]
 //                lv        : Refinement level of the targeted patch
 //                PID       : ID of the targeted patch
 //                Threshold : User-provided threshold for the flag operation, which is loaded from the

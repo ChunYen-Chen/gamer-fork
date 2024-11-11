@@ -18,10 +18,10 @@
 //
 // Parameter   :  CData           : Input coarse-grid array
 //                CSize           : Size of the CData array
-//                CStart          : (x,y,z) starting indices to perform interpolation on the CData array
+//                CStart          : (x, y, z) starting indices to perform interpolation on the CData array
 //                CRange          : Number of grids in each direction to perform interpolation
 //                FData           : Output fine-grid array
-//                FStart          : (x,y,z) starting indcies to store the interpolation results
+//                FStart          : (x, y, z) starting indcies to store the interpolation results
 //                NComp           : Number of components in the CData and FData array
 //                UnwrapPhase     : Unwrap phase when OPT__INT_PHASE is on (for ELBDM only)
 //                Monotonic       : Ensure that all interpolation results are monotonic
@@ -137,7 +137,7 @@ void Int_CQuartic( real CData[], const int CSize[3], const int CStart[3], const 
 
          TDataX[ Idx_Out       ] = CPtr[Idx_InC] - SlopeDh_4;
          TDataX[ Idx_Out + Tdx ] = CPtr[Idx_InC] + SlopeDh_4;
-      } // k,j,i
+      } // k, j, i
 
 
 //    unwrap phase along y direction
@@ -201,7 +201,7 @@ void Int_CQuartic( real CData[], const int CSize[3], const int CStart[3], const 
 
          TDataY[ Idx_Out       ] = TDataX[Idx_InC] - SlopeDh_4;
          TDataY[ Idx_Out + Tdy ] = TDataX[Idx_InC] + SlopeDh_4;
-      } // k,j,i
+      } // k, j, i
 
 
 //    unwrap phase along z direction

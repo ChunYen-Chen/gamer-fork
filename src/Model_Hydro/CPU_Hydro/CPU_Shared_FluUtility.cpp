@@ -76,9 +76,9 @@ static void Hydro_HTildeFunction( real HTilde, void *params, real *Func, real *D
 // Function    :  Hydro_Rotate3D
 // Description :  Rotate the input fluid variables properly to simplify the 3D calculation
 //
-// Note        :  1. x : (x,y,z) <--> (x,y,z)
-//                   y : (x,y,z) <--> (y,z,x)
-//                   z : (x,y,z) <--> (z,x,y)
+// Note        :  1. x : (x, y, z) <--> (x, y, z)
+//                   y : (x, y, z) <--> (y, z, x)
+//                   z : (x, y, z) <--> (z, x, y)
 //                2. Work no matter InOut[] includes passive scalars or not since they are not modified at all
 //                   --> For MHD, specify the array offset of magnetic field by Mag_Offset
 //
@@ -1532,8 +1532,8 @@ void Hydro_NormalizePassive( const real GasDens, real Passive[], const int NNorm
 // Function    : NewtonRaphsonSolver
 // Description : The one-dimensional root-finder using the Newton's method
 //
-// Note        : 1. Solving arbitrary one-dimensional function with N parameters (a1,..,aN)
-//                  --> i.e. f(a1,..,aN; x) + constant = 0, where constant = Params->Constant
+// Note        : 1. Solving arbitrary one-dimensional function with N parameters (a1, .., aN)
+//                  --> i.e. f(a1, .., aN; x) + constant = 0, where constant = Params->Constant
 //               2. Iteration stops when either |x1-x0| < EpsAbs + EpsRel*x0 or number of iterations > threshold
 //                  --> x1/x0          : the estimated solution in current/previous iteration
 //                  --> EpsAbs, EpsRel : See below

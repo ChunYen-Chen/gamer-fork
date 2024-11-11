@@ -475,7 +475,7 @@ void Init_ByRestart()
 
 //             verify that the loaded patch is within the target range
 #              ifdef LOAD_BALANCE
-               if (  MPI_Rank == LB_Index2Rank( lv, LB_Corner2Index(lv,LoadCorner,CHECK_ON), CHECK_ON )  )
+               if (  MPI_Rank == LB_Index2Rank( lv, LB_Corner2Index(lv, LoadCorner, CHECK_ON), CHECK_ON )  )
 #              else
                if (  LoadCorner[0] >= TargetRange_Min[0]  &&  LoadCorner[0] < TargetRange_Max[0]  &&
                      LoadCorner[1] >= TargetRange_Min[1]  &&  LoadCorner[1] < TargetRange_Max[1]  &&

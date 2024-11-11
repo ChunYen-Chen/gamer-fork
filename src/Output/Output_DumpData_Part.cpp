@@ -24,7 +24,7 @@ static void GetDerivedField( real (*Der_FluIn)[NCOMP_TOTAL][ CUBE(DER_NXT)      
 //                           OUTPUT_X    : x  line
 //                           OUTPUT_Y    : y  line
 //                           OUTPUT_Z    : z  line
-//                           OUTPUT_DIAG : diagonal along (+1,+1,+1)
+//                           OUTPUT_DIAG : diagonal along (+1, +1, +1)
 //
 //                BaseOnly : Only output the base-level data
 //
@@ -83,7 +83,7 @@ void Output_DumpData_Part( const OptOutputPart_t Part, const bool BaseOnly, cons
    const int    NLv    = ( BaseOnly ) ? 1 : NLEVEL;
 
    int     ii, jj, kk, scale;
-   double  dh, xx, yy, zz;    // xx,yy,zz => physical coordinates of cell left edge
+   double  dh, xx, yy, zz;    // xx, yy, zz => physical coordinates of cell left edge
    int    *Corner  = NULL;    // patch corner in scale
    double *EdgeL   = NULL;    // patch corner in physical coord.
    double *EdgeR   = NULL;
@@ -194,7 +194,7 @@ void Output_DumpData_Part( const OptOutputPart_t Part, const bool BaseOnly, cons
                   EdgeL  = amr->patch[0][lv][PID]->EdgeL;
                   EdgeR  = amr->patch[0][lv][PID]->EdgeR;
 
-                  if ( Part == OUTPUT_DIAG ) // (+1,+1,+1) diagonal
+                  if ( Part == OUTPUT_DIAG ) // (+1, +1, +1) diagonal
                   {
 //                   check whether the patch corner is along the diagonal
                      if ( Corner[0] == Corner[1]  &&  Corner[0] == Corner[2] )

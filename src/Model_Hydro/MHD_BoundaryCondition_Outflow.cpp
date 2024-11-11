@@ -32,7 +32,7 @@ static void BC_Outflow_zp( real **Array, const int NVar, const int TVarIdxList[]
 //                                     Array[MAGY]: By array with dimension [ArraySizeZ  ][ArraySizeY+1][ArraySizeX  ]
 //                                     Array[MAGZ]: Bz array with dimension [ArraySizeZ+1][ArraySizeY  ][ArraySizeX  ]
 //                                 --> Array[MAG?] can be NULL if MAG? is not specified in TVarIdxList[]
-//                BC_Face        : Boundary face (0~5) --> (-x,+x,-y,+y,-z,+z)
+//                BC_Face        : Boundary face (0~5) --> (-x, +x, -y, +y, -z, +z)
 //                NVar           : Number of magnetic fields to be prepared
 //                GhostSize      : Number of ghost zones
 //                ArraySizeX/Y/Z : Size of the corresponding cell-centered array including the ghost zones on each side

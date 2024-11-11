@@ -19,7 +19,7 @@ void Init_RecordBasePatch()
    const int NPatch1D[3] = { NX0[0]/PATCH_SIZE+2*NBuf, NX0[1]/PATCH_SIZE+2*NBuf, NX0[2]/PATCH_SIZE+2*NBuf };
    const int NotSetYet   = NULL_INT;
 
-   int order[3], P2[8];    // order[3] : (i,j,k)th patch in the (x,y,z) direction
+   int order[3], P2[8];    // order[3] : (i, j, k)th patch in the (x, y, z) direction
 
 
 // 0. initialize BaseP[] so that we can check whether it's properly set later

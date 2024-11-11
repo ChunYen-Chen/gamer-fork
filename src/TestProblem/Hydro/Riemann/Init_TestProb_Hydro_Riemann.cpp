@@ -6,24 +6,24 @@
 // =======================================================================================
 typedef int Riemann_t;
 const Riemann_t
-   SOD_SHOCK_TUBE =  0
-  ,STRONG_SHOCK   =  1
-  ,TWO_SHOCKS     =  2
-  ,EINFELDT_1203  =  3
-  ,EINFELDT_1125  =  4
-  ,SONIC_RARE     =  5
+   SOD_SHOCK_TUBE  =  0
+   , STRONG_SHOCK  =  1
+   , TWO_SHOCKS    =  2
+   , EINFELDT_1203 =  3
+   , EINFELDT_1125 =  4
+   , SONIC_RARE    =  5
 #ifdef MHD
-  ,RJ2A           =  6
-  ,TORRILHON      =  7
-  ,BRIO_WU        =  8
+   , RJ2A          =  6
+   , TORRILHON     =  7
+   , BRIO_WU       =  8
 #endif
-  ,NOH            =  9
+   , NOH           =  9
 #ifdef SRHD
-  ,SRHD_UR        = 10
-  ,SRHD_MIXED     = 11
+   , SRHD_UR       = 10
+   , SRHD_MIXED    = 11
 #endif
-  ,USER_DEFINED   = 12
-  ;
+   , USER_DEFINED  = 12
+   ;
 
 static Riemann_t Riemann_Prob;         // target Riemann problem
 static int       Riemann_LR;           // wave propagation direction (>0/<0 --> positive/negative direction)

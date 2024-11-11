@@ -115,7 +115,7 @@ void BC_User_Template( real Array[], const int ArraySize[], real fluid[], const 
 //                TFluVarIdxList : List recording the target fluid variable indices ( = [0 ... NCOMP_TOTAL-1] )
 //                Time           : Current physical time
 //                dh             : Cell size
-//                Corner         : Physcial coordinates at the center of the cell (0,0,0) --> Array[0]
+//                Corner         : Physcial coordinates at the center of the cell (0, 0, 0) --> Array[0]
 //                TVar           : Target variables to be prepared --> only used for preparing the derived variables
 //                lv             : Refinement level
 //
@@ -142,7 +142,7 @@ void Flu_BoundaryCondition_User( real *Array, const int NVar_Flu, const int Ghos
 #  endif
 
 
-   const double x0 = Corner[0] + (double)Idx_Start[0]*dh;   // starting x,y,z coordinates
+   const double x0 = Corner[0] + (double)Idx_Start[0]*dh;   // starting x, y, z coordinates
    const double y0 = Corner[1] + (double)Idx_Start[1]*dh;
    const double z0 = Corner[2] + (double)Idx_Start[2]*dh;
 
@@ -245,6 +245,6 @@ void Flu_BoundaryCondition_User( real *Array, const int NVar_Flu, const int Ghos
 #     else
 #     error : unsupported MODEL !!
 #     endif
-   } // k,j,i
+   } // k, j, i
 
 } // FUNCTION : Flu_BoundaryCondition_User

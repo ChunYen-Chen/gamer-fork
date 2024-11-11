@@ -307,7 +307,7 @@ void Flag_Real( const int lv, const UseLBFunc_t UseLBFunc )
                                                      EoS_AuxArray_Flt, EoS_AuxArray_Int, h_EoS_Table,
                                                      NULL );
 #                    endif // #ifdef DUAL_ENERGY ... else ...
-                  } // k,j,i
+                  } // k, j, i
                } // if ( NeedPres )
 
 
@@ -339,7 +339,7 @@ void Flag_Real( const int lv, const UseLBFunc_t UseLBFunc )
                      U3     = Cons[3]/Factor;
 
                      Lrtz[k][j][i] = SQRT( (real)1.0 + SQR(U1) + SQR(U2) + SQR(U3) );
-                  } // i,j,k
+                  } // i, j, k
                } // if ( OPT__FLAG_LRTZ_GRADIENT )
 #              endif // #ifdef SRHD
 #              endif // #if ( MODEL == HYDRO )
@@ -564,7 +564,7 @@ void Flag_Real( const int lv, const UseLBFunc_t UseLBFunc )
 //                      skip all remaining cells
                         Skip = true;
                      }
-                  }}} // i,j,k
+                  }}} // i, j, k
                } // if ( ... )
 
             } // if ( ProperNesting )

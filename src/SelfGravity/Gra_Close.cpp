@@ -80,7 +80,7 @@ void Gra_Close( const int lv, const int SaveSg, const real h_Flu_Array_G[][GRA_N
 #              endif
             }
 #           endif // #ifdef UNSPLIT_GRAVITY
-         } // i,j,k
+         } // i, j, k
 #        endif // #ifdef DUAL_ENERGY
 
 #        elif ( MODEL == ELBDM )

@@ -103,7 +103,7 @@ static void Hydro_Char2Pri( real InOut[], const real Dens, const real Pres, cons
 
 // macro for adding MHD source terms in CTU
 #if ( defined MHD  &&  FLU_SCHEME == CTU )
-#  define MINMOD( a , b )  (  ( (a)*(b)>(real)0.0 ) ? ( SIGN(a)*FMIN(FABS(a),FABS(b)) ) : (real)0.0  )
+#  define MINMOD( a , b )  (  ( (a)*(b)>(real)0.0 ) ? ( SIGN(a)*FMIN(FABS(a), FABS(b)) ) : (real)0.0  )
 #endif
 
 
@@ -169,8 +169,8 @@ static void Hydro_Char2Pri( real InOut[], const real Dens, const real Pres, cons
 //                NGhost             : Number of ghost zones
 //                                      --> "NIn-2*NGhost" cells will be computed along each direction
 //                                      --> Size of g_FC_Var[] is assumed to be "(NIn-2*NGhost)^3"
-//                                      --> The reconstructed data at cell (i,j,k) will be stored in g_FC_Var[]
-//                                          with the index "(i-NGhost,j-NGhost,k-NGhost)"
+//                                      --> The reconstructed data at cell (i, j, k) will be stored in g_FC_Var[]
+//                                          with the index "(i-NGhost, j-NGhost, k-NGhost)"
 //                LR_Limiter         : Slope limiter for the data reconstruction in the MHM/MHM_RP/CTU schemes
 //                                     (0/1/2/3) = (vanLeer/generalized MinMod/vanAlbada/vanLeer+generalized MinMod) limiter
 //                MinMod_Coeff       : Coefficient of the generalized MinMod limiter
@@ -2064,7 +2064,7 @@ void Hydro_LimitSlope( const real L[], const real C[], const real R[], const LR_
 //                                    negative density and pressure
 //                                    --> It is just the input array Flu_Array_In[]
 //                cc_idx            : Index for accessing g_cc_array[]
-//                cc_{i,j,k}        : Index for accessing g_cc_array[] for MHD_UpdateMagnetic_Half()
+//                cc_{i, j, k}      : Index for accessing g_cc_array[] for MHD_UpdateMagnetic_Half()
 //                g_FC_B            : Array storing the face-centered magnetic field
 //                g_EC_Ele          : Array storing the input edge-centered electric field
 //                NGhost            : Ghost zone size of data reconstruction

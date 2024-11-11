@@ -165,14 +165,14 @@ void LB_AllocateBufferPatch_Sibling( const int lv )
             }
 
          } // if ( Allocate )
-      }}} // k,j,i
+      }}} // k, j, i
    } // for (int PID0=0; PID0<amr->NPatchComma[lv][1]; PID0+=8)
 
 
 // 1.3 sort the query list and remove duplicates (with the same LB_Idx)
    for (int r=0; r<MPI_NRank; r++)
    {
-      Mis_Heapsort<int,long>( NQuery_Temp[r], Query_Temp[r], NULL );
+      Mis_Heapsort<int, long>( NQuery_Temp[r], Query_Temp[r], NULL );
 
       if ( NQuery_Temp[r] > 0 )  NQuery[r] = 1;
 
@@ -184,7 +184,7 @@ void LB_AllocateBufferPatch_Sibling( const int lv )
 // 1.4 sort the internal buffer patch list and remove duplicates (with the same LB_Idx)
    for (int r=0; r<MPI_NRank; r++)
    {
-      Mis_Heapsort<int,long>( Int_NQuery_Temp[r], Int_LBIdx[r], NULL );
+      Mis_Heapsort<int, long>( Int_NQuery_Temp[r], Int_LBIdx[r], NULL );
 
       if ( Int_NQuery_Temp[r] > 0 )  Int_NQuery[r] = 1;
 

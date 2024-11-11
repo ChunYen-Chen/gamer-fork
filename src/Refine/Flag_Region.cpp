@@ -11,14 +11,14 @@ bool (*Flag_Region_Ptr)( const int i, const int j, const int k, const int lv, co
 
 //-------------------------------------------------------------------------------------------------------
 // Function    :  Flag_Region_Template
-// Description :  Template for checking if the element (i,j,k) of the input patch is within
+// Description :  Template for checking if the element (i, j, k) of the input patch is within
 //                the regions allowed to be refined
 //
 // Note        :  1. Invoked by Flag_Check() using the function pointer "Flag_Region_Ptr",
 //                   which must be set by a test problem initializer
 //                2. Enabled by the runtime option "OPT__FLAG_REGION"
 //
-// Parameter   :  i,j,k       : Indices of the target element in the patch ptr[0][lv][PID]
+// Parameter   :  i, j, k     : Indices of the target element in the patch ptr[0][lv][PID]
 //                lv          : Refinement level of the target patch
 //                PID         : ID of the target patch
 //
@@ -28,7 +28,7 @@ bool Flag_Region_Template( const int i, const int j, const int k, const int lv, 
 {
 
    const double dh     = amr->dh[lv];                                         // cell size
-   const double Pos[3] = { amr->patch[0][lv][PID]->EdgeL[0] + (i+0.5)*dh,     // x,y,z position
+   const double Pos[3] = { amr->patch[0][lv][PID]->EdgeL[0] + (i+0.5)*dh,     // x, y, z position
                            amr->patch[0][lv][PID]->EdgeL[1] + (j+0.5)*dh,
                            amr->patch[0][lv][PID]->EdgeL[2] + (k+0.5)*dh  };
 

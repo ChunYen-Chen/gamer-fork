@@ -117,7 +117,7 @@ void Aux_Check_Restrict( const int lv, const char *comment )
                                   i, j, k, v, u, ResData[v][k][j][i], Err );
 
                   } // if ( Err > TolErr )
-               } // i,j,k,v
+               } // i, j, k, v
 
             } // if ( SonPID0 != -1 )
          } // for (int PID=0; PID<amr->NPatchComma[lv][1]; PID++)

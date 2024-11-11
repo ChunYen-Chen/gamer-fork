@@ -236,7 +236,7 @@ void Grackle_Prepare( const int lv, real h_Che_Array[], const int NPG, const int
 
             idx_p  ++;
             idx_pg ++;
-         } // i,j,k
+         } // i, j, k
 
       } // for (int LocalID=0; LocalID<8; LocalID++)
    } // for (int TID=0; TID<NPG; TID++)

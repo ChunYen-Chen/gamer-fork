@@ -862,7 +862,7 @@ void CorrectUnphysical( const int lv, const int NPG, const int *PID0_List,
                               FluxR[d][v] = FluxR_1D[v];
                            }
                         }
-                     } // i,j,k
+                     } // i, j, k
                   } // for (int d=0; d<3; d++)
 
 //                store the corrected results in Update[]
@@ -1016,12 +1016,12 @@ void CorrectUnphysical( const int lv, const int NPG, const int *PID0_List,
 #                 endif
 #                 ifdef MHD
                   fprintf( File, ", %14.7e", Emag_Out );
-                  fprintf( File, ", %14.7e", h_Mag_Array_F_Out[TID][MAGX][ IDX321_BX(ijk_out[0]  ,ijk_out[1]  ,ijk_out[2]  ,PS2,PS2) ] );
-                  fprintf( File, ", %14.7e", h_Mag_Array_F_Out[TID][MAGX][ IDX321_BX(ijk_out[0]+1,ijk_out[1]  ,ijk_out[2]  ,PS2,PS2) ] );
-                  fprintf( File, ", %14.7e", h_Mag_Array_F_Out[TID][MAGY][ IDX321_BY(ijk_out[0]  ,ijk_out[1]  ,ijk_out[2]  ,PS2,PS2) ] );
-                  fprintf( File, ", %14.7e", h_Mag_Array_F_Out[TID][MAGY][ IDX321_BY(ijk_out[0]  ,ijk_out[1]+1,ijk_out[2]  ,PS2,PS2) ] );
-                  fprintf( File, ", %14.7e", h_Mag_Array_F_Out[TID][MAGZ][ IDX321_BZ(ijk_out[0]  ,ijk_out[1]  ,ijk_out[2]  ,PS2,PS2) ] );
-                  fprintf( File, ", %14.7e", h_Mag_Array_F_Out[TID][MAGZ][ IDX321_BZ(ijk_out[0]  ,ijk_out[1]  ,ijk_out[2]+1,PS2,PS2) ] );
+                  fprintf( File, ", %14.7e", h_Mag_Array_F_Out[TID][MAGX][ IDX321_BX(ijk_out[0],   ijk_out[1],   ijk_out[2],   PS2, PS2) ] );
+                  fprintf( File, ", %14.7e", h_Mag_Array_F_Out[TID][MAGX][ IDX321_BX(ijk_out[0]+1, ijk_out[1],   ijk_out[2],   PS2, PS2) ] );
+                  fprintf( File, ", %14.7e", h_Mag_Array_F_Out[TID][MAGY][ IDX321_BY(ijk_out[0],   ijk_out[1],   ijk_out[2],   PS2, PS2) ] );
+                  fprintf( File, ", %14.7e", h_Mag_Array_F_Out[TID][MAGY][ IDX321_BY(ijk_out[0],   ijk_out[1]+1, ijk_out[2],   PS2, PS2) ] );
+                  fprintf( File, ", %14.7e", h_Mag_Array_F_Out[TID][MAGZ][ IDX321_BZ(ijk_out[0],   ijk_out[1],   ijk_out[2],   PS2, PS2) ] );
+                  fprintf( File, ", %14.7e", h_Mag_Array_F_Out[TID][MAGZ][ IDX321_BZ(ijk_out[0],   ijk_out[1],   ijk_out[2]+1, PS2, PS2) ] );
 #                 endif
                   fprintf( File, ")\n" );
 
@@ -1078,7 +1078,7 @@ void CorrectUnphysical( const int lv, const int NPG, const int *PID0_List,
                      fprintf( File, " %14.7e", Emag_tmp );
 #                    endif
                      fprintf( File, "\n" );
-                  } // i,j,k
+                  } // i, j, k
 
 //                output all data in the input B field array (including ghost zones)
 #                 ifdef MHD
@@ -1093,19 +1093,19 @@ void CorrectUnphysical( const int lv, const int NPG, const int *PID0_List,
                      fprintf( File, "(%2d,%2d,%2d)", i-FLU_GHOST_SIZE, j-FLU_GHOST_SIZE, k-FLU_GHOST_SIZE );
 
 //                   Bx
-                     if ( j < FLU_NXT  &&  k < FLU_NXT ) fprintf( File, " %14.7e", h_Mag_Array_F_In[TID][MAGX][ IDX321_BX(i,j,k,FLU_NXT,FLU_NXT) ] );
+                     if ( j < FLU_NXT  &&  k < FLU_NXT ) fprintf( File, " %14.7e", h_Mag_Array_F_In[TID][MAGX][ IDX321_BX(i, j, k, FLU_NXT, FLU_NXT) ] );
                      else                                fprintf( File, " %14s", "" );
 
 //                   By
-                     if ( i < FLU_NXT  &&  k < FLU_NXT ) fprintf( File, " %14.7e", h_Mag_Array_F_In[TID][MAGY][ IDX321_BY(i,j,k,FLU_NXT,FLU_NXT) ] );
+                     if ( i < FLU_NXT  &&  k < FLU_NXT ) fprintf( File, " %14.7e", h_Mag_Array_F_In[TID][MAGY][ IDX321_BY(i, j, k, FLU_NXT, FLU_NXT) ] );
                      else                                fprintf( File, " %14s", "" );
 
 //                   Bz
-                     if ( i < FLU_NXT  &&  j < FLU_NXT ) fprintf( File, " %14.7e", h_Mag_Array_F_In[TID][MAGZ][ IDX321_BZ(i,j,k,FLU_NXT,FLU_NXT) ] );
+                     if ( i < FLU_NXT  &&  j < FLU_NXT ) fprintf( File, " %14.7e", h_Mag_Array_F_In[TID][MAGZ][ IDX321_BZ(i, j, k, FLU_NXT, FLU_NXT) ] );
                      else                                fprintf( File, " %14s", "" );
 
                      fprintf( File, "\n" );
-                  } // i,j,k
+                  } // i, j, k
 #                 endif // #ifdef MHD
 
                   fclose( File );
@@ -1174,7 +1174,7 @@ void CorrectUnphysical( const int lv, const int NPG, const int *PID0_List,
 
             } // if ( Unphysical(Update, (AutoReduceDt_Continue)?CheckMinEint:CheckMinEtot, Emag_Out) ) ... else ...
          } // if need correction
-      } // i,j,k
+      } // i, j, k
    } // for (int TID=0; TID<NPG; TID++)
 
 // "delete" applies to NULL as well
@@ -1261,7 +1261,7 @@ void StoreElectric( const int lv, const real h_Ele_Array[][9][NCOMP_ELE][ PS2P1*
 
                   case 2:  case 3:
                      face_idx = TABLE_02( LocalID, 'y', 1, 2 ) + s;
-                     disp_m   = TABLE_02( LocalID, 'x', 0, PS1 ); // (x,z) instead of (z,x)
+                     disp_m   = TABLE_02( LocalID, 'x', 0, PS1 ); // (x, z) instead of (z, x)
                      disp_n   = TABLE_02( LocalID, 'z', 0, PS1 );
                      break;
 
@@ -1483,9 +1483,9 @@ void CorrectElectric( const int SonLv, const real h_Ele_Array[][9][NCOMP_ELE][ P
          {
             const int s           = IndSib[g][w];  // 6 ~ 17
             const int e           = s - 6;         // 0 ~ 11 (edge index)
-            const int xyz         = e / 4;         // (0,0,0,0,1,1,1,1,2,2,2,2)
-            const int face_offset = e % 4 / 2;     // (0,0,1,1,0,0,1,1,0,0,1,1)
-            const int m_offset    = e % 2;         // (0,1,0,1,0,1,0,1,0,1,0,1)
+            const int xyz         = e / 4;         // (0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2)
+            const int face_offset = e % 4 / 2;     // (0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1)
+            const int m_offset    = e % 2;         // (0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1)
             const int face_idx    = ( 3 + xyz*3 )%9 + 2*face_offset;
 
             int  SibID[3], SibSibID[3];

@@ -187,7 +187,7 @@ void Poi_Prepare_Pot( const int lv, const double PrepTime, real h_Pot_Array_P_In
                CPot[ko][jo][io] =   PotWeighting     *CPot[ko][jo][io]
                                   + PotWeighting_IntT*CPot_IntT;
             }
-         }}} // i,j,k
+         }}} // i, j, k
 
 
 //       b. fill up the ghost zones of CPot[] (do not require spatial interpolation from FaLv-1)
@@ -236,7 +236,7 @@ void Poi_Prepare_Pot( const int lv, const double PrepTime, real h_Pot_Array_P_In
                      CPot[ko][jo][io] =   PotWeighting     *CPot[ko][jo][io]
                                         + PotWeighting_IntT*CPot_IntT;
                   }
-               }}} // i,j,k
+               }}} // i, j, k
             } // if ( FaSibPID >= 0 )
 
 

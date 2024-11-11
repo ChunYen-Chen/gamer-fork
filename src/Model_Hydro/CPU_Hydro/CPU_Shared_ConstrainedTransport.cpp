@@ -847,12 +847,12 @@ void MHD_ComputeElectric_Half(       real g_EC_Ele[][ CUBE(N_EC_ELE) ],
 //                3. Ref : (a) Teyssier R., 2002, A&A, 385, 337. doi:10.1051/0004-6361:20011817
 //                         (b) Fromang, S., Hennebelle, P., & Teyssier, R. 2006, aap, 457, 371. doi:10.1051/0004-6361:20065371
 //
-// Parameter   :  fc          : Array to store the updated face-centered B field and the other fluid variables
-//                g_EC_Ele    : Array storing the input edge-centered electric field
-//                dt          : Time interval to advance solution
-//                dh          : Cell size
-//                idx_{i,j,k} : Indices for accessing g_EC_Ele[]
-//                NEle        : Stride for accessing g_EC_Ele[]
+// Parameter   :  fc            : Array to store the updated face-centered B field and the other fluid variables
+//                g_EC_Ele      : Array storing the input edge-centered electric field
+//                dt            : Time interval to advance solution
+//                dh            : Cell size
+//                idx_{i, j, k} : Indices for accessing g_EC_Ele[]
+//                NEle          : Stride for accessing g_EC_Ele[]
 //
 // Return      :  fc[][NCOMP_LR]
 //------------------------------------------------------------------------------------------------------

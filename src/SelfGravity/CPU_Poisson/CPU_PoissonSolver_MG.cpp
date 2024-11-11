@@ -382,7 +382,7 @@ void Smoothing( real *Sol_1D, const real *RHS_1D, const real dh, const int NGrid
    const real dh2     = dh*dh;
    const real One_Six = (real)1.0/(real)6.0;
 
-   int i_start, i_start_pass, i_start_k;     // i_start_(pass,k) : record the i_start in the (pass,k) loop
+   int i_start, i_start_pass, i_start_k;     // i_start_(pass, k) : record the i_start in the (pass, k) loop
    int ip, jp, kp, im, jm, km;
 
 // typecasting to 3D arrays

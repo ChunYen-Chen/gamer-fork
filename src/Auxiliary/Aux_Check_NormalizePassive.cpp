@@ -95,7 +95,7 @@ void Aux_Check_NormalizePassive( const int lv, const char *comment )
                   Aux_Message( stderr, "  %13.7e  %13.7e  %13.7e", Sum, GasDens, RelErr );
                   Aux_Message( stderr, "\n" );
                } // if ( RelErr > TolErr )
-            } // i,j,k
+            } // i, j, k
          } // for (int PID=0; PID<amr->NPatchComma[lv][1]; PID++)
       } // if ( MPI_Rank == TargetRank )
 

@@ -11,7 +11,7 @@
 //                   which must be set by a test problem initializer
 //                2. Enabled by the runtime option "OPT__FLAG_USER"
 //
-// Parameter   :  i,j,k     : Indices of the target element in the patch ptr[ amr->FluSg[lv] ][lv][PID]
+// Parameter   :  i, j, k   : Indices of the target element in the patch ptr[ amr->FluSg[lv] ][lv][PID]
 //                lv        : Refinement level of the target patch
 //                PID       : ID of the target patch
 //                Threshold : User-provided threshold for the flag operation, which is loaded from the

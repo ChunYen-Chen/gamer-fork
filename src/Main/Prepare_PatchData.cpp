@@ -1469,7 +1469,7 @@ void Prepare_PatchData( const int lv, const double PrepTime, real *OutputCC, rea
 //                           --> the checks of (Side<6) below only avoid the redundant copies on the F-F interfaces
 //                               between the central 8 patches and their sibling patches but do not remove the
 //                               redundant copies on the F-F interfaces between those sibling patches
-                     ijk_s [norm_dir] += TABLE_01( Side, 'x'+norm_dir, 0, TABLE_02(LocalID,'x'+norm_dir,0,1), (Side<6)?1:0 );
+                     ijk_s [norm_dir] += TABLE_01( Side, 'x'+norm_dir, 0, TABLE_02(LocalID, 'x'+norm_dir, 0, 1), (Side<6)?1:0 );
                      ijk_e [norm_dir] += TABLE_01( Side, 'x'+norm_dir, (Side<6)?0:1, 1, 1 );
                      size_i[norm_dir] ++;
                      size_o[norm_dir] ++;
@@ -3188,8 +3188,8 @@ void MHD_SetFInterface( real *FInt_Data, real *FInt_Ptr[6], const real *Data1PG_
 // iterate over the six faces of the target ghost-zone region
    for (int f=0; f<6; f++)
    {
-      norm_dir    = f/2;   // [0,0,1,1,2,2]
-      sign        = f&1;   // [0,1,0,1,0,1]
+      norm_dir    = f/2;   // [0, 0, 1, 1, 2, 2]
+      sign        = f&1;   // [0, 1, 0, 1, 0, 1]
       FInt_Ptr[f] = NULL;  // initialize as NULL --> coarse-coarse interface
 
 //    nothing to do on the left/right faces of left/right patches
@@ -3286,7 +3286,7 @@ void MHD_SetFInterface( real *FInt_Data, real *FInt_Ptr[6], const real *Data1PG_
 
                idx_i ++;
                idx_o ++;
-            }}} // i,j,k
+            }}} // i, j, k
          } // if ( FInt_Side == -1 )
 
 
@@ -3374,7 +3374,7 @@ void MHD_SetFInterface( real *FInt_Data, real *FInt_Ptr[6], const real *Data1PG_
 
                   idx_i ++;
                   idx_o ++;
-               }}} // i,j,k
+               }}} // i, j, k
             } // for (int Count=0; Count<TABLE_04(FInt_Side); Count++)
          } // if ( FInt_Side == -1 ) ... else ...
 
@@ -3459,7 +3459,7 @@ void MHD_CheckDivB( const real *Data1PG_FC, const int GhostSize, const real Tole
          j_max    = j;
          k_max    = k;
       }
-   } // i,j,k
+   } // i, j, k
 
 
 // warning if the maximum div(B) exceeds the tolerance value

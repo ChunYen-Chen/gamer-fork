@@ -142,8 +142,8 @@ void Output_PreparedPatch_Fluid( const int TLv, const int TPID,
 #        else
          const real Emag = NULL_REAL;
 #        endif
-         fprintf( File, BlankPlusFormat_Flt, Hydro_Con2Pres(u[DENS],u[MOMX],u[MOMY],u[MOMZ],u[ENGY],u+NCOMP_FLUID,
-                  CheckMinPres_No,NULL_REAL,Emag, EoS_DensEint2Pres_CPUPtr, EoS_GuessHTilde_CPUPtr,
+         fprintf( File, BlankPlusFormat_Flt, Hydro_Con2Pres(u[DENS], u[MOMX], u[MOMY], u[MOMZ], u[ENGY], u+NCOMP_FLUID,
+                  CheckMinPres_No, NULL_REAL, Emag, EoS_DensEint2Pres_CPUPtr, EoS_GuessHTilde_CPUPtr,
                   EoS_HTilde2Temp_CPUPtr, EoS_AuxArray_Flt, EoS_AuxArray_Int, h_EoS_Table, NULL) );
 #        endif // #if ( MODEL == HYDRO )
 
@@ -173,24 +173,24 @@ void Output_PreparedPatch_Fluid( const int TLv, const int TPID,
 
 //       B_X
          if ( j != FLU_GHOST_SIZE+PS1  &&  k != FLU_GHOST_SIZE+PS1 )
-            fprintf( File, BlankPlusFormat_Flt, h_Mag_Array[TID][MAGX][ IDX321_BX(I,J,K,FLU_NXT,FLU_NXT) ] );
+            fprintf( File, BlankPlusFormat_Flt, h_Mag_Array[TID][MAGX][ IDX321_BX(I, J, K, FLU_NXT, FLU_NXT) ] );
          else
             fprintf( File, " %*s", StrLen_Flt, "" );
 
 //       B_Y
          if ( i != FLU_GHOST_SIZE+PS1  &&  k != FLU_GHOST_SIZE+PS1 )
-            fprintf( File, BlankPlusFormat_Flt, h_Mag_Array[TID][MAGY][ IDX321_BY(I,J,K,FLU_NXT,FLU_NXT) ] );
+            fprintf( File, BlankPlusFormat_Flt, h_Mag_Array[TID][MAGY][ IDX321_BY(I, J, K, FLU_NXT, FLU_NXT) ] );
          else
             fprintf( File, " %*s", StrLen_Flt, "" );
 
 //       B_Z
          if ( i != FLU_GHOST_SIZE+PS1  &&  j != FLU_GHOST_SIZE+PS1 )
-            fprintf( File, BlankPlusFormat_Flt, h_Mag_Array[TID][MAGZ][ IDX321_BZ(I,J,K,FLU_NXT,FLU_NXT) ] );
+            fprintf( File, BlankPlusFormat_Flt, h_Mag_Array[TID][MAGZ][ IDX321_BZ(I, J, K, FLU_NXT, FLU_NXT) ] );
          else
             fprintf( File, " %*s", StrLen_Flt, "" );
 
          fprintf( File, "\n" );
-      }}} // i,j,k
+      }}} // i, j, k
 #     endif // #ifdef MHD
 
 

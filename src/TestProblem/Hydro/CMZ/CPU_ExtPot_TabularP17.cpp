@@ -101,7 +101,7 @@ void SetExtPotAuxArray_TabularP17( double AuxArray_Flt[], int AuxArray_Int[], co
 //                PotTable          : 3D potential table used by EXT_POT_TABLE
 //                GenePtr           : Array of pointers for general potential tables
 //
-// Return      :  External potential at (x,y,z,Time)
+// Return      :  External potential at (x, y, z, Time)
 //-----------------------------------------------------------------------------------------
 GPU_DEVICE_NOINLINE
 static real ExtPot_TabularP17( const double x, const double y, const double z, const double Time,
@@ -140,7 +140,7 @@ static real ExtPot_TabularP17( const double x, const double y, const double z, c
 
    if ( rad <= cx-0.1 )
    {
-// 1. rotate x,y,z
+// 1. rotate x, y, z
      angle  =  -1.*Time*Omegab;
      dxrot  =  xp*cos(angle) - yp*sin(angle);
      dyrot  =  xp*sin(angle) + yp*cos(angle);

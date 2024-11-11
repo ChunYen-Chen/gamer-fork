@@ -252,39 +252,39 @@ const int NSOLVER = 7;
 
 typedef int Solver_t;
 const Solver_t
-   FLUID_SOLVER               = 0
+   FLUID_SOLVER                 = 0
 #ifdef GRAVITY
-  ,POISSON_SOLVER             = 1
-  ,GRAVITY_SOLVER             = 2
-  ,POISSON_AND_GRAVITY_SOLVER = 3
+   , POISSON_SOLVER             = 1
+   , GRAVITY_SOLVER             = 2
+   , POISSON_AND_GRAVITY_SOLVER = 3
 #endif
 #ifdef SUPPORT_GRACKLE
-  ,GRACKLE_SOLVER             = 4
+   , GRACKLE_SOLVER             = 4
 #endif
-  ,DT_FLU_SOLVER              = 5
+   , DT_FLU_SOLVER              = 5
 #ifdef GRAVITY
-  ,DT_GRA_SOLVER              = 6
+   , DT_GRA_SOLVER              = 6
 #endif
-  ,SRC_SOLVER                 = 7
-  ;
+   , SRC_SOLVER                 = 7
+   ;
 
 
 // target mode in Buf_GetBufferData() and LB_GetBufferData()
 typedef int GetBufMode_t;
 const GetBufMode_t
-   DATA_GENERAL         = 1
-  ,DATA_AFTER_FIXUP     = 2
-  ,DATA_AFTER_REFINE    = 3
-  ,DATA_RESTRICT        = 4
-  ,COARSE_FINE_FLUX     = 5
+   DATA_GENERAL           = 1
+   , DATA_AFTER_FIXUP     = 2
+   , DATA_AFTER_REFINE    = 3
+   , DATA_RESTRICT        = 4
+   , COARSE_FINE_FLUX     = 5
 #ifdef GRAVITY
-  ,POT_FOR_POISSON      = 6
-  ,POT_AFTER_REFINE     = 7
+   , POT_FOR_POISSON      = 6
+   , POT_AFTER_REFINE     = 7
 #endif
 #ifdef MHD
-  ,COARSE_FINE_ELECTRIC = 8
+   , COARSE_FINE_ELECTRIC = 8
 #endif
-  ;
+   ;
 
 
 // fluid boundary conditions

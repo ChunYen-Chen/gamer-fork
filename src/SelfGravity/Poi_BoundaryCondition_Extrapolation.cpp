@@ -30,7 +30,7 @@ static void BC_Extrapolation_zp( real *Array, const int NVar, const int GhostSiz
 //                3. Used only for the isolated boundary condition
 //
 // Parameter   :  Array          : Array to store the prepared data of one patch group (including the ghost-zone data)
-//                BC_Face        : Boundary face (0~5) --> (-x,+x,-y,+y,-z,+z)
+//                BC_Face        : Boundary face (0~5) --> (-x, +x, -y, +y, -z, +z)
 //                NVar           : Number of variables to be prepared
 //                                 --> Currently it's always 1 for potential but it works for NVar>1
 //                GhostSize      : Number of ghost zones

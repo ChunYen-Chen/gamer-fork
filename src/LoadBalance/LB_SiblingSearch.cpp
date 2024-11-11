@@ -212,7 +212,8 @@ void LB_SiblingSearch( const int lv, const bool SearchAllPID, const int NInput, 
 
 // check results in debug mode
 #  ifdef GAMER_DEBUG
-   const int MirrorSib[26] = { 1,0,3,2,5,4,9,8,7,6,13,12,11,10,17,16,15,14,25,24,23,22,21,20,19,18 };
+   const int MirrorSib[26] = {  1,  0,  3,  2,  5,  4,  9,  8,  7,  6, 13, 12, 11,
+                               10, 17, 16, 15, 14, 25, 24, 23, 22, 21, 20, 19, 18 };
    const int PScale        = PATCH_SIZE*amr->scale[lv];
 
    for (int PID=0; PID<NPatch; PID++)

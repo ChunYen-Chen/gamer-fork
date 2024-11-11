@@ -18,6 +18,6 @@ bool Aux_CheckFileExist( const char *FileName )
 {
 
    struct stat Buf;
-   return ( stat(FileName,&Buf) == 0 );
+   return ( stat(FileName, &Buf) == 0 );
 
 } // FUNCTION : Aux_CheckFileExist

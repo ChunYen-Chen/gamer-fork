@@ -255,7 +255,7 @@ void Aux_Check_Conservation( const char *comment )
 #              endif
 #              endif
                Fluid_lv[7] += Ekin;
-            } // i,j,k
+            } // i, j, k
 
 
 #           elif ( MODEL == ELBDM )
@@ -375,7 +375,7 @@ void Aux_Check_Conservation( const char *comment )
 //             [7] kinetic energy in ELBDM
                Fluid_lv[7] += Ekin;
 
-            }}} // i,j,k
+            }}} // i, j, k
 
 #           else
 #           error : ERROR : unsupported MODEL !!

@@ -154,7 +154,8 @@ void Buf_GetBufferData( const int lv, const int FluSg, const int MagSg, const in
 
 
 // TSibList : target sibling direction, MaxSib : number of sibling directions to exchange data
-   const int TSibList[26] = { 0,1,2,3,4,5,6,9,7,8,10,13,11,12,14,17,16,15,18,25,19,24,20,23,21,22 };
+   const int TSibList[26] = {  0,  1,  2,  3,  4,  5,  6,  9,  7,  8, 10, 13, 11,
+                              12, 14, 17, 16, 15, 18, 25, 19, 24, 20, 23, 21, 22 };
    const int MaxSib       = ( GetBufMode == COARSE_FINE_FLUX ) ? 6 : 26;
 
    int LoopWidth[3], Disp[2][3], Sib, MirSib, TRank[2];

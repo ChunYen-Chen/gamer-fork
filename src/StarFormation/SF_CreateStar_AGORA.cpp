@@ -255,7 +255,7 @@ void SF_CreateStar_AGORA( const int lv, const real TimeNew, const real dt, Rando
          GasMFracLeft = (real)1.0 - StarMFrac;
 
          for (int v=0; v<NCOMP_TOTAL; v++)   fluid[v][k][j][i] *= GasMFracLeft;
-      } // i,j,k
+      } // i, j, k
 
 
 

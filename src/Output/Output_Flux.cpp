@@ -9,7 +9,7 @@
 //
 // Parameter   :  lv      : Target refinement level
 //                PID     : Target patch ID
-//                Sib     : Target sibling direction of the flux : ( 0,1,2,3,4,5 ) <--> ( -x,+x,-y,+y,-z,+z )
+//                Sib     : Target sibling direction of the flux : ( 0, 1, 2, 3, 4, 5 ) <--> ( -x, +x, -y, +y, -z, +z )
 //                comment : String to attach to the end of the file name
 //-------------------------------------------------------------------------------------------------------
 void Output_Flux( const int lv, const int PID, const int Sib, const char *comment )

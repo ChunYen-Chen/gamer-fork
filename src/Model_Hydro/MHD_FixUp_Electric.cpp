@@ -68,8 +68,8 @@ void MHD_FixUp_Electric( const int lv )
 
 
 //       2-1. set array indices
-         const int xyz = s / 2;           // (0,0,1,1,2,2): face direction
-         const int LR  = s % 2;           // (0,1,0,1,0,1): left/right face along xyz
+         const int xyz = s / 2;           // (0, 0, 1, 1, 2, 2): face direction
+         const int LR  = s % 2;           // (0, 1, 0, 1, 0, 1): left/right face along xyz
          const int B1  = ( xyz + 2 )%3;   // B component to be fixed by E_((xyz+1)%3)
          const int B2  = ( xyz + 1 )%3;   // B component to be fixed by E_((xyz+2)%3)
 
@@ -79,8 +79,8 @@ void MHD_FixUp_Electric( const int lv )
 
          switch ( xyz )
          {
-//          B1: Ey->Bz, (m,n)=(z,y)
-//          B2: Ez->By, (m,n)=(z,y)
+//          B1: Ey->Bz, (m, n)=(z, y)
+//          B2: Ez->By, (m, n)=(z, y)
             case 0 :
                offset1  = LR*PS1M1;
                offset2  = offset1;
@@ -90,8 +90,8 @@ void MHD_FixUp_Electric( const int lv )
                stride2m = PS1P1_PS1;
                break;
 
-//          B1: Ez->Bx, (m,n)=(x,z)
-//          B2: Ex->Bz, (m,n)=(x,z)
+//          B1: Ez->Bx, (m, n)=(x, z)
+//          B2: Ex->Bz, (m, n)=(x, z)
             case 1 :
                offset1  = LR*PS1M1_PS1P1;
                offset2  = LR*PS1M1_PS1;
@@ -101,8 +101,8 @@ void MHD_FixUp_Electric( const int lv )
                stride2m = 1;
                break;
 
-//          B1: Ex->By, (m,n)=(y,x)
-//          B2: Ey->Bx, (m,n)=(y,x)
+//          B1: Ex->By, (m, n)=(y, x)
+//          B2: Ey->Bx, (m, n)=(y, x)
             case 2 :
                offset1  = LR*PS1_PS1M1_PS1P1;
                offset2  = offset1;
@@ -157,11 +157,11 @@ void MHD_FixUp_Electric( const int lv )
 
 //       3-1. set array indices
          const int e   = s - 6;           // 0 ~ 11 (edge index)
-         const int xyz = (e/4+2)%3;       // (2,2,2,2,0,0,0,0,1,1,1,1): edge direction
+         const int xyz = (e/4+2)%3;       // (2, 2, 2, 2, 0, 0, 0, 0, 1, 1, 1, 1): edge direction
          const int B1  = ( xyz + 1 )%3;   // 1st B component to be fixed
          const int B2  = ( xyz + 2 )%3;   // 2nd B component to be fixed
-         const int LR1 = e%2;             // (0,1,0,1,0,1,0,1,0,1,0,1): left(0)/right(1) edge along B1
-         const int LR2 = e%4/2;           // (0,0,1,1,0,0,1,1,0,0,1,1): left(0)/right(1) egee along B2
+         const int LR1 = e%2;             // (0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1): left(0)/right(1) edge along B1
+         const int LR2 = e%4/2;           // (0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1): left(0)/right(1) egee along B2
 
 
 //       3-2. set array offsets and strides for B1/B2

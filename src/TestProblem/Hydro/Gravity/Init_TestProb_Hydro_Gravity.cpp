@@ -305,7 +305,7 @@ void OutputError()
 
             fluid[MOMX][k][j][i] = abserr;
             fluid[MOMY][k][j][i] = relerr;
-         }}} // i,j,k
+         }}} // i, j, k
       } // PID
    } // lv
 

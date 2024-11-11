@@ -120,7 +120,7 @@ void Hydro_RiemannSolver_HLLD( const int XYZ, real Flux_Out[], const real L_In[]
    real sqrt_RhoLst, sqrt_RhoRst;
    real PT_L, PT_R, PT_st;
    real BtL2, BtR2, B2L_d2, B2R_d2;
-   real a2 , Cf2 ,Cax2, Cat2, Ca2_plus_a2, Ca2_min_a2, Cf2_min_Cs2;
+   real a2, Cf2, Cax2, Cat2, Ca2_plus_a2, Ca2_min_a2, Cf2_min_Cs2;
    real Cf_L, Cf_R;
    real Sd_L, Sd_R, Sdm_L, Sdm_R, SdL_SdmL, SdR_SdmR;
    real VBdot_Lst, VBdot_Rst;

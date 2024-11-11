@@ -10,7 +10,7 @@ static bool Check_Curl( const int i, const int j, const int k,
 
 //-------------------------------------------------------------------------------------------------------
 // Function    :  Flag_Check
-// Description :  Check if the target cell (i,j,k) satisfies the refinement criteria
+// Description :  Check if the target cell (i, j, k) satisfies the refinement criteria
 //
 // Note        :  1. Useless input arrays are set to NULL (e.g, Pot[] if GRAVITY is off)
 //                2. For OPT__FLAG_USER, the function pointer "Flag_User_Ptr" must be set by a
@@ -18,7 +18,7 @@ static bool Check_Curl( const int i, const int j, const int k,
 //
 // Parameter   :  lv           : Target refinement level
 //                PID          : Target patch ID
-//                i,j,k        : Indices of the target cell
+//                i, j, k      : Indices of the target cell
 //                dv           : Cell volume at the target level
 //                Fluid        : Input fluid array (with NCOMP_TOTAL components)
 //                Pot          : Input potential array
@@ -219,14 +219,14 @@ bool Flag_Check( const int lv, const int PID, const int i, const int j, const in
 
 //-------------------------------------------------------------------------------------------------------
 // Function    :  Check_Gradient
-// Description :  Check if the gradient of the input data at the cell (i,j,k) exceeds the given threshold
+// Description :  Check if the gradient of the input data at the cell (i, j, k) exceeds the given threshold
 //
 // Note        :  1. Size of the array "Input" should be PATCH_SIZE^3
 //                2. For cells adjacent to the patch boundaries, only first-order approximation is adopted
 //                   to estimate gradient. Otherwise, second-order approximation is adopted.
 //                   --> Advantage: NO need to prepare the ghost-zone data for the target patch
 //
-// Parameter   :  i,j,k     : Indices of the target cell in the array "Input"
+// Parameter   :  i, j, k   : Indices of the target cell in the array "Input"
 //                Input     : Input array
 //                Threshold : Threshold for the flag operation
 //
@@ -275,7 +275,7 @@ bool Check_Gradient( const int i, const int j, const int k, const real Input[], 
 
 //-------------------------------------------------------------------------------------------------------
 // Function    :  Check_Curl
-// Description :  Check if the curl of the input vector at the cell (i,j,k) exceeds the given threshold
+// Description :  Check if the curl of the input vector at the cell (i, j, k) exceeds the given threshold
 //
 // Note        :  1. Flag if |curl(v)|*dh/|v| > threshold
 //                2. For cells adjacent to the patch boundaries, only first-order approximation is adopted
@@ -284,7 +284,7 @@ bool Check_Gradient( const int i, const int j, const int k, const real Input[], 
 //                3. Size of the input arrays "vx/y/z" should be PATCH_SIZE^3
 //                   --> They should store **cell-centered** values
 //
-// Parameter   :  i,j,k     : Target array indices
+// Parameter   :  i, j, k   : Target array indices
 //                vx/y/z    : Input vectors
 //                Threshold : Refinement threshold
 //

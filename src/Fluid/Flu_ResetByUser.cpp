@@ -193,7 +193,7 @@ void Flu_ResetByUser_API_Default( const int lv, const int FluSg, const int MagSg
             if ( k != PS1 )   AzTID[idx] = MHD_ResetByUser_VecPot_Ptr( x,      y,      z+dh_2, TimeNew, dt, lv, 'z', NULL );
 
             idx ++;
-         }}} // i,j,k
+         }}} // i, j, k
       } // if ( UseVecPot )
 
 
@@ -225,7 +225,7 @@ void Flu_ResetByUser_API_Default( const int lv, const int FluSg, const int MagSg
                                                 UseVecPot, AxTID, AyTID, AzTID, i, j, k );
 
             amr->patch[MagSg][lv][PID]->magnetic[v][ idx ++ ] = B_out;
-         }}} // i,j,k
+         }}} // i, j, k
       } // for (int v=0; v<NCOMP_MAG; v++)
 
 
@@ -309,7 +309,7 @@ void Flu_ResetByUser_API_Default( const int lv, const int FluSg, const int MagSg
             for (int v=0; v<NCOMP_TOTAL; v++)   amr->patch[FluSg][lv][PID]->fluid[v][k][j][i] = fluid[v];
          } // if ( Reset )
 
-      }}} // i,j,k
+      }}} // i, j, k
    } // for (int PID=0; PID<amr->NPatchComma[lv][1]; PID++)
    } // if ( ResetFlu )
 

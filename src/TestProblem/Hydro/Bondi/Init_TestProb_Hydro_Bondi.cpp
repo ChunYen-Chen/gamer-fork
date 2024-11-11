@@ -186,31 +186,31 @@ void SetParameter()
 // --> note that VARIABLE, DEFAULT, MIN, and MAX must have the same data type
 // --> some handy constants (e.g., NoMin_int, Eps_float, ...) are defined in "include/ReadPara.h"
 // ********************************************************************************************************************************
-// ReadPara->Add( "KEY_IN_THE_FILE",      &VARIABLE,                  DEFAULT,      MIN,              MAX               );
+// ReadPara->Add( "KEY_IN_THE_FILE",       &VARIABLE,                  DEFAULT,      MIN,              MAX               );
 // ********************************************************************************************************************************
-   ReadPara->Add( "Bondi_MassBH",         &Bondi_MassBH,             -1.0,          Eps_double,       NoMax_double      );
-   ReadPara->Add( "Bondi_Rho0",           &Bondi_Rho0,               -1.0,          Eps_double,       NoMax_double      );
-   ReadPara->Add( "Bondi_T0",             &Bondi_T0,                 -1.0,          Eps_double,       NoMax_double      );
-   ReadPara->Add( "Bondi_RefineRadius0",  &Bondi_RefineRadius0,      -1.0,          Eps_double,       NoMax_double      );
-   ReadPara->Add( "Bondi_HalfMaxLvRefR",  &Bondi_HalfMaxLvRefR,       true,         Useless_bool,     Useless_bool      );
-   ReadPara->Add( "Bondi_InBC_Rho",       &Bondi_InBC_Rho,           -1.0,          Eps_double,       NoMax_double      );
-   ReadPara->Add( "Bondi_InBC_T",         &Bondi_InBC_T,             -1.0,          Eps_double,       NoMax_double      );
-   ReadPara->Add( "Bondi_InBC_NCell",     &Bondi_InBC_NCell,         -1.0,          Eps_double,       NoMax_double      );
-   ReadPara->Add( "Bondi_Soften_NCell",   &Bondi_Soften_NCell,       -1.0,          NoMin_double,     NoMax_double      );
+   ReadPara->Add( "Bondi_MassBH",          &Bondi_MassBH,             -1.0,          Eps_double,       NoMax_double      );
+   ReadPara->Add( "Bondi_Rho0",            &Bondi_Rho0,               -1.0,          Eps_double,       NoMax_double      );
+   ReadPara->Add( "Bondi_T0",              &Bondi_T0,                 -1.0,          Eps_double,       NoMax_double      );
+   ReadPara->Add( "Bondi_RefineRadius0",   &Bondi_RefineRadius0,      -1.0,          Eps_double,       NoMax_double      );
+   ReadPara->Add( "Bondi_HalfMaxLvRefR",   &Bondi_HalfMaxLvRefR,       true,         Useless_bool,     Useless_bool      );
+   ReadPara->Add( "Bondi_InBC_Rho",        &Bondi_InBC_Rho,           -1.0,          Eps_double,       NoMax_double      );
+   ReadPara->Add( "Bondi_InBC_T",          &Bondi_InBC_T,             -1.0,          Eps_double,       NoMax_double      );
+   ReadPara->Add( "Bondi_InBC_NCell",      &Bondi_InBC_NCell,         -1.0,          Eps_double,       NoMax_double      );
+   ReadPara->Add( "Bondi_Soften_NCell",    &Bondi_Soften_NCell,       -1.0,          NoMin_double,     NoMax_double      );
 
-   ReadPara->Add( "Bondi_HSE",            &Bondi_HSE,                 false,        Useless_bool,     Useless_bool      );
-   ReadPara->Add( "Bondi_HSE_Mode",       &Bondi_HSE_Mode,            1,            1,                3                 );
-   ReadPara->Add( "Bondi_HSE_Dens_NBin",  &Bondi_HSE_Dens_NBin,       10000,        2,                NoMax_int         );
-   ReadPara->Add( "Bondi_HSE_Dens_MinR",  &Bondi_HSE_Dens_MinR,      -1.0,          NoMin_double,     NoMax_double      );
-   ReadPara->Add( "Bondi_HSE_Dens_MaxR",  &Bondi_HSE_Dens_MaxR,      -1.0,          NoMin_double,     NoMax_double      );
-   ReadPara->Add( "Bondi_HSE_Dens_NormR", &Bondi_HSE_Dens_NormR,     -1.0,          NoMin_double,     NoMax_double      );
-   ReadPara->Add( "Bondi_HSE_Dens_NormD", &Bondi_HSE_Dens_NormD,     -1.0,          Eps_double,       NoMax_double      );
-   ReadPara->Add( "Bondi_HSE_Truncate",   &Bondi_HSE_Truncate,        true,         Useless_bool,     Useless_bool      );
-   ReadPara->Add( "Bondi_HSE_TrunR",      &Bondi_HSE_TrunR,          -1.0,          NoMin_double,     NoMax_double      );
-   ReadPara->Add( "Bondi_HSE_TrunD",      &Bondi_HSE_TrunD,          -1.0,          Eps_double,       NoMax_double      );
-   ReadPara->Add( "Bondi_HSE_TrunSmoothR",&Bondi_HSE_TrunSmoothR,    -1.0,          NoMin_double,     NoMax_double      );
-   ReadPara->Add( "Bondi_HSE_Pres_NormT", &Bondi_HSE_Pres_NormT,      false,        Useless_bool,     Useless_bool      );
-   ReadPara->Add( "Bondi_HSE_Beta_Rcore", &Bondi_HSE_Beta_Rcore,     -1.0,          Eps_double,       NoMax_double      );
+   ReadPara->Add( "Bondi_HSE",             &Bondi_HSE,                 false,        Useless_bool,     Useless_bool      );
+   ReadPara->Add( "Bondi_HSE_Mode",        &Bondi_HSE_Mode,            1,            1,                3                 );
+   ReadPara->Add( "Bondi_HSE_Dens_NBin",   &Bondi_HSE_Dens_NBin,       10000,        2,                NoMax_int         );
+   ReadPara->Add( "Bondi_HSE_Dens_MinR",   &Bondi_HSE_Dens_MinR,      -1.0,          NoMin_double,     NoMax_double      );
+   ReadPara->Add( "Bondi_HSE_Dens_MaxR",   &Bondi_HSE_Dens_MaxR,      -1.0,          NoMin_double,     NoMax_double      );
+   ReadPara->Add( "Bondi_HSE_Dens_NormR",  &Bondi_HSE_Dens_NormR,     -1.0,          NoMin_double,     NoMax_double      );
+   ReadPara->Add( "Bondi_HSE_Dens_NormD",  &Bondi_HSE_Dens_NormD,     -1.0,          Eps_double,       NoMax_double      );
+   ReadPara->Add( "Bondi_HSE_Truncate",    &Bondi_HSE_Truncate,        true,         Useless_bool,     Useless_bool      );
+   ReadPara->Add( "Bondi_HSE_TrunR",       &Bondi_HSE_TrunR,          -1.0,          NoMin_double,     NoMax_double      );
+   ReadPara->Add( "Bondi_HSE_TrunD",       &Bondi_HSE_TrunD,          -1.0,          Eps_double,       NoMax_double      );
+   ReadPara->Add( "Bondi_HSE_TrunSmoothR", &Bondi_HSE_TrunSmoothR,    -1.0,          NoMin_double,     NoMax_double      );
+   ReadPara->Add( "Bondi_HSE_Pres_NormT",  &Bondi_HSE_Pres_NormT,      false,        Useless_bool,     Useless_bool      );
+   ReadPara->Add( "Bondi_HSE_Beta_Rcore",  &Bondi_HSE_Beta_Rcore,     -1.0,          Eps_double,       NoMax_double      );
 
    ReadPara->Read( FileName );
 

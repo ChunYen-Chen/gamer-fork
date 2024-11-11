@@ -313,7 +313,7 @@ void Par_UpdateParticle( const int lv, const double TimeNew, const double TimeOl
 
                for (int d=0; d<3; d++)    Acc3D[d][kk][jj][ii] = Acc_Temp[d];
 
-            }}} // i,j,k
+            }}} // i, j, k
          } // if ( !UseStoredAcc )
 
 

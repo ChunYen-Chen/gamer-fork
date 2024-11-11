@@ -23,211 +23,211 @@ void Init_Load_Parameter()
 // --> note that VARIABLE, DEFAULT, MIN, and MAX must have the same data type
 // --> some handy constants (e.g., NoMin_int, Eps_float, ...) are defined in "ReadPara.h"
 // ********************************************************************************************************************************
-// ReadPara->Add( "KEY_IN_THE_INPUT_TABLE",     &VARIABLE,                       DEFAULT,          MIN,           MAX            );
+// ReadPara->Add( "KEY_IN_THE_INPUT_TABLE",      &VARIABLE,                       DEFAULT,          MIN,           MAX            );
 // ********************************************************************************************************************************
 
 // simulation scale
-   ReadPara->Add( "BOX_SIZE",                   &BOX_SIZE,                       -1.0,             Eps_double,    NoMax_double   );
-   ReadPara->Add( "NX0_TOT_X",                  &NX0_TOT[0],                     -1,               PS2,           NoMax_int      );
-   ReadPara->Add( "NX0_TOT_Y",                  &NX0_TOT[1],                     -1,               PS2,           NoMax_int      );
-   ReadPara->Add( "NX0_TOT_Z",                  &NX0_TOT[2],                     -1,               PS2,           NoMax_int      );
+   ReadPara->Add( "BOX_SIZE",                    &BOX_SIZE,                       -1.0,             Eps_double,    NoMax_double   );
+   ReadPara->Add( "NX0_TOT_X",                   &NX0_TOT[0],                     -1,               PS2,           NoMax_int      );
+   ReadPara->Add( "NX0_TOT_Y",                   &NX0_TOT[1],                     -1,               PS2,           NoMax_int      );
+   ReadPara->Add( "NX0_TOT_Z",                   &NX0_TOT[2],                     -1,               PS2,           NoMax_int      );
 // do not check MPI_NRANK_X/Y/Z since they are deprecated
-   ReadPara->Add( "MPI_NRANK_X",                &MPI_NRank_X[0],                 -1,               NoMin_int,     NoMax_int      );
-   ReadPara->Add( "MPI_NRANK_Y",                &MPI_NRank_X[1],                 -1,               NoMin_int,     NoMax_int      );
-   ReadPara->Add( "MPI_NRANK_Z",                &MPI_NRank_X[2],                 -1,               NoMin_int,     NoMax_int      );
+   ReadPara->Add( "MPI_NRANK_X",                 &MPI_NRank_X[0],                 -1,               NoMin_int,     NoMax_int      );
+   ReadPara->Add( "MPI_NRANK_Y",                 &MPI_NRank_X[1],                 -1,               NoMin_int,     NoMax_int      );
+   ReadPara->Add( "MPI_NRANK_Z",                 &MPI_NRank_X[2],                 -1,               NoMin_int,     NoMax_int      );
 // do not check OMP_NTHREAD since it may be reset by Init_ResetDefaultParameter()
-   ReadPara->Add( "OMP_NTHREAD",                &OMP_NTHREAD,                    -1,               NoMin_int,     NoMax_int      );
+   ReadPara->Add( "OMP_NTHREAD",                 &OMP_NTHREAD,                    -1,               NoMin_int,     NoMax_int      );
 // do not check END_T and END_STEP since they may be reset by test problems or restart
-   ReadPara->Add( "END_T",                      &END_T,                          -1.0,             NoMin_double,  NoMax_double   );
-   ReadPara->Add( "END_STEP",                   &END_STEP,                       -1L,              NoMin_long,    NoMax_long     );
+   ReadPara->Add( "END_T",                       &END_T,                          -1.0,             NoMin_double,  NoMax_double   );
+   ReadPara->Add( "END_STEP",                    &END_STEP,                       -1L,              NoMin_long,    NoMax_long     );
 
 
 // test problems
-   ReadPara->Add( "TESTPROB_ID",                &TESTPROB_ID,                     0,               0,             NoMax_int      );
+   ReadPara->Add( "TESTPROB_ID",                 &TESTPROB_ID,                     0,               0,             NoMax_int      );
 
 
 // code units
-   ReadPara->Add( "OPT__UNIT",                  &OPT__UNIT,                       false,           Useless_bool,  Useless_bool   );
+   ReadPara->Add( "OPT__UNIT",                   &OPT__UNIT,                       false,           Useless_bool,  Useless_bool   );
 // do not check units since they are validated by Init_Unit()
-   ReadPara->Add( "UNIT_L",                     &UNIT_L,                         -1.0,             NoMin_double,  NoMax_double   );
-   ReadPara->Add( "UNIT_M",                     &UNIT_M,                         -1.0,             NoMin_double,  NoMax_double   );
-   ReadPara->Add( "UNIT_T",                     &UNIT_T,                         -1.0,             NoMin_double,  NoMax_double   );
-   ReadPara->Add( "UNIT_V",                     &UNIT_V,                         -1.0,             NoMin_double,  NoMax_double   );
-   ReadPara->Add( "UNIT_D",                     &UNIT_D,                         -1.0,             NoMin_double,  NoMax_double   );
+   ReadPara->Add( "UNIT_L",                      &UNIT_L,                         -1.0,             NoMin_double,  NoMax_double   );
+   ReadPara->Add( "UNIT_M",                      &UNIT_M,                         -1.0,             NoMin_double,  NoMax_double   );
+   ReadPara->Add( "UNIT_T",                      &UNIT_T,                         -1.0,             NoMin_double,  NoMax_double   );
+   ReadPara->Add( "UNIT_V",                      &UNIT_V,                         -1.0,             NoMin_double,  NoMax_double   );
+   ReadPara->Add( "UNIT_D",                      &UNIT_D,                         -1.0,             NoMin_double,  NoMax_double   );
 
 
 // boundary conditions
-   ReadPara->Add( "OPT__BC_FLU_XM",             &OPT__BC_FLU[0],                 -1,               1,             5              );
-   ReadPara->Add( "OPT__BC_FLU_XP",             &OPT__BC_FLU[1],                 -1,               1,             5              );
-   ReadPara->Add( "OPT__BC_FLU_YM",             &OPT__BC_FLU[2],                 -1,               1,             5              );
-   ReadPara->Add( "OPT__BC_FLU_YP",             &OPT__BC_FLU[3],                 -1,               1,             5              );
-   ReadPara->Add( "OPT__BC_FLU_ZM",             &OPT__BC_FLU[4],                 -1,               1,             5              );
-   ReadPara->Add( "OPT__BC_FLU_ZP",             &OPT__BC_FLU[5],                 -1,               1,             5              );
+   ReadPara->Add( "OPT__BC_FLU_XM",              &OPT__BC_FLU[0],                 -1,               1,             5              );
+   ReadPara->Add( "OPT__BC_FLU_XP",              &OPT__BC_FLU[1],                 -1,               1,             5              );
+   ReadPara->Add( "OPT__BC_FLU_YM",              &OPT__BC_FLU[2],                 -1,               1,             5              );
+   ReadPara->Add( "OPT__BC_FLU_YP",              &OPT__BC_FLU[3],                 -1,               1,             5              );
+   ReadPara->Add( "OPT__BC_FLU_ZM",              &OPT__BC_FLU[4],                 -1,               1,             5              );
+   ReadPara->Add( "OPT__BC_FLU_ZP",              &OPT__BC_FLU[5],                 -1,               1,             5              );
 #  ifdef GRAVITY
-   ReadPara->Add( "OPT__BC_POT",                &OPT__BC_POT,                    -1,               1,             2              );
+   ReadPara->Add( "OPT__BC_POT",                 &OPT__BC_POT,                    -1,               1,             2              );
 // do not check GFUNC_COEFF0 since it may be reset by Init_ResetDefaultParameter()
-   ReadPara->Add( "GFUNC_COEFF0",               &GFUNC_COEFF0,                   -1.0,             NoMin_double,  NoMax_double   );
+   ReadPara->Add( "GFUNC_COEFF0",                &GFUNC_COEFF0,                   -1.0,             NoMin_double,  NoMax_double   );
 #  endif
 
 
 // particle
 #  ifdef PARTICLE
 // do no check PAR_NPAR since it may be reset by restart
-   ReadPara->Add( "PAR_NPAR",                   &amr->Par->NPar_Active_AllRank,  -1L,               NoMin_long,    NoMax_long     );
-   ReadPara->Add( "PAR_INIT",                   &amr->Par->Init,                 -1,                1,             3              );
-   ReadPara->Add( "PAR_IC_FORMAT",              &amr->Par->ParICFormat,      PAR_IC_FORMAT_ATT_ID,  1,             2              );
-   ReadPara->Add( "PAR_IC_FLOAT8",              &PAR_IC_FLOAT8,                  -1,                NoMin_int,     1              );
-   ReadPara->Add( "PAR_IC_MASS",                &amr->Par->ParICMass,            -1.0,              NoMin_double,  NoMax_double   );
-   ReadPara->Add( "PAR_IC_TYPE",                &amr->Par->ParICType,            -1,                NoMin_int,     PAR_NTYPE-1    );
-   ReadPara->Add( "PAR_INTERP",                 &amr->Par->Interp,                PAR_INTERP_CIC,   1,             3              );
-   ReadPara->Add( "PAR_INTEG",                  &amr->Par->Integ,                 PAR_INTEG_KDK,    1,             2              );
-   ReadPara->Add( "PAR_TR_INTERP",              &amr->Par->InterpTracer,          PAR_INTERP_TSC,   1,             3              );
-   ReadPara->Add( "PAR_TR_INTEG",               &amr->Par->IntegTracer,           TRACER_INTEG_RK2, 1,             2              );
-   ReadPara->Add( "PAR_IMPROVE_ACC",            &amr->Par->ImproveAcc,            true,             Useless_bool,  Useless_bool   );
-   ReadPara->Add( "PAR_PREDICT_POS",            &amr->Par->PredictPos,            true,             Useless_bool,  Useless_bool   );
+   ReadPara->Add( "PAR_NPAR",                    &amr->Par->NPar_Active_AllRank,  -1L,               NoMin_long,    NoMax_long     );
+   ReadPara->Add( "PAR_INIT",                    &amr->Par->Init,                 -1,                1,             3              );
+   ReadPara->Add( "PAR_IC_FORMAT",               &amr->Par->ParICFormat,      PAR_IC_FORMAT_ATT_ID,  1,             2              );
+   ReadPara->Add( "PAR_IC_FLOAT8",               &PAR_IC_FLOAT8,                  -1,                NoMin_int,     1              );
+   ReadPara->Add( "PAR_IC_MASS",                 &amr->Par->ParICMass,            -1.0,              NoMin_double,  NoMax_double   );
+   ReadPara->Add( "PAR_IC_TYPE",                 &amr->Par->ParICType,            -1,                NoMin_int,     PAR_NTYPE-1    );
+   ReadPara->Add( "PAR_INTERP",                  &amr->Par->Interp,                PAR_INTERP_CIC,   1,             3              );
+   ReadPara->Add( "PAR_INTEG",                   &amr->Par->Integ,                 PAR_INTEG_KDK,    1,             2              );
+   ReadPara->Add( "PAR_TR_INTERP",               &amr->Par->InterpTracer,          PAR_INTERP_TSC,   1,             3              );
+   ReadPara->Add( "PAR_TR_INTEG",                &amr->Par->IntegTracer,           TRACER_INTEG_RK2, 1,             2              );
+   ReadPara->Add( "PAR_IMPROVE_ACC",             &amr->Par->ImproveAcc,            true,             Useless_bool,  Useless_bool   );
+   ReadPara->Add( "PAR_PREDICT_POS",             &amr->Par->PredictPos,            true,             Useless_bool,  Useless_bool   );
 // do not check PAR_REMOVE_CELL since it may be reset by Init_ResetDefaultParameter()
-   ReadPara->Add( "PAR_REMOVE_CELL",            &amr->Par->RemoveCell,           -1.0,              NoMin_double,  NoMax_double   );
-   ReadPara->Add( "OPT__FREEZE_PAR",            &OPT__FREEZE_PAR,                 false,            Useless_bool,  Useless_bool   );
-   ReadPara->Add( "PAR_TR_VEL_CORR",            &amr->Par->TracerVelCorr,         false,            Useless_bool,  Useless_bool   );
+   ReadPara->Add( "PAR_REMOVE_CELL",             &amr->Par->RemoveCell,           -1.0,              NoMin_double,  NoMax_double   );
+   ReadPara->Add( "OPT__FREEZE_PAR",             &OPT__FREEZE_PAR,                 false,            Useless_bool,  Useless_bool   );
+   ReadPara->Add( "PAR_TR_VEL_CORR",             &amr->Par->TracerVelCorr,         false,            Useless_bool,  Useless_bool   );
 #  endif // #ifdef PARTICLE
 
 
 // cosmology
 #  ifdef COMOVING
-   ReadPara->Add( "A_INIT",                     &A_INIT,                         -1.0,             Eps_double,    NoMax_double   );
-   ReadPara->Add( "OMEGA_M0",                   &OMEGA_M0,                       -1.0,             0.0,           1.0            );
-   ReadPara->Add( "HUBBLE0",                    &HUBBLE0,                        -1.0,             Eps_double,    1.0            );
+   ReadPara->Add( "A_INIT",                      &A_INIT,                         -1.0,             Eps_double,    NoMax_double   );
+   ReadPara->Add( "OMEGA_M0",                    &OMEGA_M0,                       -1.0,             0.0,           1.0            );
+   ReadPara->Add( "HUBBLE0",                     &HUBBLE0,                        -1.0,             Eps_double,    1.0            );
 #  endif
 
 
 // time-step
-   ReadPara->Add( "DT__MAX",                    &DT__MAX,                        -1.0,             NoMin_double,  NoMax_double   );
+   ReadPara->Add( "DT__MAX",                     &DT__MAX,                        -1.0,             NoMin_double,  NoMax_double   );
 // do not check DT__FLUID/FLUID_INIT/GRAVITY/PARVEL_MAX since they may be reset by Init_ResetDefaultParameter()
-   ReadPara->Add( "DT__FLUID",                  &DT__FLUID,                      -1.0,             NoMin_double,  NoMax_double   );
-   ReadPara->Add( "DT__FLUID_INIT",             &DT__FLUID_INIT,                 -1.0,             NoMin_double,  NoMax_double   );
+   ReadPara->Add( "DT__FLUID",                   &DT__FLUID,                      -1.0,             NoMin_double,  NoMax_double   );
+   ReadPara->Add( "DT__FLUID_INIT",              &DT__FLUID_INIT,                 -1.0,             NoMin_double,  NoMax_double   );
 #  ifdef SRHD
-   ReadPara->Add( "DT__SPEED_OF_LIGHT",         &DT__SPEED_OF_LIGHT,              false,           Useless_bool,  Useless_bool   );
+   ReadPara->Add( "DT__SPEED_OF_LIGHT",          &DT__SPEED_OF_LIGHT,              false,           Useless_bool,  Useless_bool   );
 #  endif
 #  ifdef GRAVITY
-   ReadPara->Add( "DT__GRAVITY",                &DT__GRAVITY,                    -1.0,             NoMin_double,  NoMax_double   );
+   ReadPara->Add( "DT__GRAVITY",                 &DT__GRAVITY,                    -1.0,             NoMin_double,  NoMax_double   );
 #  endif
 #  if ( MODEL == ELBDM )
-   ReadPara->Add( "DT__PHASE",                  &DT__PHASE,                       0.0,             0.0,           NoMax_double   );
+   ReadPara->Add( "DT__PHASE",                   &DT__PHASE,                       0.0,             0.0,           NoMax_double   );
 #  endif
 #  ifdef PARTICLE
-   ReadPara->Add( "DT__PARVEL",                 &DT__PARVEL,                      0.5,             0.0,           NoMax_double   );
-   ReadPara->Add( "DT__PARVEL_MAX",             &DT__PARVEL_MAX,                 -1.0,             NoMin_double,  NoMax_double   );
-   ReadPara->Add( "DT__PARACC",                 &DT__PARACC,                      0.5,             0.0,           NoMax_double   );
+   ReadPara->Add( "DT__PARVEL",                  &DT__PARVEL,                      0.5,             0.0,           NoMax_double   );
+   ReadPara->Add( "DT__PARVEL_MAX",              &DT__PARVEL_MAX,                 -1.0,             NoMin_double,  NoMax_double   );
+   ReadPara->Add( "DT__PARACC",                  &DT__PARACC,                      0.5,             0.0,           NoMax_double   );
 #  endif
 #  ifdef CR_DIFFUSION
-   ReadPara->Add( "DT__CR_DIFFUSION",           &DT__CR_DIFFUSION,                3.0e-1,          0.0,           NoMax_double   );
+   ReadPara->Add( "DT__CR_DIFFUSION",            &DT__CR_DIFFUSION,                3.0e-1,          0.0,           NoMax_double   );
 #  endif
 #  ifdef COMOVING
-   ReadPara->Add( "DT__MAX_DELTA_A",            &DT__MAX_DELTA_A,                 0.01,            0.0,           NoMax_double   );
+   ReadPara->Add( "DT__MAX_DELTA_A",             &DT__MAX_DELTA_A,                 0.01,            0.0,           NoMax_double   );
 #  endif
-   ReadPara->Add( "DT__SYNC_PARENT_LV",         &DT__SYNC_PARENT_LV,              0.1,             0.0,           NoMax_double   );
-   ReadPara->Add( "DT__SYNC_CHILDREN_LV",       &DT__SYNC_CHILDREN_LV,            0.1,             0.0,           1.0            );
-   ReadPara->Add( "OPT__DT_USER",               &OPT__DT_USER,                    false,           Useless_bool,  Useless_bool   );
-   ReadPara->Add( "OPT__DT_LEVEL",              &OPT__DT_LEVEL,                   3,               1,             3              );
-   ReadPara->Add( "OPT__RECORD_DT",             &OPT__RECORD_DT,                  true,            Useless_bool,  Useless_bool   );
-   ReadPara->Add( "AUTO_REDUCE_DT",             &AUTO_REDUCE_DT,                  true,            Useless_bool,  Useless_bool   );
-   ReadPara->Add( "AUTO_REDUCE_DT_FACTOR",      &AUTO_REDUCE_DT_FACTOR,           1.0,             Eps_double,    1.0            );
-   ReadPara->Add( "AUTO_REDUCE_DT_FACTOR_MIN",  &AUTO_REDUCE_DT_FACTOR_MIN,       0.1,             0.0,           1.0            );
+   ReadPara->Add( "DT__SYNC_PARENT_LV",          &DT__SYNC_PARENT_LV,              0.1,             0.0,           NoMax_double   );
+   ReadPara->Add( "DT__SYNC_CHILDREN_LV",        &DT__SYNC_CHILDREN_LV,            0.1,             0.0,           1.0            );
+   ReadPara->Add( "OPT__DT_USER",                &OPT__DT_USER,                    false,           Useless_bool,  Useless_bool   );
+   ReadPara->Add( "OPT__DT_LEVEL",               &OPT__DT_LEVEL,                   3,               1,             3              );
+   ReadPara->Add( "OPT__RECORD_DT",              &OPT__RECORD_DT,                  true,            Useless_bool,  Useless_bool   );
+   ReadPara->Add( "AUTO_REDUCE_DT",              &AUTO_REDUCE_DT,                  true,            Useless_bool,  Useless_bool   );
+   ReadPara->Add( "AUTO_REDUCE_DT_FACTOR",       &AUTO_REDUCE_DT_FACTOR,           1.0,             Eps_double,    1.0            );
+   ReadPara->Add( "AUTO_REDUCE_DT_FACTOR_MIN",   &AUTO_REDUCE_DT_FACTOR_MIN,       0.1,             0.0,           1.0            );
 #  if ( MODEL == HYDRO )
-   ReadPara->Add( "AUTO_REDUCE_MINMOD_FACTOR",  &AUTO_REDUCE_MINMOD_FACTOR,       0.8,             Eps_double,    1.0            );
-   ReadPara->Add( "AUTO_REDUCE_MINMOD_MIN",     &AUTO_REDUCE_MINMOD_MIN,          1.0e-2,          0.0,           NoMax_double   );
+   ReadPara->Add( "AUTO_REDUCE_MINMOD_FACTOR",   &AUTO_REDUCE_MINMOD_FACTOR,       0.8,             Eps_double,    1.0            );
+   ReadPara->Add( "AUTO_REDUCE_MINMOD_MIN",      &AUTO_REDUCE_MINMOD_MIN,          1.0e-2,          0.0,           NoMax_double   );
 #  endif
-   ReadPara->Add( "AUTO_REDUCE_INT_MONO_FACTOR",&AUTO_REDUCE_INT_MONO_FACTOR,     0.8,             Eps_double,    1.0            );
-   ReadPara->Add( "AUTO_REDUCE_INT_MONO_MIN",   &AUTO_REDUCE_INT_MONO_MIN,        1.0e-2,          0.0,           NoMax_double   );
+   ReadPara->Add( "AUTO_REDUCE_INT_MONO_FACTOR", &AUTO_REDUCE_INT_MONO_FACTOR,     0.8,             Eps_double,    1.0            );
+   ReadPara->Add( "AUTO_REDUCE_INT_MONO_MIN",    &AUTO_REDUCE_INT_MONO_MIN,        1.0e-2,          0.0,           NoMax_double   );
 
 
 // grid refinement
-   ReadPara->Add( "REGRID_COUNT",               &REGRID_COUNT,                    4,               1,             NoMax_int      );
-   ReadPara->Add( "REFINE_NLEVEL",              &REFINE_NLEVEL,                   1,               1,             NoMax_int      );
-   ReadPara->Add( "FLAG_BUFFER_SIZE",           &FLAG_BUFFER_SIZE,               -1,               NoMin_int,     PS1            );
-   ReadPara->Add( "FLAG_BUFFER_SIZE_MAXM1_LV",  &FLAG_BUFFER_SIZE_MAXM1_LV,      -1,               NoMin_int,     PS1            );
-   ReadPara->Add( "FLAG_BUFFER_SIZE_MAXM2_LV",  &FLAG_BUFFER_SIZE_MAXM2_LV,      -1,               NoMin_int,     PS1            );
-   ReadPara->Add( "MAX_LEVEL",                  &MAX_LEVEL,                       TOP_LEVEL,       0,             TOP_LEVEL      );
-   ReadPara->Add( "OPT__FLAG_RHO",              &OPT__FLAG_RHO,                   false,           Useless_bool,  Useless_bool   );
-   ReadPara->Add( "OPT__FLAG_RHO_GRADIENT",     &OPT__FLAG_RHO_GRADIENT,          false,           Useless_bool,  Useless_bool   );
-   ReadPara->Add( "OPT__FLAG_LOHNER_DENS",      &OPT__FLAG_LOHNER_DENS,           false,           Useless_bool,  Useless_bool   );
+   ReadPara->Add( "REGRID_COUNT",                &REGRID_COUNT,                    4,               1,             NoMax_int      );
+   ReadPara->Add( "REFINE_NLEVEL",               &REFINE_NLEVEL,                   1,               1,             NoMax_int      );
+   ReadPara->Add( "FLAG_BUFFER_SIZE",            &FLAG_BUFFER_SIZE,               -1,               NoMin_int,     PS1            );
+   ReadPara->Add( "FLAG_BUFFER_SIZE_MAXM1_LV",   &FLAG_BUFFER_SIZE_MAXM1_LV,      -1,               NoMin_int,     PS1            );
+   ReadPara->Add( "FLAG_BUFFER_SIZE_MAXM2_LV",   &FLAG_BUFFER_SIZE_MAXM2_LV,      -1,               NoMin_int,     PS1            );
+   ReadPara->Add( "MAX_LEVEL",                   &MAX_LEVEL,                       TOP_LEVEL,       0,             TOP_LEVEL      );
+   ReadPara->Add( "OPT__FLAG_RHO",               &OPT__FLAG_RHO,                   false,           Useless_bool,  Useless_bool   );
+   ReadPara->Add( "OPT__FLAG_RHO_GRADIENT",      &OPT__FLAG_RHO_GRADIENT,          false,           Useless_bool,  Useless_bool   );
+   ReadPara->Add( "OPT__FLAG_LOHNER_DENS",       &OPT__FLAG_LOHNER_DENS,           false,           Useless_bool,  Useless_bool   );
 #  if ( MODEL == HYDRO )
-   ReadPara->Add( "OPT__FLAG_PRES_GRADIENT",    &OPT__FLAG_PRES_GRADIENT,         false,           Useless_bool,  Useless_bool   );
-   ReadPara->Add( "OPT__FLAG_VORTICITY",        &OPT__FLAG_VORTICITY,             false,           Useless_bool,  Useless_bool   );
-   ReadPara->Add( "OPT__FLAG_JEANS",            &OPT__FLAG_JEANS,                 false,           Useless_bool,  Useless_bool   );
+   ReadPara->Add( "OPT__FLAG_PRES_GRADIENT",     &OPT__FLAG_PRES_GRADIENT,         false,           Useless_bool,  Useless_bool   );
+   ReadPara->Add( "OPT__FLAG_VORTICITY",         &OPT__FLAG_VORTICITY,             false,           Useless_bool,  Useless_bool   );
+   ReadPara->Add( "OPT__FLAG_JEANS",             &OPT__FLAG_JEANS,                 false,           Useless_bool,  Useless_bool   );
 #  ifdef SRHD
-   ReadPara->Add( "OPT__FLAG_LRTZ_GRADIENT",    &OPT__FLAG_LRTZ_GRADIENT,         false,           Useless_bool,  Useless_bool   );
+   ReadPara->Add( "OPT__FLAG_LRTZ_GRADIENT",     &OPT__FLAG_LRTZ_GRADIENT,         false,           Useless_bool,  Useless_bool   );
 #  endif
 #  ifdef MHD
-   ReadPara->Add( "OPT__FLAG_CURRENT",          &OPT__FLAG_CURRENT,               false,           Useless_bool,  Useless_bool   );
+   ReadPara->Add( "OPT__FLAG_CURRENT",           &OPT__FLAG_CURRENT,               false,           Useless_bool,  Useless_bool   );
 #  endif
 #  ifdef COSMIC_RAY
-   ReadPara->Add( "OPT__FLAG_CRAY",             &OPT__FLAG_CRAY,                  false,           Useless_bool,  Useless_bool   );
+   ReadPara->Add( "OPT__FLAG_CRAY",              &OPT__FLAG_CRAY,                  false,           Useless_bool,  Useless_bool   );
 #  endif
-   ReadPara->Add( "OPT__FLAG_LOHNER_ENGY",      &OPT__FLAG_LOHNER_ENGY,           false,           Useless_bool,  Useless_bool   );
-   ReadPara->Add( "OPT__FLAG_LOHNER_PRES",      &OPT__FLAG_LOHNER_PRES,           false,           Useless_bool,  Useless_bool   );
-   ReadPara->Add( "OPT__FLAG_LOHNER_TEMP",      &OPT__FLAG_LOHNER_TEMP,           false,           Useless_bool,  Useless_bool   );
-   ReadPara->Add( "OPT__FLAG_LOHNER_ENTR",      &OPT__FLAG_LOHNER_ENTR,           false,           Useless_bool,  Useless_bool   );
+   ReadPara->Add( "OPT__FLAG_LOHNER_ENGY",       &OPT__FLAG_LOHNER_ENGY,           false,           Useless_bool,  Useless_bool   );
+   ReadPara->Add( "OPT__FLAG_LOHNER_PRES",       &OPT__FLAG_LOHNER_PRES,           false,           Useless_bool,  Useless_bool   );
+   ReadPara->Add( "OPT__FLAG_LOHNER_TEMP",       &OPT__FLAG_LOHNER_TEMP,           false,           Useless_bool,  Useless_bool   );
+   ReadPara->Add( "OPT__FLAG_LOHNER_ENTR",       &OPT__FLAG_LOHNER_ENTR,           false,           Useless_bool,  Useless_bool   );
 #  ifdef COSMIC_RAY
-   ReadPara->Add( "OPT__FLAG_LOHNER_CRAY",      &OPT__FLAG_LOHNER_CRAY,           false,           Useless_bool,  Useless_bool   );
+   ReadPara->Add( "OPT__FLAG_LOHNER_CRAY",       &OPT__FLAG_LOHNER_CRAY,           false,           Useless_bool,  Useless_bool   );
 #  endif
 #  endif
 #  if ( MODEL == ELBDM )
-   ReadPara->Add( "OPT__FLAG_ENGY_DENSITY",     &OPT__FLAG_ENGY_DENSITY,          false,           Useless_bool,  Useless_bool   );
+   ReadPara->Add( "OPT__FLAG_ENGY_DENSITY",      &OPT__FLAG_ENGY_DENSITY,          false,           Useless_bool,  Useless_bool   );
 #  endif
-   ReadPara->Add( "OPT__FLAG_LOHNER_FORM",      &OPT__FLAG_LOHNER_FORM,           LOHNER_FLASH2,   1,             4              );
-   ReadPara->Add( "OPT__FLAG_USER",             &OPT__FLAG_USER,                  false,           Useless_bool,  Useless_bool   );
-   ReadPara->Add( "OPT__FLAG_USER_NUM",         &OPT__FLAG_USER_NUM,              1,               1,             NoMax_int      );
-   ReadPara->Add( "OPT__FLAG_REGION",           &OPT__FLAG_REGION,                false,           Useless_bool,  Useless_bool   );
+   ReadPara->Add( "OPT__FLAG_LOHNER_FORM",       &OPT__FLAG_LOHNER_FORM,           LOHNER_FLASH2,   1,             4              );
+   ReadPara->Add( "OPT__FLAG_USER",              &OPT__FLAG_USER,                  false,           Useless_bool,  Useless_bool   );
+   ReadPara->Add( "OPT__FLAG_USER_NUM",          &OPT__FLAG_USER_NUM,              1,               1,             NoMax_int      );
+   ReadPara->Add( "OPT__FLAG_REGION",            &OPT__FLAG_REGION,                false,           Useless_bool,  Useless_bool   );
 #  ifdef PARTICLE
-   ReadPara->Add( "OPT__FLAG_NPAR_PATCH",       &OPT__FLAG_NPAR_PATCH,            0,               0,             2              );
-   ReadPara->Add( "OPT__FLAG_NPAR_CELL",        &OPT__FLAG_NPAR_CELL,             false,           Useless_bool,  Useless_bool   );
-   ReadPara->Add( "OPT__FLAG_PAR_MASS_CELL",    &OPT__FLAG_PAR_MASS_CELL,         false,           Useless_bool,  Useless_bool   );
+   ReadPara->Add( "OPT__FLAG_NPAR_PATCH",        &OPT__FLAG_NPAR_PATCH,            0,               0,             2              );
+   ReadPara->Add( "OPT__FLAG_NPAR_CELL",         &OPT__FLAG_NPAR_CELL,             false,           Useless_bool,  Useless_bool   );
+   ReadPara->Add( "OPT__FLAG_PAR_MASS_CELL",     &OPT__FLAG_PAR_MASS_CELL,         false,           Useless_bool,  Useless_bool   );
 #  endif
-   ReadPara->Add( "OPT__NO_FLAG_NEAR_BOUNDARY", &OPT__NO_FLAG_NEAR_BOUNDARY,      false,           Useless_bool,  Useless_bool   );
-   ReadPara->Add( "OPT__PATCH_COUNT",           &OPT__PATCH_COUNT,                1,               0,             2              );
+   ReadPara->Add( "OPT__NO_FLAG_NEAR_BOUNDARY",  &OPT__NO_FLAG_NEAR_BOUNDARY,      false,           Useless_bool,  Useless_bool   );
+   ReadPara->Add( "OPT__PATCH_COUNT",            &OPT__PATCH_COUNT,                1,               0,             2              );
 #  ifdef PARTICLE
-   ReadPara->Add( "OPT__PARTICLE_COUNT",        &OPT__PARTICLE_COUNT,             1,               0,             2              );
+   ReadPara->Add( "OPT__PARTICLE_COUNT",         &OPT__PARTICLE_COUNT,             1,               0,             2              );
 #  endif
-   ReadPara->Add( "OPT__REUSE_MEMORY",          &OPT__REUSE_MEMORY,               2,               0,             2              );
-   ReadPara->Add( "OPT__MEMORY_POOL",           &OPT__MEMORY_POOL,                false,           Useless_bool,  Useless_bool   );
+   ReadPara->Add( "OPT__REUSE_MEMORY",           &OPT__REUSE_MEMORY,               2,               0,             2              );
+   ReadPara->Add( "OPT__MEMORY_POOL",            &OPT__MEMORY_POOL,                false,           Useless_bool,  Useless_bool   );
 
 
 // load balance
 #  ifdef LOAD_BALANCE
-   ReadPara->Add( "LB_INPUT__WLI_MAX",          &LB_INPUT__WLI_MAX,               0.1,             0.0,           NoMax_double   );
+   ReadPara->Add( "LB_INPUT__WLI_MAX",           &LB_INPUT__WLI_MAX,               0.1,             0.0,           NoMax_double   );
 #  ifdef PARTICLE
-   ReadPara->Add( "LB_INPUT__PAR_WEIGHT",       &LB_INPUT__PAR_WEIGHT,            0.0,             0.0,           NoMax_double   );
+   ReadPara->Add( "LB_INPUT__PAR_WEIGHT",        &LB_INPUT__PAR_WEIGHT,            0.0,             0.0,           NoMax_double   );
 #  endif
-   ReadPara->Add( "OPT__RECORD_LOAD_BALANCE",   &OPT__RECORD_LOAD_BALANCE,        true,            Useless_bool,  Useless_bool   );
+   ReadPara->Add( "OPT__RECORD_LOAD_BALANCE",    &OPT__RECORD_LOAD_BALANCE,        true,            Useless_bool,  Useless_bool   );
 #  endif
-   ReadPara->Add( "OPT__MINIMIZE_MPI_BARRIER",  &OPT__MINIMIZE_MPI_BARRIER,       false,           Useless_bool,  Useless_bool   );
+   ReadPara->Add( "OPT__MINIMIZE_MPI_BARRIER",   &OPT__MINIMIZE_MPI_BARRIER,       false,           Useless_bool,  Useless_bool   );
 
 
 // source terms
-   ReadPara->Add( "SRC_DELEPTONIZATION",        &SrcTerms.Deleptonization,        false,           Useless_bool,  Useless_bool   );
-   ReadPara->Add( "SRC_USER",                   &SrcTerms.User,                   false,           Useless_bool,  Useless_bool   );
+   ReadPara->Add( "SRC_DELEPTONIZATION",         &SrcTerms.Deleptonization,        false,           Useless_bool,  Useless_bool   );
+   ReadPara->Add( "SRC_USER",                    &SrcTerms.User,                   false,           Useless_bool,  Useless_bool   );
 // do not check SRC_GPU_NPGROUP since it may be reset by either Init_ResetDefaultParameter() or CUAPI_SetMemSize()
-   ReadPara->Add( "SRC_GPU_NPGROUP",            &SRC_GPU_NPGROUP,                -1,               NoMin_int,     NoMax_int      );
+   ReadPara->Add( "SRC_GPU_NPGROUP",             &SRC_GPU_NPGROUP,                -1,               NoMin_int,     NoMax_int      );
 
 
 // Grackle
 #  ifdef SUPPORT_GRACKLE
-   ReadPara->Add( "GRACKLE_ACTIVATE",           &GRACKLE_ACTIVATE,                true,            Useless_bool,  Useless_bool   );
-   ReadPara->Add( "GRACKLE_VERBOSE",            &GRACKLE_VERBOSE,                 true,            Useless_bool,  Useless_bool   );
-   ReadPara->Add( "GRACKLE_COOLING",            &GRACKLE_COOLING,                 true,            Useless_bool,  Useless_bool   );
-   ReadPara->Add( "GRACKLE_PRIMORDIAL",         &GRACKLE_PRIMORDIAL,              0,               0,             3              );
-   ReadPara->Add( "GRACKLE_METAL",              &GRACKLE_METAL,                   false,           Useless_bool,  Useless_bool   );
-   ReadPara->Add( "GRACKLE_UV",                 &GRACKLE_UV,                      false,           Useless_bool,  Useless_bool   );
-   ReadPara->Add( "GRACKLE_CMB_FLOOR",          &GRACKLE_CMB_FLOOR,               true,            Useless_bool,  Useless_bool   );
-   ReadPara->Add( "GRACKLE_PE_HEATING",         &GRACKLE_PE_HEATING,              false,           Useless_bool,  Useless_bool   );
-   ReadPara->Add( "GRACKLE_PE_HEATING_RATE",    &GRACKLE_PE_HEATING_RATE,         8.5e-26,         0.0,           NoMax_double   );
-   ReadPara->Add( "GRACKLE_CLOUDY_TABLE",        GRACKLE_CLOUDY_TABLE,            NoDef_str,       Useless_str,   Useless_str    );
-   ReadPara->Add( "GRACKLE_THREE_BODY_RATE",    &GRACKLE_THREE_BODY_RATE,         0,               0,             5              );
-   ReadPara->Add( "GRACKLE_CIE_COOLING",        &GRACKLE_CIE_COOLING,             false,           Useless_bool,  Useless_bool   );
-   ReadPara->Add( "GRACKLE_H2_OPA_APPROX",      &GRACKLE_H2_OPA_APPROX,           0,               0,             1              );
+   ReadPara->Add( "GRACKLE_ACTIVATE",            &GRACKLE_ACTIVATE,                true,            Useless_bool,  Useless_bool   );
+   ReadPara->Add( "GRACKLE_VERBOSE",             &GRACKLE_VERBOSE,                 true,            Useless_bool,  Useless_bool   );
+   ReadPara->Add( "GRACKLE_COOLING",             &GRACKLE_COOLING,                 true,            Useless_bool,  Useless_bool   );
+   ReadPara->Add( "GRACKLE_PRIMORDIAL",          &GRACKLE_PRIMORDIAL,              0,               0,             3              );
+   ReadPara->Add( "GRACKLE_METAL",               &GRACKLE_METAL,                   false,           Useless_bool,  Useless_bool   );
+   ReadPara->Add( "GRACKLE_UV",                  &GRACKLE_UV,                      false,           Useless_bool,  Useless_bool   );
+   ReadPara->Add( "GRACKLE_CMB_FLOOR",           &GRACKLE_CMB_FLOOR,               true,            Useless_bool,  Useless_bool   );
+   ReadPara->Add( "GRACKLE_PE_HEATING",          &GRACKLE_PE_HEATING,              false,           Useless_bool,  Useless_bool   );
+   ReadPara->Add( "GRACKLE_PE_HEATING_RATE",     &GRACKLE_PE_HEATING_RATE,         8.5e-26,         0.0,           NoMax_double   );
+   ReadPara->Add( "GRACKLE_CLOUDY_TABLE",         GRACKLE_CLOUDY_TABLE,            NoDef_str,       Useless_str,   Useless_str    );
+   ReadPara->Add( "GRACKLE_THREE_BODY_RATE",     &GRACKLE_THREE_BODY_RATE,         0,               0,             5              );
+   ReadPara->Add( "GRACKLE_CIE_COOLING",         &GRACKLE_CIE_COOLING,             false,           Useless_bool,  Useless_bool   );
+   ReadPara->Add( "GRACKLE_H2_OPA_APPROX",       &GRACKLE_H2_OPA_APPROX,           0,               0,             1              );
 // do not check CHE_GPU_NPGROUP since it may be reset by either Init_ResetDefaultParameter() or CUAPI_SetMemSize()
-   ReadPara->Add( "CHE_GPU_NPGROUP",            &CHE_GPU_NPGROUP,                -1,               NoMin_int,     NoMax_int      );
+   ReadPara->Add( "CHE_GPU_NPGROUP",             &CHE_GPU_NPGROUP,                -1,               NoMin_int,     NoMax_int      );
 #  endif
 
 
@@ -282,12 +282,12 @@ void Init_Load_Parameter()
 #  endif
    ReadPara->Add( "MINMOD_COEFF",               &MINMOD_COEFF,                    1.5,             1.0,           2.0            );
    ReadPara->Add( "MINMOD_MAX_ITER",            &MINMOD_MAX_ITER,                   0,               0,           NoMax_int      );
-   ReadPara->Add( "OPT__LR_LIMITER",            &OPT__LR_LIMITER,             LR_LIMITER_DEFAULT, -1,             7              );
+   ReadPara->Add( "OPT__LR_LIMITER",            &OPT__LR_LIMITER,            LR_LIMITER_DEFAULT,  -1,             7              );
    ReadPara->Add( "OPT__1ST_FLUX_CORR",         &OPT__1ST_FLUX_CORR,               -1,             NoMin_int,     2              );
 #  ifdef MHD
-   ReadPara->Add( "OPT__1ST_FLUX_CORR_SCHEME",  &OPT__1ST_FLUX_CORR_SCHEME,   RSOLVER_1ST_DEFAULT, NoMin_int,     4              );
+   ReadPara->Add( "OPT__1ST_FLUX_CORR_SCHEME",  &OPT__1ST_FLUX_CORR_SCHEME,  RSOLVER_1ST_DEFAULT,  NoMin_int,     4              );
 #  else
-   ReadPara->Add( "OPT__1ST_FLUX_CORR_SCHEME",  &OPT__1ST_FLUX_CORR_SCHEME,   RSOLVER_1ST_DEFAULT,-1,             3              );
+   ReadPara->Add( "OPT__1ST_FLUX_CORR_SCHEME",  &OPT__1ST_FLUX_CORR_SCHEME,  RSOLVER_1ST_DEFAULT, -1,             3              );
 #  endif
 #  ifdef DUAL_ENERGY
    ReadPara->Add( "DUAL_ENERGY_SWITCH",         &DUAL_ENERGY_SWITCH,              2.0e-2,          0.0,           NoMax_double   );

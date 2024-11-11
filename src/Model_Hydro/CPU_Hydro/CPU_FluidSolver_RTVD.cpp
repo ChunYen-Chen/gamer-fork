@@ -10,7 +10,7 @@
 #endif
 
 
-#define to1D(z,y,x) ( z*FLU_NXT*FLU_NXT + y*FLU_NXT + x )
+#define to1D(z, y, x) ( z*FLU_NXT*FLU_NXT + y*FLU_NXT + x )
 
 static void CPU_AdvanceX( real u[][ CUBE(FLU_NXT) ], const real dt, const real dx,
                           const bool StoreFlux, const int j_skip, const int k_skip,
@@ -109,7 +109,7 @@ void CPU_FluidSolver_RTVD(
    for (int i=0; i<PS2; i++)           {  ii = i + FLU_GHOST_SIZE;
 
       ID1 = k*PS2*PS2 + j*PS2 + i;
-      ID2 = to1D(kk,jj,ii);
+      ID2 = to1D(kk, jj, ii);
 
       Flu_Array_Out[P][v][ID1] = Flu_Array_In[P][v][ID2];
 
@@ -215,7 +215,7 @@ void CPU_AdvanceX( real u[][ CUBE(FLU_NXT) ], const real dt, const real dx,
    {
 
 //    copy one column of data from u to ux
-      for (int v=0; v<5; v++)    memcpy( ux[v], &u[v][to1D(k,j,0)], FLU_NXT*sizeof(real) );
+      for (int v=0; v<5; v++)    memcpy( ux[v], &u[v][to1D(k, j, 0)], FLU_NXT*sizeof(real) );
 
 
 //    a. Evaluate the half-step values of fluid variables
@@ -400,7 +400,7 @@ void CPU_AdvanceX( real u[][ CUBE(FLU_NXT) ], const real dt, const real dx,
 //-----------------------------------------------------------------------------
 
 //    (c1). save the final result back to array u
-      for (int v=0; v<5; v++)    memcpy( &u[v][to1D(k,j,3)], ux[v]+3, (FLU_NXT-6)*sizeof(real) );
+      for (int v=0; v<5; v++)    memcpy( &u[v][to1D(k, j, 3)], ux[v]+3, (FLU_NXT-6)*sizeof(real) );
 
 
 //    (c2). save the flux required by the flux-correction operation
@@ -409,9 +409,9 @@ void CPU_AdvanceX( real u[][ CUBE(FLU_NXT) ], const real dt, const real dx,
       {
          for (int v=0; v<5; v++)
          {
-            u[v][ to1D(k,j,        2) ] = flux[v][          2];
-            u[v][ to1D(k,j,FLU_NXT-3) ] = flux[v][FLU_NXT - 4];
-            u[v][ to1D(k,j,        0) ] = flux[v][FLU_NXT/2-1];
+            u[v][ to1D(k, j,         2) ] = flux[v][          2];
+            u[v][ to1D(k, j, FLU_NXT-3) ] = flux[v][FLU_NXT - 4];
+            u[v][ to1D(k, j,         0) ] = flux[v][FLU_NXT/2-1];
          }
       }
 
@@ -438,7 +438,7 @@ void TransposeXY( real u[][ CUBE(FLU_NXT) ] )
       for (int j=0; j<FLU_NXT; j++)
       for (int i=0; i<FLU_NXT; i++)
       {
-         ID = to1D(k,j,i);
+         ID = to1D(k, j, i);
 
          u_xy[0][j+i*FLU_NXT] = u[0][ID];
          u_xy[1][j+i*FLU_NXT] = u[2][ID];
@@ -447,7 +447,7 @@ void TransposeXY( real u[][ CUBE(FLU_NXT) ] )
          u_xy[4][j+i*FLU_NXT] = u[4][ID];
       }
 
-      for (int v=0; v<5; v++)    memcpy( &u[v][to1D(k,0,0)], u_xy[v], FLU_NXT*FLU_NXT*sizeof(real) );
+      for (int v=0; v<5; v++)    memcpy( &u[v][to1D(k, 0, 0)], u_xy[v], FLU_NXT*FLU_NXT*sizeof(real) );
    }
 
    delete [] u_xy;
@@ -473,8 +473,8 @@ void TransposeXZ( real u[][ CUBE(FLU_NXT) ] )
    {
       for (int i=0; i<k; i++)
       {
-         ID1 = to1D(k,j,i);
-         ID2 = to1D(i,j,k);
+         ID1 = to1D(k, j, i);
+         ID2 = to1D(i, j, k);
 
          u_temp[0] = u[0][ID1];
          u_temp[1] = u[3][ID1];
@@ -495,7 +495,7 @@ void TransposeXZ( real u[][ CUBE(FLU_NXT) ] )
          u[4][ID2] = u_temp[4];
       }
 
-      ID1 = to1D(k,j,k);
+      ID1 = to1D(k, j, k);
 
       u_temp[0] = u[0][ID1];
       u_temp[1] = u[3][ID1];
@@ -509,7 +509,7 @@ void TransposeXZ( real u[][ CUBE(FLU_NXT) ] )
       u[3][ID1] = u_temp[3];
       u[4][ID1] = u_temp[4];
 
-   } // j,k
+   } // j, k
 
 } // FUNCTION : TrasposeXZ
 

@@ -34,7 +34,7 @@ void SetExtPotAuxArray_ParEqmIC( double AuxArray_Flt[], int AuxArray_Int[], cons
 {
    double ParEqmIC_Rho0 = 1.0;
    double ParEqmIC_R0   = 0.1;
-   double ParEqmIC_Center[3] ={1.5,1.5,1.5};
+   double ParEqmIC_Center[3] ={1.5, 1.5, 1.5};
    double ParEqmIC_ExtPotMFrac = 1.0;
 // potential = -G*M/(r^2+R0^2)^(1/2)
    const double ExtPotM = (4.0/3.0)*M_PI*CUBE(ParEqmIC_R0)*ParEqmIC_Rho0*ParEqmIC_ExtPotMFrac;
@@ -73,7 +73,7 @@ void SetExtPotAuxArray_ParEqmIC( double AuxArray_Flt[], int AuxArray_Int[], cons
 //                PotTable          : 3D potential table used by EXT_POT_TABLE
 //                GenePtr           : Array of pointers for general potential tables
 //
-// Return      :  External potential at (x,y,z,Time)
+// Return      :  External potential at (x, y, z, Time)
 //-----------------------------------------------------------------------------------------
 GPU_DEVICE_NOINLINE
 static real ExtPot_ParEqmIC( const double x, const double y, const double z, const double Time,

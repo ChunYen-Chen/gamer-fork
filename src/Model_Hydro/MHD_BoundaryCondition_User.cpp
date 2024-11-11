@@ -79,7 +79,7 @@ void BC_BField_User_Template( real magnetic[], const double x, const double y, c
 //                                     Array[MAGY]: By array with dimension [ArraySizeZ  ][ArraySizeY+1][ArraySizeX  ]
 //                                     Array[MAGZ]: Bz array with dimension [ArraySizeZ+1][ArraySizeY  ][ArraySizeX  ]
 //                                 --> Array[MAG?] can be NULL if MAG? is not specified in TVarIdxList[]
-//                BC_Face        : Boundary face (0~5) --> (-x,+x,-y,+y,-z,+z)
+//                BC_Face        : Boundary face (0~5) --> (-x, +x, -y, +y, -z, +z)
 //                NVar           : Number of magnetic fields to be prepared
 //                ArraySizeX/Y/Z : Size of the corresponding cell-centered array including the ghost zones on each side
 //                                 --> See the description of "Array" above
@@ -88,7 +88,7 @@ void BC_BField_User_Template( real magnetic[], const double x, const double y, c
 //                TVarIdxList    : List recording the target magnetic field indices ( = [0 ... NCOMP_MAG-1] )
 //                Time           : Current physical time
 //                dh             : Cell size
-//                Corner         : Cell-centered physcial coordinates of the cell (0,0,0)
+//                Corner         : Cell-centered physcial coordinates of the cell (0, 0, 0)
 //                lv             : Refinement level
 //
 // Return      :  Array

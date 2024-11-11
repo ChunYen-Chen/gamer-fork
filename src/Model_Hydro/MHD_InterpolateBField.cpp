@@ -73,11 +73,11 @@ static real (*GetCellB[3])( const real [], const real, const real ) = { GetCellB
 //
 // Parameter   :  CData      : Input coarse-grid array
 //                CSize      : Size of CData[]
-//                CStart     : (x,y,z) starting indices to perform interpolation on CData[]
+//                CStart     : (x, y, z) starting indices to perform interpolation on CData[]
 //                CRange     : Number of coarse cells along each direction to perform interpolation
 //                FData      : Output fine-grid array
 //                FSize      : Size of FData[]
-//                FStart     : (x,y,z) starting indices to store the interpolation results
+//                FStart     : (x, y, z) starting indices to store the interpolation results
 //                FInterface : B field to be fixed on the coarse-fine interfaces
 //                             --> Set "FInterface[sib] == NULL" for coarse-coarse interfaces
 //                IntScheme  : Interpolation scheme

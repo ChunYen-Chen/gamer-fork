@@ -96,12 +96,12 @@ void Hydro_RiemannSolver_HLLC( const int XYZ, real Flux_Out[], const real L_In[]
    real Usl[NCOMP_TOTAL], Usr[NCOMP_TOTAL];
    real cslsq, csrsq, gammasql, gammasqr;
    real ssl, ssr, lmdapl, lmdapr, lmdaml, lmdamr, lmdatlmda;
-   real lmdal,lmdar;
+   real lmdal, lmdar;
    real lmdas;
-   real a,b,c;
-   real den,ps;
+   real a, b, c;
+   real den, ps;
    real lV1, rV1, lV2, rV2, lV3, rV3;
-   real lFactor,rFactor;
+   real lFactor, rFactor;
 
    Hydro_Con2Pri( L, PL, MinPres, NULL_BOOL, NULL_INT, NULL, NULL_BOOL,
                   (real)NULL_REAL, NULL, NULL, EoS_GuessHTilde, EoS_HTilde2Temp,

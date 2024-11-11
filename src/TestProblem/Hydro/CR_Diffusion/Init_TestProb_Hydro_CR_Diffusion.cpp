@@ -23,7 +23,7 @@ static int    CR_Diffusion_Type;        // The initial condition type:
 static int    CR_Diffusion_Mag_Type;    // The magnetic field type:
 //                                         0: Uniform
 //                                         1: Circular
-//                                         2: Random within (-1.0,+1.0) (Not divergence free)
+//                                         2: Random within (-1.0, +1.0) (Not divergence free)
 //                                         3: Radiative (Not divergence free)
 //                                         4: Suwa+ 2007
 static double CR_Diffusion_MagX;        // Magnitude of x component
@@ -485,7 +485,7 @@ void SetGridIC( real fluid[], const double x, const double y, const double z, co
 
    else if ( CR_Diffusion_Type == 1 )
    {
-      if ( CR_Diffusion_Dim != 2 )   Aux_Error( ERROR_INFO, "This is 2-D test type. Only one of the CR_Diffusion_G{X,Y,Z} can be zero.\n" );
+      if ( CR_Diffusion_Dim != 2 )   Aux_Error( ERROR_INFO, "This is 2-D test type. Only one of the CR_Diffusion_G{X, Y, Z} can be zero.\n" );
 
       const double r   = SQRT( SQR(D1) + SQR(D2) );
       const double phi = ATAN2( D2, D1 );
@@ -508,7 +508,7 @@ void SetGridIC( real fluid[], const double x, const double y, const double z, co
 
    else if ( CR_Diffusion_Type == 2 )
    {
-      if ( CR_Diffusion_Dim != 2 )   Aux_Error( ERROR_INFO, "This is 2-D test type. Only one of the CR_Diffusion_G{X,Y,Z} can be zero.\n" );
+      if ( CR_Diffusion_Dim != 2 )   Aux_Error( ERROR_INFO, "This is 2-D test type. Only one of the CR_Diffusion_G{X, Y, Z} can be zero.\n" );
       const double r        = SQRT( SQR(D1) + SQR(D2) );
       const double phi      = ATAN2( D2, D1 );
       const double del_r2   = SQR(CR_Diffusion_delR);
@@ -520,23 +520,23 @@ void SetGridIC( real fluid[], const double x, const double y, const double z, co
    }
    else if ( CR_Diffusion_Type == 3 )
    {
-      if ( CR_Diffusion_Space == 0 )   Aux_Error( ERROR_INFO, "At least one of the CR_Diffusion_G{X,Y,Z} should not be zero.\n" );
+      if ( CR_Diffusion_Space == 0 )   Aux_Error( ERROR_INFO, "At least one of the CR_Diffusion_G{X, Y, Z} should not be zero.\n" );
       double r;
       switch (CR_Diffusion_Dim)
       {
          case 1: r = D1;
                  if ( magD1 == 0.0  ||  magD2 != 0.0  ||  magD3 != 0.0 )
-                    Aux_Error( ERROR_INFO, "The magnetic field must align to the simulation axis (%d,%d,%d).\n",
+                    Aux_Error( ERROR_INFO, "The magnetic field must align to the simulation axis (%d, %d, %d).\n",
                                CR_Diffusion_GX, CR_Diffusion_GY, CR_Diffusion_GZ );
                  break;
          case 2: r = D1 + D2;
                  if ( magD1 == 0.0  ||  magD1 != magD2  ||  magD3 != 0.0 )
-                    Aux_Error( ERROR_INFO, "The magnetic field must align to the diagonal direction (%d,%d,%d).\n",
+                    Aux_Error( ERROR_INFO, "The magnetic field must align to the diagonal direction (%d, %d, %d).\n",
                                CR_Diffusion_GX, CR_Diffusion_GY, CR_Diffusion_GZ );
                  break;
          case 3: r = D1 + D2 + D3;
                  if ( magD1 == 0.0  ||  magD1 != magD2  ||  magD1 != magD3 )
-                    Aux_Error( ERROR_INFO, "The magnetic field must align to the diagonal direction (%d,%d,%d).\n",
+                    Aux_Error( ERROR_INFO, "The magnetic field must align to the diagonal direction (%d, %d, %d).\n",
                                CR_Diffusion_GX, CR_Diffusion_GY, CR_Diffusion_GZ );
                  break;
       } // switch (CR_Diffusion_Dim)

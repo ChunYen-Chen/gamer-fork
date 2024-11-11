@@ -207,7 +207,7 @@ void LB_AllocateFluxArray( const int FaLv )
 
 // 5. construct the send list and allocate flux arrays for the buffer patches
 // ============================================================================================================
-   const int MirrorSib[6] = { 1,0,3,2,5,4 };
+   const int MirrorSib[6] = { 1, 0, 3, 2, 5, 4 };
    int TPID, TSib, MSib, *Match_F=NULL, *RecvPtr=NULL;
 
    for (int r=0; r<MPI_NRank; r++)

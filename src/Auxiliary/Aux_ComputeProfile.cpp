@@ -383,7 +383,7 @@ void Aux_ComputeProfile( Profile_t *Prof[], const double Center[], const double 
 
                   else
                      Patch_Bin[TID][LocalID][k][j][i] = CellSkip;
-               }}} // i,j,k
+               }}} // i, j, k
             } // for (int LocalID=0; LocalID<8; LocalID++)
 
 
@@ -449,7 +449,7 @@ void Aux_ComputeProfile( Profile_t *Prof[], const double Center[], const double 
                            }
 
                            Patch_Data[TID][LocalID][k][j][i] = VelR;
-                        }}} // i,j,k
+                        }}} // i, j, k
                      } // for (int LocalID=0; LocalID<8; LocalID++)
                   break; // _VELR
 #                 endif // #ifdef _VELR
@@ -537,7 +537,7 @@ void Aux_ComputeProfile( Profile_t *Prof[], const double Center[], const double 
                      OMP_Data  [p][TID][bin] += Patch_Data[TID][LocalID][k][j][i]*Weight;
                      OMP_Weight[p][TID][bin] += Weight;
                      OMP_NCell [p][TID][bin] ++;
-                  } // i,j,k
+                  } // i, j, k
                } // for (int LocalID=0; LocalID<8; LocalID++)
             } // for (int p=0; p<NProf; p++)
          } // for (int PID0=0; PID0<amr->NPatchComma[lv][1]; PID0+=8)

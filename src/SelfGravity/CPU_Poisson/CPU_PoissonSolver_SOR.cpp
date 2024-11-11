@@ -50,7 +50,7 @@ void CPU_PoissonSolver_SOR( const real Rho_Array    [][RHO_NXT][RHO_NXT][RHO_NXT
 
 #  pragma omp parallel
    {
-      int i_start, i_start_pass, i_start_k;     // i_start_(pass,k) : record the i_start in the (pass,k) loop
+      int i_start, i_start_pass, i_start_k;     // i_start_(pass, k) : record the i_start in the (pass, k) loop
       int ip, jp, kp, im, jm, km, I, J, K, Ip, Jp, Kp, ii, jj, kk, Iter, x, y, z;
       real Slope_x, Slope_y, Slope_z, C2_Slope[13], Residual_Total_Old, Residual_Total, Residual;
 

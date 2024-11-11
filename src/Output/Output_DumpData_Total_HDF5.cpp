@@ -1388,7 +1388,8 @@ void Output_DumpData_Total_HDF5( const char *FileName )
 #  ifdef DEBUG_HDF5
    if ( MPI_Rank == 0 )
    {
-      const int MirrorSib[26] = { 1,0,3,2,5,4,9,8,7,6,13,12,11,10,17,16,15,14,25,24,23,22,21,20,19,18 };
+      const int MirrorSib[26] = {  1,  0,  3,  2,  5,  4,  9,  8,  7,  6, 13, 12, 11,
+                                  10, 17, 16, 15, 14, 25, 24, 23, 22, 21, 20, 19, 18 };
 
       H5_FileID = H5Fopen( FileName, H5F_ACC_RDONLY, H5P_DEFAULT );
       if ( H5_FileID < 0 )    Aux_Error( ERROR_INFO, "failed to open the HDF5 file \"%s\" !!\n", FileName );
@@ -2746,53 +2747,53 @@ void GetCompound_KeyInfo( hid_t &H5_TypeID )
 // get the compound type
    H5_TypeID = H5Tcreate( H5T_COMPOUND, sizeof(KeyInfo_t) );
 
-   H5Tinsert( H5_TypeID, "FormatVersion",        HOFFSET(KeyInfo_t,FormatVersion       ), H5T_NATIVE_INT          );
-   H5Tinsert( H5_TypeID, "Model",                HOFFSET(KeyInfo_t,Model               ), H5T_NATIVE_INT          );
-   H5Tinsert( H5_TypeID, "Float8",               HOFFSET(KeyInfo_t,Float8              ), H5T_NATIVE_INT          );
-   H5Tinsert( H5_TypeID, "Gravity",              HOFFSET(KeyInfo_t,Gravity             ), H5T_NATIVE_INT          );
-   H5Tinsert( H5_TypeID, "Particle",             HOFFSET(KeyInfo_t,Particle            ), H5T_NATIVE_INT          );
-   H5Tinsert( H5_TypeID, "NLevel",               HOFFSET(KeyInfo_t,NLevel              ), H5T_NATIVE_INT          );
-   H5Tinsert( H5_TypeID, "NCompFluid",           HOFFSET(KeyInfo_t,NCompFluid          ), H5T_NATIVE_INT          );
-   H5Tinsert( H5_TypeID, "NCompPassive",         HOFFSET(KeyInfo_t,NCompPassive        ), H5T_NATIVE_INT          );
-   H5Tinsert( H5_TypeID, "PatchSize",            HOFFSET(KeyInfo_t,PatchSize           ), H5T_NATIVE_INT          );
-   H5Tinsert( H5_TypeID, "DumpID",               HOFFSET(KeyInfo_t,DumpID              ), H5T_NATIVE_INT          );
-   H5Tinsert( H5_TypeID, "NX0",                  HOFFSET(KeyInfo_t,NX0                 ), H5_TypeID_Arr_3Int      );
-   H5Tinsert( H5_TypeID, "BoxScale",             HOFFSET(KeyInfo_t,BoxScale            ), H5_TypeID_Arr_3Int      );
-   H5Tinsert( H5_TypeID, "NPatch",               HOFFSET(KeyInfo_t,NPatch              ), H5_TypeID_Arr_NLvInt    );
-   H5Tinsert( H5_TypeID, "CellScale",            HOFFSET(KeyInfo_t,CellScale           ), H5_TypeID_Arr_NLvInt    );
+   H5Tinsert( H5_TypeID, "FormatVersion",        HOFFSET(KeyInfo_t, FormatVersion       ), H5T_NATIVE_INT          );
+   H5Tinsert( H5_TypeID, "Model",                HOFFSET(KeyInfo_t, Model               ), H5T_NATIVE_INT          );
+   H5Tinsert( H5_TypeID, "Float8",               HOFFSET(KeyInfo_t, Float8              ), H5T_NATIVE_INT          );
+   H5Tinsert( H5_TypeID, "Gravity",              HOFFSET(KeyInfo_t, Gravity             ), H5T_NATIVE_INT          );
+   H5Tinsert( H5_TypeID, "Particle",             HOFFSET(KeyInfo_t, Particle            ), H5T_NATIVE_INT          );
+   H5Tinsert( H5_TypeID, "NLevel",               HOFFSET(KeyInfo_t, NLevel              ), H5T_NATIVE_INT          );
+   H5Tinsert( H5_TypeID, "NCompFluid",           HOFFSET(KeyInfo_t, NCompFluid          ), H5T_NATIVE_INT          );
+   H5Tinsert( H5_TypeID, "NCompPassive",         HOFFSET(KeyInfo_t, NCompPassive        ), H5T_NATIVE_INT          );
+   H5Tinsert( H5_TypeID, "PatchSize",            HOFFSET(KeyInfo_t, PatchSize           ), H5T_NATIVE_INT          );
+   H5Tinsert( H5_TypeID, "DumpID",               HOFFSET(KeyInfo_t, DumpID              ), H5T_NATIVE_INT          );
+   H5Tinsert( H5_TypeID, "NX0",                  HOFFSET(KeyInfo_t, NX0                 ), H5_TypeID_Arr_3Int      );
+   H5Tinsert( H5_TypeID, "BoxScale",             HOFFSET(KeyInfo_t, BoxScale            ), H5_TypeID_Arr_3Int      );
+   H5Tinsert( H5_TypeID, "NPatch",               HOFFSET(KeyInfo_t, NPatch              ), H5_TypeID_Arr_NLvInt    );
+   H5Tinsert( H5_TypeID, "CellScale",            HOFFSET(KeyInfo_t, CellScale           ), H5_TypeID_Arr_NLvInt    );
 #  if ( MODEL == HYDRO )
-   H5Tinsert( H5_TypeID, "Magnetohydrodynamics", HOFFSET(KeyInfo_t,Magnetohydrodynamics), H5T_NATIVE_INT          );
-   H5Tinsert( H5_TypeID, "SRHydrodynamics",      HOFFSET(KeyInfo_t,SRHydrodynamics),      H5T_NATIVE_INT          );
-   H5Tinsert( H5_TypeID, "CosmicRay",            HOFFSET(KeyInfo_t,CosmicRay),            H5T_NATIVE_INT          );
+   H5Tinsert( H5_TypeID, "Magnetohydrodynamics", HOFFSET(KeyInfo_t, Magnetohydrodynamics), H5T_NATIVE_INT          );
+   H5Tinsert( H5_TypeID, "SRHydrodynamics",      HOFFSET(KeyInfo_t, SRHydrodynamics),      H5T_NATIVE_INT          );
+   H5Tinsert( H5_TypeID, "CosmicRay",            HOFFSET(KeyInfo_t, CosmicRay),            H5T_NATIVE_INT          );
 #  endif
 
-   H5Tinsert( H5_TypeID, "Step",                 HOFFSET(KeyInfo_t,Step                ), H5T_NATIVE_LONG         );
-   H5Tinsert( H5_TypeID, "AdvanceCounter",       HOFFSET(KeyInfo_t,AdvanceCounter      ), H5_TypeID_Arr_NLvLong   );
-   H5Tinsert( H5_TypeID, "NFieldStored",         HOFFSET(KeyInfo_t,NFieldStored        ), H5T_NATIVE_INT          );
-   H5Tinsert( H5_TypeID, "NMagStored",           HOFFSET(KeyInfo_t,NMagStored          ), H5T_NATIVE_INT          );
+   H5Tinsert( H5_TypeID, "Step",                 HOFFSET(KeyInfo_t, Step                ), H5T_NATIVE_LONG         );
+   H5Tinsert( H5_TypeID, "AdvanceCounter",       HOFFSET(KeyInfo_t, AdvanceCounter      ), H5_TypeID_Arr_NLvLong   );
+   H5Tinsert( H5_TypeID, "NFieldStored",         HOFFSET(KeyInfo_t, NFieldStored        ), H5T_NATIVE_INT          );
+   H5Tinsert( H5_TypeID, "NMagStored",           HOFFSET(KeyInfo_t, NMagStored          ), H5T_NATIVE_INT          );
 #  ifdef PARTICLE
-   H5Tinsert( H5_TypeID, "Par_NPar",             HOFFSET(KeyInfo_t,Par_NPar            ), H5T_NATIVE_LONG         );
-   H5Tinsert( H5_TypeID, "Par_NAttStored",       HOFFSET(KeyInfo_t,Par_NAttStored      ), H5T_NATIVE_INT          );
-   H5Tinsert( H5_TypeID, "Float8_Par",           HOFFSET(KeyInfo_t,Float8_Par          ), H5T_NATIVE_INT          );
+   H5Tinsert( H5_TypeID, "Par_NPar",             HOFFSET(KeyInfo_t, Par_NPar            ), H5T_NATIVE_LONG         );
+   H5Tinsert( H5_TypeID, "Par_NAttStored",       HOFFSET(KeyInfo_t, Par_NAttStored      ), H5T_NATIVE_INT          );
+   H5Tinsert( H5_TypeID, "Float8_Par",           HOFFSET(KeyInfo_t, Float8_Par          ), H5T_NATIVE_INT          );
 #  endif
 
 #  ifdef COSMIC_RAY
-   H5Tinsert( H5_TypeID, "CR_Diffusion",         HOFFSET(KeyInfo_t,CR_Diffusion        ), H5T_NATIVE_INT          );
+   H5Tinsert( H5_TypeID, "CR_Diffusion",         HOFFSET(KeyInfo_t, CR_Diffusion        ), H5T_NATIVE_INT          );
 #  endif
 
-   H5Tinsert( H5_TypeID, "BoxSize",              HOFFSET(KeyInfo_t,BoxSize             ), H5_TypeID_Arr_3Double   );
-   H5Tinsert( H5_TypeID, "Time",                 HOFFSET(KeyInfo_t,Time                ), H5_TypeID_Arr_NLvDouble );
-   H5Tinsert( H5_TypeID, "CellSize",             HOFFSET(KeyInfo_t,CellSize            ), H5_TypeID_Arr_NLvDouble );
-   H5Tinsert( H5_TypeID, "dTime_AllLv",          HOFFSET(KeyInfo_t,dTime_AllLv         ), H5_TypeID_Arr_NLvDouble );
+   H5Tinsert( H5_TypeID, "BoxSize",              HOFFSET(KeyInfo_t, BoxSize             ), H5_TypeID_Arr_3Double   );
+   H5Tinsert( H5_TypeID, "Time",                 HOFFSET(KeyInfo_t, Time                ), H5_TypeID_Arr_NLvDouble );
+   H5Tinsert( H5_TypeID, "CellSize",             HOFFSET(KeyInfo_t, CellSize            ), H5_TypeID_Arr_NLvDouble );
+   H5Tinsert( H5_TypeID, "dTime_AllLv",          HOFFSET(KeyInfo_t, dTime_AllLv         ), H5_TypeID_Arr_NLvDouble );
 #  ifdef GRAVITY
-   H5Tinsert( H5_TypeID, "AveDens_Init",         HOFFSET(KeyInfo_t,AveDens_Init        ), H5T_NATIVE_DOUBLE       );
+   H5Tinsert( H5_TypeID, "AveDens_Init",         HOFFSET(KeyInfo_t, AveDens_Init        ), H5T_NATIVE_DOUBLE       );
 #  endif
 
-   H5Tinsert( H5_TypeID, "CodeVersion",          HOFFSET(KeyInfo_t,CodeVersion         ), H5_TypeID_VarStr        );
-   H5Tinsert( H5_TypeID, "DumpWallTime",         HOFFSET(KeyInfo_t,DumpWallTime        ), H5_TypeID_VarStr        );
-   H5Tinsert( H5_TypeID, "GitBranch",            HOFFSET(KeyInfo_t,GitBranch           ), H5_TypeID_VarStr        );
-   H5Tinsert( H5_TypeID, "GitCommit",            HOFFSET(KeyInfo_t,GitCommit           ), H5_TypeID_VarStr        );
-   H5Tinsert( H5_TypeID, "UniqueDataID",         HOFFSET(KeyInfo_t,UniqueDataID        ), H5T_NATIVE_LONG         );
+   H5Tinsert( H5_TypeID, "CodeVersion",          HOFFSET(KeyInfo_t, CodeVersion         ), H5_TypeID_VarStr        );
+   H5Tinsert( H5_TypeID, "DumpWallTime",         HOFFSET(KeyInfo_t, DumpWallTime        ), H5_TypeID_VarStr        );
+   H5Tinsert( H5_TypeID, "GitBranch",            HOFFSET(KeyInfo_t, GitBranch           ), H5_TypeID_VarStr        );
+   H5Tinsert( H5_TypeID, "GitCommit",            HOFFSET(KeyInfo_t, GitCommit           ), H5_TypeID_VarStr        );
+   H5Tinsert( H5_TypeID, "UniqueDataID",         HOFFSET(KeyInfo_t, UniqueDataID        ), H5T_NATIVE_LONG         );
 
 
 // free memory
@@ -2822,81 +2823,81 @@ void GetCompound_Makefile( hid_t &H5_TypeID )
 
    H5_TypeID = H5Tcreate( H5T_COMPOUND, sizeof(Makefile_t) );
 
-   H5Tinsert( H5_TypeID, "Model",                  HOFFSET(Makefile_t,Model                  ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "Gravity",                HOFFSET(Makefile_t,Gravity                ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "Comoving",               HOFFSET(Makefile_t,Comoving               ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "Particle",               HOFFSET(Makefile_t,Particle               ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "Model",                  HOFFSET(Makefile_t, Model                  ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "Gravity",                HOFFSET(Makefile_t, Gravity                ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "Comoving",               HOFFSET(Makefile_t, Comoving               ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "Particle",               HOFFSET(Makefile_t, Particle               ), H5T_NATIVE_INT );
 
-   H5Tinsert( H5_TypeID, "UseGPU",                 HOFFSET(Makefile_t,UseGPU                 ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "GAMER_Debug",            HOFFSET(Makefile_t,GAMER_Debug            ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "BitwiseReproducibility", HOFFSET(Makefile_t,BitwiseReproducibility ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "Timing",                 HOFFSET(Makefile_t,Timing                 ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "TimingSolver",           HOFFSET(Makefile_t,TimingSolver           ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "Float8",                 HOFFSET(Makefile_t,Float8                 ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "Serial",                 HOFFSET(Makefile_t,Serial                 ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "LoadBalance",            HOFFSET(Makefile_t,LoadBalance            ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "OverlapMPI",             HOFFSET(Makefile_t,OverlapMPI             ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "OpenMP",                 HOFFSET(Makefile_t,OpenMP                 ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "GPU_Arch",               HOFFSET(Makefile_t,GPU_Arch               ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "Laohu",                  HOFFSET(Makefile_t,Laohu                  ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "SupportHDF5",            HOFFSET(Makefile_t,SupportHDF5            ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "SupportGSL",             HOFFSET(Makefile_t,SupportGSL             ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "SupportFFTW",            HOFFSET(Makefile_t,SupportFFTW            ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "SupportLibYT",           HOFFSET(Makefile_t,SupportLibYT           ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "UseGPU",                 HOFFSET(Makefile_t, UseGPU                 ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "GAMER_Debug",            HOFFSET(Makefile_t, GAMER_Debug            ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "BitwiseReproducibility", HOFFSET(Makefile_t, BitwiseReproducibility ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "Timing",                 HOFFSET(Makefile_t, Timing                 ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "TimingSolver",           HOFFSET(Makefile_t, TimingSolver           ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "Float8",                 HOFFSET(Makefile_t, Float8                 ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "Serial",                 HOFFSET(Makefile_t, Serial                 ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "LoadBalance",            HOFFSET(Makefile_t, LoadBalance            ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "OverlapMPI",             HOFFSET(Makefile_t, OverlapMPI             ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "OpenMP",                 HOFFSET(Makefile_t, OpenMP                 ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "GPU_Arch",               HOFFSET(Makefile_t, GPU_Arch               ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "Laohu",                  HOFFSET(Makefile_t, Laohu                  ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "SupportHDF5",            HOFFSET(Makefile_t, SupportHDF5            ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "SupportGSL",             HOFFSET(Makefile_t, SupportGSL             ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "SupportFFTW",            HOFFSET(Makefile_t, SupportFFTW            ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "SupportLibYT",           HOFFSET(Makefile_t, SupportLibYT           ), H5T_NATIVE_INT );
 #  ifdef SUPPORT_LIBYT
-   H5Tinsert( H5_TypeID, "LibYTUsePatchGroup",     HOFFSET(Makefile_t,LibYTUsePatchGroup     ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "LibYTInteractive",       HOFFSET(Makefile_t,LibYTInteractive       ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "LibYTReload",            HOFFSET(Makefile_t,LibYTReload            ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "LibYTJupyter",           HOFFSET(Makefile_t,LibYTJupyter           ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "LibYTUsePatchGroup",     HOFFSET(Makefile_t, LibYTUsePatchGroup     ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "LibYTInteractive",       HOFFSET(Makefile_t, LibYTInteractive       ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "LibYTReload",            HOFFSET(Makefile_t, LibYTReload            ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "LibYTJupyter",           HOFFSET(Makefile_t, LibYTJupyter           ), H5T_NATIVE_INT );
 #  endif
-   H5Tinsert( H5_TypeID, "SupportGrackle",         HOFFSET(Makefile_t,SupportGrackle         ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "RandomNumber",           HOFFSET(Makefile_t,RandomNumber           ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "SupportGrackle",         HOFFSET(Makefile_t, SupportGrackle         ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "RandomNumber",           HOFFSET(Makefile_t, RandomNumber           ), H5T_NATIVE_INT );
 
-   H5Tinsert( H5_TypeID, "NLevel",                 HOFFSET(Makefile_t,NLevel                 ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "MaxPatch",               HOFFSET(Makefile_t,MaxPatch               ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "NLevel",                 HOFFSET(Makefile_t, NLevel                 ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "MaxPatch",               HOFFSET(Makefile_t, MaxPatch               ), H5T_NATIVE_INT );
 
 #  ifdef GRAVITY
-   H5Tinsert( H5_TypeID, "PotScheme",              HOFFSET(Makefile_t,PotScheme              ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "StorePotGhost",          HOFFSET(Makefile_t,StorePotGhost          ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "UnsplitGravity",         HOFFSET(Makefile_t,UnsplitGravity         ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "PotScheme",              HOFFSET(Makefile_t, PotScheme              ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "StorePotGhost",          HOFFSET(Makefile_t, StorePotGhost          ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "UnsplitGravity",         HOFFSET(Makefile_t, UnsplitGravity         ), H5T_NATIVE_INT );
 #  endif
 
 #  if   ( MODEL == HYDRO )
-   H5Tinsert( H5_TypeID, "FluScheme",              HOFFSET(Makefile_t,FluScheme              ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "FluScheme",              HOFFSET(Makefile_t, FluScheme              ), H5T_NATIVE_INT );
 #  ifdef LR_SCHEME
-   H5Tinsert( H5_TypeID, "LRScheme",               HOFFSET(Makefile_t,LRScheme               ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "LRScheme",               HOFFSET(Makefile_t, LRScheme               ), H5T_NATIVE_INT );
 #  endif
 #  ifdef RSOLVER
-   H5Tinsert( H5_TypeID, "RSolver",                HOFFSET(Makefile_t,RSolver                ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "RSolver",                HOFFSET(Makefile_t, RSolver                ), H5T_NATIVE_INT );
 #  endif
-   H5Tinsert( H5_TypeID, "DualEnergy",             HOFFSET(Makefile_t,DualEnergy             ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "Magnetohydrodynamics",   HOFFSET(Makefile_t,Magnetohydrodynamics   ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "SRHydrodynamics",        HOFFSET(Makefile_t,SRHydrodynamics        ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "CosmicRay",              HOFFSET(Makefile_t,CosmicRay              ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "EoS",                    HOFFSET(Makefile_t,EoS                    ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "BarotropicEoS",          HOFFSET(Makefile_t,BarotropicEoS          ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "DualEnergy",             HOFFSET(Makefile_t, DualEnergy             ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "Magnetohydrodynamics",   HOFFSET(Makefile_t, Magnetohydrodynamics   ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "SRHydrodynamics",        HOFFSET(Makefile_t, SRHydrodynamics        ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "CosmicRay",              HOFFSET(Makefile_t, CosmicRay              ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "EoS",                    HOFFSET(Makefile_t, EoS                    ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "BarotropicEoS",          HOFFSET(Makefile_t, BarotropicEoS          ), H5T_NATIVE_INT );
 
 #  elif ( MODEL == ELBDM )
-   H5Tinsert( H5_TypeID, "ConserveMass",           HOFFSET(Makefile_t,ConserveMass           ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "Laplacian4th",           HOFFSET(Makefile_t,Laplacian4th           ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "SelfInteraction4",       HOFFSET(Makefile_t,SelfInteraction4       ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "ConserveMass",           HOFFSET(Makefile_t, ConserveMass           ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "Laplacian4th",           HOFFSET(Makefile_t, Laplacian4th           ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "SelfInteraction4",       HOFFSET(Makefile_t, SelfInteraction4       ), H5T_NATIVE_INT );
 
 #  else
 #  error : unsupported MODEL !!
 #  endif // MODEL
 
 #  ifdef PARTICLE
-   H5Tinsert( H5_TypeID, "MassiveParticles",       HOFFSET(Makefile_t,MassiveParticles       ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "Tracer",                 HOFFSET(Makefile_t,Tracer                 ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "StoreParAcc",            HOFFSET(Makefile_t,StoreParAcc            ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "StarFormation",          HOFFSET(Makefile_t,StarFormation          ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "Feedback",               HOFFSET(Makefile_t,Feedback               ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "Par_NAttUser",           HOFFSET(Makefile_t,Par_NAttUser           ), H5T_NATIVE_INT );
-   H5Tinsert( H5_TypeID, "Float8_Par",             HOFFSET(Makefile_t,Float8_Par             ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "MassiveParticles",       HOFFSET(Makefile_t, MassiveParticles       ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "Tracer",                 HOFFSET(Makefile_t, Tracer                 ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "StoreParAcc",            HOFFSET(Makefile_t, StoreParAcc            ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "StarFormation",          HOFFSET(Makefile_t, StarFormation          ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "Feedback",               HOFFSET(Makefile_t, Feedback               ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "Par_NAttUser",           HOFFSET(Makefile_t, Par_NAttUser           ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "Float8_Par",             HOFFSET(Makefile_t, Float8_Par             ), H5T_NATIVE_INT );
 #  endif
 
 #  ifdef COSMIC_RAY
-   H5Tinsert( H5_TypeID, "CR_Diffusion",           HOFFSET(Makefile_t,CR_Diffusion           ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "CR_Diffusion",           HOFFSET(Makefile_t, CR_Diffusion           ), H5T_NATIVE_INT );
 #  endif
 
 } // FUNCTION : GetCompound_Makefile
@@ -2918,137 +2919,137 @@ void GetCompound_SymConst( hid_t &H5_TypeID )
 
    H5_TypeID = H5Tcreate( H5T_COMPOUND, sizeof(SymConst_t) );
 
-   H5Tinsert( H5_TypeID, "NCompFluid",           HOFFSET(SymConst_t,NCompFluid          ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "NCompPassive",         HOFFSET(SymConst_t,NCompPassive        ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "PatchSize",            HOFFSET(SymConst_t,PatchSize           ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "Flu_NIn",              HOFFSET(SymConst_t,Flu_NIn             ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "Flu_NOut",             HOFFSET(SymConst_t,Flu_NOut            ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "Flu_NIn_T",            HOFFSET(SymConst_t,Flu_NIn_T           ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "Flu_NIn_S",            HOFFSET(SymConst_t,Flu_NIn_S           ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "Flu_NOut_S",           HOFFSET(SymConst_t,Flu_NOut_S          ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "NFluxFluid",           HOFFSET(SymConst_t,NFluxFluid          ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "NFluxPassive",         HOFFSET(SymConst_t,NFluxPassive        ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "Flu_GhostSize",        HOFFSET(SymConst_t,Flu_GhostSize       ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "Flu_Nxt",              HOFFSET(SymConst_t,Flu_Nxt             ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "Debug_HDF5",           HOFFSET(SymConst_t,Debug_HDF5          ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "SibOffsetNonperiodic", HOFFSET(SymConst_t,SibOffsetNonperiodic), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "NCompFluid",           HOFFSET(SymConst_t, NCompFluid          ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "NCompPassive",         HOFFSET(SymConst_t, NCompPassive        ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "PatchSize",            HOFFSET(SymConst_t, PatchSize           ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "Flu_NIn",              HOFFSET(SymConst_t, Flu_NIn             ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "Flu_NOut",             HOFFSET(SymConst_t, Flu_NOut            ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "Flu_NIn_T",            HOFFSET(SymConst_t, Flu_NIn_T           ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "Flu_NIn_S",            HOFFSET(SymConst_t, Flu_NIn_S           ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "Flu_NOut_S",           HOFFSET(SymConst_t, Flu_NOut_S          ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "NFluxFluid",           HOFFSET(SymConst_t, NFluxFluid          ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "NFluxPassive",         HOFFSET(SymConst_t, NFluxPassive        ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "Flu_GhostSize",        HOFFSET(SymConst_t, Flu_GhostSize       ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "Flu_Nxt",              HOFFSET(SymConst_t, Flu_Nxt             ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "Debug_HDF5",           HOFFSET(SymConst_t, Debug_HDF5          ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "SibOffsetNonperiodic", HOFFSET(SymConst_t, SibOffsetNonperiodic), H5T_NATIVE_INT    );
 #  ifdef LOAD_BALANCE
-   H5Tinsert( H5_TypeID, "SonOffsetLB",          HOFFSET(SymConst_t,SonOffsetLB         ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "SonOffsetLB",          HOFFSET(SymConst_t, SonOffsetLB         ), H5T_NATIVE_INT    );
 #  endif
-   H5Tinsert( H5_TypeID, "TinyNumber",           HOFFSET(SymConst_t,TinyNumber          ), H5T_NATIVE_DOUBLE );
-   H5Tinsert( H5_TypeID, "HugeNumber",           HOFFSET(SymConst_t,HugeNumber          ), H5T_NATIVE_DOUBLE );
-   H5Tinsert( H5_TypeID, "MaxError",             HOFFSET(SymConst_t,MaxError            ), H5T_NATIVE_DOUBLE );
+   H5Tinsert( H5_TypeID, "TinyNumber",           HOFFSET(SymConst_t, TinyNumber          ), H5T_NATIVE_DOUBLE );
+   H5Tinsert( H5_TypeID, "HugeNumber",           HOFFSET(SymConst_t, HugeNumber          ), H5T_NATIVE_DOUBLE );
+   H5Tinsert( H5_TypeID, "MaxError",             HOFFSET(SymConst_t, MaxError            ), H5T_NATIVE_DOUBLE );
 
 #  ifdef GRAVITY
-   H5Tinsert( H5_TypeID, "Gra_NIn",              HOFFSET(SymConst_t,Gra_NIn             ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "Pot_GhostSize",        HOFFSET(SymConst_t,Pot_GhostSize       ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "Gra_GhostSize",        HOFFSET(SymConst_t,Gra_GhostSize       ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "Rho_GhostSize",        HOFFSET(SymConst_t,Rho_GhostSize       ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "Pot_Nxt",              HOFFSET(SymConst_t,Pot_Nxt             ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "Gra_Nxt",              HOFFSET(SymConst_t,Gra_Nxt             ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "Rho_Nxt",              HOFFSET(SymConst_t,Rho_Nxt             ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "Gra_NIn",              HOFFSET(SymConst_t, Gra_NIn             ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "Pot_GhostSize",        HOFFSET(SymConst_t, Pot_GhostSize       ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "Gra_GhostSize",        HOFFSET(SymConst_t, Gra_GhostSize       ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "Rho_GhostSize",        HOFFSET(SymConst_t, Rho_GhostSize       ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "Pot_Nxt",              HOFFSET(SymConst_t, Pot_Nxt             ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "Gra_Nxt",              HOFFSET(SymConst_t, Gra_Nxt             ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "Rho_Nxt",              HOFFSET(SymConst_t, Rho_Nxt             ), H5T_NATIVE_INT    );
 #  ifdef UNSPLIT_GRAVITY
-   H5Tinsert( H5_TypeID, "USG_GhostSizeF",       HOFFSET(SymConst_t,USG_GhostSizeF      ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "USG_GhostSizeG",       HOFFSET(SymConst_t,USG_GhostSizeG      ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "USG_NxtF",             HOFFSET(SymConst_t,USG_NxtF            ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "USG_NxtG",             HOFFSET(SymConst_t,USG_NxtG            ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "USG_GhostSizeF",       HOFFSET(SymConst_t, USG_GhostSizeF      ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "USG_GhostSizeG",       HOFFSET(SymConst_t, USG_GhostSizeG      ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "USG_NxtF",             HOFFSET(SymConst_t, USG_NxtF            ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "USG_NxtG",             HOFFSET(SymConst_t, USG_NxtG            ), H5T_NATIVE_INT    );
 #  endif
-   H5Tinsert( H5_TypeID, "ExtPot_BlockSize",     HOFFSET(SymConst_t,ExtPot_BlockSize    ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "Gra_BlockSize",        HOFFSET(SymConst_t,Gra_BlockSize       ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "ExtPotNAuxMax",        HOFFSET(SymConst_t,ExtPotNAuxMax       ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "ExtAccNAuxMax",        HOFFSET(SymConst_t,ExtAccNAuxMax       ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "ExtPotNGeneMax",       HOFFSET(SymConst_t,ExtPotNGeneMax      ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "ExtPot_BlockSize",     HOFFSET(SymConst_t, ExtPot_BlockSize    ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "Gra_BlockSize",        HOFFSET(SymConst_t, Gra_BlockSize       ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "ExtPotNAuxMax",        HOFFSET(SymConst_t, ExtPotNAuxMax       ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "ExtAccNAuxMax",        HOFFSET(SymConst_t, ExtAccNAuxMax       ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "ExtPotNGeneMax",       HOFFSET(SymConst_t, ExtPotNGeneMax      ), H5T_NATIVE_INT    );
 #  if   ( POT_SCHEME == SOR )
-   H5Tinsert( H5_TypeID, "Pot_BlockSize_z",      HOFFSET(SymConst_t,Pot_BlockSize_z     ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "SOR_RhoShared",        HOFFSET(SymConst_t,SOR_RhoShared       ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "SOR_CPotShared",       HOFFSET(SymConst_t,SOR_CPotShared      ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "SOR_UseShuffle",       HOFFSET(SymConst_t,SOR_UseShuffle      ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "SOR_UsePadding",       HOFFSET(SymConst_t,SOR_UsePadding      ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "SOR_ModReduction",     HOFFSET(SymConst_t,SOR_ModReduction    ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "Pot_BlockSize_z",      HOFFSET(SymConst_t, Pot_BlockSize_z     ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "SOR_RhoShared",        HOFFSET(SymConst_t, SOR_RhoShared       ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "SOR_CPotShared",       HOFFSET(SymConst_t, SOR_CPotShared      ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "SOR_UseShuffle",       HOFFSET(SymConst_t, SOR_UseShuffle      ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "SOR_UsePadding",       HOFFSET(SymConst_t, SOR_UsePadding      ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "SOR_ModReduction",     HOFFSET(SymConst_t, SOR_ModReduction    ), H5T_NATIVE_INT    );
 #  elif ( POT_SCHEME == MG  )
-   H5Tinsert( H5_TypeID, "Pot_BlockSize_x",      HOFFSET(SymConst_t,Pot_BlockSize_x     ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "Pot_BlockSize_x",      HOFFSET(SymConst_t, Pot_BlockSize_x     ), H5T_NATIVE_INT    );
 #  endif
 #  endif // #ifdef GRAVITY
 
 #  ifdef PARTICLE
-   H5Tinsert( H5_TypeID, "Par_NAttStored",       HOFFSET(SymConst_t,Par_NAttStored      ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "Par_NType",            HOFFSET(SymConst_t,Par_NType           ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "Par_NAttStored",       HOFFSET(SymConst_t, Par_NAttStored      ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "Par_NType",            HOFFSET(SymConst_t, Par_NType           ), H5T_NATIVE_INT    );
 #  ifdef GRAVITY
-   H5Tinsert( H5_TypeID, "RhoExt_GhostSize",     HOFFSET(SymConst_t,RhoExt_GhostSize    ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "RhoExt_GhostSize",     HOFFSET(SymConst_t, RhoExt_GhostSize    ), H5T_NATIVE_INT    );
 #  endif
-   H5Tinsert( H5_TypeID, "Debug_Particle",       HOFFSET(SymConst_t,Debug_Particle      ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "ParList_GrowthFactor", HOFFSET(SymConst_t,ParList_GrowthFactor), H5T_NATIVE_DOUBLE );
-   H5Tinsert( H5_TypeID, "ParList_ReduceFactor", HOFFSET(SymConst_t,ParList_ReduceFactor), H5T_NATIVE_DOUBLE );
+   H5Tinsert( H5_TypeID, "Debug_Particle",       HOFFSET(SymConst_t, Debug_Particle      ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "ParList_GrowthFactor", HOFFSET(SymConst_t, ParList_GrowthFactor), H5T_NATIVE_DOUBLE );
+   H5Tinsert( H5_TypeID, "ParList_ReduceFactor", HOFFSET(SymConst_t, ParList_ReduceFactor), H5T_NATIVE_DOUBLE );
 #  endif // #ifdef PARTICLE
 
-   H5Tinsert( H5_TypeID, "BitRep_Flux",          HOFFSET(SymConst_t,BitRep_Flux         ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "BitRep_Flux",          HOFFSET(SymConst_t, BitRep_Flux         ), H5T_NATIVE_INT    );
 #  ifdef MHD
-   H5Tinsert( H5_TypeID, "BitRep_Electric",      HOFFSET(SymConst_t,BitRep_Electric     ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "BitRep_Electric",      HOFFSET(SymConst_t, BitRep_Electric     ), H5T_NATIVE_INT    );
 #  endif
-   H5Tinsert( H5_TypeID, "InterpMask",           HOFFSET(SymConst_t,InterpMask          ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "FB_SepFluOut",         HOFFSET(SymConst_t,FB_SepFluOut        ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "InterpMask",           HOFFSET(SymConst_t, InterpMask          ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "FB_SepFluOut",         HOFFSET(SymConst_t, FB_SepFluOut        ), H5T_NATIVE_INT    );
 
 #  if   ( MODEL == HYDRO )
-   H5Tinsert( H5_TypeID, "Flu_BlockSize_x",      HOFFSET(SymConst_t,Flu_BlockSize_x     ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "Flu_BlockSize_y",      HOFFSET(SymConst_t,Flu_BlockSize_y     ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "CheckUnphyInFluid",    HOFFSET(SymConst_t,CheckUnphyInFluid   ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "CharReconstruction",   HOFFSET(SymConst_t,CharReconstruction  ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "LR_Eint",              HOFFSET(SymConst_t,LR_Eint             ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "CheckIntermediate",    HOFFSET(SymConst_t,CheckIntermediate   ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "RSolverRescue",        HOFFSET(SymConst_t,RSolverRescue       ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "HLL_NoRefState",       HOFFSET(SymConst_t,HLL_NoRefState      ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "HLL_IncludeAllWaves",  HOFFSET(SymConst_t,HLL_IncludeAllWaves ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "HLLC_WaveSpeed",       HOFFSET(SymConst_t,HLLC_WaveSpeed      ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "HLLE_WaveSpeed",       HOFFSET(SymConst_t,HLLE_WaveSpeed      ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "Flu_BlockSize_x",      HOFFSET(SymConst_t, Flu_BlockSize_x     ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "Flu_BlockSize_y",      HOFFSET(SymConst_t, Flu_BlockSize_y     ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "CheckUnphyInFluid",    HOFFSET(SymConst_t, CheckUnphyInFluid   ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "CharReconstruction",   HOFFSET(SymConst_t, CharReconstruction  ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "LR_Eint",              HOFFSET(SymConst_t, LR_Eint             ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "CheckIntermediate",    HOFFSET(SymConst_t, CheckIntermediate   ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "RSolverRescue",        HOFFSET(SymConst_t, RSolverRescue       ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "HLL_NoRefState",       HOFFSET(SymConst_t, HLL_NoRefState      ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "HLL_IncludeAllWaves",  HOFFSET(SymConst_t, HLL_IncludeAllWaves ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "HLLC_WaveSpeed",       HOFFSET(SymConst_t, HLLC_WaveSpeed      ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "HLLE_WaveSpeed",       HOFFSET(SymConst_t, HLLE_WaveSpeed      ), H5T_NATIVE_INT    );
 #  ifdef MHD
-   H5Tinsert( H5_TypeID, "HLLD_WaveSpeed",       HOFFSET(SymConst_t,HLLD_WaveSpeed      ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "HLLD_WaveSpeed",       HOFFSET(SymConst_t, HLLD_WaveSpeed      ), H5T_NATIVE_INT    );
 #  endif
 #  ifdef N_FC_VAR
-   H5Tinsert( H5_TypeID, "N_FC_Var",             HOFFSET(SymConst_t,N_FC_Var            ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "N_FC_Var",             HOFFSET(SymConst_t, N_FC_Var            ), H5T_NATIVE_INT    );
 #  endif
 #  ifdef N_SLOPE_PPM
-   H5Tinsert( H5_TypeID, "N_Slope_PPM",          HOFFSET(SymConst_t,N_Slope_PPM         ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "N_Slope_PPM",          HOFFSET(SymConst_t, N_Slope_PPM         ), H5T_NATIVE_INT    );
 #  endif
 #  ifdef MHD
-   H5Tinsert( H5_TypeID, "EulerY",               HOFFSET(SymConst_t,EulerY              ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "EulerY",               HOFFSET(SymConst_t, EulerY              ), H5T_NATIVE_INT    );
 #  endif
-   H5Tinsert( H5_TypeID, "MHM_CheckPredict",     HOFFSET(SymConst_t,MHM_CheckPredict    ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "EoSNAuxMax",           HOFFSET(SymConst_t,EoSNAuxMax          ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "EoSNTableMax",         HOFFSET(SymConst_t,EoSNTableMax        ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "MHM_CheckPredict",     HOFFSET(SymConst_t, MHM_CheckPredict    ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "EoSNAuxMax",           HOFFSET(SymConst_t, EoSNAuxMax          ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "EoSNTableMax",         HOFFSET(SymConst_t, EoSNTableMax        ), H5T_NATIVE_INT    );
 
 #  elif  ( MODEL == ELBDM )
-   H5Tinsert( H5_TypeID, "Flu_BlockSize_x",      HOFFSET(SymConst_t,Flu_BlockSize_x     ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "Flu_BlockSize_y",      HOFFSET(SymConst_t,Flu_BlockSize_y     ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "Flu_BlockSize_x",      HOFFSET(SymConst_t, Flu_BlockSize_x     ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "Flu_BlockSize_y",      HOFFSET(SymConst_t, Flu_BlockSize_y     ), H5T_NATIVE_INT    );
 
 #  else
 #  error : ERROR : unsupported MODEL !!
 #  endif // MODEL
 
-   H5Tinsert( H5_TypeID, "dt_Flu_BlockSize",     HOFFSET(SymConst_t,dt_Flu_BlockSize    ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "dt_Flu_UseShuffle",    HOFFSET(SymConst_t,dt_Flu_UseShuffle   ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "dt_Flu_BlockSize",     HOFFSET(SymConst_t, dt_Flu_BlockSize    ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "dt_Flu_UseShuffle",    HOFFSET(SymConst_t, dt_Flu_UseShuffle   ), H5T_NATIVE_INT    );
 #  ifdef GRAVITY
-   H5Tinsert( H5_TypeID, "dt_Gra_BlockSize",     HOFFSET(SymConst_t,dt_Gra_BlockSize    ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "dt_Gra_UseShuffle",    HOFFSET(SymConst_t,dt_Gra_UseShuffle   ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "dt_Gra_BlockSize",     HOFFSET(SymConst_t, dt_Gra_BlockSize    ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "dt_Gra_UseShuffle",    HOFFSET(SymConst_t, dt_Gra_UseShuffle   ), H5T_NATIVE_INT    );
 #  endif
 
-   H5Tinsert( H5_TypeID, "Src_BlockSize",        HOFFSET(SymConst_t,Src_BlockSize       ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "Src_GhostSize",        HOFFSET(SymConst_t,Src_GhostSize       ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "Src_Nxt",              HOFFSET(SymConst_t,Src_Nxt             ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "Src_NAuxDlep",         HOFFSET(SymConst_t,Src_NAuxDlep        ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "Src_DlepProfNVar",     HOFFSET(SymConst_t,Src_DlepProfNVar    ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "Src_DlepProfNBinMax",  HOFFSET(SymConst_t,Src_DlepProfNBinMax ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "Src_NAuxUser",         HOFFSET(SymConst_t,Src_NAuxUser        ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "Src_BlockSize",        HOFFSET(SymConst_t, Src_BlockSize       ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "Src_GhostSize",        HOFFSET(SymConst_t, Src_GhostSize       ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "Src_Nxt",              HOFFSET(SymConst_t, Src_Nxt             ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "Src_NAuxDlep",         HOFFSET(SymConst_t, Src_NAuxDlep        ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "Src_DlepProfNVar",     HOFFSET(SymConst_t, Src_DlepProfNVar    ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "Src_DlepProfNBinMax",  HOFFSET(SymConst_t, Src_DlepProfNBinMax ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "Src_NAuxUser",         HOFFSET(SymConst_t, Src_NAuxUser        ), H5T_NATIVE_INT    );
 
-   H5Tinsert( H5_TypeID, "Der_GhostSize",        HOFFSET(SymConst_t,Der_GhostSize       ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "Der_Nxt",              HOFFSET(SymConst_t,Der_Nxt             ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "Der_NOut_Max",         HOFFSET(SymConst_t,Der_NOut_Max        ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "Der_GhostSize",        HOFFSET(SymConst_t, Der_GhostSize       ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "Der_Nxt",              HOFFSET(SymConst_t, Der_Nxt             ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "Der_NOut_Max",         HOFFSET(SymConst_t, Der_NOut_Max        ), H5T_NATIVE_INT    );
 
 #  ifdef FEEDBACK
-   H5Tinsert( H5_TypeID, "FB_GhostSize",         HOFFSET(SymConst_t,FB_GhostSize        ), H5T_NATIVE_INT    );
-   H5Tinsert( H5_TypeID, "FB_Nxt",               HOFFSET(SymConst_t,FB_Nxt              ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "FB_GhostSize",         HOFFSET(SymConst_t, FB_GhostSize        ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "FB_Nxt",               HOFFSET(SymConst_t, FB_Nxt              ), H5T_NATIVE_INT    );
 #  endif
 
-   H5Tinsert( H5_TypeID, "NFieldStoredMax",      HOFFSET(SymConst_t,NFieldStoredMax     ), H5T_NATIVE_INT    );
+   H5Tinsert( H5_TypeID, "NFieldStoredMax",      HOFFSET(SymConst_t, NFieldStoredMax     ), H5T_NATIVE_INT    );
 
 } // FUNCTION : GetCompound_SymConst
 
@@ -3116,55 +3117,55 @@ void GetCompound_InputPara( hid_t &H5_TypeID, const int NFieldStored )
    H5_TypeID = H5Tcreate( H5T_COMPOUND, sizeof(InputPara_t) );
 
 // simulation scale
-   H5Tinsert( H5_TypeID, "BoxSize",                 HOFFSET(InputPara_t,BoxSize                ), H5T_NATIVE_DOUBLE  );
-   H5Tinsert( H5_TypeID, "NX0_Tot",                 HOFFSET(InputPara_t,NX0_Tot                ), H5_TypeID_Arr_3Int );
-   H5Tinsert( H5_TypeID, "MPI_NRank",               HOFFSET(InputPara_t,MPI_NRank              ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "MPI_NRank_X",             HOFFSET(InputPara_t,MPI_NRank_X            ), H5_TypeID_Arr_3Int );
-   H5Tinsert( H5_TypeID, "OMP_NThread",             HOFFSET(InputPara_t,OMP_NThread            ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "EndT",                    HOFFSET(InputPara_t,EndT                   ), H5T_NATIVE_DOUBLE  );
-   H5Tinsert( H5_TypeID, "EndStep",                 HOFFSET(InputPara_t,EndStep                ), H5T_NATIVE_LONG    );
+   H5Tinsert( H5_TypeID, "BoxSize",                 HOFFSET(InputPara_t, BoxSize                ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "NX0_Tot",                 HOFFSET(InputPara_t, NX0_Tot                ), H5_TypeID_Arr_3Int );
+   H5Tinsert( H5_TypeID, "MPI_NRank",               HOFFSET(InputPara_t, MPI_NRank              ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "MPI_NRank_X",             HOFFSET(InputPara_t, MPI_NRank_X            ), H5_TypeID_Arr_3Int );
+   H5Tinsert( H5_TypeID, "OMP_NThread",             HOFFSET(InputPara_t, OMP_NThread            ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "EndT",                    HOFFSET(InputPara_t, EndT                   ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "EndStep",                 HOFFSET(InputPara_t, EndStep                ), H5T_NATIVE_LONG    );
 
 // test problems
-   H5Tinsert( H5_TypeID, "TestProb_ID",             HOFFSET(InputPara_t,TestProb_ID            ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "TestProb_ID",             HOFFSET(InputPara_t, TestProb_ID            ), H5T_NATIVE_INT     );
 
 // code units
-   H5Tinsert( H5_TypeID, "Opt__Unit",               HOFFSET(InputPara_t,Opt__Unit              ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Unit_L",                  HOFFSET(InputPara_t,Unit_L                 ), H5T_NATIVE_DOUBLE  );
-   H5Tinsert( H5_TypeID, "Unit_M",                  HOFFSET(InputPara_t,Unit_M                 ), H5T_NATIVE_DOUBLE  );
-   H5Tinsert( H5_TypeID, "Unit_T",                  HOFFSET(InputPara_t,Unit_T                 ), H5T_NATIVE_DOUBLE  );
-   H5Tinsert( H5_TypeID, "Unit_V",                  HOFFSET(InputPara_t,Unit_V                 ), H5T_NATIVE_DOUBLE  );
-   H5Tinsert( H5_TypeID, "Unit_D",                  HOFFSET(InputPara_t,Unit_D                 ), H5T_NATIVE_DOUBLE  );
-   H5Tinsert( H5_TypeID, "Unit_E",                  HOFFSET(InputPara_t,Unit_E                 ), H5T_NATIVE_DOUBLE  );
-   H5Tinsert( H5_TypeID, "Unit_P",                  HOFFSET(InputPara_t,Unit_P                 ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "Opt__Unit",               HOFFSET(InputPara_t, Opt__Unit              ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Unit_L",                  HOFFSET(InputPara_t, Unit_L                 ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "Unit_M",                  HOFFSET(InputPara_t, Unit_M                 ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "Unit_T",                  HOFFSET(InputPara_t, Unit_T                 ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "Unit_V",                  HOFFSET(InputPara_t, Unit_V                 ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "Unit_D",                  HOFFSET(InputPara_t, Unit_D                 ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "Unit_E",                  HOFFSET(InputPara_t, Unit_E                 ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "Unit_P",                  HOFFSET(InputPara_t, Unit_P                 ), H5T_NATIVE_DOUBLE  );
 #  ifdef MHD
-   H5Tinsert( H5_TypeID, "Unit_B",                  HOFFSET(InputPara_t,Unit_B                 ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "Unit_B",                  HOFFSET(InputPara_t, Unit_B                 ), H5T_NATIVE_DOUBLE  );
 #  endif
 
 // boundary condition
-   H5Tinsert( H5_TypeID, "Opt__BC_Flu",             HOFFSET(InputPara_t,Opt__BC_Flu            ), H5_TypeID_Arr_6Int );
+   H5Tinsert( H5_TypeID, "Opt__BC_Flu",             HOFFSET(InputPara_t, Opt__BC_Flu            ), H5_TypeID_Arr_6Int );
 #  ifdef GRAVITY
-   H5Tinsert( H5_TypeID, "Opt__BC_Pot",             HOFFSET(InputPara_t,Opt__BC_Pot            ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "GFunc_Coeff0",            HOFFSET(InputPara_t,GFunc_Coeff0           ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "Opt__BC_Pot",             HOFFSET(InputPara_t, Opt__BC_Pot            ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "GFunc_Coeff0",            HOFFSET(InputPara_t, GFunc_Coeff0           ), H5T_NATIVE_DOUBLE  );
 #  endif
 
 // particle
 #  ifdef PARTICLE
-   H5Tinsert( H5_TypeID, "Par_Init",                HOFFSET(InputPara_t,Par_Init               ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Par_ICFormat",            HOFFSET(InputPara_t,Par_ICFormat           ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Par_ICMass",              HOFFSET(InputPara_t,Par_ICMass             ), H5T_NATIVE_DOUBLE  );
-   H5Tinsert( H5_TypeID, "Par_ICType",              HOFFSET(InputPara_t,Par_ICType             ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Par_ICFloat8",            HOFFSET(InputPara_t,Par_ICFloat8           ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Par_Interp",              HOFFSET(InputPara_t,Par_Interp             ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Par_InterpTracer",        HOFFSET(InputPara_t,Par_InterpTracer       ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Par_Integ",               HOFFSET(InputPara_t,Par_Integ              ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Par_IntegTracer",         HOFFSET(InputPara_t,Par_IntegTracer        ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Par_ImproveAcc",          HOFFSET(InputPara_t,Par_ImproveAcc         ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Par_PredictPos",          HOFFSET(InputPara_t,Par_PredictPos         ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Par_TracerVelCorr",       HOFFSET(InputPara_t,Par_TracerVelCorr      ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Par_RemoveCell",          HOFFSET(InputPara_t,Par_RemoveCell         ), H5T_NATIVE_DOUBLE  );
-   H5Tinsert( H5_TypeID, "Opt__FreezePar",          HOFFSET(InputPara_t,Opt__FreezePar         ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Par_GhostSize",           HOFFSET(InputPara_t,Par_GhostSize          ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Par_GhostSizeTracer",     HOFFSET(InputPara_t,Par_GhostSizeTracer    ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Par_Init",                HOFFSET(InputPara_t, Par_Init               ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Par_ICFormat",            HOFFSET(InputPara_t, Par_ICFormat           ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Par_ICMass",              HOFFSET(InputPara_t, Par_ICMass             ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "Par_ICType",              HOFFSET(InputPara_t, Par_ICType             ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Par_ICFloat8",            HOFFSET(InputPara_t, Par_ICFloat8           ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Par_Interp",              HOFFSET(InputPara_t, Par_Interp             ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Par_InterpTracer",        HOFFSET(InputPara_t, Par_InterpTracer       ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Par_Integ",               HOFFSET(InputPara_t, Par_Integ              ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Par_IntegTracer",         HOFFSET(InputPara_t, Par_IntegTracer        ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Par_ImproveAcc",          HOFFSET(InputPara_t, Par_ImproveAcc         ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Par_PredictPos",          HOFFSET(InputPara_t, Par_PredictPos         ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Par_TracerVelCorr",       HOFFSET(InputPara_t, Par_TracerVelCorr      ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Par_RemoveCell",          HOFFSET(InputPara_t, Par_RemoveCell         ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "Opt__FreezePar",          HOFFSET(InputPara_t, Opt__FreezePar         ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Par_GhostSize",           HOFFSET(InputPara_t, Par_GhostSize          ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Par_GhostSizeTracer",     HOFFSET(InputPara_t, Par_GhostSizeTracer    ), H5T_NATIVE_INT     );
 
 // store the name of all particle attributes
    for (int v=0; v<PAR_NATT_TOTAL; v++)
@@ -3173,170 +3174,170 @@ void GetCompound_InputPara( hid_t &H5_TypeID, const int NFieldStored )
       sprintf( Key, "ParAttLabel%02d", v );
 
 //    assuming the offset between successive ParAttLabel pointers is "PtrSize", which is equal to "sizeof( char* )"
-      H5Tinsert( H5_TypeID, Key, HOFFSET(InputPara_t,ParAttLabel[0])+v*PtrSize, H5_TypeID_VarStr );
+      H5Tinsert( H5_TypeID, Key, HOFFSET(InputPara_t, ParAttLabel[0])+v*PtrSize, H5_TypeID_VarStr );
    }
 #  endif
 
 // cosmology
 #  ifdef COMOVING
-   H5Tinsert( H5_TypeID, "A_Init",                  HOFFSET(InputPara_t,A_Init                 ), H5T_NATIVE_DOUBLE  );
-   H5Tinsert( H5_TypeID, "OmegaM0",                 HOFFSET(InputPara_t,OmegaM0                ), H5T_NATIVE_DOUBLE  );
-   H5Tinsert( H5_TypeID, "Hubble0",                 HOFFSET(InputPara_t,Hubble0                ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "A_Init",                  HOFFSET(InputPara_t, A_Init                 ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "OmegaM0",                 HOFFSET(InputPara_t, OmegaM0                ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "Hubble0",                 HOFFSET(InputPara_t, Hubble0                ), H5T_NATIVE_DOUBLE  );
 #  endif
 
 // time-step determination
-   H5Tinsert( H5_TypeID, "Dt__Max",                 HOFFSET(InputPara_t,Dt__Max                ), H5T_NATIVE_DOUBLE  );
-   H5Tinsert( H5_TypeID, "Dt__Fluid",               HOFFSET(InputPara_t,Dt__Fluid              ), H5T_NATIVE_DOUBLE  );
-   H5Tinsert( H5_TypeID, "Dt__FluidInit",           HOFFSET(InputPara_t,Dt__FluidInit          ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "Dt__Max",                 HOFFSET(InputPara_t, Dt__Max                ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "Dt__Fluid",               HOFFSET(InputPara_t, Dt__Fluid              ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "Dt__FluidInit",           HOFFSET(InputPara_t, Dt__FluidInit          ), H5T_NATIVE_DOUBLE  );
 #  ifdef GRAVITY
-   H5Tinsert( H5_TypeID, "Dt__Gravity",             HOFFSET(InputPara_t,Dt__Gravity            ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "Dt__Gravity",             HOFFSET(InputPara_t, Dt__Gravity            ), H5T_NATIVE_DOUBLE  );
 #  endif
 #  if ( MODEL == ELBDM )
-   H5Tinsert( H5_TypeID, "Dt__Phase",               HOFFSET(InputPara_t,Dt__Phase              ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "Dt__Phase",               HOFFSET(InputPara_t, Dt__Phase              ), H5T_NATIVE_DOUBLE  );
 #  endif
 #  ifdef PARTICLE
-   H5Tinsert( H5_TypeID, "Dt__ParVel",              HOFFSET(InputPara_t,Dt__ParVel             ), H5T_NATIVE_DOUBLE  );
-   H5Tinsert( H5_TypeID, "Dt__ParVelMax",           HOFFSET(InputPara_t,Dt__ParVelMax          ), H5T_NATIVE_DOUBLE  );
-   H5Tinsert( H5_TypeID, "Dt__ParAcc",              HOFFSET(InputPara_t,Dt__ParAcc             ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "Dt__ParVel",              HOFFSET(InputPara_t, Dt__ParVel             ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "Dt__ParVelMax",           HOFFSET(InputPara_t, Dt__ParVelMax          ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "Dt__ParAcc",              HOFFSET(InputPara_t, Dt__ParAcc             ), H5T_NATIVE_DOUBLE  );
 #  endif
 #  ifdef SRHD
-   H5Tinsert( H5_TypeID, "Dt__SpeedOfLight",        HOFFSET(InputPara_t,Dt__SpeedOfLight       ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Dt__SpeedOfLight",        HOFFSET(InputPara_t, Dt__SpeedOfLight       ), H5T_NATIVE_INT     );
 #  endif
 #  ifdef CR_DIFFUSION
-   H5Tinsert( H5_TypeID, "Dt__CR_Diffusion",        HOFFSET(InputPara_t,Dt__CR_Diffusion       ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "Dt__CR_Diffusion",        HOFFSET(InputPara_t, Dt__CR_Diffusion       ), H5T_NATIVE_DOUBLE  );
 #  endif
 #  ifdef COMOVING
-   H5Tinsert( H5_TypeID, "Dt__MaxDeltaA",           HOFFSET(InputPara_t,Dt__MaxDeltaA          ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "Dt__MaxDeltaA",           HOFFSET(InputPara_t, Dt__MaxDeltaA          ), H5T_NATIVE_DOUBLE  );
 #  endif
-   H5Tinsert( H5_TypeID, "Dt__SyncParentLv",        HOFFSET(InputPara_t,Dt__SyncParentLv       ), H5T_NATIVE_DOUBLE  );
-   H5Tinsert( H5_TypeID, "Dt__SyncChildrenLv",      HOFFSET(InputPara_t,Dt__SyncChildrenLv     ), H5T_NATIVE_DOUBLE  );
-   H5Tinsert( H5_TypeID, "Opt__DtUser",             HOFFSET(InputPara_t,Opt__DtUser            ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Opt__DtLevel",            HOFFSET(InputPara_t,Opt__DtLevel           ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Opt__RecordDt",           HOFFSET(InputPara_t,Opt__RecordDt          ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "AutoReduceDt",            HOFFSET(InputPara_t,AutoReduceDt           ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "AutoReduceDtFactor",      HOFFSET(InputPara_t,AutoReduceDtFactor     ), H5T_NATIVE_DOUBLE  );
-   H5Tinsert( H5_TypeID, "AutoReduceDtFactorMin",   HOFFSET(InputPara_t,AutoReduceDtFactorMin  ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "Dt__SyncParentLv",        HOFFSET(InputPara_t, Dt__SyncParentLv       ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "Dt__SyncChildrenLv",      HOFFSET(InputPara_t, Dt__SyncChildrenLv     ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "Opt__DtUser",             HOFFSET(InputPara_t, Opt__DtUser            ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__DtLevel",            HOFFSET(InputPara_t, Opt__DtLevel           ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__RecordDt",           HOFFSET(InputPara_t, Opt__RecordDt          ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "AutoReduceDt",            HOFFSET(InputPara_t, AutoReduceDt           ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "AutoReduceDtFactor",      HOFFSET(InputPara_t, AutoReduceDtFactor     ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "AutoReduceDtFactorMin",   HOFFSET(InputPara_t, AutoReduceDtFactorMin  ), H5T_NATIVE_DOUBLE  );
 #  if ( MODEL == HYDRO )
-   H5Tinsert( H5_TypeID, "AutoReduceMinModFactor",  HOFFSET(InputPara_t,AutoReduceMinModFactor ), H5T_NATIVE_DOUBLE  );
-   H5Tinsert( H5_TypeID, "AutoReduceMinModMin",     HOFFSET(InputPara_t,AutoReduceMinModMin    ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "AutoReduceMinModFactor",  HOFFSET(InputPara_t, AutoReduceMinModFactor ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "AutoReduceMinModMin",     HOFFSET(InputPara_t, AutoReduceMinModMin    ), H5T_NATIVE_DOUBLE  );
 #  endif
-   H5Tinsert( H5_TypeID, "AutoReduceIntMonoFactor", HOFFSET(InputPara_t,AutoReduceIntMonoFactor), H5T_NATIVE_DOUBLE  );
-   H5Tinsert( H5_TypeID, "AutoReduceIntMonoMin",    HOFFSET(InputPara_t,AutoReduceIntMonoMin   ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "AutoReduceIntMonoFactor", HOFFSET(InputPara_t, AutoReduceIntMonoFactor), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "AutoReduceIntMonoMin",    HOFFSET(InputPara_t, AutoReduceIntMonoMin   ), H5T_NATIVE_DOUBLE  );
 
 
 // domain refinement
-   H5Tinsert( H5_TypeID, "RegridCount",             HOFFSET(InputPara_t,RegridCount            ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "RefineNLevel",            HOFFSET(InputPara_t,RefineNLevel           ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "FlagBufferSize",          HOFFSET(InputPara_t,FlagBufferSize         ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "FlagBufferSizeMaxM1Lv",   HOFFSET(InputPara_t,FlagBufferSizeMaxM1Lv  ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "FlagBufferSizeMaxM2Lv",   HOFFSET(InputPara_t,FlagBufferSizeMaxM2Lv  ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "MaxLevel",                HOFFSET(InputPara_t,MaxLevel               ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Opt__Flag_Rho",           HOFFSET(InputPara_t,Opt__Flag_Rho          ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Opt__Flag_RhoGradient",   HOFFSET(InputPara_t,Opt__Flag_RhoGradient  ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "RegridCount",             HOFFSET(InputPara_t, RegridCount            ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "RefineNLevel",            HOFFSET(InputPara_t, RefineNLevel           ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "FlagBufferSize",          HOFFSET(InputPara_t, FlagBufferSize         ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "FlagBufferSizeMaxM1Lv",   HOFFSET(InputPara_t, FlagBufferSizeMaxM1Lv  ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "FlagBufferSizeMaxM2Lv",   HOFFSET(InputPara_t, FlagBufferSizeMaxM2Lv  ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "MaxLevel",                HOFFSET(InputPara_t, MaxLevel               ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__Flag_Rho",           HOFFSET(InputPara_t, Opt__Flag_Rho          ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__Flag_RhoGradient",   HOFFSET(InputPara_t, Opt__Flag_RhoGradient  ), H5T_NATIVE_INT     );
 #  if ( MODEL == HYDRO )
-   H5Tinsert( H5_TypeID, "Opt__Flag_PresGradient",  HOFFSET(InputPara_t,Opt__Flag_PresGradient ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Opt__Flag_Vorticity",     HOFFSET(InputPara_t,Opt__Flag_Vorticity    ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Opt__Flag_Jeans",         HOFFSET(InputPara_t,Opt__Flag_Jeans        ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__Flag_PresGradient",  HOFFSET(InputPara_t, Opt__Flag_PresGradient ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__Flag_Vorticity",     HOFFSET(InputPara_t, Opt__Flag_Vorticity    ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__Flag_Jeans",         HOFFSET(InputPara_t, Opt__Flag_Jeans        ), H5T_NATIVE_INT     );
 #  ifdef MHD
-   H5Tinsert( H5_TypeID, "Opt__Flag_Current",       HOFFSET(InputPara_t,Opt__Flag_Current      ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__Flag_Current",       HOFFSET(InputPara_t, Opt__Flag_Current      ), H5T_NATIVE_INT     );
 #  endif
 #  ifdef SRHD
-   H5Tinsert( H5_TypeID, "Opt__Flag_LrtzGradient",  HOFFSET(InputPara_t,Opt__Flag_LrtzGradient ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__Flag_LrtzGradient",  HOFFSET(InputPara_t, Opt__Flag_LrtzGradient ), H5T_NATIVE_INT     );
 #  endif
 #  ifdef COSMIC_RAY
-   H5Tinsert( H5_TypeID, "Opt__Flag_CRay",          HOFFSET(InputPara_t,Opt__Flag_CRay         ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__Flag_CRay",          HOFFSET(InputPara_t, Opt__Flag_CRay         ), H5T_NATIVE_INT     );
 #  endif
 #  endif
 #  if ( MODEL == ELBDM )
-   H5Tinsert( H5_TypeID, "Opt__Flag_EngyDensity",   HOFFSET(InputPara_t,Opt__Flag_EngyDensity  ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__Flag_EngyDensity",   HOFFSET(InputPara_t, Opt__Flag_EngyDensity  ), H5T_NATIVE_INT     );
 #  endif
-   H5Tinsert( H5_TypeID, "Opt__Flag_LohnerDens",    HOFFSET(InputPara_t,Opt__Flag_LohnerDens   ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__Flag_LohnerDens",    HOFFSET(InputPara_t, Opt__Flag_LohnerDens   ), H5T_NATIVE_INT     );
 #  if ( MODEL == HYDRO )
-   H5Tinsert( H5_TypeID, "Opt__Flag_LohnerEngy",    HOFFSET(InputPara_t,Opt__Flag_LohnerEngy   ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Opt__Flag_LohnerPres",    HOFFSET(InputPara_t,Opt__Flag_LohnerPres   ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Opt__Flag_LohnerTemp",    HOFFSET(InputPara_t,Opt__Flag_LohnerTemp   ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Opt__Flag_LohnerEntr",    HOFFSET(InputPara_t,Opt__Flag_LohnerEntr   ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__Flag_LohnerEngy",    HOFFSET(InputPara_t, Opt__Flag_LohnerEngy   ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__Flag_LohnerPres",    HOFFSET(InputPara_t, Opt__Flag_LohnerPres   ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__Flag_LohnerTemp",    HOFFSET(InputPara_t, Opt__Flag_LohnerTemp   ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__Flag_LohnerEntr",    HOFFSET(InputPara_t, Opt__Flag_LohnerEntr   ), H5T_NATIVE_INT     );
 #  ifdef COSMIC_RAY
-   H5Tinsert( H5_TypeID, "Opt__Flag_LohnerCRay",    HOFFSET(InputPara_t,Opt__Flag_LohnerCRay   ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__Flag_LohnerCRay",    HOFFSET(InputPara_t, Opt__Flag_LohnerCRay   ), H5T_NATIVE_INT     );
 #  endif
 #  endif
-   H5Tinsert( H5_TypeID, "Opt__Flag_LohnerForm",    HOFFSET(InputPara_t,Opt__Flag_LohnerForm   ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Opt__Flag_User",          HOFFSET(InputPara_t,Opt__Flag_User         ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Opt__Flag_User_Num",      HOFFSET(InputPara_t,Opt__Flag_User_Num     ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Opt__Flag_Region",        HOFFSET(InputPara_t,Opt__Flag_Region       ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__Flag_LohnerForm",    HOFFSET(InputPara_t, Opt__Flag_LohnerForm   ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__Flag_User",          HOFFSET(InputPara_t, Opt__Flag_User         ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__Flag_User_Num",      HOFFSET(InputPara_t, Opt__Flag_User_Num     ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__Flag_Region",        HOFFSET(InputPara_t, Opt__Flag_Region       ), H5T_NATIVE_INT     );
 #  ifdef PARTICLE
-   H5Tinsert( H5_TypeID, "Opt__Flag_NParPatch",     HOFFSET(InputPara_t,Opt__Flag_NParPatch    ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Opt__Flag_NParCell",      HOFFSET(InputPara_t,Opt__Flag_NParCell     ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Opt__Flag_ParMassCell",   HOFFSET(InputPara_t,Opt__Flag_ParMassCell  ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__Flag_NParPatch",     HOFFSET(InputPara_t, Opt__Flag_NParPatch    ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__Flag_NParCell",      HOFFSET(InputPara_t, Opt__Flag_NParCell     ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__Flag_ParMassCell",   HOFFSET(InputPara_t, Opt__Flag_ParMassCell  ), H5T_NATIVE_INT     );
 #  endif
-   H5Tinsert( H5_TypeID, "Opt__NoFlagNearBoundary", HOFFSET(InputPara_t,Opt__NoFlagNearBoundary), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Opt__PatchCount",         HOFFSET(InputPara_t,Opt__PatchCount        ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__NoFlagNearBoundary", HOFFSET(InputPara_t, Opt__NoFlagNearBoundary), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__PatchCount",         HOFFSET(InputPara_t, Opt__PatchCount        ), H5T_NATIVE_INT     );
 #  ifdef PARTICLE
-   H5Tinsert( H5_TypeID, "Opt__ParticleCount",      HOFFSET(InputPara_t,Opt__ParticleCount     ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__ParticleCount",      HOFFSET(InputPara_t, Opt__ParticleCount     ), H5T_NATIVE_INT     );
 #  endif
-   H5Tinsert( H5_TypeID, "Opt__ReuseMemory",        HOFFSET(InputPara_t,Opt__ReuseMemory       ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Opt__MemoryPool",         HOFFSET(InputPara_t,Opt__MemoryPool        ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__ReuseMemory",        HOFFSET(InputPara_t, Opt__ReuseMemory       ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__MemoryPool",         HOFFSET(InputPara_t, Opt__MemoryPool        ), H5T_NATIVE_INT     );
 
 // load balance
 #  ifdef LOAD_BALANCE
-   H5Tinsert( H5_TypeID, "LB_WLI_Max",              HOFFSET(InputPara_t,LB_WLI_Max             ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "LB_WLI_Max",              HOFFSET(InputPara_t, LB_WLI_Max             ), H5T_NATIVE_DOUBLE  );
 #  ifdef PARTICLE
-   H5Tinsert( H5_TypeID, "LB_Par_Weight",           HOFFSET(InputPara_t,LB_Par_Weight          ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "LB_Par_Weight",           HOFFSET(InputPara_t, LB_Par_Weight          ), H5T_NATIVE_DOUBLE  );
 #  endif
-   H5Tinsert( H5_TypeID, "Opt__RecordLoadBalance",  HOFFSET(InputPara_t,Opt__RecordLoadBalance ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__RecordLoadBalance",  HOFFSET(InputPara_t, Opt__RecordLoadBalance ), H5T_NATIVE_INT     );
 #  endif
-   H5Tinsert( H5_TypeID, "Opt__MinimizeMPIBarrier", HOFFSET(InputPara_t,Opt__MinimizeMPIBarrier), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__MinimizeMPIBarrier", HOFFSET(InputPara_t, Opt__MinimizeMPIBarrier), H5T_NATIVE_INT     );
 
 // fluid solvers in HYDRO
 #  if ( MODEL == HYDRO )
-   H5Tinsert( H5_TypeID, "Gamma",                   HOFFSET(InputPara_t,Gamma                  ), H5T_NATIVE_DOUBLE  );
-   H5Tinsert( H5_TypeID, "MolecularWeight",         HOFFSET(InputPara_t,MolecularWeight        ), H5T_NATIVE_DOUBLE  );
-   H5Tinsert( H5_TypeID, "MuNorm",                  HOFFSET(InputPara_t,MuNorm                 ), H5T_NATIVE_DOUBLE  );
-   H5Tinsert( H5_TypeID, "IsoTemp",                 HOFFSET(InputPara_t,IsoTemp                ), H5T_NATIVE_DOUBLE  );
-   H5Tinsert( H5_TypeID, "MinMod_Coeff",            HOFFSET(InputPara_t,MinMod_Coeff           ), H5T_NATIVE_DOUBLE  );
-   H5Tinsert( H5_TypeID, "MinMod_MaxIter",          HOFFSET(InputPara_t,MinMod_MaxIter         ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Opt__LR_Limiter",         HOFFSET(InputPara_t,Opt__LR_Limiter        ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Opt__1stFluxCorr",        HOFFSET(InputPara_t,Opt__1stFluxCorr       ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Opt__1stFluxCorrScheme",  HOFFSET(InputPara_t,Opt__1stFluxCorrScheme ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Gamma",                   HOFFSET(InputPara_t, Gamma                  ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "MolecularWeight",         HOFFSET(InputPara_t, MolecularWeight        ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "MuNorm",                  HOFFSET(InputPara_t, MuNorm                 ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "IsoTemp",                 HOFFSET(InputPara_t, IsoTemp                ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "MinMod_Coeff",            HOFFSET(InputPara_t, MinMod_Coeff           ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "MinMod_MaxIter",          HOFFSET(InputPara_t, MinMod_MaxIter         ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__LR_Limiter",         HOFFSET(InputPara_t, Opt__LR_Limiter        ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__1stFluxCorr",        HOFFSET(InputPara_t, Opt__1stFluxCorr       ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__1stFluxCorrScheme",  HOFFSET(InputPara_t, Opt__1stFluxCorrScheme ), H5T_NATIVE_INT     );
 #  ifdef DUAL_ENERGY
-   H5Tinsert( H5_TypeID, "DualEnergySwitch",        HOFFSET(InputPara_t,DualEnergySwitch       ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "DualEnergySwitch",        HOFFSET(InputPara_t, DualEnergySwitch       ), H5T_NATIVE_DOUBLE  );
 #  endif
 #  ifdef MHD
-   H5Tinsert( H5_TypeID, "Opt__SameInterfaceB",     HOFFSET(InputPara_t,Opt__SameInterfaceB    ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__SameInterfaceB",     HOFFSET(InputPara_t, Opt__SameInterfaceB    ), H5T_NATIVE_INT     );
 #  endif
 #  endif // HYDRO
 
 // ELBDM solvers
 #  if ( MODEL == ELBDM )
-   H5Tinsert( H5_TypeID, "ELBDM_Mass",              HOFFSET(InputPara_t,ELBDM_Mass             ), H5T_NATIVE_DOUBLE  );
-   H5Tinsert( H5_TypeID, "ELBDM_PlanckConst",       HOFFSET(InputPara_t,ELBDM_PlanckConst      ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "ELBDM_Mass",              HOFFSET(InputPara_t, ELBDM_Mass             ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "ELBDM_PlanckConst",       HOFFSET(InputPara_t, ELBDM_PlanckConst      ), H5T_NATIVE_DOUBLE  );
 #  ifdef QUARTIC_SELF_INTERACTION
-   H5Tinsert( H5_TypeID, "ELBDM_Lambda",            HOFFSET(InputPara_t,ELBDM_Lambda           ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "ELBDM_Lambda",            HOFFSET(InputPara_t, ELBDM_Lambda           ), H5T_NATIVE_DOUBLE  );
 #  endif
-   H5Tinsert( H5_TypeID, "ELBDM_Taylor3_Coeff",     HOFFSET(InputPara_t,ELBDM_Taylor3_Coeff    ), H5T_NATIVE_DOUBLE  );
-   H5Tinsert( H5_TypeID, "ELBDM_Taylor3_Auto",      HOFFSET(InputPara_t,ELBDM_Taylor3_Auto     ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "ELBDM_Taylor3_Coeff",     HOFFSET(InputPara_t, ELBDM_Taylor3_Coeff    ), H5T_NATIVE_DOUBLE  );
+   H5Tinsert( H5_TypeID, "ELBDM_Taylor3_Auto",      HOFFSET(InputPara_t, ELBDM_Taylor3_Auto     ), H5T_NATIVE_INT     );
 #  endif // ELBDM
 
 // fluid solvers in different models
-   H5Tinsert( H5_TypeID, "Flu_GPU_NPGroup",         HOFFSET(InputPara_t,Flu_GPU_NPGroup        ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "GPU_NStream",             HOFFSET(InputPara_t,GPU_NStream            ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Opt__FixUp_Flux",         HOFFSET(InputPara_t,Opt__FixUp_Flux        ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "FixUpFlux_Var",           HOFFSET(InputPara_t,FixUpFlux_Var          ), H5T_NATIVE_LONG    );
+   H5Tinsert( H5_TypeID, "Flu_GPU_NPGroup",         HOFFSET(InputPara_t, Flu_GPU_NPGroup        ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "GPU_NStream",             HOFFSET(InputPara_t, GPU_NStream            ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__FixUp_Flux",         HOFFSET(InputPara_t, Opt__FixUp_Flux        ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "FixUpFlux_Var",           HOFFSET(InputPara_t, FixUpFlux_Var          ), H5T_NATIVE_LONG    );
 #  ifdef MHD
-   H5Tinsert( H5_TypeID, "Opt__FixUp_Electric",     HOFFSET(InputPara_t,Opt__FixUp_Electric    ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__FixUp_Electric",     HOFFSET(InputPara_t, Opt__FixUp_Electric    ), H5T_NATIVE_INT     );
 #  endif
-   H5Tinsert( H5_TypeID, "Opt__FixUp_Restrict",     HOFFSET(InputPara_t,Opt__FixUp_Restrict    ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "FixUpRestrict_Var",       HOFFSET(InputPara_t,FixUpRestrict_Var      ), H5T_NATIVE_LONG    );
-   H5Tinsert( H5_TypeID, "Opt__CorrAfterAllSync",   HOFFSET(InputPara_t,Opt__CorrAfterAllSync  ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "Opt__NormalizePassive",   HOFFSET(InputPara_t,Opt__NormalizePassive  ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "NormalizePassive_NVar",   HOFFSET(InputPara_t,NormalizePassive_NVar  ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__FixUp_Restrict",     HOFFSET(InputPara_t, Opt__FixUp_Restrict    ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "FixUpRestrict_Var",       HOFFSET(InputPara_t, FixUpRestrict_Var      ), H5T_NATIVE_LONG    );
+   H5Tinsert( H5_TypeID, "Opt__CorrAfterAllSync",   HOFFSET(InputPara_t, Opt__CorrAfterAllSync  ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__NormalizePassive",   HOFFSET(InputPara_t, Opt__NormalizePassive  ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "NormalizePassive_NVar",   HOFFSET(InputPara_t, NormalizePassive_NVar  ), H5T_NATIVE_INT     );
 #  if ( NCOMP_PASSIVE > 0 )
-   H5Tinsert( H5_TypeID, "NormalizePassive_VarIdx", HOFFSET(InputPara_t,NormalizePassive_VarIdx), H5_TypeID_Arr_NPassive );
+   H5Tinsert( H5_TypeID, "NormalizePassive_VarIdx", HOFFSET(InputPara_t, NormalizePassive_VarIdx), H5_TypeID_Arr_NPassive );
 #  endif
-   H5Tinsert( H5_TypeID, "Opt__IntFracPassive_LR",  HOFFSET(InputPara_t,Opt__IntFracPassive_LR ), H5T_NATIVE_INT     );
-   H5Tinsert( H5_TypeID, "IntFracPassive_NVar",     HOFFSET(InputPara_t,IntFracPassive_NVar    ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "Opt__IntFracPassive_LR",  HOFFSET(InputPara_t, Opt__IntFracPassive_LR ), H5T_NATIVE_INT     );
+   H5Tinsert( H5_TypeID, "IntFracPassive_NVar",     HOFFSET(InputPara_t, IntFracPassive_NVar    ), H5T_NATIVE_INT     );
 #  if ( NCOMP_PASSIVE > 0 )
-   H5Tinsert( H5_TypeID, "IntFracPassive_VarIdx",   HOFFSET(InputPara_t,IntFracPassive_VarIdx  ), H5_TypeID_Arr_NPassive );
+   H5Tinsert( H5_TypeID, "IntFracPassive_VarIdx",   HOFFSET(InputPara_t, IntFracPassive_VarIdx  ), H5_TypeID_Arr_NPassive );
 #  endif
 
 // store the name of all fields
@@ -3346,7 +3347,7 @@ void GetCompound_InputPara( hid_t &H5_TypeID, const int NFieldStored )
       sprintf( Key, "FieldLabel%02d", v );
 
 //    assuming the offset between successive FieldLabel pointers is "PtrSize", which is equal to "sizeof( char* )"
-      H5Tinsert( H5_TypeID, Key, HOFFSET(InputPara_t,FieldLabel[0])+v*PtrSize, H5_TypeID_VarStr );
+      H5Tinsert( H5_TypeID, Key, HOFFSET(InputPara_t, FieldLabel[0])+v*PtrSize, H5_TypeID_VarStr );
    }
 
 #  ifdef MHD
@@ -3356,264 +3357,264 @@ void GetCompound_InputPara( hid_t &H5_TypeID, const int NFieldStored )
       sprintf( Key, "MagLabel%02d", v );
 
 //    assuming the offset between successive MagLabel pointers is "PtrSize", which is equal to "sizeof( char* )"
-      H5Tinsert( H5_TypeID, Key, HOFFSET(InputPara_t,MagLabel[0])+v*PtrSize, H5_TypeID_VarStr );
+      H5Tinsert( H5_TypeID, Key, HOFFSET(InputPara_t, MagLabel[0])+v*PtrSize, H5_TypeID_VarStr );
    }
 #  endif
 
-   H5Tinsert( H5_TypeID, "Opt__OverlapMPI",         HOFFSET(InputPara_t,Opt__OverlapMPI        ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__ResetFluid",         HOFFSET(InputPara_t,Opt__ResetFluid        ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__ResetFluidInit",     HOFFSET(InputPara_t,Opt__ResetFluidInit    ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__FreezeFluid",        HOFFSET(InputPara_t,Opt__FreezeFluid       ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__OverlapMPI",         HOFFSET(InputPara_t, Opt__OverlapMPI        ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__ResetFluid",         HOFFSET(InputPara_t, Opt__ResetFluid        ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__ResetFluidInit",     HOFFSET(InputPara_t, Opt__ResetFluidInit    ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__FreezeFluid",        HOFFSET(InputPara_t, Opt__FreezeFluid       ), H5T_NATIVE_INT              );
 #  if ( MODEL == HYDRO  ||  MODEL == ELBDM )
-   H5Tinsert( H5_TypeID, "MinDens",                 HOFFSET(InputPara_t,MinDens                ), H5T_NATIVE_DOUBLE           );
+   H5Tinsert( H5_TypeID, "MinDens",                 HOFFSET(InputPara_t, MinDens                ), H5T_NATIVE_DOUBLE           );
 #  endif
 #  if ( MODEL == HYDRO )
-   H5Tinsert( H5_TypeID, "MinPres",                 HOFFSET(InputPara_t,MinPres                ), H5T_NATIVE_DOUBLE           );
-   H5Tinsert( H5_TypeID, "MinEint",                 HOFFSET(InputPara_t,MinEint                ), H5T_NATIVE_DOUBLE           );
-   H5Tinsert( H5_TypeID, "MinTemp",                 HOFFSET(InputPara_t,MinTemp                ), H5T_NATIVE_DOUBLE           );
-   H5Tinsert( H5_TypeID, "MinEntr",                 HOFFSET(InputPara_t,MinEntr                ), H5T_NATIVE_DOUBLE           );
-   H5Tinsert( H5_TypeID, "Opt__CheckPresAfterFlu",  HOFFSET(InputPara_t,Opt__CheckPresAfterFlu ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__LastResortFloor",    HOFFSET(InputPara_t,Opt__LastResortFloor   ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "JeansMinPres",            HOFFSET(InputPara_t,JeansMinPres           ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "JeansMinPres_Level",      HOFFSET(InputPara_t,JeansMinPres_Level     ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "JeansMinPres_NCell",      HOFFSET(InputPara_t,JeansMinPres_NCell     ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "MinPres",                 HOFFSET(InputPara_t, MinPres                ), H5T_NATIVE_DOUBLE           );
+   H5Tinsert( H5_TypeID, "MinEint",                 HOFFSET(InputPara_t, MinEint                ), H5T_NATIVE_DOUBLE           );
+   H5Tinsert( H5_TypeID, "MinTemp",                 HOFFSET(InputPara_t, MinTemp                ), H5T_NATIVE_DOUBLE           );
+   H5Tinsert( H5_TypeID, "MinEntr",                 HOFFSET(InputPara_t, MinEntr                ), H5T_NATIVE_DOUBLE           );
+   H5Tinsert( H5_TypeID, "Opt__CheckPresAfterFlu",  HOFFSET(InputPara_t, Opt__CheckPresAfterFlu ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__LastResortFloor",    HOFFSET(InputPara_t, Opt__LastResortFloor   ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "JeansMinPres",            HOFFSET(InputPara_t, JeansMinPres           ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "JeansMinPres_Level",      HOFFSET(InputPara_t, JeansMinPres_Level     ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "JeansMinPres_NCell",      HOFFSET(InputPara_t, JeansMinPres_NCell     ), H5T_NATIVE_INT              );
 #  endif
 
 // self-gravity
 #  ifdef GRAVITY
-   H5Tinsert( H5_TypeID, "NewtonG",                 HOFFSET(InputPara_t,NewtonG                ), H5T_NATIVE_DOUBLE           );
+   H5Tinsert( H5_TypeID, "NewtonG",                 HOFFSET(InputPara_t, NewtonG                ), H5T_NATIVE_DOUBLE           );
 #  if   ( POT_SCHEME == SOR )
-   H5Tinsert( H5_TypeID, "SOR_Omega",               HOFFSET(InputPara_t,SOR_Omega              ), H5T_NATIVE_DOUBLE           );
-   H5Tinsert( H5_TypeID, "SOR_MaxIter",             HOFFSET(InputPara_t,SOR_MaxIter            ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "SOR_MinIter",             HOFFSET(InputPara_t,SOR_MinIter            ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "SOR_Omega",               HOFFSET(InputPara_t, SOR_Omega              ), H5T_NATIVE_DOUBLE           );
+   H5Tinsert( H5_TypeID, "SOR_MaxIter",             HOFFSET(InputPara_t, SOR_MaxIter            ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "SOR_MinIter",             HOFFSET(InputPara_t, SOR_MinIter            ), H5T_NATIVE_INT              );
 #  elif ( POT_SCHEME == MG )
-   H5Tinsert( H5_TypeID, "MG_MaxIter",              HOFFSET(InputPara_t,MG_MaxIter             ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "MG_NPreSmooth",           HOFFSET(InputPara_t,MG_NPreSmooth          ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "MG_NPostSmooth",          HOFFSET(InputPara_t,MG_NPostSmooth         ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "MG_ToleratedError",       HOFFSET(InputPara_t,MG_ToleratedError      ), H5T_NATIVE_DOUBLE           );
+   H5Tinsert( H5_TypeID, "MG_MaxIter",              HOFFSET(InputPara_t, MG_MaxIter             ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "MG_NPreSmooth",           HOFFSET(InputPara_t, MG_NPreSmooth          ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "MG_NPostSmooth",          HOFFSET(InputPara_t, MG_NPostSmooth         ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "MG_ToleratedError",       HOFFSET(InputPara_t, MG_ToleratedError      ), H5T_NATIVE_DOUBLE           );
 #  endif
-   H5Tinsert( H5_TypeID, "Pot_GPU_NPGroup",         HOFFSET(InputPara_t,Pot_GPU_NPGroup        ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__GraP5Gradient",      HOFFSET(InputPara_t,Opt__GraP5Gradient     ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__SelfGravity",        HOFFSET(InputPara_t,Opt__SelfGravity       ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__ExtAcc",             HOFFSET(InputPara_t,Opt__ExtAcc            ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__ExtPot",             HOFFSET(InputPara_t,Opt__ExtPot            ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "ExtPotTable_Name",        HOFFSET(InputPara_t,ExtPotTable_Name       ), H5_TypeID_VarStr            );
-   H5Tinsert( H5_TypeID, "ExtPotTable_NPoint",      HOFFSET(InputPara_t,ExtPotTable_NPoint     ), H5_TypeID_Arr_3Int          );
-   H5Tinsert( H5_TypeID, "ExtPotTable_dh",          HOFFSET(InputPara_t,ExtPotTable_dh         ), H5_TypeID_Arr_3Double       );
-   H5Tinsert( H5_TypeID, "ExtPotTable_EdgeL",       HOFFSET(InputPara_t,ExtPotTable_EdgeL      ), H5_TypeID_Arr_3Double       );
-   H5Tinsert( H5_TypeID, "ExtPotTable_Float8",      HOFFSET(InputPara_t,ExtPotTable_Float8     ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__GravityExtraMass",   HOFFSET(InputPara_t,Opt__GravityExtraMass  ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Pot_GPU_NPGroup",         HOFFSET(InputPara_t, Pot_GPU_NPGroup        ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__GraP5Gradient",      HOFFSET(InputPara_t, Opt__GraP5Gradient     ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__SelfGravity",        HOFFSET(InputPara_t, Opt__SelfGravity       ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__ExtAcc",             HOFFSET(InputPara_t, Opt__ExtAcc            ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__ExtPot",             HOFFSET(InputPara_t, Opt__ExtPot            ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "ExtPotTable_Name",        HOFFSET(InputPara_t, ExtPotTable_Name       ), H5_TypeID_VarStr            );
+   H5Tinsert( H5_TypeID, "ExtPotTable_NPoint",      HOFFSET(InputPara_t, ExtPotTable_NPoint     ), H5_TypeID_Arr_3Int          );
+   H5Tinsert( H5_TypeID, "ExtPotTable_dh",          HOFFSET(InputPara_t, ExtPotTable_dh         ), H5_TypeID_Arr_3Double       );
+   H5Tinsert( H5_TypeID, "ExtPotTable_EdgeL",       HOFFSET(InputPara_t, ExtPotTable_EdgeL      ), H5_TypeID_Arr_3Double       );
+   H5Tinsert( H5_TypeID, "ExtPotTable_Float8",      HOFFSET(InputPara_t, ExtPotTable_Float8     ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__GravityExtraMass",   HOFFSET(InputPara_t, Opt__GravityExtraMass  ), H5T_NATIVE_INT              );
 #  endif // #ifdef GRAVITY
 
 // source terms
-   H5Tinsert( H5_TypeID, "Src_Deleptonization",     HOFFSET(InputPara_t,Src_Deleptonization    ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Src_User",                HOFFSET(InputPara_t,Src_User               ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Src_GPU_NPGroup",         HOFFSET(InputPara_t,Src_GPU_NPGroup        ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Src_Deleptonization",     HOFFSET(InputPara_t, Src_Deleptonization    ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Src_User",                HOFFSET(InputPara_t, Src_User               ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Src_GPU_NPGroup",         HOFFSET(InputPara_t, Src_GPU_NPGroup        ), H5T_NATIVE_INT              );
 
 // Grackle
 #  ifdef SUPPORT_GRACKLE
-   H5Tinsert( H5_TypeID, "Grackle_Activate",        HOFFSET(InputPara_t,Grackle_Activate       ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Grackle_Verbose",         HOFFSET(InputPara_t,Grackle_Verbose        ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Grackle_Cooling",         HOFFSET(InputPara_t,Grackle_Cooling        ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Grackle_Primordial",      HOFFSET(InputPara_t,Grackle_Primordial     ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Grackle_Metal",           HOFFSET(InputPara_t,Grackle_Metal          ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Grackle_UV",              HOFFSET(InputPara_t,Grackle_UV             ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Grackle_CMB_Floor",       HOFFSET(InputPara_t,Grackle_CMB_Floor      ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Grackle_PE_Heating",      HOFFSET(InputPara_t,Grackle_PE_Heating     ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Grackle_PE_HeatingRate",  HOFFSET(InputPara_t,Grackle_PE_HeatingRate ), H5T_NATIVE_DOUBLE           );
-   H5Tinsert( H5_TypeID, "Grackle_CloudyTable",     HOFFSET(InputPara_t,Grackle_CloudyTable    ), H5_TypeID_VarStr            );
-   H5Tinsert( H5_TypeID, "Grackle_ThreeBodyRate",   HOFFSET(InputPara_t,Grackle_ThreeBodyRate  ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Grackle_CIE_Cooling",     HOFFSET(InputPara_t,Grackle_CIE_Cooling    ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Grackle_H2_OpaApprox",    HOFFSET(InputPara_t,Grackle_H2_OpaApprox   ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Che_GPU_NPGroup",         HOFFSET(InputPara_t,Che_GPU_NPGroup        ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Grackle_Activate",        HOFFSET(InputPara_t, Grackle_Activate       ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Grackle_Verbose",         HOFFSET(InputPara_t, Grackle_Verbose        ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Grackle_Cooling",         HOFFSET(InputPara_t, Grackle_Cooling        ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Grackle_Primordial",      HOFFSET(InputPara_t, Grackle_Primordial     ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Grackle_Metal",           HOFFSET(InputPara_t, Grackle_Metal          ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Grackle_UV",              HOFFSET(InputPara_t, Grackle_UV             ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Grackle_CMB_Floor",       HOFFSET(InputPara_t, Grackle_CMB_Floor      ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Grackle_PE_Heating",      HOFFSET(InputPara_t, Grackle_PE_Heating     ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Grackle_PE_HeatingRate",  HOFFSET(InputPara_t, Grackle_PE_HeatingRate ), H5T_NATIVE_DOUBLE           );
+   H5Tinsert( H5_TypeID, "Grackle_CloudyTable",     HOFFSET(InputPara_t, Grackle_CloudyTable    ), H5_TypeID_VarStr            );
+   H5Tinsert( H5_TypeID, "Grackle_ThreeBodyRate",   HOFFSET(InputPara_t, Grackle_ThreeBodyRate  ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Grackle_CIE_Cooling",     HOFFSET(InputPara_t, Grackle_CIE_Cooling    ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Grackle_H2_OpaApprox",    HOFFSET(InputPara_t, Grackle_H2_OpaApprox   ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Che_GPU_NPGroup",         HOFFSET(InputPara_t, Che_GPU_NPGroup        ), H5T_NATIVE_INT              );
 #  endif
 
 // star formation
 #  ifdef STAR_FORMATION
-   H5Tinsert( H5_TypeID, "SF_CreateStar_Scheme",       HOFFSET(InputPara_t,SF_CreateStar_Scheme       ), H5T_NATIVE_INT       );
-   H5Tinsert( H5_TypeID, "SF_CreateStar_RSeed",        HOFFSET(InputPara_t,SF_CreateStar_RSeed        ), H5T_NATIVE_INT       );
-   H5Tinsert( H5_TypeID, "SF_CreateStar_DetRandom",    HOFFSET(InputPara_t,SF_CreateStar_DetRandom    ), H5T_NATIVE_INT       );
-   H5Tinsert( H5_TypeID, "SF_CreateStar_MinLevel",     HOFFSET(InputPara_t,SF_CreateStar_MinLevel     ), H5T_NATIVE_INT       );
-   H5Tinsert( H5_TypeID, "SF_CreateStar_MinGasDens",   HOFFSET(InputPara_t,SF_CreateStar_MinGasDens   ), H5T_NATIVE_DOUBLE    );
-   H5Tinsert( H5_TypeID, "SF_CreateStar_MassEff",      HOFFSET(InputPara_t,SF_CreateStar_MassEff      ), H5T_NATIVE_DOUBLE    );
-   H5Tinsert( H5_TypeID, "SF_CreateStar_MinStarMass",  HOFFSET(InputPara_t,SF_CreateStar_MinStarMass  ), H5T_NATIVE_DOUBLE    );
-   H5Tinsert( H5_TypeID, "SF_CreateStar_MaxStarMFrac", HOFFSET(InputPara_t,SF_CreateStar_MaxStarMFrac ), H5T_NATIVE_DOUBLE    );
+   H5Tinsert( H5_TypeID, "SF_CreateStar_Scheme",       HOFFSET(InputPara_t, SF_CreateStar_Scheme       ), H5T_NATIVE_INT       );
+   H5Tinsert( H5_TypeID, "SF_CreateStar_RSeed",        HOFFSET(InputPara_t, SF_CreateStar_RSeed        ), H5T_NATIVE_INT       );
+   H5Tinsert( H5_TypeID, "SF_CreateStar_DetRandom",    HOFFSET(InputPara_t, SF_CreateStar_DetRandom    ), H5T_NATIVE_INT       );
+   H5Tinsert( H5_TypeID, "SF_CreateStar_MinLevel",     HOFFSET(InputPara_t, SF_CreateStar_MinLevel     ), H5T_NATIVE_INT       );
+   H5Tinsert( H5_TypeID, "SF_CreateStar_MinGasDens",   HOFFSET(InputPara_t, SF_CreateStar_MinGasDens   ), H5T_NATIVE_DOUBLE    );
+   H5Tinsert( H5_TypeID, "SF_CreateStar_MassEff",      HOFFSET(InputPara_t, SF_CreateStar_MassEff      ), H5T_NATIVE_DOUBLE    );
+   H5Tinsert( H5_TypeID, "SF_CreateStar_MinStarMass",  HOFFSET(InputPara_t, SF_CreateStar_MinStarMass  ), H5T_NATIVE_DOUBLE    );
+   H5Tinsert( H5_TypeID, "SF_CreateStar_MaxStarMFrac", HOFFSET(InputPara_t, SF_CreateStar_MaxStarMFrac ), H5T_NATIVE_DOUBLE    );
 #  endif
 
 // feedback
 #  ifdef FEEDBACK
-   H5Tinsert( H5_TypeID, "FB_Level",                HOFFSET(InputPara_t,FB_Level               ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "FB_RSeed",                HOFFSET(InputPara_t,FB_RSeed               ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "FB_SNe",                  HOFFSET(InputPara_t,FB_SNe                 ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "FB_User",                 HOFFSET(InputPara_t,FB_User                ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "FB_Level",                HOFFSET(InputPara_t, FB_Level               ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "FB_RSeed",                HOFFSET(InputPara_t, FB_RSeed               ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "FB_SNe",                  HOFFSET(InputPara_t, FB_SNe                 ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "FB_User",                 HOFFSET(InputPara_t, FB_User                ), H5T_NATIVE_INT              );
 #  endif
 
 // cosmic ray
 #  ifdef COSMIC_RAY
-   H5Tinsert( H5_TypeID, "CR_Gamma",               HOFFSET(InputPara_t,CR_Gamma               ), H5T_NATIVE_DOUBLE            );
+   H5Tinsert( H5_TypeID, "CR_Gamma",               HOFFSET(InputPara_t, CR_Gamma               ), H5T_NATIVE_DOUBLE            );
 #  ifdef CR_DIFFUSION
-   H5Tinsert( H5_TypeID, "CR_Diffusion_ParaCoeff", HOFFSET(InputPara_t,CR_Diffusion_ParaCoeff ), H5T_NATIVE_DOUBLE            );
-   H5Tinsert( H5_TypeID, "CR_Diffusion_PerpCoeff", HOFFSET(InputPara_t,CR_Diffusion_PerpCoeff ), H5T_NATIVE_DOUBLE            );
-   H5Tinsert( H5_TypeID, "CR_Diffusion_MinB",      HOFFSET(InputPara_t,CR_Diffusion_MinB      ), H5T_NATIVE_DOUBLE            );
+   H5Tinsert( H5_TypeID, "CR_Diffusion_ParaCoeff", HOFFSET(InputPara_t, CR_Diffusion_ParaCoeff ), H5T_NATIVE_DOUBLE            );
+   H5Tinsert( H5_TypeID, "CR_Diffusion_PerpCoeff", HOFFSET(InputPara_t, CR_Diffusion_PerpCoeff ), H5T_NATIVE_DOUBLE            );
+   H5Tinsert( H5_TypeID, "CR_Diffusion_MinB",      HOFFSET(InputPara_t, CR_Diffusion_MinB      ), H5T_NATIVE_DOUBLE            );
 #  endif
 #  endif // #ifdef COSMIC_RAY
 
 // initialization
-   H5Tinsert( H5_TypeID, "Opt__Init",               HOFFSET(InputPara_t,Opt__Init               ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "RestartLoadNRank",        HOFFSET(InputPara_t,RestartLoadNRank        ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__RestartReset",       HOFFSET(InputPara_t,Opt__RestartReset       ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__UM_IC_Level",        HOFFSET(InputPara_t,Opt__UM_IC_Level        ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__UM_IC_NLevel",       HOFFSET(InputPara_t,Opt__UM_IC_NLevel       ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__UM_IC_NVar",         HOFFSET(InputPara_t,Opt__UM_IC_NVar         ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__UM_IC_Format",       HOFFSET(InputPara_t,Opt__UM_IC_Format       ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__UM_IC_Float8",       HOFFSET(InputPara_t,Opt__UM_IC_Float8       ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__UM_IC_Downgrade",    HOFFSET(InputPara_t,Opt__UM_IC_Downgrade    ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__UM_IC_Refine",       HOFFSET(InputPara_t,Opt__UM_IC_Refine       ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__UM_IC_LoadNRank",    HOFFSET(InputPara_t,Opt__UM_IC_LoadNRank    ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Init",               HOFFSET(InputPara_t, Opt__Init               ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "RestartLoadNRank",        HOFFSET(InputPara_t, RestartLoadNRank        ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__RestartReset",       HOFFSET(InputPara_t, Opt__RestartReset       ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__UM_IC_Level",        HOFFSET(InputPara_t, Opt__UM_IC_Level        ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__UM_IC_NLevel",       HOFFSET(InputPara_t, Opt__UM_IC_NLevel       ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__UM_IC_NVar",         HOFFSET(InputPara_t, Opt__UM_IC_NVar         ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__UM_IC_Format",       HOFFSET(InputPara_t, Opt__UM_IC_Format       ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__UM_IC_Float8",       HOFFSET(InputPara_t, Opt__UM_IC_Float8       ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__UM_IC_Downgrade",    HOFFSET(InputPara_t, Opt__UM_IC_Downgrade    ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__UM_IC_Refine",       HOFFSET(InputPara_t, Opt__UM_IC_Refine       ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__UM_IC_LoadNRank",    HOFFSET(InputPara_t, Opt__UM_IC_LoadNRank    ), H5T_NATIVE_INT              );
 #  if ( NLEVEL > 1 )
-   H5Tinsert( H5_TypeID, "UM_IC_RefineRegion",      HOFFSET(InputPara_t,UM_IC_RefineRegion      ), H5_TypeID_Arr_NLvM1_6Int    );
+   H5Tinsert( H5_TypeID, "UM_IC_RefineRegion",      HOFFSET(InputPara_t, UM_IC_RefineRegion      ), H5_TypeID_Arr_NLvM1_6Int    );
 #  endif
-   H5Tinsert( H5_TypeID, "Opt__InitRestrict",       HOFFSET(InputPara_t,Opt__InitRestrict       ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__InitGridWithOMP",    HOFFSET(InputPara_t,Opt__InitGridWithOMP    ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__GPUID_Select",       HOFFSET(InputPara_t,Opt__GPUID_Select       ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Init_Subsampling_NCell",  HOFFSET(InputPara_t,Init_Subsampling_NCell  ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__InitRestrict",       HOFFSET(InputPara_t, Opt__InitRestrict       ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__InitGridWithOMP",    HOFFSET(InputPara_t, Opt__InitGridWithOMP    ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__GPUID_Select",       HOFFSET(InputPara_t, Opt__GPUID_Select       ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Init_Subsampling_NCell",  HOFFSET(InputPara_t, Init_Subsampling_NCell  ), H5T_NATIVE_INT              );
 #  ifdef MHD
-   H5Tinsert( H5_TypeID, "Opt__InitBFieldByVecPot", HOFFSET(InputPara_t,Opt__InitBFieldByVecPot ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__InitBFieldByVecPot", HOFFSET(InputPara_t, Opt__InitBFieldByVecPot ), H5T_NATIVE_INT              );
 #  endif
 #  ifdef SUPPORT_FFTW
-   H5Tinsert( H5_TypeID, "Opt__FFTW_Startup",       HOFFSET(InputPara_t,Opt__FFTW_Startup       ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__FFTW_Startup",       HOFFSET(InputPara_t, Opt__FFTW_Startup       ), H5T_NATIVE_INT              );
 #  endif
 
 // interpolation schemes
-   H5Tinsert( H5_TypeID, "Opt__Int_Time",           HOFFSET(InputPara_t,Opt__Int_Time          ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Int_Time",           HOFFSET(InputPara_t, Opt__Int_Time          ), H5T_NATIVE_INT              );
 #  if ( MODEL == HYDRO )
-   H5Tinsert( H5_TypeID, "Opt__Int_Prim",           HOFFSET(InputPara_t,Opt__Int_Prim          ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Int_Prim",           HOFFSET(InputPara_t, Opt__Int_Prim          ), H5T_NATIVE_INT              );
 #  endif
 #  if ( MODEL == ELBDM )
-   H5Tinsert( H5_TypeID, "Opt__Int_Phase",          HOFFSET(InputPara_t,Opt__Int_Phase         ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Int_Phase",          HOFFSET(InputPara_t, Opt__Int_Phase         ), H5T_NATIVE_INT              );
 #  endif
-   H5Tinsert( H5_TypeID, "Opt__Flu_IntScheme",      HOFFSET(InputPara_t,Opt__Flu_IntScheme     ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__RefFlu_IntScheme",   HOFFSET(InputPara_t,Opt__RefFlu_IntScheme  ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Flu_IntScheme",      HOFFSET(InputPara_t, Opt__Flu_IntScheme     ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__RefFlu_IntScheme",   HOFFSET(InputPara_t, Opt__RefFlu_IntScheme  ), H5T_NATIVE_INT              );
 #  ifdef MHD
-   H5Tinsert( H5_TypeID, "Opt__Mag_IntScheme",      HOFFSET(InputPara_t,Opt__Mag_IntScheme     ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__RefMag_IntScheme",   HOFFSET(InputPara_t,Opt__RefMag_IntScheme  ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Mag_IntScheme",      HOFFSET(InputPara_t, Opt__Mag_IntScheme     ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__RefMag_IntScheme",   HOFFSET(InputPara_t, Opt__RefMag_IntScheme  ), H5T_NATIVE_INT              );
 #  endif
 #  ifdef GRAVITY
-   H5Tinsert( H5_TypeID, "Opt__Pot_IntScheme",      HOFFSET(InputPara_t,Opt__Pot_IntScheme     ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__Rho_IntScheme",      HOFFSET(InputPara_t,Opt__Rho_IntScheme     ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__Gra_IntScheme",      HOFFSET(InputPara_t,Opt__Gra_IntScheme     ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__RefPot_IntScheme",   HOFFSET(InputPara_t,Opt__RefPot_IntScheme  ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Pot_IntScheme",      HOFFSET(InputPara_t, Opt__Pot_IntScheme     ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Rho_IntScheme",      HOFFSET(InputPara_t, Opt__Rho_IntScheme     ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Gra_IntScheme",      HOFFSET(InputPara_t, Opt__Gra_IntScheme     ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__RefPot_IntScheme",   HOFFSET(InputPara_t, Opt__RefPot_IntScheme  ), H5T_NATIVE_INT              );
 #  endif
-   H5Tinsert( H5_TypeID, "IntMonoCoeff",            HOFFSET(InputPara_t,IntMonoCoeff           ), H5T_NATIVE_DOUBLE           );
+   H5Tinsert( H5_TypeID, "IntMonoCoeff",            HOFFSET(InputPara_t, IntMonoCoeff           ), H5T_NATIVE_DOUBLE           );
 #  ifdef MHD
-   H5Tinsert( H5_TypeID, "IntMonoCoeffB",           HOFFSET(InputPara_t,IntMonoCoeffB          ), H5T_NATIVE_DOUBLE           );
+   H5Tinsert( H5_TypeID, "IntMonoCoeffB",           HOFFSET(InputPara_t, IntMonoCoeffB          ), H5T_NATIVE_DOUBLE           );
 #  endif
-   H5Tinsert( H5_TypeID, "Mono_MaxIter",            HOFFSET(InputPara_t,Mono_MaxIter           ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "IntOppSign0thOrder",      HOFFSET(InputPara_t,IntOppSign0thOrder     ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Mono_MaxIter",            HOFFSET(InputPara_t, Mono_MaxIter           ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "IntOppSign0thOrder",      HOFFSET(InputPara_t, IntOppSign0thOrder     ), H5T_NATIVE_INT              );
 
 // data dump
-   H5Tinsert( H5_TypeID, "Opt__Output_Total",           HOFFSET(InputPara_t,Opt__Output_Total          ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__Output_Part",            HOFFSET(InputPara_t,Opt__Output_Part           ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__Output_User",            HOFFSET(InputPara_t,Opt__Output_User           ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Output_Total",           HOFFSET(InputPara_t, Opt__Output_Total          ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Output_Part",            HOFFSET(InputPara_t, Opt__Output_Part           ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Output_User",            HOFFSET(InputPara_t, Opt__Output_User           ), H5T_NATIVE_INT              );
 #  ifdef PARTICLE
-   H5Tinsert( H5_TypeID, "Opt__Output_Par_Mode",        HOFFSET(InputPara_t,Opt__Output_Par_Mode       ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__Output_Par_Mesh",        HOFFSET(InputPara_t,Opt__Output_Par_Mesh       ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Output_Par_Mode",        HOFFSET(InputPara_t, Opt__Output_Par_Mode       ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Output_Par_Mesh",        HOFFSET(InputPara_t, Opt__Output_Par_Mesh       ), H5T_NATIVE_INT              );
 #  endif
-   H5Tinsert( H5_TypeID, "Opt__Output_BasePS",          HOFFSET(InputPara_t,Opt__Output_BasePS         ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__Output_Base",            HOFFSET(InputPara_t,Opt__Output_Base           ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Output_BasePS",          HOFFSET(InputPara_t, Opt__Output_BasePS         ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Output_Base",            HOFFSET(InputPara_t, Opt__Output_Base           ), H5T_NATIVE_INT              );
 #  ifdef GRAVITY
-   H5Tinsert( H5_TypeID, "Opt__Output_Pot",             HOFFSET(InputPara_t,Opt__Output_Pot            ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Output_Pot",             HOFFSET(InputPara_t, Opt__Output_Pot            ), H5T_NATIVE_INT              );
 #  endif
 #  ifdef PARTICLE
-   H5Tinsert( H5_TypeID, "Opt__Output_ParDens",         HOFFSET(InputPara_t,Opt__Output_ParDens        ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Output_ParDens",         HOFFSET(InputPara_t, Opt__Output_ParDens        ), H5T_NATIVE_INT              );
 #  endif
 #  ifdef MHD
-   H5Tinsert( H5_TypeID, "Opt__Output_CC_Mag",          HOFFSET(InputPara_t,Opt__Output_CC_Mag         ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Output_CC_Mag",          HOFFSET(InputPara_t, Opt__Output_CC_Mag         ), H5T_NATIVE_INT              );
 #  endif
 #  if ( MODEL == HYDRO )
-   H5Tinsert( H5_TypeID, "Opt__Output_Pres",            HOFFSET(InputPara_t,Opt__Output_Pres           ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__Output_Temp",            HOFFSET(InputPara_t,Opt__Output_Temp           ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__Output_Entr",            HOFFSET(InputPara_t,Opt__Output_Entr           ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__Output_Cs",              HOFFSET(InputPara_t,Opt__Output_Cs             ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__Output_DivVel",          HOFFSET(InputPara_t,Opt__Output_DivVel         ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__Output_Mach",            HOFFSET(InputPara_t,Opt__Output_Mach           ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Output_Pres",            HOFFSET(InputPara_t, Opt__Output_Pres           ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Output_Temp",            HOFFSET(InputPara_t, Opt__Output_Temp           ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Output_Entr",            HOFFSET(InputPara_t, Opt__Output_Entr           ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Output_Cs",              HOFFSET(InputPara_t, Opt__Output_Cs             ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Output_DivVel",          HOFFSET(InputPara_t, Opt__Output_DivVel         ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Output_Mach",            HOFFSET(InputPara_t, Opt__Output_Mach           ), H5T_NATIVE_INT              );
 #  ifdef MHD
-   H5Tinsert( H5_TypeID, "Opt__Output_DivMag",          HOFFSET(InputPara_t,Opt__Output_DivMag         ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Output_DivMag",          HOFFSET(InputPara_t, Opt__Output_DivMag         ), H5T_NATIVE_INT              );
 #  endif
 #  ifdef SRHD
-   H5Tinsert( H5_TypeID, "Opt__Output_3Velocity",       HOFFSET(InputPara_t,Opt__Output_3Velocity      ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__Output_Lorentz",         HOFFSET(InputPara_t,Opt__Output_Lorentz        ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__Output_Enthalpy",        HOFFSET(InputPara_t,Opt__Output_Enthalpy       ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Output_3Velocity",       HOFFSET(InputPara_t, Opt__Output_3Velocity      ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Output_Lorentz",         HOFFSET(InputPara_t, Opt__Output_Lorentz        ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Output_Enthalpy",        HOFFSET(InputPara_t, Opt__Output_Enthalpy       ), H5T_NATIVE_INT              );
 #  endif
 #  endif // #if ( MODEL == HYDRO )
-   H5Tinsert( H5_TypeID, "Opt__Output_UserField",       HOFFSET(InputPara_t,Opt__Output_UserField      ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__Output_Mode",            HOFFSET(InputPara_t,Opt__Output_Mode           ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__Output_Restart",         HOFFSET(InputPara_t,Opt__Output_Restart        ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__Output_Step",            HOFFSET(InputPara_t,Opt__Output_Step           ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__Output_Dt",              HOFFSET(InputPara_t,Opt__Output_Dt             ), H5T_NATIVE_DOUBLE           );
-   H5Tinsert( H5_TypeID, "Opt__Output_Text_Format_Flt", HOFFSET(InputPara_t,Opt__Output_Text_Format_Flt), H5_TypeID_VarStr            );
-   H5Tinsert( H5_TypeID, "Output_PartX",                HOFFSET(InputPara_t,Output_PartX               ), H5T_NATIVE_DOUBLE           );
-   H5Tinsert( H5_TypeID, "Output_PartY",                HOFFSET(InputPara_t,Output_PartY               ), H5T_NATIVE_DOUBLE           );
-   H5Tinsert( H5_TypeID, "Output_PartZ",                HOFFSET(InputPara_t,Output_PartZ               ), H5T_NATIVE_DOUBLE           );
-   H5Tinsert( H5_TypeID, "InitDumpID",                  HOFFSET(InputPara_t,InitDumpID                 ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Output_UserField",       HOFFSET(InputPara_t, Opt__Output_UserField      ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Output_Mode",            HOFFSET(InputPara_t, Opt__Output_Mode           ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Output_Restart",         HOFFSET(InputPara_t, Opt__Output_Restart        ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Output_Step",            HOFFSET(InputPara_t, Opt__Output_Step           ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Output_Dt",              HOFFSET(InputPara_t, Opt__Output_Dt             ), H5T_NATIVE_DOUBLE           );
+   H5Tinsert( H5_TypeID, "Opt__Output_Text_Format_Flt", HOFFSET(InputPara_t, Opt__Output_Text_Format_Flt), H5_TypeID_VarStr            );
+   H5Tinsert( H5_TypeID, "Output_PartX",                HOFFSET(InputPara_t, Output_PartX               ), H5T_NATIVE_DOUBLE           );
+   H5Tinsert( H5_TypeID, "Output_PartY",                HOFFSET(InputPara_t, Output_PartY               ), H5T_NATIVE_DOUBLE           );
+   H5Tinsert( H5_TypeID, "Output_PartZ",                HOFFSET(InputPara_t, Output_PartZ               ), H5T_NATIVE_DOUBLE           );
+   H5Tinsert( H5_TypeID, "InitDumpID",                  HOFFSET(InputPara_t, InitDumpID                 ), H5T_NATIVE_INT              );
 
 // libyt jupyter
 #  if ( defined(SUPPORT_LIBYT) && defined(LIBYT_JUPYTER) )
-   H5Tinsert( H5_TypeID, "Yt_JupyterUseConnectionFile", HOFFSET(InputPara_t,Yt_JupyterUseConnectionFile), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Yt_JupyterUseConnectionFile", HOFFSET(InputPara_t, Yt_JupyterUseConnectionFile), H5T_NATIVE_INT              );
 #  endif
 
 // miscellaneous
-   H5Tinsert( H5_TypeID, "Opt__Verbose",            HOFFSET(InputPara_t,Opt__Verbose           ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__TimingBarrier",      HOFFSET(InputPara_t,Opt__TimingBarrier     ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__TimingBalance",      HOFFSET(InputPara_t,Opt__TimingBalance     ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__TimingMPI",          HOFFSET(InputPara_t,Opt__TimingMPI         ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__RecordNote",         HOFFSET(InputPara_t,Opt__RecordNote        ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__RecordUnphy",        HOFFSET(InputPara_t,Opt__RecordUnphy       ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__RecordMemory",       HOFFSET(InputPara_t,Opt__RecordMemory      ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__RecordPerformance",  HOFFSET(InputPara_t,Opt__RecordPerformance ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__ManualControl",      HOFFSET(InputPara_t,Opt__ManualControl     ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__RecordCenter",       HOFFSET(InputPara_t,Opt__RecordCenter      ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "COM_CenX",                HOFFSET(InputPara_t,COM_CenX               ), H5T_NATIVE_DOUBLE           );
-   H5Tinsert( H5_TypeID, "COM_CenY",                HOFFSET(InputPara_t,COM_CenY               ), H5T_NATIVE_DOUBLE           );
-   H5Tinsert( H5_TypeID, "COM_CenZ",                HOFFSET(InputPara_t,COM_CenZ               ), H5T_NATIVE_DOUBLE           );
-   H5Tinsert( H5_TypeID, "COM_MaxR",                HOFFSET(InputPara_t,COM_MaxR               ), H5T_NATIVE_DOUBLE           );
-   H5Tinsert( H5_TypeID, "COM_MinRho",              HOFFSET(InputPara_t,COM_MinRho             ), H5T_NATIVE_DOUBLE           );
-   H5Tinsert( H5_TypeID, "COM_TolErrR",             HOFFSET(InputPara_t,COM_TolErrR            ), H5T_NATIVE_DOUBLE           );
-   H5Tinsert( H5_TypeID, "COM_MaxIter",             HOFFSET(InputPara_t,COM_MaxIter            ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__RecordUser",         HOFFSET(InputPara_t,Opt__RecordUser        ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__OptimizeAggressive", HOFFSET(InputPara_t,Opt__OptimizeAggressive), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__SortPatchByLBIdx",   HOFFSET(InputPara_t,Opt__SortPatchByLBIdx  ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Verbose",            HOFFSET(InputPara_t, Opt__Verbose           ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__TimingBarrier",      HOFFSET(InputPara_t, Opt__TimingBarrier     ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__TimingBalance",      HOFFSET(InputPara_t, Opt__TimingBalance     ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__TimingMPI",          HOFFSET(InputPara_t, Opt__TimingMPI         ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__RecordNote",         HOFFSET(InputPara_t, Opt__RecordNote        ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__RecordUnphy",        HOFFSET(InputPara_t, Opt__RecordUnphy       ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__RecordMemory",       HOFFSET(InputPara_t, Opt__RecordMemory      ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__RecordPerformance",  HOFFSET(InputPara_t, Opt__RecordPerformance ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__ManualControl",      HOFFSET(InputPara_t, Opt__ManualControl     ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__RecordCenter",       HOFFSET(InputPara_t, Opt__RecordCenter      ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "COM_CenX",                HOFFSET(InputPara_t, COM_CenX               ), H5T_NATIVE_DOUBLE           );
+   H5Tinsert( H5_TypeID, "COM_CenY",                HOFFSET(InputPara_t, COM_CenY               ), H5T_NATIVE_DOUBLE           );
+   H5Tinsert( H5_TypeID, "COM_CenZ",                HOFFSET(InputPara_t, COM_CenZ               ), H5T_NATIVE_DOUBLE           );
+   H5Tinsert( H5_TypeID, "COM_MaxR",                HOFFSET(InputPara_t, COM_MaxR               ), H5T_NATIVE_DOUBLE           );
+   H5Tinsert( H5_TypeID, "COM_MinRho",              HOFFSET(InputPara_t, COM_MinRho             ), H5T_NATIVE_DOUBLE           );
+   H5Tinsert( H5_TypeID, "COM_TolErrR",             HOFFSET(InputPara_t, COM_TolErrR            ), H5T_NATIVE_DOUBLE           );
+   H5Tinsert( H5_TypeID, "COM_MaxIter",             HOFFSET(InputPara_t, COM_MaxIter            ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__RecordUser",         HOFFSET(InputPara_t, Opt__RecordUser        ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__OptimizeAggressive", HOFFSET(InputPara_t, Opt__OptimizeAggressive), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__SortPatchByLBIdx",   HOFFSET(InputPara_t, Opt__SortPatchByLBIdx  ), H5T_NATIVE_INT              );
 
 // simulation checks
-   H5Tinsert( H5_TypeID, "Opt__Ck_Refine",          HOFFSET(InputPara_t,Opt__Ck_Refine         ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__Ck_ProperNesting",   HOFFSET(InputPara_t,Opt__Ck_ProperNesting  ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__Ck_Conservation",    HOFFSET(InputPara_t,Opt__Ck_Conservation   ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "AngMom_OriginX",          HOFFSET(InputPara_t,AngMom_OriginX         ), H5T_NATIVE_DOUBLE           );
-   H5Tinsert( H5_TypeID, "AngMom_OriginY",          HOFFSET(InputPara_t,AngMom_OriginY         ), H5T_NATIVE_DOUBLE           );
-   H5Tinsert( H5_TypeID, "AngMom_OriginZ",          HOFFSET(InputPara_t,AngMom_OriginZ         ), H5T_NATIVE_DOUBLE           );
-   H5Tinsert( H5_TypeID, "Opt__Ck_NormPassive",     HOFFSET(InputPara_t,Opt__Ck_NormPassive    ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__Ck_Restrict",        HOFFSET(InputPara_t,Opt__Ck_Restrict       ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__Ck_Finite",          HOFFSET(InputPara_t,Opt__Ck_Finite         ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__Ck_PatchAllocate",   HOFFSET(InputPara_t,Opt__Ck_PatchAllocate  ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__Ck_FluxAllocate",    HOFFSET(InputPara_t,Opt__Ck_FluxAllocate   ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Ck_Refine",          HOFFSET(InputPara_t, Opt__Ck_Refine         ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Ck_ProperNesting",   HOFFSET(InputPara_t, Opt__Ck_ProperNesting  ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Ck_Conservation",    HOFFSET(InputPara_t, Opt__Ck_Conservation   ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "AngMom_OriginX",          HOFFSET(InputPara_t, AngMom_OriginX         ), H5T_NATIVE_DOUBLE           );
+   H5Tinsert( H5_TypeID, "AngMom_OriginY",          HOFFSET(InputPara_t, AngMom_OriginY         ), H5T_NATIVE_DOUBLE           );
+   H5Tinsert( H5_TypeID, "AngMom_OriginZ",          HOFFSET(InputPara_t, AngMom_OriginZ         ), H5T_NATIVE_DOUBLE           );
+   H5Tinsert( H5_TypeID, "Opt__Ck_NormPassive",     HOFFSET(InputPara_t, Opt__Ck_NormPassive    ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Ck_Restrict",        HOFFSET(InputPara_t, Opt__Ck_Restrict       ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Ck_Finite",          HOFFSET(InputPara_t, Opt__Ck_Finite         ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Ck_PatchAllocate",   HOFFSET(InputPara_t, Opt__Ck_PatchAllocate  ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Ck_FluxAllocate",    HOFFSET(InputPara_t, Opt__Ck_FluxAllocate   ), H5T_NATIVE_INT              );
 #  if ( MODEL == HYDRO )
-   H5Tinsert( H5_TypeID, "Opt__Ck_Negative",        HOFFSET(InputPara_t,Opt__Ck_Negative       ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Ck_Negative",        HOFFSET(InputPara_t, Opt__Ck_Negative       ), H5T_NATIVE_INT              );
 #  endif
-   H5Tinsert( H5_TypeID, "Opt__Ck_MemFree",         HOFFSET(InputPara_t,Opt__Ck_MemFree        ), H5T_NATIVE_DOUBLE           );
+   H5Tinsert( H5_TypeID, "Opt__Ck_MemFree",         HOFFSET(InputPara_t, Opt__Ck_MemFree        ), H5T_NATIVE_DOUBLE           );
 #  ifdef PARTICLE
-   H5Tinsert( H5_TypeID, "Opt__Ck_Particle",        HOFFSET(InputPara_t,Opt__Ck_Particle       ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Ck_Particle",        HOFFSET(InputPara_t, Opt__Ck_Particle       ), H5T_NATIVE_INT              );
 #  endif
 #  ifdef MHD
-   H5Tinsert( H5_TypeID, "Opt__Ck_InterfaceB",      HOFFSET(InputPara_t,Opt__Ck_InterfaceB     ), H5T_NATIVE_INT              );
-   H5Tinsert( H5_TypeID, "Opt__Ck_DivergenceB",     HOFFSET(InputPara_t,Opt__Ck_DivergenceB    ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Ck_InterfaceB",      HOFFSET(InputPara_t, Opt__Ck_InterfaceB     ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Ck_DivergenceB",     HOFFSET(InputPara_t, Opt__Ck_DivergenceB    ), H5T_NATIVE_INT              );
 #  endif
-   H5Tinsert( H5_TypeID, "Opt__Ck_InputFluid",      HOFFSET(InputPara_t,Opt__Ck_InputFluid     ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "Opt__Ck_InputFluid",      HOFFSET(InputPara_t, Opt__Ck_InputFluid     ), H5T_NATIVE_INT              );
 
 // flag tables
 #  if ( NLEVEL > 1 )
-   H5Tinsert( H5_TypeID, "FlagTable_Rho",          HOFFSET(InputPara_t,FlagTable_Rho           ), H5_TypeID_Arr_NLvM1Double   );
-   H5Tinsert( H5_TypeID, "FlagTable_RhoGradient",  HOFFSET(InputPara_t,FlagTable_RhoGradient   ), H5_TypeID_Arr_NLvM1Double   );
-   H5Tinsert( H5_TypeID, "FlagTable_Lohner",       HOFFSET(InputPara_t,FlagTable_Lohner        ), H5_TypeID_Arr_NLvM1_5Double );
+   H5Tinsert( H5_TypeID, "FlagTable_Rho",          HOFFSET(InputPara_t, FlagTable_Rho           ), H5_TypeID_Arr_NLvM1Double   );
+   H5Tinsert( H5_TypeID, "FlagTable_RhoGradient",  HOFFSET(InputPara_t, FlagTable_RhoGradient   ), H5_TypeID_Arr_NLvM1Double   );
+   H5Tinsert( H5_TypeID, "FlagTable_Lohner",       HOFFSET(InputPara_t, FlagTable_Lohner        ), H5_TypeID_Arr_NLvM1_5Double );
 
 // store the user-defined thresholds at all levels
    for (int lv=0; lv<MAX_LEVEL; lv++)
@@ -3622,45 +3623,45 @@ void GetCompound_InputPara( hid_t &H5_TypeID, const int NFieldStored )
       sprintf( Key, "FlagTable_User_Lv%02d", lv );
 
 //    assuming the offset between successive FlagTable_User pointers is "PtrSize_hvl", which is equal to "sizeof( hvl_t )"
-      H5Tinsert( H5_TypeID, Key, HOFFSET(InputPara_t,FlagTable_User)+lv*PtrSize_hvl, H5_TypeID_Arr_NLvM1_VLDouble );
+      H5Tinsert( H5_TypeID, Key, HOFFSET(InputPara_t, FlagTable_User)+lv*PtrSize_hvl, H5_TypeID_Arr_NLvM1_VLDouble );
    }
 
 #  if   ( MODEL == HYDRO )
-   H5Tinsert( H5_TypeID, "FlagTable_PresGradient", HOFFSET(InputPara_t,FlagTable_PresGradient  ), H5_TypeID_Arr_NLvM1Double   );
-   H5Tinsert( H5_TypeID, "FlagTable_Vorticity",    HOFFSET(InputPara_t,FlagTable_Vorticity     ), H5_TypeID_Arr_NLvM1Double   );
-   H5Tinsert( H5_TypeID, "FlagTable_Jeans",        HOFFSET(InputPara_t,FlagTable_Jeans         ), H5_TypeID_Arr_NLvM1Double   );
+   H5Tinsert( H5_TypeID, "FlagTable_PresGradient", HOFFSET(InputPara_t, FlagTable_PresGradient  ), H5_TypeID_Arr_NLvM1Double   );
+   H5Tinsert( H5_TypeID, "FlagTable_Vorticity",    HOFFSET(InputPara_t, FlagTable_Vorticity     ), H5_TypeID_Arr_NLvM1Double   );
+   H5Tinsert( H5_TypeID, "FlagTable_Jeans",        HOFFSET(InputPara_t, FlagTable_Jeans         ), H5_TypeID_Arr_NLvM1Double   );
 #  ifdef MHD
-   H5Tinsert( H5_TypeID, "FlagTable_Current",      HOFFSET(InputPara_t,FlagTable_Current       ), H5_TypeID_Arr_NLvM1Double   );
+   H5Tinsert( H5_TypeID, "FlagTable_Current",      HOFFSET(InputPara_t, FlagTable_Current       ), H5_TypeID_Arr_NLvM1Double   );
 #  endif
 #  ifdef SRHD
-   H5Tinsert( H5_TypeID, "FlagTable_LrtzGradient", HOFFSET(InputPara_t,FlagTable_LrtzGradient  ), H5_TypeID_Arr_NLvM1Double   );
+   H5Tinsert( H5_TypeID, "FlagTable_LrtzGradient", HOFFSET(InputPara_t, FlagTable_LrtzGradient  ), H5_TypeID_Arr_NLvM1Double   );
 #  endif
 #  ifdef COSMIC_RAY
-   H5Tinsert( H5_TypeID, "FlagTable_CRay",         HOFFSET(InputPara_t,FlagTable_CRay          ), H5_TypeID_Arr_NLvM1Double   );
+   H5Tinsert( H5_TypeID, "FlagTable_CRay",         HOFFSET(InputPara_t, FlagTable_CRay          ), H5_TypeID_Arr_NLvM1Double   );
 #  endif
 #  elif ( MODEL == ELBDM )
-   H5Tinsert( H5_TypeID, "FlagTable_EngyDensity",  HOFFSET(InputPara_t,FlagTable_EngyDensity   ), H5_TypeID_Arr_NLvM1_2Double );
+   H5Tinsert( H5_TypeID, "FlagTable_EngyDensity",  HOFFSET(InputPara_t, FlagTable_EngyDensity   ), H5_TypeID_Arr_NLvM1_2Double );
 #  endif
 #  ifdef PARTICLE
-   H5Tinsert( H5_TypeID, "FlagTable_NParPatch",    HOFFSET(InputPara_t,FlagTable_NParPatch     ), H5_TypeID_Arr_NLvM1Int      );
-   H5Tinsert( H5_TypeID, "FlagTable_NParCell",     HOFFSET(InputPara_t,FlagTable_NParCell      ), H5_TypeID_Arr_NLvM1Int      );
-   H5Tinsert( H5_TypeID, "FlagTable_ParMassCell",  HOFFSET(InputPara_t,FlagTable_ParMassCell   ), H5_TypeID_Arr_NLvM1Double   );
+   H5Tinsert( H5_TypeID, "FlagTable_NParPatch",    HOFFSET(InputPara_t, FlagTable_NParPatch     ), H5_TypeID_Arr_NLvM1Int      );
+   H5Tinsert( H5_TypeID, "FlagTable_NParCell",     HOFFSET(InputPara_t, FlagTable_NParCell      ), H5_TypeID_Arr_NLvM1Int      );
+   H5Tinsert( H5_TypeID, "FlagTable_ParMassCell",  HOFFSET(InputPara_t, FlagTable_ParMassCell   ), H5_TypeID_Arr_NLvM1Double   );
 #  endif
 #  endif
 
 // user-defined derived fields
-   H5Tinsert( H5_TypeID, "UserDerField_Num",        HOFFSET(InputPara_t,UserDerField_Num       ), H5T_NATIVE_INT              );
+   H5Tinsert( H5_TypeID, "UserDerField_Num",        HOFFSET(InputPara_t, UserDerField_Num       ), H5T_NATIVE_INT              );
 
 // --> only need to insert UserDerField_Num strings even though *UserDerField_Label/Unit are pointer arrays with
 //     a size DER_NOUT_MAX in InputPara_t
-// --> it should be fine as long as the "offset" (i.e., HOFFSET(InputPara_t,UserDerField_Label[0])+v*PtrSize) is correct
+// --> it should be fine as long as the "offset" (i.e., HOFFSET(InputPara_t, UserDerField_Label[0])+v*PtrSize) is correct
    for (int v=0; v<UserDerField_Num; v++)
    {
 //    key for each field label
       sprintf( Key, "UserDerField_Label%02d", v );
 
 //    assuming the offset between successive UserDerField_Label pointers is "PtrSize", which is equal to "sizeof( char* )"
-      H5Tinsert( H5_TypeID, Key, HOFFSET(InputPara_t,UserDerField_Label[0])+v*PtrSize, H5_TypeID_VarStr );
+      H5Tinsert( H5_TypeID, Key, HOFFSET(InputPara_t, UserDerField_Label[0])+v*PtrSize, H5_TypeID_VarStr );
    }
 
    for (int v=0; v<UserDerField_Num; v++)
@@ -3669,7 +3670,7 @@ void GetCompound_InputPara( hid_t &H5_TypeID, const int NFieldStored )
       sprintf( Key, "UserDerField_Unit%02d", v );
 
 //    assuming the offset between successive UserDerField_Unit pointers is "PtrSize", which is equal to "sizeof( char* )"
-      H5Tinsert( H5_TypeID, Key, HOFFSET(InputPara_t,UserDerField_Unit [0])+v*PtrSize, H5_TypeID_VarStr );
+      H5Tinsert( H5_TypeID, Key, HOFFSET(InputPara_t, UserDerField_Unit [0])+v*PtrSize, H5_TypeID_VarStr );
    }
 
 

@@ -213,7 +213,7 @@ void LB_Init_LoadBalance( const bool Redistribute, const bool SendGridData, cons
 
 
 // 5. construct the MPI send and recv data list
-   const int lv_min_mpi = ( TLv < 0 ) ?         0 : MAX(0,TLv-1);
+   const int lv_min_mpi = ( TLv < 0 ) ?         0 : MAX(0, TLv-1);
    const int lv_max_mpi = ( TLv < 0 ) ? TOP_LEVEL : TLv;
 
    for (int lv=lv_min_mpi; lv<=lv_max_mpi; lv++)

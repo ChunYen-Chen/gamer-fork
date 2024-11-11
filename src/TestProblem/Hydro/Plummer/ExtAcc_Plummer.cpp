@@ -65,7 +65,7 @@ void SetExtAccAuxArray_Plummer( double AuxArray[], const double Time )
 //                Time      : Target physical time
 //                UserArray : User-provided auxiliary array
 //
-// Return      :  External acceleration Acc[] at (x,y,z,Time)
+// Return      :  External acceleration Acc[] at (x, y, z, Time)
 //-----------------------------------------------------------------------------------------
 GPU_DEVICE_NOINLINE
 static void ExtAcc_Plummer( real Acc[], const double x, const double y, const double z, const double Time,
