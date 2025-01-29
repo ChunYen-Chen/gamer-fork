@@ -11,7 +11,7 @@
 
 
 # Default setup
-- [[OPT__FREEZE_FLUID | Hydro#OPT__FREEZE_FLUID]]=`1`
+- [[OPT__FREEZE_FLUID | Runtime-Parameters:-Hydro#OPT__FREEZE_FLUID]]=`1`
 
 
 # Note

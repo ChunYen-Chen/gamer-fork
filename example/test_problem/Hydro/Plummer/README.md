@@ -15,7 +15,7 @@ None
 # Note
 - Test the evolution of the Plummer model
   - `Plummer_Collision` = `0`: test the stability of a single Plummer cloud
-                          `1`: test the collision of two Plummer clouds
+  - `Plummer_Collision` = `1`: test the collision of two Plummer clouds
 
 - One can set [[--passive | Installation:-Option-List#--passive]]=`2`
   and `Plummer_AddColor`=`1` for `Plummer_Collision`=`1`
@@ -25,7 +25,7 @@ None
   - `Plummer_GasMFrac`: gas mass fraction
 
 - To enable feedback
-  1. Enable `FB_USER`
+  1. Enable [[FB_USER | Runtime-Parameters:-Feedback#FB_USER]]
   2. Enable `Plummer_FB_Exp` and/or `Plummer_FB_Acc`
 
 - To test mass conservation to the machine precision with mass accretion feedback

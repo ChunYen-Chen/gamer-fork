@@ -40,8 +40,7 @@
 # Note
 - Analytical solution reference: [Woo, T. & Chiueh, T. 2009, ApJ, 697, 850](https://doi.org/10.1088/0004-637X/697/1/850)
 
-> [!NOTE]
-> The imaginary part `I` grows much faster than the real part `R`.
+- Note that the imaginary part `I` grows much faster than the real part `R`.
   Consequently, the accuracy of linear prediction will be deteriorated
   when the assumption (`2R >> I^2`) starts to break down, especially in the
   higher-resolution tests, and hence the 2nd-order accuracy may no longer

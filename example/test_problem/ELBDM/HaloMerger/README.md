@@ -12,15 +12,15 @@
 
 # Default setup
 - Code units
-  1. `UNIT_L` = Mpc/h, where h=0.6955 is the present dimensionless Hubble parameter
+  - `UNIT_L` = Mpc/h, where h=0.6955 is the present dimensionless Hubble parameter
               = 1437.814521231748 kpc
-  2. `UNIT_V` = 100 km/s
-  3. `UNIT_D` = rho_bg (background matter density at z=0)
+  - `UNIT_V` = 100 km/s
+  - `UNIT_D` = rho_bg (background matter density at z=0)
               = 38.06 Msun/kpc^3
 
      - Mass density and wavefunction are normalized to rho_bg
-  4. `UNIT_T` = 14068.4678922741 Myr
-  5. `UNIT_M` = 1.131e+11 Msun
+  - `UNIT_T` = 14068.4678922741 Myr
+  - `UNIT_M` = 1.131e+11 Msun
 
 - ELBDM
   | Parameter name         | Value   |
@@ -29,7 +29,7 @@
   | ELBDM_REMOVE_MOTION_CM | 0       |
   | ELBDM_TAYLOR3_AUTO     | 0       |
 
-- Boundary condition
+- Boundary conditions
   | Parameter name | Value | Note |
   |---             |---    |--- |
   | OPT__BC_FLU_*  | 1     | periodic |

@@ -22,4 +22,4 @@
 
 - `Soliton_N`>`1`: soliton merger
   - Set `Soliton_RSeed`>=`0`
-  - Set `Soliton_EmptyRegion`>`0.0` (e.g., 1.0e2)
+  - Set `Soliton_EmptyRegion`>`0.0` (e.g., `1.0e2`)

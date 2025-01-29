@@ -39,7 +39,7 @@
 
 3. Default [[END_T | Runtime-Parameters:-General#END_T]] is 2.5e-1 (about 3.5 Gyr) as in [Yang et al. 2023](https://doi.org/10.1093/mnras/stae793) and [[OUTPUT_DT | Runtime-Parameters:-Outputs#OUTPUT_DT]] is 1.0e-2 (about 0.14 Gyr)
 
-4. Switch to the high-resolution run
+4. To switch to the high-resolution run
 
    1. Link high-resolution `DiskHeatingParticleIC`
       ```bash
@@ -83,7 +83,7 @@
     4. Set `AddParWhenRestartNPar` in `Input__TestProb`
 
     5. Turn on [[OPT__RESTART_RESET | Runtime-Parameters:-Initial-Conditions#OPT__RESTART_RESET]] in `Input__Parameter`
-       - Recommend to turn off `AddParWhenRestart`, `AddParWhenRestartByFile`, [[OPT__RESTART_RESET | Runtime-Parameters:-Initial-Conditions#OPT__RESTART_RESET]] right after the simulation starts
+    - Recommend to turn off `AddParWhenRestart`, `AddParWhenRestartByFile`, [[OPT__RESTART_RESET | Runtime-Parameters:-Initial-Conditions#OPT__RESTART_RESET]] right after the simulation starts
 
   - The code for [FDM halo reconstruction](https://github.com/calab-ntu/psidm-halo-reconstruction)
 

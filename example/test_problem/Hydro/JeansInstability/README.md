@@ -16,7 +16,7 @@
 - Simulation time
   - stable -> one period
   - unstable -> grow/decay by a factor of 50
-- Gravitational constant = 1/(4\*pi) = 0.07957747154
+- Gravitational constant = `1/(4*pi)` = `0.07957747154`
 
 
 # Note

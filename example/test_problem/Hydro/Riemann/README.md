@@ -18,7 +18,7 @@
 
 # Note
 - Since GAMER does not support real 1D/2D simulations, one should set the
-  root-level grid size to 16 (i.e., patch size\*2) in the transverse directions
+  root-level grid size to 16 (i.e., `patch size*2`) in the transverse directions
 
 - Add [[--mhd | Installation:-Option-List#--mhd]]=`true` when executing `configure.py` for the Riemann problems involving magnetic field
 
