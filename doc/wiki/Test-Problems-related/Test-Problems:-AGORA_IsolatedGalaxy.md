@@ -55,7 +55,7 @@
 - Mimic the "AgoraGalaxy" test problem setup of Enzo.
 
   See: [Nathan Goldbaum, et al., 2015, ApJ, 814, 131](https://dx.doi.org/10.1088/0004-637X/814/2/131) [(arXiv: 1510.08458)](https://arxiv.org/abs/1510.08458) and
-  [Ji-hoon Kim, et al., 2016, ApJ, 833, 202](https://dx.doi.org/10.3847/1538-4357/833/2/202) [(arXiv: 1610.03066)](https://dx.doi.org/10.3847/1538-4357/833/2/202)
+  [Ji-hoon Kim, et al., 2016, ApJ, 833, 202](https://dx.doi.org/10.3847/1538-4357/833/2/202) [(arXiv: 1610.03066)](https://arxiv.org/abs/1610.03066)
 
 - Other references
 

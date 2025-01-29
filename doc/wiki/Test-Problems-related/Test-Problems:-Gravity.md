@@ -22,7 +22,7 @@
 # Default setup
 - Adopt mass density as the refinement criteria in `Input__Flag_Rho`
 - Maximum refinement level ([[MAX_LEVEL | Runtime-Parameters:-Refinement#MAX_LEVEL]])=`6`
-- Isolated Poisson solver ([[OPT__BC_POT | Runtime-Parameters:-Hydro#OPT__BC_POT]]=`2`)
+- Isolated Poisson solver ([[OPT__BC_POT | Runtime-Parameters:-Gravity#OPT__BC_POT]]=`2`)
 
 
 # Note

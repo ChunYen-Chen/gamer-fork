@@ -24,7 +24,7 @@
 # Note
 - Reference
   - [Zhang et al., 2018, ApJS, 236, 50](https://arxiv.org/abs/1804.03479)
-- `ABC_NPeriod`
+- `ABC_NPeriod` (n)
   - `1` --> stable
   - `2` --> unstable
 - Initial perturbations have not been implemented yet

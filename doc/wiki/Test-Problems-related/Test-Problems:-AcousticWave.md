@@ -38,8 +38,8 @@
     - [[--slope | Installation:-Option-List#--slope]]=`PLM`
   - In `Input__TestProb`,
     - `Acoustic_v0` and `Acoustic_Cs` will be useless
-    - set `Acoustic_Temp_Bg`=`1.0e+10` for high-temperature case
-    - set `Acoustic_Temp_Bg`=`1.0e-10` for low-temperature case
+    - Set `Acoustic_Temp_Bg`=`1.0e+10` for high-temperature case
+    - Set `Acoustic_Temp_Bg`=`1.0e-10` for low-temperature case
   - To check the L1 error convergence rate
     - A L1 error plotting script `plot_L1error_SRHD.py` is attached
     - An automatic script `Run_L1ErrorConvergenceTest_SRHD.sh` is attached

@@ -35,7 +35,7 @@
 - [[OPT__FREEZE_FLUID | Runtime-Parameters:-Hydro#OPT__FREEZE_FLUID]] must be 1 for this test.
 - If [[OPT__FLAG_USER | Runtime-Parameters:-Refinement#OPT__FLAG_USER]] is set,
   a rectangle will be refined in the center of the domain.
-  - The active particle orbit is _not_ stable in this case due to self-force at refinement boundaries.
+  - Note that the active particle orbit is _not_ stable in this case due to self-force at refinement boundaries.
 - Density of the gas must be kept very small to avoid gravitational effects from the gas.
 - Use python script `make_tracer_pngs.py` with yt to make PNG images, use
   bash script `make_tracer_movie.sh` to combine PNGs into movies with `ffmpeg`.

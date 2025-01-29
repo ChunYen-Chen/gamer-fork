@@ -48,7 +48,7 @@
   ```
 
 - Default maximum resolution is low
-  - Only 1.4/(256\*2^3) ~ 0.7 kpc/h (comoving)
+  - Only `1.4/(256*2^3) ~ 0.7` kpc/h (comoving)
   - Can only marginally resolve a central soliton
 
 - Some yt visualization scripts are put in `plot_script`

@@ -18,7 +18,7 @@
 
 
 # Default setup
-- Cosmological constants
+- Cosmological parameters
   | Parameter name | Value                  |
   |---             |---                     |
   | A_INIT         | 0.00990099009900990099 |
@@ -53,7 +53,7 @@
   1. Set gas density/energy to arbitrarily small (for [[--model | Installation:-Option-List#--model]]=`HYDRO`)
      or wave function to zero (for [[--model | Installation:-Option-List#--model]]=`ELBDM`) in `SetGridIC()`.
   2. Enable [[OPT__FREEZE_FLUID | Runtime-Parameters:-Hydro#OPT__FREEZE_FLUID]]
-- Default maximum spatial resolution is 30.0/(128\*2^5)~7.3 kpc/h (comoving).
+- Default maximum spatial resolution is `30.0/(128*2^5)~7.3 kpc/h` (comoving).
 
 # Links
 [[Main page of Test Problems | Test-Problems]]

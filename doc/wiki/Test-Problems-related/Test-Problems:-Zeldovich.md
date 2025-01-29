@@ -104,7 +104,7 @@
   can be properly resolved.
 
 - The analysis script `./plots/analysis_plot_Zeldovich.py` works for both gas-/particle-only setups. Note
-  that the parameters under "# user-specified parameters" in the script NEED to match those adopted in
+  that the parameters under `# user-specified parameters` in the script NEED to match those adopted in
   `Input__TestProb`, especially the value of `Gas_Par_Setup`.
 
 - For references, see Sec. 9.2 of [Springel, MNRAS 401 791 (2010)](https://doi.org/10.1111/j.1365-2966.2009.15715.x)

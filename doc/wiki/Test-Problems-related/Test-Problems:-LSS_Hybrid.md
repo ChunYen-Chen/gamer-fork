@@ -101,7 +101,7 @@
 
   The corresponding runtime parameter [[ELBDM_FIRST_WAVE_LEVEL | Runtime-Parameters:-ELBDM#ELBDM_FIRST_WAVE_LEVEL]] is set to 4.
 
-  The resolution for the first level using the wave solver is 2.8 Mpc/h /(64\*2^4) ~ 2.75 kpc/h (comoving) with these settings.
+  The resolution for the first level using the wave solver is `2.8 Mpc/h /(64*2^4) ~ 2.75 kpc/h` (comoving) with these settings.
 
   This resolution has shown to be a good compromise for the starting resolution of the wave solver.
 
@@ -113,7 +113,7 @@
   will negatively affect the accuracy of the solver.
 
 - Default maximum resolution is low
-  - Only 2.8/(64\*2^6) ~ 0.7 kpc/h (comoving)
+  - Only `2.8/(64*2^6) ~ 0.7 kpc/h` (comoving)
   - Can only marginally resolve a central soliton
 
 - Some yt visualization scripts are put in `plot_script`
