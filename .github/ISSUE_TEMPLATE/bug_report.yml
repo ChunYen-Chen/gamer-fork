@@ -1,0 +1,52 @@
+name: Bug Report
+
+description: File a bug report.
+
+title: "[Bug] "
+
+labels: ["bug"]
+
+projects:
+
+assignees:
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: textarea
+    id: issue_content
+    attributes:
+      label: What happened?
+      description: Also tell us, what did you expect to happen?
+      placeholder: Tell us what you see!
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce_step
+    attributes:
+      label: How to reproduce the issue
+    validations:
+      required: true
+  - type: dropdown
+    id: operation_system
+    attributes:
+      label: What is your OS?
+      multiple: false
+      options:
+        - linux (x86)
+        - linux (ARM)
+        - MacOS (x86, Intel chip)
+        - MacOS (ARM, Apple chip)
+        - Windows (x86)
+        - Windows (ARM)
+  - type: checkboxes
+    id: labels
+    attributes:
+      label: Related topics
+      description: You may select more than one.
+      options:
+        - label: Gravity
+        - label: Parallel
+
