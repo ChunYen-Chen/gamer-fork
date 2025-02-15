@@ -1517,6 +1517,17 @@ void Aux_TakeNote()
 #     endif
 
 
+//    record the parameters of Hypre
+#     ifdef SUPPORT_HYPRE
+      fprintf( Note, "Parameters of YT Inline Analysis\n" );
+      fprintf( Note, "***********************************************************************************\n" );
+      fprintf( Note, "HYPRE_SOLVER                        %s\n",  ( HYPRE_SOLVER == HYPRE_SOLVER_SSTRUCT_SYS_PFMG ) ? "SSTRUCT_SYS_PFMG" :
+                                                                                                                      "UNKNOWN" );
+      fprintf( Note, "***********************************************************************************\n" );
+      fprintf( Note, "\n\n");
+#     endif
+
+
 //    record the parameters of miscellaneous purposes
       fprintf( Note, "Parameters of Miscellaneous Purposes\n" );
       fprintf( Note, "***********************************************************************************\n" );

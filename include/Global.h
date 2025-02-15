@@ -365,8 +365,9 @@ extern double CR_DIFF_MIN_B;
 // (2-15) Hypre
 // =======================================================================================================
 #ifdef SUPPORT_HYPRE
+extern Hypre_Solver_t        HYPRE_SOLVER;
 extern HYPRE_SStructGrid     Hypre_grid;
-extern HYPRE_SStructGraph   Hypre_graph;
+extern HYPRE_SStructGraph    Hypre_graph;
 extern HYPRE_SStructStencil  Hypre_stencil;
 extern HYPRE_SStructMatrix   Hypre_A;
 extern HYPRE_SStructVector   Hypre_b;

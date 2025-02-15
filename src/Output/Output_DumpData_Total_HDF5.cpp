@@ -3570,6 +3570,11 @@ void GetCompound_InputPara( hid_t &H5_TypeID, const int NFieldStored )
    H5Tinsert( H5_TypeID, "Yt_JupyterUseConnectionFile", HOFFSET(InputPara_t,Yt_JupyterUseConnectionFile), H5T_NATIVE_INT              );
 #  endif
 
+// Hypre
+#  ifdef SUPPORT_HYPRE
+   H5Tinsert( H5_TypeID, "Hypre_Solver",            HOFFSET(InputPara_t,Hypre_Solver           ), H5T_NATIVE_INT              );
+#  endif
+
 // miscellaneous
    H5Tinsert( H5_TypeID, "Opt__Verbose",            HOFFSET(InputPara_t,Opt__Verbose           ), H5T_NATIVE_INT              );
    H5Tinsert( H5_TypeID, "Opt__TimingBarrier",      HOFFSET(InputPara_t,Opt__TimingBarrier     ), H5T_NATIVE_INT              );

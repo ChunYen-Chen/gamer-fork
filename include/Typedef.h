@@ -499,6 +499,14 @@ const ExtremaMode_t
    EXTREMA_MAX = 2;
 
 
+// Hypre
+#ifdef SUPPORT_HYPRE
+typedef int Hypre_Solver_t;
+const Hypre_Solver_t
+   HYPRE_SOLVER_SSTRUCT_SYS_PFMG = 1;
+#endif
+
+
 // function pointers
 typedef real (*EoS_GUESS_t)    ( const real Con[], real* const Constant, const double AuxArray_Flt[],
                                  const int AuxArray_Int[], const real *const Table[EOS_NTABLE_MAX] );

@@ -519,6 +519,12 @@ void Init_Load_Parameter()
 #  endif
 
 
+// Hypre
+#  ifdef SUPPORT_HYPRE
+   ReadPara->Add( "HYPRE_SOLVER",               &HYPRE_SOLVER,                    1,               1,             1              );
+#  endif
+
+
 // miscellaneous
    ReadPara->Add( "OPT__VERBOSE",               &OPT__VERBOSE,                    false,           Useless_bool,  Useless_bool   );
 // do not check OPT__TIMING_BARRIER since it depends on other options

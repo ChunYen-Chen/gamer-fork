@@ -333,6 +333,7 @@ double CR_DIFF_MIN_B;
 
 // (2-15) Hypre
 #ifdef SUPPORT_HYPRE
+Hypre_Solver_t        HYPRE_SOLVER;
 HYPRE_SStructGrid     Hypre_grid;
 HYPRE_SStructStencil  Hypre_stencil;
 HYPRE_SStructGraph    Hypre_graph;

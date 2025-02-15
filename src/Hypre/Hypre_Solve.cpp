@@ -4,6 +4,9 @@
 
 
 #ifdef SUPPORT_HYPRE
+
+static void Hypre_Solve_SStructSysPFMG();
+
 // void Hypre_Solve()
 // {
 //    // HYPRE_SStructVectorAssemble( Hypre_b );
@@ -38,6 +41,18 @@
 
 
 void Hypre_Solve()
+{
+
+   switch ( HYPRE_SOLVER )
+   {
+      case HYPRE_SOLVER_SSTRUCT_SYS_PFMG: Hypre_Solve_SStructSysPFMG(); break;
+      default: Aux_Error( ERROR_INFO, "Unknown HYPRE_SOLVER: %d !!\n", HYPRE_SOLVER );
+   } // switch ( HYPRE_SOLVER )
+
+} // FUNCTION : Hypre_Solve
+
+
+void Hypre_Solve_SStructSysPFMG()
 {
    // HYPRE_SStructVectorAssemble( Hypre_b );
 
@@ -90,5 +105,5 @@ void Hypre_Solve()
    printf("Destory\n");
    hypre_ierr = HYPRE_SStructSysPFMGDestroy(Hypre_solver);
          if ( hypre_ierr ) Aux_Error( ERROR_INFO, "hypre error: %d !!\n", hypre_ierr );
-} // FUNCTION : Hypre_Solve
+} // FUNCTION : Hypre_Solve_SStructSysPFMG
 #endif// #ifdef SUPPORT_HYPRE
