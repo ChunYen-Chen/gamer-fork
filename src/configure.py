@@ -481,8 +481,9 @@ def load_arguments():
                        )
 
     parser.add_argument( "--pot_scheme", type=str, metavar="TYPE", gamer_name="POT_SCHEME",
-                         default="SOR", choices=["SOR", "MG"],
+                         default="SOR", choices=["SOR", "MG", "HYPRE_POISSON"],
                          depend={"gravity":True},
+                         constraint={ "HYPRE_POISSON":{"hypre":True} },
                          help="Select the Poisson solver. SOR: successive-overrelaxation (recommended), MG: multigrid. Must be set when <--gravity> is enabled.\n"
                        )
 

@@ -437,6 +437,10 @@ void EvolveLevel( const int lv, const double dTime_FaLv )
 // ===============================================================================================
 
 
+#     ifdef SUPPORT_HYPRE
+      Hypre_Main();
+#     endif
+
 //    5. correct particles velocity and send particles to lv+1
 // ===============================================================================================
 #     ifdef MASSIVE_PARTICLES

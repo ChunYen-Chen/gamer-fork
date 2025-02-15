@@ -8,6 +8,9 @@
 #ifdef SUPPORT_LIBYT
 #include <libyt.h>
 #endif
+#ifdef SUPPORT_HYPRE
+#include "Hypre_test.h"
+#endif
 
 
 // **********************************************************************************************************
@@ -356,6 +359,19 @@ extern double CR_DIFF_PARA;
 extern double CR_DIFF_PERP;
 extern double DT__CR_DIFFUSION;
 extern double CR_DIFF_MIN_B;
+#endif
+
+
+// (2-15) Hypre
+// =======================================================================================================
+#ifdef SUPPORT_HYPRE
+extern HYPRE_SStructGrid     Hypre_grid;
+extern HYPRE_SStructGraph   Hypre_graph;
+extern HYPRE_SStructStencil  Hypre_stencil;
+extern HYPRE_SStructMatrix   Hypre_A;
+extern HYPRE_SStructVector   Hypre_b;
+extern HYPRE_SStructVector   Hypre_x;
+extern HYPRE_SStructSolver   Hypre_solver;
 #endif
 
 

@@ -220,6 +220,8 @@ struct patch_t
    bool ele_corrected[12];
 #  endif
 
+   int    cornerL[3];
+   int    cornerR[3];
    int    corner[3];
    int    sibling[26];
    int    father;
@@ -364,6 +366,8 @@ struct patch_t
 //       --> assuming periodicity
          EdgeL[d] = BoxEdgeL[d] + (double)(  ( corner[d] + BoxScale[d] ) % BoxScale[d]           )*dh_min;
          EdgeR[d] = BoxEdgeL[d] + (double)(  ( corner[d] + BoxScale[d] ) % BoxScale[d] + PScale  )*dh_min;
+         cornerL[d] = (corner[d])/512;
+         cornerR[d] = (corner[d] + PScale)/512 - 1;
 
 //       do no use the following non-periodic version anymore --> it does not work with the current particle implementation
          /*

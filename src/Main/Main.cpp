@@ -331,6 +331,17 @@ double DT__CR_DIFFUSION;
 double CR_DIFF_MIN_B;
 #endif
 
+// (2-15) Hypre
+#ifdef SUPPORT_HYPRE
+HYPRE_SStructGrid     Hypre_grid;
+HYPRE_SStructStencil  Hypre_stencil;
+HYPRE_SStructGraph    Hypre_graph;
+HYPRE_SStructMatrix   Hypre_A;
+HYPRE_SStructVector   Hypre_b;
+HYPRE_SStructVector   Hypre_x;
+HYPRE_SStructSolver   Hypre_solver;
+#endif
+
 
 // 3. CPU (host) arrays for transferring data between CPU and GPU
 // =======================================================================================================

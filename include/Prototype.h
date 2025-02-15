@@ -742,6 +742,15 @@ void YT_Inline();
 #endif // #ifdef SUPPORT_LIBYT
 
 
+// HYPRE solver
+#ifdef SUPPORT_HYPRE
+void Hypre_Init();
+void Hypre_Main();
+void Hypre_SolvePoisson();
+void Hypre_End();
+#endif
+
+
 // source terms
 void Src_Init();
 void Src_End();

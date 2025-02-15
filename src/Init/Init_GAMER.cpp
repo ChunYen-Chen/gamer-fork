@@ -248,6 +248,11 @@ void Init_GAMER( int *argc, char ***argv )
    if ( Init_User_Ptr != NULL )  Init_User_Ptr();
 
 
+#  ifdef SUPPORT_HYPRE
+   Hypre_Init();
+#  endif
+
+
 // record the initial weighted load-imbalance factor
 #  ifdef LOAD_BALANCE
    if ( OPT__RECORD_LOAD_BALANCE )  LB_EstimateLoadImbalance();
@@ -270,6 +275,9 @@ void Init_GAMER( int *argc, char ***argv )
 //    evaluate the gravitational potential
       if ( MPI_Rank == 0 )    Aux_Message( stdout, "%s ...\n", "Calculating gravitational potential" );
 
+#     if ( defined SUPPORT_HYPRE  &&  POT_SCHEME == HYPRE_POISSON )
+      Hypre_SolvePoisson();
+#     else
       for (int lv=0; lv<NLEVEL; lv++)
       {
          if ( MPI_Rank == 0 )    Aux_Message( stdout, "   Lv %2d ... ", lv );
@@ -283,6 +291,7 @@ void Init_GAMER( int *argc, char ***argv )
 
          if ( MPI_Rank == 0 )    Aux_Message( stdout, "done\n" );
       } // for (int lv=0; lv<NLEVEL; lv++)
+#     endif // #if ( defined SUPPORT_HYPRE  &&  POT_SCHEME == HYPRE_POISSON ) ... else ...
 
       if ( MPI_Rank == 0 )    Aux_Message( stdout, "%s ... done\n", "Calculating gravitational potential" );
    } // if ( OPT__SELF_GRAVITY_TYPE  ||  OPT__EXT_POT )

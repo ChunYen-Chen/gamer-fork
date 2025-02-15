@@ -72,6 +72,8 @@ void Aux_TakeNote()
       fprintf( Note, "POT_SCHEME                      SOR\n" );
 #     elif ( POT_SCHEME == MG )
       fprintf( Note, "POT_SCHEME                      MG\n" );
+#     elif ( POT_SCHEME == HYPRE_POISSON )
+      fprintf( Note, "POT_SCHEME                      HYPRE_POISSON\n" );
 #     elif ( POT_SCHEME == NONE )
       fprintf( Note, "POT_SCHEME                      NONE\n" );
 #     else

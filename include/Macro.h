@@ -102,8 +102,9 @@
 
 
 // Poisson solvers
-#define SOR          1
-#define MG           2
+#define SOR             1
+#define MG              2
+#define HYPRE_POISSON   3
 
 
 // load-balance parallelization

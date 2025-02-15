@@ -67,6 +67,10 @@ extern "C" {
 #  include <libyt.h>
 #endif
 
+#ifdef SUPPORT_HYPRE
+#  include "Hypre_test.h"
+#endif
+
 #include "Macro.h"
 #include "Typedef.h"
 #include "AMR.h"
