@@ -428,7 +428,7 @@ void Aux_TakeNote()
 #     endif // #ifdef SUPPORT_LIBYT ... else ...
 
 #     ifdef SUPPORT_HYPRE
-      fprintf( Note, "SUPPORT_HYPRE                    ON\n" );
+      fprintf( Note, "SUPPORT_HYPRE                   ON\n" );
 #     else
       fprintf( Note, "SUPPORT_HYPRE                   OFF\n" );
 #     endif
@@ -1519,7 +1519,7 @@ void Aux_TakeNote()
 
 //    record the parameters of Hypre
 #     ifdef SUPPORT_HYPRE
-      fprintf( Note, "Parameters of YT Inline Analysis\n" );
+      fprintf( Note, "Parameters of Hypre\n" );
       fprintf( Note, "***********************************************************************************\n" );
       fprintf( Note, "HYPRE_SOLVER                        %s\n",  ( HYPRE_SOLVER == HYPRE_SOLVER_SSTRUCT_SYS_PFMG ) ? "SSTRUCT_SYS_PFMG" :
                                                                                                                       "UNKNOWN" );

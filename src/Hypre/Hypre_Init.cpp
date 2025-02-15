@@ -17,7 +17,9 @@
 void Hypre_Init()
 {
 
-   Aux_Message( stdout, "%s ...\n", __FUNCTION__ );
+   if ( MPI_Rank == 0 )   Aux_Message( stdout, "%s ...\n", __FUNCTION__ );
+
+   if ( MAX_LEVEL != 0 )   Aux_Error( ERROR_INFO, "HYPRE: not support AMR yet\n" );
 
    int hypre_ierr;
 // initialize Hypre
@@ -28,7 +30,7 @@ void Hypre_Init()
 
    Hypre_Main();
 
-   Aux_Message( stdout, "%s ... done\n", __FUNCTION__ );
+   if ( MPI_Rank == 0 )   Aux_Message( stdout, "%s ... done\n", __FUNCTION__ );
 
 } // FUNCTION : HYPRE_Init
 #endif // #ifdef SUPPORT_HYPRE
