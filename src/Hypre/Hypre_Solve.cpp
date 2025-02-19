@@ -33,7 +33,7 @@ void Hypre_Solve_SStructSysPFMG()
 #  ifdef LOAD_BALANCE
    hypre_ierr = HYPRE_SStructSysPFMGCreate( MPI_COMM_WORLD, &Hypre_solver );
 #  else
-   hypre_ierr = HYPRE_SStructSysPFMGCreate( NULL, &Hypre_solver );
+   hypre_ierr = HYPRE_SStructSysPFMGCreate( NULL,           &Hypre_solver );
 #  endif
 
 // Set sysPFMG parameters
@@ -68,7 +68,11 @@ void Hypre_Solve_SStructSplit()
    const real RelTol  = 1.e-6;
    int hypre_ierr;
 
+#  ifdef LOAD_BALANCE
    hypre_ierr = HYPRE_SStructSplitCreate( MPI_COMM_WORLD, &Hypre_solver );
+#  else
+   hypre_ierr = HYPRE_SStructSplitCreate( NULL,           &Hypre_solver );
+#  endif
 
    // HYPRE_SStructSplitSetStructSolver( Hypre_solver, ... ); // HYPRE_SMG or HYPRE_PFMG
    hypre_ierr = HYPRE_SStructSplitSetMaxIter( Hypre_solver, MaxIter );
