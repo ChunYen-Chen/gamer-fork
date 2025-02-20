@@ -366,9 +366,8 @@ struct patch_t
 //       --> assuming periodicity
          EdgeL[d] = BoxEdgeL[d] + (double)(  ( corner[d] + BoxScale[d] ) % BoxScale[d]           )*dh_min;
          EdgeR[d] = BoxEdgeL[d] + (double)(  ( corner[d] + BoxScale[d] ) % BoxScale[d] + PScale  )*dh_min;
-         // TODO: 512 is only for 64*64*64, need to find a solution for AMR case
-         cornerL[d] = (corner[d])/512;
-         cornerR[d] = (corner[d] + PScale)/512 - 1;
+         cornerL[d] = corner[d] / (1<<(NLEVEL-1-lv));
+         cornerR[d] = cornerL[d] + PS1 - 1;
 
 //       do no use the following non-periodic version anymore --> it does not work with the current particle implementation
          /*
