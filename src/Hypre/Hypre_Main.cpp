@@ -120,6 +120,8 @@ void Hypre_SolvePoisson()
 
    for (int lv=0; lv<MAX_LEVEL+1; lv++)
    {
+      const real dh2   = SQR( amr->dh[lv] );
+      const real coeff = -4.0 * M_PI * NEWTON_G * dh2;
       for (int PID=0; PID<amr->NPatchComma[lv][1]; PID++)
       {
          for (int k=0; k<PS1; k++)
@@ -128,9 +130,7 @@ void Hypre_SolvePoisson()
          {
             // TODO: check the data structure
             const int  idx   = k*SQR(PS1) + j*PS1 + i;
-            const real coeff = -4.0*M_PI*NEWTON_G;
             dens[idx] = coeff * amr->patch[ amr->FluSg[lv] ][lv][PID]->fluid[DENS][k][j][i];
-
          }
 
          hypre_ierr = HYPRE_SStructVectorSetBoxValues( Hypre_b, lv, amr->patch[0][lv][PID]->cornerL, amr->patch[0][lv][PID]->cornerR, var, dens );
@@ -189,7 +189,7 @@ void Hypre_SolvePoisson()
 // clean b array
    printf("Clean b array\n");
 
-   real *dens = new real [CUBE(PS1)];
+   dens = new real [CUBE(PS1)];
    for (int lv=0; lv<MAX_LEVEL+1; lv++)
    {
       for (int PID=0; PID<amr->NPatchComma[lv][1]; PID++)
