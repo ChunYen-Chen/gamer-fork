@@ -24,10 +24,6 @@ void Hypre_Solve()
 void Hypre_Solve_SStructSysPFMG()
 {
 
-   const int  n_pre   = 1;
-   const int  n_post  = 1;
-   const int  MaxIter = 50;
-   const real RelTol  = 1.e-6;
    int hypre_ierr;
 
 #  ifdef LOAD_BALANCE
@@ -36,13 +32,16 @@ void Hypre_Solve_SStructSysPFMG()
    hypre_ierr = HYPRE_SStructSysPFMGCreate( NULL,           &Hypre_solver );
 #  endif
 
+   hypre_ierr = HYPRE_SStructSysPFMGSetPrintLevel( Hypre_solver, HYPRE_PRINT_LEVEL );
+   hypre_ierr = HYPRE_SStructSysPFMGSetLogging( Hypre_solver, HYPRE_ENABLE_LOGGING );
+
+   hypre_ierr = HYPRE_SStructSysPFMGSetZeroGuess( Hypre_solver );
+
 // Set sysPFMG parameters
-   hypre_ierr = HYPRE_SStructSysPFMGSetTol( Hypre_solver, RelTol );
-   hypre_ierr = HYPRE_SStructSysPFMGSetMaxIter( Hypre_solver, MaxIter );
-   hypre_ierr = HYPRE_SStructSysPFMGSetNumPreRelax( Hypre_solver, n_pre );
-   hypre_ierr = HYPRE_SStructSysPFMGSetNumPostRelax( Hypre_solver, n_post );
-   hypre_ierr = HYPRE_SStructSysPFMGSetPrintLevel( Hypre_solver, 0 );
-   hypre_ierr = HYPRE_SStructSysPFMGSetLogging( Hypre_solver, 1 );
+   hypre_ierr = HYPRE_SStructSysPFMGSetTol( Hypre_solver, HYPRE_REL_TOL );
+   hypre_ierr = HYPRE_SStructSysPFMGSetMaxIter( Hypre_solver, HYPRE_MAX_ITER );
+   hypre_ierr = HYPRE_SStructSysPFMGSetNumPreRelax( Hypre_solver, HYPRE_NPRE_RELAX );
+   hypre_ierr = HYPRE_SStructSysPFMGSetNumPostRelax( Hypre_solver, HYPRE_NPOST_RELAX );
 
 // do the setup
    hypre_ierr = HYPRE_SStructSysPFMGSetup( Hypre_solver, Hypre_A, Hypre_b, Hypre_x );
@@ -51,8 +50,12 @@ void Hypre_Solve_SStructSysPFMG()
    hypre_ierr = HYPRE_SStructSysPFMGSolve( Hypre_solver, Hypre_A, Hypre_b, Hypre_x );
 
 // get some info
-   // HYPRE_SStructSysPFMGGetFinalRelativeResidualNorm( Hypre_solver, &final_res_norm );
-   // HYPRE_SStructSysPFMGGetNumIterations( Hypre_solver, &its );
+   int its;
+   real final_res_norm;
+   HYPRE_SStructSysPFMGGetFinalRelativeResidualNorm( Hypre_solver, &final_res_norm );
+   HYPRE_SStructSysPFMGGetNumIterations( Hypre_solver, &its );
+
+   if ( MPI_Rank == 0 )   Aux_Message( stdout, "%s: Iteration: %d, Residual norm: %24.16e\n", __FUNCTION__, its, final_res_norm );
 
 // clean up
    hypre_ierr = HYPRE_SStructSysPFMGDestroy( Hypre_solver );
@@ -64,8 +67,6 @@ void Hypre_Solve_SStructSysPFMG()
 void Hypre_Solve_SStructSplit()
 {
 
-   const int  MaxIter = 10;
-   const real RelTol  = 1.e-6;
    int hypre_ierr;
 
 #  ifdef LOAD_BALANCE
@@ -74,13 +75,22 @@ void Hypre_Solve_SStructSplit()
    hypre_ierr = HYPRE_SStructSplitCreate( NULL,           &Hypre_solver );
 #  endif
 
+   hypre_ierr = HYPRE_SStructSplitSetZeroGuess( Hypre_solver );
+
    // HYPRE_SStructSplitSetStructSolver( Hypre_solver, ... ); // HYPRE_SMG or HYPRE_PFMG
-   hypre_ierr = HYPRE_SStructSplitSetMaxIter( Hypre_solver, MaxIter );
-   hypre_ierr = HYPRE_SStructSplitSetTol( Hypre_solver, RelTol );
+   hypre_ierr = HYPRE_SStructSplitSetMaxIter( Hypre_solver, HYPRE_MAX_ITER );
+   hypre_ierr = HYPRE_SStructSplitSetTol( Hypre_solver, HYPRE_REL_TOL );
 
    hypre_ierr = HYPRE_SStructSplitSetup( Hypre_solver, Hypre_A, Hypre_b, Hypre_x );
 
    hypre_ierr = HYPRE_SStructSplitSolve( Hypre_solver, Hypre_A, Hypre_b, Hypre_x );
+
+   int its;
+   real final_res_norm;
+   HYPRE_SStructSplitGetFinalRelativeResidualNorm( Hypre_solver, &final_res_norm );
+   HYPRE_SStructSplitGetNumIterations( Hypre_solver, &its );
+
+   if ( MPI_Rank == 0 )   Aux_Message( stdout, "%s: Iteration: %d, Residual norm: %24.16e\n", __FUNCTION__, its, final_res_norm );
 
    hypre_ierr = HYPRE_SStructSplitDestroy( Hypre_solver );
 
