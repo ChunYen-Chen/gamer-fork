@@ -5,6 +5,7 @@
 
 #ifdef SUPPORT_HYPRE
 static void Hypre_Solve_SStructSysPFMG();
+static void Hypre_Solve_SStructSplit();
 
 
 
@@ -14,6 +15,7 @@ void Hypre_Solve()
    switch ( HYPRE_SOLVER )
    {
       case HYPRE_SOLVER_SSTRUCT_SYS_PFMG: Hypre_Solve_SStructSysPFMG(); break;
+      case HYPRE_SOLVER_SSTRUCT_SPLIT:    Hypre_Solve_SStructSplit();   break;
       default: Aux_Error( ERROR_INFO, "Unknown HYPRE_SOLVER: %d !!\n", HYPRE_SOLVER );
    } // switch ( HYPRE_SOLVER )
 
