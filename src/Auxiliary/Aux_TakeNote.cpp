@@ -1523,6 +1523,13 @@ void Aux_TakeNote()
       fprintf( Note, "***********************************************************************************\n" );
       fprintf( Note, "HYPRE_SOLVER                        %s\n",  ( HYPRE_SOLVER == HYPRE_SOLVER_SSTRUCT_SYS_PFMG ) ? "SSTRUCT_SYS_PFMG" :
                                                                                                                       "UNKNOWN" );
+      fprintf( Note, "HYPRE_PRINT_LEVEL              % d\n",      HYPRE_PRINT_LEVEL         );
+      fprintf( Note, "HYPRE_ENABLE_LOGGING           % d\n",      HYPRE_ENABLE_LOGGING      );
+      fprintf( Note, "HYPRE_MAX_ITER                 % d\n",      HYPRE_MAX_ITER            );
+      fprintf( Note, "HYPRE_NPRE_RELAX               % d\n",      HYPRE_NPRE_RELAX          );
+      fprintf( Note, "HYPRE_NPOST_RELAX              % d\n",      HYPRE_NPOST_RELAX         );
+      fprintf( Note, "HYPRE_REL_TOL                  % 24.17e\n", HYPRE_REL_TOL             );
+      fprintf( Note, "HYPRE_ABS_TOL                  % 24.17e\n", HYPRE_ABS_TOL             );
       fprintf( Note, "***********************************************************************************\n" );
       fprintf( Note, "\n\n");
 #     endif

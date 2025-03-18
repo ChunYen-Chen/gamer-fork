@@ -334,6 +334,9 @@ double CR_DIFF_MIN_B;
 // (2-15) Hypre
 #ifdef SUPPORT_HYPRE
 Hypre_Solver_t        HYPRE_SOLVER;
+int                   HYPRE_PRINT_LEVEL, HYPRE_ENABLE_LOGGING;
+int                   HYPRE_MAX_ITER, HYPRE_NPRE_RELAX, HYPRE_NPOST_RELAX;
+double                HYPRE_REL_TOL, HYPRE_ABS_TOL;
 HYPRE_SStructGrid     Hypre_grid;
 HYPRE_SStructStencil  Hypre_stencil;
 HYPRE_SStructGraph    Hypre_graph;
