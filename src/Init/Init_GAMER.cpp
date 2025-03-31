@@ -246,8 +246,9 @@ void Init_GAMER( int *argc, char ***argv )
 
 // ensure B field consistency on the shared interfaces between sibling patches
 #  if ( MODEL == HYDRO  &&  defined MHD )
+   const bool update_energy_No = false;
    if ( OPT__SAME_INTERFACE_B )
-   for (int lv=0; lv<NLEVEL; lv++)  MHD_SameInterfaceB( lv );
+   for (int lv=0; lv<NLEVEL; lv++)  MHD_SameInterfaceB( lv, update_energy_No );
 #  endif
 
 

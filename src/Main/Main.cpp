@@ -703,8 +703,9 @@ int main( int argc, char *argv[] )
          if ( OPT__VERBOSE  &&  MPI_Rank == 0 )
             Aux_Message( stdout, "   MHD_SameInterfaceB                       ... " );
 
+         const bool update_energy_Yes = true;
          for (int lv=0; lv<NLEVEL; lv++)
-         TIMING_FUNC(   MHD_SameInterfaceB( lv ),     Timer_Main[6],   TIMER_ON   );
+         TIMING_FUNC(   MHD_SameInterfaceB( lv, update_energy_Yes ),     Timer_Main[6],   TIMER_ON   );
 
          if ( OPT__VERBOSE  &&  MPI_Rank == 0 )
             Aux_Message( stdout, "done\n" );
