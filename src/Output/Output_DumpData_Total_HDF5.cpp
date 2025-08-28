@@ -1934,6 +1934,12 @@ void FillIn_Makefile( Makefile_t &Makefile )
    Makefile.SupportGrackle         = 0;
 #  endif
 
+#  ifdef SUPPORT_HYPRE
+   Makefile.SupportHypre           = 1;
+#  else
+   Makefile.SupportHypre           = 0;
+#  endif
+
    Makefile.RandomNumber           = RANDOM_NUMBER;
 
    Makefile.NLevel                 = NLEVEL;
@@ -3114,6 +3120,7 @@ void GetCompound_Makefile( hid_t &H5_TypeID )
    H5Tinsert( H5_TypeID, "LibYTJupyter",           HOFFSET(Makefile_t,LibYTJupyter           ), H5T_NATIVE_INT );
 #  endif
    H5Tinsert( H5_TypeID, "SupportGrackle",         HOFFSET(Makefile_t,SupportGrackle         ), H5T_NATIVE_INT );
+   H5Tinsert( H5_TypeID, "SupportHypre",           HOFFSET(Makefile_t,SupportHypre           ), H5T_NATIVE_INT );
    H5Tinsert( H5_TypeID, "RandomNumber",           HOFFSET(Makefile_t,RandomNumber           ), H5T_NATIVE_INT );
 
    H5Tinsert( H5_TypeID, "NLevel",                 HOFFSET(Makefile_t,NLevel                 ), H5T_NATIVE_INT );
