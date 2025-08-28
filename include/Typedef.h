@@ -45,6 +45,15 @@ typedef float  real_che;
 #endif
 #endif // #ifdef SUPPORT_GRACKLE
 
+#ifdef SUPPORT_HYPRE
+#include "HYPRE_config.h"
+#ifdef HYPRE_SINGLE
+typedef float  real_hypre;
+#else
+typedef double real_hypre;
+#endif
+#endif // #ifdef SUPPORT_HYPRE
+
 #if ( GRAMFE_SCHEME == GRAMFE_FFT )
 #ifdef GRAMFE_FFT_FLOAT8
 typedef double gramfe_fft_float;
@@ -560,6 +569,20 @@ const LoadParaMode_t
    LOAD_READPARA    = 1,
    LOAD_HDF5_OUTPUT = 2;
 
+
+// Hypre
+#ifdef SUPPORT_HYPRE
+// solve type
+typedef int Hypre_SolveType_t;
+const Hypre_SolveType_t
+   HYPRE_SOLVE_TYPE_POISSON = 1;
+
+// solver
+typedef int Hypre_Solver_t;
+const Hypre_Solver_t
+   HYPRE_SOLVER_SSTRUCT_SYS_PFMG = 1,
+   HYPRE_SOLVER_SSTRUCT_SPLIT    = 2;
+#endif
 
 // function pointers
 typedef real (*EoS_GUESS_t)    ( const real Con[], real* const Constant, const double AuxArray_Flt[],
