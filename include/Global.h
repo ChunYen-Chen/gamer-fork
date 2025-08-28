@@ -8,6 +8,9 @@
 #ifdef SUPPORT_LIBYT
 #include <libyt.h>
 #endif
+#ifdef SUPPORT_HYPRE
+#include "Hypre.h"
+#endif
 #include "GatherTree.h"
 
 
