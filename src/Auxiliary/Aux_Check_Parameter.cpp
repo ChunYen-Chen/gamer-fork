@@ -1930,6 +1930,26 @@ void Aux_Check_Parameter()
 #endif // ifdef CR_DIFFUSION
 
 
+// HYPRE
+// =======================================================================================
+#ifdef SUPPORT_HYPRE
+
+// errors
+// ------------------------------
+#  if ( defined SERIAL  &&  HYPRE_HAVE_MPI == 1 )
+#  error : ERROR : must enable LOAD_BALANCE for HYPRE with MPI !!
+#  endif
+
+#  if ( !defined GPU  &&  HYPRE_USING_CUDA == 1 )
+#  error : ERROR : must enable GPU for HYPRE with GPU !!
+#  endif
+
+// warning
+// ------------------------------
+
+#endif // #ifdef SUPPORT_HYPRE
+
+
    if ( MPI_Rank == 0 )    Aux_Message( stdout, "Aux_Check_Parameter ... done\n" );
 
 } // FUNCTION : Aux_Check_Parameter
