@@ -2,15 +2,12 @@
 
 
 
-
-#if ( MODEL == HYDRO  &&  defined GRAVITY )
-
-extern int    Merger_Coll_NumHalos;
-extern double R_acc;                // the radius to compute the accretoin rate
-extern double Jet_Vec[3][3];        // jet direction
-extern double ClusterCen[3][3];
-
-static bool   FirstTime = true;
+// problem-specific global variables
+// =======================================================================================
+extern int      Merger_Coll_NumHalos;
+extern double   R_acc;                // the radius to compute the accretion rate
+extern double (*CM_ClusterCen)[3];
+// =======================================================================================
 
 
 
@@ -33,6 +30,8 @@ static bool   FirstTime = true;
 bool Flag_ClusterMerger( const int i, const int j, const int k, const int lv, const int PID, const double *Threshold )
 {
 
+   static bool FirstTime = true;
+
    const double dh     = amr->dh[lv];
    const double Pos[3] = { amr->patch[0][lv][PID]->EdgeL[0] + (i+0.5)*dh,
                            amr->patch[0][lv][PID]->EdgeL[1] + (j+0.5)*dh,
@@ -43,8 +42,7 @@ bool Flag_ClusterMerger( const int i, const int j, const int k, const int lv, co
 // flag cells within the target radius, and if the radius is not resolved with a specific number (Threshold[0]) of cells
    for (int c=0; c<Merger_Coll_NumHalos; c++)
    {
-      double R_SQR = SQR(Pos[0]-ClusterCen[c][0]) + SQR(Pos[1]-ClusterCen[c][1]) + SQR(Pos[2]-ClusterCen[c][2]);
-      if ( R_SQR <= SQR(25*R_acc)  &&  R_acc/dh <= Threshold[0] )
+      if ( DIST_SQR_3D( Pos, CM_ClusterCen[c] ) <= SQR(25*R_acc)  &&  R_acc/dh <= Threshold[0] )
       {
          Flag = true;
          return Flag;
@@ -54,8 +52,8 @@ bool Flag_ClusterMerger( const int i, const int j, const int k, const int lv, co
    if ( FirstTime )
    {
       const double dh_max = amr->dh[MAX_LEVEL];
-      if ( R_acc/dh_max <= Threshold[0] )
-         Aux_Message( stderr, "WARNING : MAX_LEVEL is less than the desired refinement level set in Input__Flag_User!! dh_max = %13.7e\n", dh_max );
+      if ( R_acc/dh_max <= Threshold[0]  &&  MPI_Rank == 0 )
+         Aux_Message( stderr, "WARNING : MAX_LEVEL (%d) is less than the desired refinement level set in Input__Flag_User (R_acc = %13.7e, dh_max = %13.7e, Threshold[0] = %13.7e) !!\n", MAX_LEVEL, R_acc, dh_max, Threshold[0] );
 
       FirstTime = false;
    } // if ( FirstTime )
@@ -63,7 +61,3 @@ bool Flag_ClusterMerger( const int i, const int j, const int k, const int lv, co
    return Flag;
 
 } // FUNCTION : Flag_ClusterMerger
-
-
-
-#endif // #if ( MODEL == HYDRO  &&  defined GRAVITY )

@@ -31,7 +31,7 @@ double Mis_GetTimeStep( const int lv, const double dTime_SyncFaLv, const double 
 
    static bool FirstTime  = true;
    const int   NdTimeMax  = 20;
-   char FileName[MAX_STRING];
+   char FileName[2*MAX_STRING];
    sprintf( FileName, "%s/Record__TimeStep", OUTPUT_DIR );
 
    char  (*dTime_Name)[MAX_STRING] = new char   [NdTimeMax][MAX_STRING];
@@ -239,7 +239,7 @@ double Mis_GetTimeStep( const int lv, const double dTime_SyncFaLv, const double 
 
 // 1.10 CRITERION TEN : ExactCooling source term ##HYDRO ONLY##
 // =============================================================================================================
-#  if ( MODEL == HYDRO )
+#  ifdef EXACT_COOLING
    if ( SrcTerms.ExactCooling )
    {
       double EC_dtCoef = SrcTerms.EC_dtCoef;
@@ -254,6 +254,7 @@ double Mis_GetTimeStep( const int lv, const double dTime_SyncFaLv, const double 
       sprintf( dTime_Name[NdTime++], "%s", "ExactCooling" );
    }
 #  endif
+
 
 
 // 2. get the minimum time-step from all criteria

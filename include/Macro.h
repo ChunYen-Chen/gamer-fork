@@ -15,7 +15,7 @@
 // ########################
 
 // current version
-#define VERSION      "gamer-2.1.1.dev"
+#define VERSION      "gamer-2.3.dev"
 
 
 // option == NONE --> the option is turned off
@@ -200,8 +200,12 @@
 #  define NCOMP_PASSIVE_BUILTIN1    0
 # endif
 
-// exactCooling source term
+// exact cooling source term
+# ifdef EXACT_COOLING
 #  define NCOMP_PASSIVE_BUILTIN2    1
+# else
+#  define NCOMP_PASSIVE_BUILTIN2    0
+# endif
 
 // total number of built-in scalars
 #  define NCOMP_PASSIVE_BUILTIN     ( NCOMP_PASSIVE_BUILTIN0 + NCOMP_PASSIVE_BUILTIN1 + NCOMP_PASSIVE_BUILTIN2 )
@@ -216,13 +220,22 @@
 // total number of passive scalars
 #  define NCOMP_PASSIVE       ( NCOMP_PASSIVE_USER + NCOMP_PASSIVE_BUILTIN )
 
+#if   ( MODEL == HYDRO )
 // assuming all passive scalars have the corresponding fluxes
 #  define NFLUX_PASSIVE       NCOMP_PASSIVE
+#elif ( MODEL == ELBDM )
+// assuming no flux for the passive scalars
+#  define NFLUX_PASSIVE       0
+#endif // MODEL
 
 
 // total number of variables in each cell and in the flux array including both active and passive variables
 #  define NCOMP_TOTAL         ( NCOMP_FLUID + NCOMP_PASSIVE )
 #  define NFLUX_TOTAL         ( NFLUX_FLUID + NFLUX_PASSIVE )
+
+
+// maximum number of reference values stored in ConRef[]
+#  define NCONREF_MAX         60
 
 
 // number of input/output fluid variables in the fluid solver
@@ -305,7 +318,12 @@
 #  define PASSIVE_NEXT_IDX2   ( PASSIVE_NEXT_IDX1 )
 # endif
 
+# ifdef EXACT_COOLING
 #  define TCOOL               ( PASSIVE_NEXT_IDX2 )
+#  define PASSIVE_NEXT_IDX3   ( TCOOL - 1         )
+# else
+#  define PASSIVE_NEXT_IDX3   ( PASSIVE_NEXT_IDX2 )
+# endif
 
 #endif // #if ( NCOMP_PASSIVE > 0 )
 
@@ -343,7 +361,12 @@
 #  define FLUX_NEXT_IDX2   ( FLUX_NEXT_IDX1  )
 # endif
 
+# ifdef EXACT_COOLING
 #  define FLUX_TCOOL       ( FLUX_NEXT_IDX2  )
+#  define FLUX_NEXT_IDX3   ( FLUX_TCOOL - 1  )
+# else
+#  define FLUX_NEXT_IDX3   ( FLUX_NEXT_IDX2  )
+# endif
 
 #endif // #if ( NCOMP_PASSIVE > 0 )
 
@@ -367,7 +390,9 @@
 #  define _CRAY               ( 1L << CRAY )
 # endif
 
+# ifdef EXACT_COOLING
 #  define _TCOOL              ( 1L << TCOOL )
+# endif
 
 #endif // #if ( NCOMP_PASSIVE > 0 )
 
@@ -398,7 +423,9 @@
 #  define _FLUX_CRAY          ( 1L << FLUX_CRAY )
 # endif
 
+# ifdef EXACT_COOLING
 #  define _FLUX_TCOOL         ( 1L << FLUX_TCOOL )
+# endif
 
 #endif // #if ( NFLUX_PASSIVE > 0 )
 
@@ -602,16 +629,15 @@
 
 // particle type macros
 
-// number of particle types (default: 4)
-#  define  PAR_NTYPE                8
+// number of particle types (default: 5)
+#  define  PAR_NTYPE                5
 
 // particle type indices (must be in the range 0<=index<PAR_NTYPE)
 #  define  PTYPE_TRACER             (long_par)0
 #  define  PTYPE_GENERIC_MASSIVE    (long_par)1
 #  define  PTYPE_DARK_MATTER        (long_par)2
 #  define  PTYPE_STAR               (long_par)3
-#  define  PTYPE_CEN                (long_par)4
-#  define  PTYPE_CLUSTER            (long_par)6
+#  define  PTYPE_BLACK_HOLE         (long_par)4
 
 # ifdef GRAVITY
 #  define MASSIVE_PARTICLES
@@ -908,9 +934,12 @@
 #  define SRC_NAUX_DLEP          5     // SrcTerms.Dlep_AuxArray_Flt/Int[]
 #  define SRC_DLEP_PROF_NVAR     6     // SrcTerms.Dlep_Profile_DataDevPtr[]/RadiusDevPtr[]
 #  define SRC_DLEP_PROF_NBINMAX  4000
-#  define SRC_NAUX_EC            10    // SrcTerms.EC_AuxArray_Flt/Int[]
 #else
 #  define SRC_NAUX_DLEP          0
+#endif
+#ifdef EXACT_COOLING
+#  define SRC_NAUX_EC            10    // SrcTerms.EC_AuxArray_Flt/Int[]
+#else
 #  define SRC_NAUX_EC            0
 #endif
 #  define SRC_NAUX_USER          10    // SrcTerms.User_AuxArray_Flt/Int[]
@@ -1232,7 +1261,7 @@
                                       SQR(pos1[2] - pos2[2]) )
 #define DIST_3D_FLT( pos1, pos2 )   sqrtf( DIST_SQR_3D( pos1, pos2 ) )
 #define DIST_3D_DBL( pos1, pos2 )   sqrt( DIST_SQR_3D( pos1, pos2 ) )
-
+#define DIST_3D( pos1, pos2 )       SQRT( DIST_SQR_3D( pos1, pos2 ) )
 
 // helper macro for printing warning messages when resetting parameters
 #  define FORMAT_INT       %- 21d

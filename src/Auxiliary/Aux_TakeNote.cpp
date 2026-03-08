@@ -23,7 +23,7 @@ void Aux_TakeNote()
 
 
    FILE *Note;
-   char FileName[MAX_STRING];
+   char FileName[2*MAX_STRING];
    sprintf( FileName, "%s/Record__Note", OUTPUT_DIR );
 
 
@@ -38,7 +38,7 @@ void Aux_TakeNote()
       fprintf( Note, "***********************************************************************************\n" );
       fclose( Note );
 
-      char Command[MAX_STRING];
+      char Command[2*MAX_STRING];
       sprintf( Command, "cat ./Input__Note >> %s/Record__Note", OUTPUT_DIR );
       system( Command );
 
@@ -313,6 +313,13 @@ void Aux_TakeNote()
 #     endif
 
 #     endif // #ifdef PARTICLE
+
+//    e. option in source term
+#     ifdef EXACT_COOLING
+      fprintf( Note, "EXACT_COOLING                   ON\n" );
+#     else
+      fprintf( Note, "EXACT_COOLING                   OFF\n" );
+#     endif
 
       fprintf( Note, "***********************************************************************************\n" );
       fprintf( Note, "\n\n" );
@@ -698,6 +705,7 @@ void Aux_TakeNote()
       fprintf( Note, "#define FLU_NOUT_S             % d\n",      FLU_NOUT_S            );
       fprintf( Note, "#define DER_NOUT_MAX           % d\n",      DER_NOUT_MAX          );
       fprintf( Note, "#define NFIELD_STORED_MAX      % d\n",      NFIELD_STORED_MAX     );
+      fprintf( Note, "#define NCONREF_MAX            % d\n",      NCONREF_MAX           );
       fprintf( Note, "#define NFLUX_FLUID            % d\n",      NFLUX_FLUID           );
       fprintf( Note, "#define NFLUX_PASSIVE          % d\n",      NFLUX_PASSIVE         );
 #     ifdef GRAVITY
@@ -932,9 +940,10 @@ void Aux_TakeNote()
       fprintf( Note, "Par->GhostSizeTracer           % d\n",      amr->Par->GhostSizeTracer     );
       fprintf( Note, "Par->TracerVelCorr             % d\n",      amr->Par->TracerVelCorr       );
       fprintf( Note, "OPT__FREEZE_PAR                % d\n",      OPT__FREEZE_PAR               );
+      fprintf( Note, "OPT__PAR_INIT_CHECK            % d\n",      OPT__PAR_INIT_CHECK           );
       fprintf( Note, "***********************************************************************************\n" );
       fprintf( Note, "\n\n" );
-#     endif
+#     endif // #ifdef PARTICLE
 
 
 //    record the parameters of cosmological simulations (comoving frame)
@@ -1112,10 +1121,12 @@ void Aux_TakeNote()
       fprintf( Note, "SRC_ANY                        % d\n",      SrcTerms.Any              );
       fprintf( Note, "SRC_DELEPTONIZATION            % d\n",      SrcTerms.Deleptonization  );
       fprintf( Note, "SRC_EXACTCOOLING               % d\n",      SrcTerms.ExactCooling     );
+#     ifdef EXACT_COOLING
       if ( SrcTerms.ExactCooling ) {
       fprintf( Note, "SRC_EC_TEF_N                   % d\n",      SrcTerms.EC_TEF_N         );
       fprintf( Note, "SRC_EC_SUBCYCLING              % d\n",      SrcTerms.EC_subcycling    );
       fprintf( Note, "SRC_EC_DTCOEF                  % 14.7e\n",  SrcTerms.EC_dtCoef        ); }
+#     endif
       fprintf( Note, "SRC_USER                       % d\n",      SrcTerms.User             );
       fprintf( Note, "SRC_GPU_NPGROUP                % d\n",      SRC_GPU_NPGROUP           );
       fprintf( Note, "***********************************************************************************\n" );
@@ -1302,6 +1313,15 @@ void Aux_TakeNote()
       fprintf( Note, "\n" ); }
 
       fprintf( Note, "OPT__CORR_AFTER_ALL_SYNC       % d\n",      OPT__CORR_AFTER_ALL_SYNC );
+      fprintf( Note, "Passive_Floor_Off              % d\n",      -1                       );
+
+//    target passive scalars to NOT be applied floor operations
+      fprintf( Note, "   Target fields               "                                     );
+      for (int v=0; v<NCOMP_TOTAL; v++)
+      if ( ( PassiveFloorMask & (1L<<v) ) == 0 )
+      fprintf( Note, " %s",                                       FieldLabel[v]            );
+      fprintf( Note, "\n" );
+
       fprintf( Note, "OPT__NORMALIZE_PASSIVE         % d\n",      OPT__NORMALIZE_PASSIVE   );
 
 //    target passive scalars to be normalized
@@ -1703,12 +1723,9 @@ void Aux_TakeNote()
       fprintf( Note, "OPT__CK_REFINE                 % d\n",      OPT__CK_REFINE            );
       fprintf( Note, "OPT__CK_PROPER_NESTING         % d\n",      OPT__CK_PROPER_NESTING    );
       fprintf( Note, "OPT__CK_CONSERVATION           % d\n",      OPT__CK_CONSERVATION      );
-      if ( OPT__CK_CONSERVATION )
-      {
       fprintf( Note, "   ANGMOM_ORIGIN_X             % 14.7e\n",  ANGMOM_ORIGIN_X           );
       fprintf( Note, "   ANGMOM_ORIGIN_Y             % 14.7e\n",  ANGMOM_ORIGIN_Y           );
       fprintf( Note, "   ANGMOM_ORIGIN_Z             % 14.7e\n",  ANGMOM_ORIGIN_Z           );
-      }
       fprintf( Note, "OPT__CK_NORMALIZE_PASSIVE      % d\n",      OPT__CK_NORMALIZE_PASSIVE );
       fprintf( Note, "OPT__CK_RESTRICT               % d\n",      OPT__CK_RESTRICT          );
       fprintf( Note, "OPT__CK_FINITE                 % d\n",      OPT__CK_FINITE            );

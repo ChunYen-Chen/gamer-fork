@@ -50,7 +50,7 @@ void Output_PreparedPatch_Fluid( const int TLv, const int TPID,
 //    begin to output the prepared data
       patch_t *Relation = amr->patch[0][TLv][TPID];
 
-      char FileName[MAX_STRING];
+      char FileName[2*MAX_STRING];
       sprintf( FileName, "%s/PrePatch_Fluid_r%d_lv%d_p%d", OUTPUT_DIR, MPI_Rank, TLv, TPID );
       if ( comment != NULL )
       {
@@ -166,7 +166,7 @@ void Output_PreparedPatch_Fluid( const int TLv, const int TPID,
          const real Emag = NULL_REAL;
 #        endif
          fprintf( File, BlankPlusFormat_Flt, Hydro_Con2Pres(u[DENS],u[MOMX],u[MOMY],u[MOMZ],u[ENGY],u+NCOMP_FLUID,
-                  CheckMinPres_No,NULL_REAL,Emag, EoS_DensEint2Pres_CPUPtr, EoS_GuessHTilde_CPUPtr,
+                  CheckMinPres_No,NULL_REAL,PassiveFloorMask,Emag, EoS_DensEint2Pres_CPUPtr, EoS_GuessHTilde_CPUPtr,
                   EoS_HTilde2Temp_CPUPtr, EoS_AuxArray_Flt, EoS_AuxArray_Int, h_EoS_Table, NULL) );
 #        endif // #if ( MODEL == HYDRO )
 

@@ -106,6 +106,9 @@ struct KeyInfo_t
    char  *GitCommit;
    long   UniqueDataID;
 
+// conserved variables
+   double ConRef[1+NCONREF_MAX];
+
 }; // struct KeyInfo_t
 
 
@@ -172,6 +175,7 @@ struct Makefile_t
    int CosmicRay;
    int EoS;
    int BarotropicEoS;
+   int ExactCooling;
 
 #  elif ( MODEL == ELBDM )
    int ELBDMScheme;
@@ -373,6 +377,8 @@ struct SymConst_t
 
    int    NFieldStoredMax;
 
+   int    NConRefMax;
+
 }; // struct SymConst_t
 
 
@@ -382,7 +388,7 @@ struct SymConst_t
 // Structure   :  InputPara_t
 // Description :  Data structure for outputting the run-time parameters
 //
-// Note        :  1. All run-time parameters are loaded from the files "Input__XXX"
+// Note        :  1. Most of the run-time parameters are loaded from the files "Input__XXX"
 //-------------------------------------------------------------------------------------------------------
 struct InputPara_t
 {
@@ -438,6 +444,7 @@ struct InputPara_t
    int    Par_GhostSize;
    int    Par_GhostSizeTracer;
    int    Par_TracerVelCorr;
+   int    Opt__ParInitCheck;
    char  *ParAttFltLabel[PAR_NATT_FLT_TOTAL];
    char  *ParAttIntLabel[PAR_NATT_INT_TOTAL];
 #  endif
@@ -617,6 +624,7 @@ struct InputPara_t
    int    Opt__FixUp_Restrict;
    long   FixUpRestrict_Var;
    int    Opt__CorrAfterAllSync;
+   long   PassiveFloor_Var;
    int    Opt__NormalizePassive;
    int    NormalizePassive_NVar;
    int    NormalizePassive_VarIdx[NCOMP_PASSIVE];
@@ -676,6 +684,12 @@ struct InputPara_t
    int    Src_Deleptonization;
    int    Src_User;
    int    Src_GPU_NPGroup;
+   int    Src_ExactCooling;
+#  ifdef EXACT_COOLING
+   int    Src_EC_TEF_N;
+   int    Src_EC_subcycling;
+   double Src_EC_dtCoef;
+#  endif
 
 // Grackle
 #  ifdef SUPPORT_GRACKLE
@@ -956,6 +970,7 @@ inline void SyncHDF5File( const char *FileName )
 
 
 
+// TYPE_* must align with the hard-coded values in Output_DumpData_Total_HDF5.cpp: GetCompound_General() and H5_write_compound()
 #define NPARA_MAX    1000     // maximum number of parameters
 #define TYPE_INT        1     // various data types
 #define TYPE_LONG       2
@@ -970,12 +985,24 @@ inline void SyncHDF5File( const char *FileName )
 
 //-------------------------------------------------------------------------------------------------------
 // Structure   :  HDF5_Output_t
-// Description :  Data structure for outputting the user run-time parameters
+// Description :  Data structure for outputting user-defined run-time parameters
 //
-// Note        :  1. Run-time parameters are stored by Output_HDF5_User_Ptr or Output_HDF5_TestProb_Ptr function
+// Note        : 1. Run-time parameters are stored using Output_HDF5_UserPara_Ptr() or Output_HDF5_InputTest_Ptr()
+//
+// Data Member :  NPara     : Total number of parameters
+//                TotalSize : Size of the structure
+//                Key       : Parameter names
+//                Ptr       : Pointer to the parameter variables
+//                Type      : Parameter data types
+//                TypeSize  : Size of parameter data type
+//
+// Method      :  HDF5_Output_t : Constructor
+//               ~HDF5_Output_t : Destructor
+//                Add           : Add a new parameter
 //-------------------------------------------------------------------------------------------------------
 struct HDF5_Output_t
 {
+
 // data members
    int     NPara;
    size_t  TotalSize;
@@ -984,12 +1011,12 @@ struct HDF5_Output_t
    int    *Type;
    size_t *TypeSize;
 
-//===================================================================================
-// Constructor :  HDF5_Output_t
-// Description :  Constructor of the structure "HDF5_Output_t"
-//
-// Note        :  Initialize variables and allocate memory
-//===================================================================================
+   //===================================================================================
+   // Constructor :  HDF5_Output_t
+   // Description :  Constructor of the structure "HDF5_Output_t"
+   //
+   // Note        :  Initialize variables and allocate memory
+   //===================================================================================
    HDF5_Output_t()
    {
 
@@ -1002,12 +1029,12 @@ struct HDF5_Output_t
 
    } // METHOD : HDF5_Output_t
 
-//===================================================================================
-// Constructor :  ~HDF5_Output_t
-// Description :  Destructor of the structure "HDF5_Output_t"
-//
-// Note        :  Deallocate memory
-//===================================================================================
+   //===================================================================================
+   // Constructor :  ~HDF5_Output_t
+   // Description :  Destructor of the structure "HDF5_Output_t"
+   //
+   // Note        :  Deallocate memory
+   //===================================================================================
    ~HDF5_Output_t()
    {
 
@@ -1018,14 +1045,14 @@ struct HDF5_Output_t
 
    } // METHOD : ~HDF5_Output_t
 
-//===================================================================================
-// Constructor :  Add
-// Description :  Add a new parameter to be written latter
-//
-// Note        :  1. This function stores the name, address, and data type of the parameter
-//                2. Data type (e.g., integer, float, ...) is determined by the input pointer
-//                3. String parameters are handled by a separate overloaded function
-//===================================================================================
+   //===================================================================================
+   // Constructor :  Add
+   // Description :  Add a new parameter to be written latter
+   //
+   // Note        :  1. This function stores the name, address, and data type of the parameter
+   //                2. Data type (e.g., integer, float, ...) is determined by the input pointer
+   //                3. String parameters are handled by a separate overloaded function
+   //===================================================================================
    template <typename T>
    void Add( const char NewKey[], T* NewPtr )
    {
@@ -1043,7 +1070,7 @@ struct HDF5_Output_t
       else if ( typeid(T) == typeid(long  ) )   { Type[NPara] = TYPE_LONG;   TypeSize[NPara] = sizeof(long  ); }
       else if ( typeid(T) == typeid(uint  ) )   { Type[NPara] = TYPE_UINT;   TypeSize[NPara] = sizeof(uint  ); }
       else if ( typeid(T) == typeid(ulong ) )   { Type[NPara] = TYPE_ULONG;  TypeSize[NPara] = sizeof(ulong ); }
-      else if ( typeid(T) == typeid(bool  ) )   { Type[NPara] = TYPE_BOOL;   TypeSize[NPara] = sizeof(int   ); } // bool store as int
+      else if ( typeid(T) == typeid(bool  ) )   { Type[NPara] = TYPE_BOOL;   TypeSize[NPara] = sizeof(int   ); } // bool is stored as int
       else if ( typeid(T) == typeid(float ) )   { Type[NPara] = TYPE_FLOAT;  TypeSize[NPara] = sizeof(float ); }
       else if ( typeid(T) == typeid(double) )   { Type[NPara] = TYPE_DOUBLE; TypeSize[NPara] = sizeof(double); }
       else
@@ -1055,12 +1082,12 @@ struct HDF5_Output_t
 
    } // METHOD : Add
 
-//===================================================================================
-// Constructor :  Add (string)
-// Description :  Add a new string parameter to be written later
-//
-// Note        :  1. Overloaded function for strings
-//===================================================================================
+   //===================================================================================
+   // Constructor :  Add (string)
+   // Description :  Add a new string parameter to be written later
+   //
+   // Note        :  1. Overloaded function for strings
+   //===================================================================================
    void Add( const char NewKey[], char* NewPtr )
    {
 
@@ -1068,9 +1095,6 @@ struct HDF5_Output_t
 
 //    parameter name
       strncpy( Key[NPara], NewKey, MAX_STRING );
-
-//    make sure C-strings are null-terminated
-      NewPtr[MAX_STRING-1] = '\0';
 
 //    parameter address
       Ptr[NPara] = NewPtr;

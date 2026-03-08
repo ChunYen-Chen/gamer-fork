@@ -90,6 +90,7 @@ void Init_Load_Parameter()
    ReadPara->Add( "PAR_REMOVE_CELL",            &amr->Par->RemoveCell,           -1.0,              NoMin_double,  NoMax_double   );
    ReadPara->Add( "OPT__FREEZE_PAR",            &OPT__FREEZE_PAR,                 false,            Useless_bool,  Useless_bool   );
    ReadPara->Add( "PAR_TR_VEL_CORR",            &amr->Par->TracerVelCorr,         false,            Useless_bool,  Useless_bool   );
+   ReadPara->Add( "OPT__PAR_INIT_CHECK",        &OPT__PAR_INIT_CHECK,             true,             Useless_bool,  Useless_bool   );
 #  endif // #ifdef PARTICLE
 
 
@@ -233,9 +234,11 @@ void Init_Load_Parameter()
 // source terms
    ReadPara->Add( "SRC_DELEPTONIZATION",        &SrcTerms.Deleptonization,        false,           Useless_bool,  Useless_bool   );
    ReadPara->Add( "SRC_EXACTCOOLING",           &SrcTerms.ExactCooling,           false,           Useless_bool,  Useless_bool   );
+#  ifdef EXACT_COOLING
    ReadPara->Add( "SRC_EC_TEF_N",               &SrcTerms.EC_TEF_N,               1501,            1,             NoMax_int      );
    ReadPara->Add( "SRC_EC_SUBCYCLING",          &SrcTerms.EC_subcycling,          false,           Useless_bool,  Useless_bool   );
    ReadPara->Add( "SRC_EC_DTCOEF",              &SrcTerms.EC_dtCoef,              0.5,             Eps_double,    NoMax_double   );
+#  endif
    ReadPara->Add( "SRC_USER",                   &SrcTerms.User,                   false,           Useless_bool,  Useless_bool   );
 // do not check SRC_GPU_NPGROUP since it may be reset by either Init_ResetParameter() or CUAPI_SetMemSize()
    ReadPara->Add( "SRC_GPU_NPGROUP",            &SRC_GPU_NPGROUP,                -1,               NoMin_int,     NoMax_int      );

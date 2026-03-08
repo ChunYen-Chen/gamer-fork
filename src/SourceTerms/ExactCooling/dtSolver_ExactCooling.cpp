@@ -1,9 +1,9 @@
 #include "GAMER.h"
 
 
-extern bool   IsInit_tcool[NLEVEL];
 
 
+#ifdef EXACT_COOLING
 //-------------------------------------------------------------------------------------------------------
 // Function    :  Mis_GetTimeStep_ExactCooling
 // Description :  Estimate the evolution time-step constrained by the ExactCooling source term
@@ -37,9 +37,10 @@ double Mis_GetTimeStep_ExactCooling( const int lv, const double dTime_dt )
 #  endif
 
    double  dt_EC     = HUGE_NUMBER;
-   double *OMP_dt_EC = new double [NT];
+   double *OMP_dt_EC;
 
 
    return dt_EC;
 
 } // FUNCTION : Mis_GetTimeStep_ExactCooling
+#endif // #ifdef EXACT_COOLING

@@ -5,6 +5,8 @@
 // prototypes of built-in source terms
 #if ( MODEL == HYDRO )
 void Src_Init_Deleptonization();
+#endif
+#ifdef EXACT_COOLING
 void Src_Init_ExactCooling();
 #endif
 
@@ -33,17 +35,12 @@ void Src_Init()
 
 
 // check if at least one source term is activated
-   if (
-#       if ( MODEL == HYDRO )
-        SrcTerms.Deleptonization  ||
-        SrcTerms.ExactCooling     ||
-#       endif
-        SrcTerms.User
-      )
-      SrcTerms.Any = true;
-   else
-      SrcTerms.Any = false;
-
+   SrcTerms.Any = false;
+#  if ( MODEL == HYDRO )
+   SrcTerms.Any |= SrcTerms.Deleptonization;
+   SrcTerms.Any |= SrcTerms.ExactCooling;
+#  endif
+   SrcTerms.Any |= SrcTerms.User;
 
 // set auxiliary parameters
    for (int d=0; d<3; d++)    SrcTerms.BoxCenter[d] = amr->BoxCenter[d];
@@ -73,10 +70,10 @@ void Src_Init()
    SrcTerms.Dlep_Profile_RadiusDevPtr = NULL;
 #  endif
 
-#  if ( MODEL == HYDRO )
+#  ifdef EXACT_COOLING
    SrcTerms.EC_FuncPtr                = NULL;
    SrcTerms.EC_CPUPtr                 = NULL;
-#  ifdef GPUEC
+#  ifdef GPU
    SrcTerms.EC_GPUPtr                 = NULL;
 #  endif
    SrcTerms.EC_AuxArrayDevPtr_Flt     = NULL;
@@ -84,7 +81,7 @@ void Src_Init()
    SrcTerms.EC_TEF_lambda_DevPtr      = NULL;
    SrcTerms.EC_TEF_alpha_DevPtr       = NULL;
    SrcTerms.EC_TEFc_DevPtr            = NULL;
-#  endif
+#  endif // #ifdef EXACT_COOLING
 
    SrcTerms.User_FuncPtr              = NULL;
    SrcTerms.User_CPUPtr               = NULL;
@@ -112,7 +109,7 @@ void Src_Init()
 #  endif
 
 // (2) exact cooling
-#  if ( MODEL == HYDRO )
+#  ifdef EXACT_COOLING
    if ( SrcTerms.ExactCooling )
    {
       Src_Init_ExactCooling();
@@ -124,7 +121,7 @@ void Src_Init()
       if ( SrcTerms.EC_GPUPtr  == NULL )   Aux_Error( ERROR_INFO, "SrcTerms.EC_GPUPtr  == NULL !!\n" );
 #     endif
    }
-#  endif
+#  endif // #ifdef EXACT_COOLING
 
 // (3) user-specified source term
    if ( SrcTerms.User )

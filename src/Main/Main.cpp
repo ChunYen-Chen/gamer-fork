@@ -38,7 +38,7 @@ double              *FlagTable_User       [NLEVEL-1];
 double              *DumpTable = NULL;
 int                  DumpTable_NDump;
 int                 *UM_IC_RefineRegion = NULL;
-long                 FixUpVar_Flux, FixUpVar_Restrict;
+long                 FixUpVar_Flux, FixUpVar_Restrict, PassiveFloorMask;
 int                  PassiveNorm_NVar, PassiveNorm_VarIdx[NCOMP_PASSIVE];
 int                  PassiveIntFrac_NVar, PassiveIntFrac_VarIdx[NCOMP_PASSIVE];
 int                  StrLen_Flt;
@@ -78,7 +78,7 @@ int                  OPT__UM_IC_FLOAT8;
 double               COM_CEN_X, COM_CEN_Y, COM_CEN_Z, COM_MAX_R, COM_MIN_RHO, COM_TOLERR_R;
 int                  COM_MAX_ITER;
 double               ANGMOM_ORIGIN_X, ANGMOM_ORIGIN_Y, ANGMOM_ORIGIN_Z;
-char                 OUTPUT_DIR[MAX_STRING-100];
+char                 OUTPUT_DIR[MAX_STRING];
 double               FLAG_ANGULAR_CEN_X, FLAG_ANGULAR_CEN_Y, FLAG_ANGULAR_CEN_Z;
 double               FLAG_RADIAL_CEN_X, FLAG_RADIAL_CEN_Y, FLAG_RADIAL_CEN_Z;
 
@@ -92,6 +92,9 @@ OptFluBC_t           OPT__BC_FLU[6];
 OptLohnerForm_t      OPT__FLAG_LOHNER_FORM;
 OptCorrAfterSync_t   OPT__CORR_AFTER_ALL_SYNC;
 OptTimeStepLevel_t   OPT__DT_LEVEL;
+
+bool                 ConRefInitialized = false;
+double               ConRef[1+NCONREF_MAX]; // time + conserved variables
 
 
 // 2. global variables for different applications
@@ -225,7 +228,7 @@ bool                 FFTW3_Double_OMP_Enabled, FFTW3_Single_OMP_Enabled;
 // (2-5) particle
 #ifdef PARTICLE
 double               DT__PARVEL, DT__PARVEL_MAX, DT__PARACC;
-bool                 OPT__CK_PARTICLE, OPT__FLAG_NPAR_CELL, OPT__FLAG_PAR_MASS_CELL, OPT__FREEZE_PAR, OPT__OUTPUT_PAR_MESH;
+bool                 OPT__CK_PARTICLE, OPT__FLAG_NPAR_CELL, OPT__FLAG_PAR_MASS_CELL, OPT__FREEZE_PAR, OPT__OUTPUT_PAR_MESH, OPT__PAR_INIT_CHECK;
 int                  OPT__OUTPUT_PAR_MODE, OPT__PARTICLE_COUNT, OPT__FLAG_NPAR_PATCH, PAR_IC_FLOAT8, PAR_IC_INT8, FlagTable_NParPatch[NLEVEL-1], FlagTable_NParCell[NLEVEL-1];
 double               FlagTable_ParMassCell[NLEVEL-1];
 ParOutputDens_t      OPT__OUTPUT_PAR_DENS;
@@ -317,8 +320,11 @@ SrcTerms_t SrcTerms;
 #if ( MODEL == HYDRO )
 double     Src_Dlep_AuxArray_Flt[SRC_NAUX_DLEP];
 int        Src_Dlep_AuxArray_Int[SRC_NAUX_DLEP];
+#endif
+#ifdef EXACT_COOLING
 double     Src_EC_AuxArray_Flt[SRC_NAUX_EC];
 int        Src_EC_AuxArray_Int[SRC_NAUX_EC];
+bool       IsInit_tcool[NLEVEL];
 #endif
 double     Src_User_AuxArray_Flt[SRC_NAUX_USER];
 int        Src_User_AuxArray_Int[SRC_NAUX_USER];
@@ -394,13 +400,13 @@ real (*h_EC_Ele     )[NCOMP_MAG][ CUBE(N_EC_ELE)          ]          = NULL;
 #endif
 #endif // FLU_SCHEME
 #if ( MODEL == ELBDM )
-bool  (*h_IsCompletelyRefined[2])                                  = { NULL, NULL };
+bool  (*h_IsCompletelyRefined[2])                                    = { NULL, NULL };
 #endif
 #if ( ELBDM_SCHEME == ELBDM_HYBRID )
-bool (*h_HasWaveCounterpart[2])[ CUBE(HYB_NXT) ]                   = { NULL, NULL };
+bool (*h_HasWaveCounterpart[2])[ CUBE(HYB_NXT) ]                     = { NULL, NULL };
 #endif
 #if ( GRAMFE_SCHEME == GRAMFE_MATMUL )
-gramfe_matmul_float (*h_GramFE_TimeEvo)[ 2*FLU_NXT ]               = NULL;
+gramfe_matmul_float (*h_GramFE_TimeEvo)[ 2*FLU_NXT ]                 = NULL;
 #endif
 
 #ifdef GRAVITY
@@ -459,6 +465,8 @@ double (*h_Corner_Array_S[2])[3]                                     = { NULL, N
 #if ( MODEL == HYDRO )
 real   (*h_SrcDlepProf_Data)[SRC_DLEP_PROF_NBINMAX]                  = NULL;
 real    *h_SrcDlepProf_Radius                                        = NULL;
+#endif
+#ifdef EXACT_COOLING
 double  *h_SrcEC_TEF_lambda                                          = NULL;
 double  *h_SrcEC_TEF_alpha                                           = NULL;
 double  *h_SrcEC_TEFc                                                = NULL;
@@ -493,13 +501,13 @@ real (*d_EC_Ele     )[NCOMP_MAG][ CUBE(N_EC_ELE)          ]          = NULL;
 #endif
 #endif // FLU_SCHEME
 #if ( MODEL == ELBDM )
-bool  (*d_IsCompletelyRefined)                                     = NULL;
+bool  (*d_IsCompletelyRefined)                                       = NULL;
 #endif
 #if ( ELBDM_SCHEME == ELBDM_HYBRID )
-bool (*d_HasWaveCounterpart)[ CUBE(HYB_NXT) ]                      = NULL;
+bool (*d_HasWaveCounterpart)[ CUBE(HYB_NXT) ]                        = NULL;
 #endif
 #if ( GRAMFE_SCHEME == GRAMFE_MATMUL )
-gramfe_matmul_float (*d_Flu_TimeEvo)[ 2*FLU_NXT ]                  = NULL;
+gramfe_matmul_float (*d_Flu_TimeEvo)[ 2*FLU_NXT ]                    = NULL;
 #endif
 
 #ifdef GRAVITY
@@ -553,6 +561,8 @@ double (*d_Corner_Array_S)[3]                                        = NULL;
 #if ( MODEL == HYDRO )
 real   (*d_SrcDlepProf_Data)[SRC_DLEP_PROF_NBINMAX]                  = NULL;
 real    *d_SrcDlepProf_Radius                                        = NULL;
+#endif
+#ifdef EXACT_COOLING
 double  *d_SrcEC_TEF_lambda                                          = NULL;
 double  *d_SrcEC_TEF_alpha                                           = NULL;
 double  *d_SrcEC_TEFc                                                = NULL;
@@ -630,8 +640,6 @@ int main( int argc, char *argv[] )
 #     endif
    }
 
-   Output_DumpData( 0 );
-
    if ( OPT__PATCH_COUNT > 0 )            Aux_Record_PatchCount();
    if ( OPT__RECORD_MEMORY )              Aux_GetMemInfo();
    if ( OPT__RECORD_USER ) {
@@ -650,6 +658,9 @@ int main( int argc, char *argv[] )
 #  endif
 
    Aux_Check();
+
+// must be called after Aux_Check() to obtain the reference conserved values (ConRef_*) first
+   Output_DumpData( 0 );
 
 #  if ( MODEL == ELBDM )
    if (  ( ELBDM_REMOVE_MOTION_CM == ELBDM_REMOVE_MOTION_CM_INIT && (OPT__INIT != INIT_BY_RESTART || OPT__RESTART_RESET) )  ||
@@ -864,7 +875,7 @@ int main( int argc, char *argv[] )
 
    if ( MPI_Rank == 0  &&  OPT__RECORD_NOTE )
    {
-      char FileName[MAX_STRING];
+      char FileName[2*MAX_STRING];
       sprintf( FileName, "%s/Record__Note", OUTPUT_DIR );
 
       FILE *Note = fopen( FileName, "a" );
